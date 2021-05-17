@@ -7,12 +7,14 @@ jobs:
   cpp_ut:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/4paradigm/centos6_gcc7_hybridsql:0.1.1
+      image: ghcr.io/aceforeverd/hybridsql:0.3.0-beta5
     steps:
       - uses: actions/checkout@v1
       - name: uncompress_thirdparty
         run: |
-          cd /depends && tar -zxf thirdparty.tar.gz && cd -
+          cd /depends
+          tar xzf thirdparty.tar.gz
+          mv thirdparty-*/ thirdparty/
       - name: build
         run: |
           bash steps/init_env.sh
@@ -42,12 +44,14 @@ jobs:
   sql_sdk_test:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/4paradigm/centos6_gcc7_hybridsql:0.1.1
+      image: ghcr.io/aceforeverd/hybridsql:0.3.0-beta5
     steps:
       - uses: actions/checkout@v1
       - name: uncompress_thirdparty
         run: |
-          cd /depends && tar -zxf thirdparty.tar.gz && cd -
+          cd /depends
+          tar xzf thirdparty.tar.gz
+          mv thirdparty-*/ thirdparty/
       - name: build
         run: |
           bash steps/init_env.sh
@@ -73,12 +77,14 @@ jobs:
   sql_cluster_test:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/4paradigm/centos6_gcc7_hybridsql:0.1.1
+      image: ghcr.io/aceforeverd/hybridsql:0.3.0-beta5
     steps:
       - uses: actions/checkout@v1
       - name: uncompress_thirdparty
         run: |
-          cd /depends && tar -zxf thirdparty.tar.gz && cd -
+          cd /depends
+          tar xzf thirdparty.tar.gz
+          mv thirdparty-*/ thirdparty/
       - name: build
         run: |
           bash steps/init_env.sh
