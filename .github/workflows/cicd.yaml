@@ -1,5 +1,9 @@
 name: cicd
-on: [pull_request]
+on:
+  pull_request:
+  push:
+    tags:
+      - v*
 env:
   GIT_SUBMODULE_STRATEGY: recursive
 
