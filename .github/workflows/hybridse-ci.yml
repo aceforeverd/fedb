@@ -92,16 +92,16 @@ jobs:
           VERSION=$(echo $VERSION | sed -e 's/^hybridse-v//')
           ./java/prepare_release.sh $VERSION
 
-      - name: Publish Java Library
-        if: ${{ github.event_name == 'push' }}
-        working-directory: ${{ env.HYBRIDSE_PATH }}/java
-        run: |
-          mvn --batch-mode deploy
-        env:
-          MAVEN_OPTS: -Duser.home=/github/home
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_TOKEN: ${{ secrets.OSSRH_TOKEN }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      # - name: Publish Java Library
+      #   if: ${{ github.event_name == 'push' }}
+      #   working-directory: ${{ env.HYBRIDSE_PATH }}/java
+      #   run: |
+      #     mvn --batch-mode deploy
+      #   env:
+      #     MAVEN_OPTS: -Duser.home=/github/home
+      #     MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+      #     MAVEN_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+      #     GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Create Archive
         if: ${{ github.event_name == 'push' }}
@@ -194,17 +194,17 @@ jobs:
           VERSION=$(echo $VERSION | sed -e 's/^hybridse-v//')
           ./java/prepare_release.sh $VERSION
 
-      - name: Publish Java Library
-        if: ${{ github.event_name == 'push' }}
-        working-directory: ${{ env.HYBRIDSE_PATH }}/java
-        run: |
-          mvn --batch-mode -P macos clean install
-          mvn --batch-mode -P macos -pl hybridse-native deploy
-          mvn --batch-mode -P macos -pl hybridse-sdk deploy
-        env:
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_TOKEN: ${{ secrets.OSSRH_TOKEN }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      # - name: Publish Java Library
+      #   if: ${{ github.event_name == 'push' }}
+      #   working-directory: ${{ env.HYBRIDSE_PATH }}/java
+      #   run: |
+      #     mvn --batch-mode -P macos clean install
+      #     mvn --batch-mode -P macos -pl hybridse-native deploy
+      #     mvn --batch-mode -P macos -pl hybridse-sdk deploy
+      #   env:
+      #     MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+      #     MAVEN_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+      #     GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Create Archive
         if: ${{ github.event_name == 'push' }}
@@ -223,67 +223,6 @@ jobs:
         with:
           path: ${{ env.HYBRIDSE_PATH }}/hybridse-*-${{ env.OS }}-${{ env.ARCH }}.tar.gz
           name: release-artifacts
-
-  java-allinone-deploy:
-    runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/4paradigm/hybridsql:0.4.0
-    needs: ["macos-build"]
-    if: >
-      success() && github.event_name == 'push'
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: true
-
-      - name: Download Lib Artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: lib-artifacts
-          path: ${{ env.HYBRIDSE_PATH }}
-
-      - uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: '8'
-          server-id: ossrh
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_TOKEN
-          gpg-passphrase: GPG_PASSPHRASE # env variable for GPG private key passphrase
-
-      - name: Import GPG key
-        if: ${{ github.event_name == 'push' }}
-        id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@v3
-        with:
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-
-      - name: Build Core
-        run: |
-          ./tools/hybridse_build.sh
-
-      - name: Copy Dylib
-        run: |
-          cp libhybridse_*.dylib java/hybridse-native/src/main/resources/
-
-      - name: Prepare Maven Release Deploy
-        if: startsWith(github.ref, 'refs/tags/hybridse-v')
-        run: |
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-          VERSION=$(echo $VERSION | sed -e 's/^hybridse-v//')
-          ./java/prepare_release.sh $VERSION
-
-      - name: Publish Java Library
-        working-directory: ${{ env.HYBRIDSE_PATH }}/java
-        run: |
-          mvn --batch-mode -P allinone clean install
-          mvn --batch-mode -P allinone -pl hybridse-native deploy
-          mvn --batch-mode -P allinone -pl hybridse-sdk deploy
-        env:
-          MAVEN_OPTS: -Duser.home=/github/home
-          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          MAVEN_TOKEN: ${{ secrets.OSSRH_TOKEN }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
   release:
     runs-on: ubuntu-latest
