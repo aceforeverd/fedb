@@ -1,0 +1,1343 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>SQL for Feature Extraction (Part 1) &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SQL for Feature Extraction (Part 2)" href="tutorial_sql_2.html" />
+    <link rel="prev" title="The Workflow of Cluster Version and Execution Mode" href="modes.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     Milestones
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Tutorials
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="modes.html">
+     The Workflow of Cluster Version and Execution Mode
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     SQL for Feature Extraction (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorial_sql_2.html">
+     SQL for Feature Extraction (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_import.html">
+     Data Import
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="openmldbspark_distribution.html">
+     OpenMLDB Spark Distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   Use Cases
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/lightgbm_demo.html">
+     OpenMLDB + LightGBM: Taxi Trip Duration Prediction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/pulsar_connector_demo.html">
+     Importing Real-Time Data Streams from Pulsar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/kafka_connector_demo.html">
+     Importing Real-Time Data Streams from Kafka
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/dolphinscheduler_task_demo.html">
+     Building End-to-End MLOps Workflows (OpenMLDB + DolphinScheduler)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/JD_recommendation_en.html">
+     OpenMLDB + OneFlow: Prediction of Purchase Intention for High Potential Customers
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   Deployment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   Maintenance
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     Upgrade
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     Backup and Restore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     Monitoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     Operations in CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/faq.html">
+     Operation and Maintenance FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     Scale-Out and Scale-In
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/diagnose.html">
+     Diagnostic Tool
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   References
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     Architecture
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       Online Module Architecture
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       Language Structure
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         Keywords
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL Object Name
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         Literal Value
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         Case Sensitive
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         Notes
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       Data Type
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         Numeric Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         String Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         Date and Time Type
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       Expressions, Functions, and Operations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         Operator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       Data Query Statement （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT Overview
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         No-table SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       Data Manipulation Statement（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       Data Definition Statement (DDL)
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         DEPLOY
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         Delete DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         View DEPLOYMENTS List
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         View DEPLOYMENT Details
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL On-Line Specifications and Requirements
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       Task Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/ip_tips.html">
+     IP Configuration
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/client_config/index.html">
+     Client Configuration
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/client_config/client_spark_config.html">
+       Spark Client Configuration
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: main</br>
+Versions：
+<ul>
+  <li><a href="tutorial_sql_1.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/tutorial/tutorial_sql_1.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-the-feature-engineering-of-machine-learning">
+   1. What is the Feature Engineering of Machine Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-engineering-development-tool-openmldb">
+   2. Feature Engineering Development Tool – OpenMLDB
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#from-0-to-1-feature-engineering-practice">
+   3. From 0 to 1, Feature Engineering Practice
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#primary-and-secondary-tables">
+     3.1.1. Primary and Secondary Tables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-features">
+     3.1.2. Types of Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#single-row-features-on-the-primary-table">
+     3.2. Single-Row Features on the Primary Table
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-series-features-on-the-primary-table">
+     3.3. Time-Series Features on the Primary Table
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-define-window">
+     3.3.1. Step 1: Define Window
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-2-construct-features-based-on-time-window">
+     3.3.2. Step 2: Construct Features Based on Time Window
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>SQL for Feature Extraction (Part 1)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-the-feature-engineering-of-machine-learning">
+   1. What is the Feature Engineering of Machine Learning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-engineering-development-tool-openmldb">
+   2. Feature Engineering Development Tool – OpenMLDB
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#from-0-to-1-feature-engineering-practice">
+   3. From 0 to 1, Feature Engineering Practice
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#primary-and-secondary-tables">
+     3.1.1. Primary and Secondary Tables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-features">
+     3.1.2. Types of Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#single-row-features-on-the-primary-table">
+     3.2. Single-Row Features on the Primary Table
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-series-features-on-the-primary-table">
+     3.3. Time-Series Features on the Primary Table
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-define-window">
+     3.3.1. Step 1: Define Window
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-2-construct-features-based-on-time-window">
+     3.3.2. Step 2: Construct Features Based on Time Window
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="sql-for-feature-extraction-part-1">
+<h1>SQL for Feature Extraction (Part 1)<a class="headerlink" href="#sql-for-feature-extraction-part-1" title="Permalink to this headline">#</a></h1>
+<section id="what-is-the-feature-engineering-of-machine-learning">
+<h2>1. What is the Feature Engineering of Machine Learning<a class="headerlink" href="#what-is-the-feature-engineering-of-machine-learning" title="Permalink to this headline">#</a></h2>
+<p>A real-world machine learning application generally includes two main processes, namely <strong>Feature Engineering</strong> and <strong>Machine Learning Model</strong> (hereinafter referred to as <strong>Model</strong>). We must know a lot about the model. For example, from the classic logistic regression and decision tree models to the deep learning models, we all focus on how to develop high-quality models. We may pay less attention to feature engineering. However, you must have heard a famous saying that data and features determine the upper limit of machine learning, while models and algorithms only approach this upper limit. It can be seen that we have long agreed on the importance of Feature Engineering.</p>
+<p>In one sentence, Feature Engineering is defined as: using domain knowledge to extract useful feature information from the original data. It emphasizes domain knowledge, that is to say, feature extraction is not a standardized process, but has different experience and methodology based on different scenarios. For a simple example, for the real-time recommendation system, the original data may only be the search keywords entered by users, such as “washing machine”, and the corresponding user and commodity data tables stored in the database. In order to make better real-time recommendation, the following more meaningful features can be produced:</p>
+<ul class="simple">
+<li><p>The home appliance brand that the user purchased the most in the past year</p></li>
+<li><p>The average consumption level of the user in the past three years</p></li>
+<li><p>In the past hour, the discount on the platform has been more than 70%, which is in line with the top three washing machine models purchased by users in this user gender and age group</p></li>
+</ul>
+<p>As can be seen from the above example, features can be made quite complex and can have very high timeliness. So how to extract good features according to specific scenes is what data scientists need. At the same time, they need to be equipped with powerful tools to do feature engineering well. This tutorial will introduce you to how to do feature engineering in practice.</p>
+</section>
+<section id="feature-engineering-development-tool-openmldb">
+<h2>2. Feature Engineering Development Tool – OpenMLDB<a class="headerlink" href="#feature-engineering-development-tool-openmldb" title="Permalink to this headline">#</a></h2>
+<p>Before introducing the feature engineering algorithm, it is necessary to understand the development and deployment tools of feature engineering. According to experience, we roughly categorize them and summarize their advantages and disadvantages.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Development Tool</p></th>
+<th class="head"><p>Usability</p></th>
+<th class="head"><p>Functional Support</p></th>
+<th class="head"><p>Engineering Effort</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Python</p></td>
+<td><p>Low; widely used by data scientists</p></td>
+<td><p>The Python programming is very flexible and can be used to implement any functions.</p></td>
+<td><p>Difficult. Python programs are generally inefficient and their performance generally cannot meet the requirements of online real-time computing. In addition, users need to solve production features such as high availability.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Relational database</p></td>
+<td><p>Medium; development based on SQL</p></td>
+<td><p>There is no specific optimization for feature engineering, and the implementation for some features using the standard SQL is complex and inefficient.</p></td>
+<td><p>Acceptable. However, the functions that are not well supported by standard SQL may not meet the needs of production environment.</p></td>
+</tr>
+<tr class="row-even"><td><p>The hybrid approach, such as using Python for offline, and database or C++ for online</p></td>
+<td><p>The development cost is very high and requires two development skillsets.</p></td>
+<td><p>Based on development and customization, the functional requirements can be met.</p></td>
+<td><p>Acceptable but costly. In addition to the development and operation cost, it is also necessary to verify the online and offline consistency.</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenMLDB</p></td>
+<td><p>Medium; development based on SQL</p></td>
+<td><p>The standard SQL is extended and highly optimized to fully support feature engineering workload.</p></td>
+<td><p>Low cost and high efficiency. Based on SQL development with efficient design, SQL can be directly deployed to online, which naturally ensure the online and offline consistency.</p></td>
+</tr>
+</tbody>
+</table>
+<p>From the above table, we can see that OpenMLDB has unique advantages for feature engineering in production. Especially for real-time feature extraction based on time-series data, OpenMLDB has a lot of targeted optimization. If you want to learn more about OpenMLDB, you can visit our <a class="reference external" href="https://github.com/4paradigm/OpenMLDB">GitHub repo of OpenMLDB</a>.</p>
+</section>
+<section id="from-0-to-1-feature-engineering-practice">
+<h2>3. From 0 to 1, Feature Engineering Practice<a class="headerlink" href="#from-0-to-1-feature-engineering-practice" title="Permalink to this headline">#</a></h2>
+<p>We will introduce the common processing methods of feature engineering in two parts. This part will focus on single table feature processing, and the next part will focus on more complex multi-table feature computing. This tutorial uses the anti-fraud commonly used in the financial field as an actual case to describe.</p>
+<p>Note that if you want to run the SQL illustrated in this tutorial, please follow the following two steps to prepare：</p>
+<ul class="simple">
+<li><p>It is recommended to use docker image to run this tutorial under the standalone version. Refer to <a class="reference external" href="https://openmldb.ai/docs/en/main/quickstart/openmldb_quickstart.html">OpenMLDB Quick Start</a> for image pull and CLI operation mode. If using the cluster version, please use the offline mode (<code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">&#64;&#64;execute_mode='offline'</span></code> ). The normal online mode under the cluster version’s CLI only supports the simple data preview function, so most of the SQL in the tutorial cannot run.</p></li>
+<li><p>All data related to this tutorial can be downloaded <a class="reference external" href="https://openmldb.ai/download/tutorial_sql/tutoral_sql_data.zip">here</a></p></li>
+</ul>
+<section id="primary-and-secondary-tables">
+<h3>3.1.1. Primary and Secondary Tables<a class="headerlink" href="#primary-and-secondary-tables" title="Permalink to this headline">#</a></h3>
+<p><strong>Primary Table</strong> is the main data table of feature extraction. Intuitively, it can be understood that the primary table is a data table with label columns required for model training. In the process of feature engineering, features will be extracted on each row of the primary table to finally generate the corresponding <strong>Feature Table</strong>. For example, the following user transaction table (hereinafter referred to as data table <code class="docutils literal notranslate"><span class="pre">t1</span></code>) is the primary table of the case described in this tutorial.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>BIGINT</p></td>
+<td><p>Sample ID, each sample has a unique ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>uid</p></td>
+<td><p>STRING</p></td>
+<td><p>User ID</p></td>
+</tr>
+<tr class="row-even"><td><p>mid</p></td>
+<td><p>STRING</p></td>
+<td><p>Merchant ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>cardno</p></td>
+<td><p>STRING</p></td>
+<td><p>Card Number</p></td>
+</tr>
+<tr class="row-even"><td><p>trans_time</p></td>
+<td><p>TIMESTAMP</p></td>
+<td><p>Transaction Time</p></td>
+</tr>
+<tr class="row-odd"><td><p>trans_amt</p></td>
+<td><p>DOUBLE</p></td>
+<td><p>Transaction Amount</p></td>
+</tr>
+<tr class="row-even"><td><p>trans_type</p></td>
+<td><p>STRING</p></td>
+<td><p>Transaction Type</p></td>
+</tr>
+<tr class="row-odd"><td><p>province</p></td>
+<td><p>STRING</p></td>
+<td><p>Province</p></td>
+</tr>
+<tr class="row-even"><td><p>city</p></td>
+<td><p>STRING</p></td>
+<td><p>City</p></td>
+</tr>
+<tr class="row-odd"><td><p>label</p></td>
+<td><p>BOOL</p></td>
+<td><p>Sample label, true|false</p></td>
+</tr>
+</tbody>
+</table>
+<p>In addition to the primary table, there may also be data tables in the database that store relevant auxiliary information, which can be spliced with the primary table through the join operation. These tables are called <strong>Secondary Tables</strong> (note that there may be multiple secondary tables). For example, we can have a secondary table to store the merchant flow history. In the process of feature engineering, more valuable information can be obtained by splicing the information of primary and secondary tables. The feature engineering over multiple tables will be introduced in detail in the next part of this series.</p>
+</section>
+<section id="types-of-features">
+<h3>3.1.2. Types of Features<a class="headerlink" href="#types-of-features" title="Permalink to this headline">#</a></h3>
+<p>Before discussing the details of feature construction in depth, we can categorize the features commonly used in machine learning. From the perspective of building feature data sets and aggregation methods, there are four common features in machine learning:</p>
+<ul class="simple">
+<li><p>Single-row features on the primary table: Computing expressions and functions for one or more columns on the primary table.</p></li>
+<li><p>Time-series features on the primary table: Building sliding time-series windows for the primary table and performing aggregate functions over the windows.</p></li>
+<li><p>Single-row features on multiple tables: The primary table joins the secondary tables, and then it performs the single-row features on the joined table.</p></li>
+<li><p>Time-series features on multiple tables: A row of the primary table matches multiple rows from a secondary table, and then it performs time-series features on the matched rows.</p></li>
+</ul>
+<p>The first part of this tutorial will focus on the single-row and time-series features on the primary table. The next part will specifically introduce the single-row and time-series features on multiple tables.</p>
+</section>
+<section id="single-row-features-on-the-primary-table">
+<h3>3.2. Single-Row Features on the Primary Table<a class="headerlink" href="#single-row-features-on-the-primary-table" title="Permalink to this headline">#</a></h3>
+<p><strong>In-line Extraction</strong></p>
+<p>Some columns of the main table can be directly used as features to participate in model training.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">uid</span><span class="p">,</span><span class="w"> </span><span class="n">trans_type</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Functions or UDFs</strong></p>
+<p>Features can be extracted through built-in functions or UDFs, for example, days, hours and minutes are extracted as features.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="k">day</span><span class="p">(</span><span class="n">trans_time</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">f_trans_day</span><span class="p">,</span><span class="w"> </span>
+<span class="n">hour</span><span class="p">(</span><span class="n">trans_time</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">f_trans_hour</span><span class="p">,</span><span class="w"> </span>
+<span class="k">minute</span><span class="p">(</span><span class="n">trans_time</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">f_trans_minute</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Other related functions also include numerical feature calculation (such as <code class="docutils literal notranslate"><span class="pre">ceiling</span></code>) and string feature calculation (such as <code class="docutils literal notranslate"><span class="pre">substr</span></code>).</p>
+</section>
+<section id="time-series-features-on-the-primary-table">
+<h3>3.3. Time-Series Features on the Primary Table<a class="headerlink" href="#time-series-features-on-the-primary-table" title="Permalink to this headline">#</a></h3>
+<p>In many scenarios, the more commonly used feature construction method is based on the feature construction of time window. For example, transaction data and user behavior are time-series data with time stamp. Two steps need to be completed to construct the time-series features on the primary table:</p>
+<ul class="simple">
+<li><p>Step 1: Define time windows</p></li>
+<li><p>Step 2: Construct features based on time windows</p></li>
+</ul>
+</section>
+<section id="step-1-define-window">
+<h3>3.3.1. Step 1: Define Window<a class="headerlink" href="#step-1-define-window" title="Permalink to this headline">#</a></h3>
+<p>We can define a specific window size either through the time interval (such as a month) or through the number of rows in the window (such as 100). The most basic definition of timing window:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>window window_name as (PARTITION BY partition_col ORDER BY order_col ROWS_RANGE｜ROWS BETWEEN StartFrameBound AND EndFrameBound)
+</pre></div>
+</div>
+<p>Among them, the important parameters include：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PARTITION</span> <span class="pre">BY</span> <span class="pre">partition_col</span></code>: Indicates that the window is in accordance with<code class="docutils literal notranslate"><span class="pre">partition_col</span></code>column grouping</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span> <span class="pre">order_col</span></code>: Indicates that the window is in accordance with<code class="docutils literal notranslate"><span class="pre">order_col</span></code>sorting columns</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ROWS_RANGE</span></code>: Indicates that the window slides by time；<code class="docutils literal notranslate"><span class="pre">ROWS</span></code> Indicates that the window slides by the number of rows</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">StartFrameBound</span></code>: Represents the upper bound of the window. In OpenMLDB, we can generally define the upper bound of the window as:</p></li>
+<li><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">UNBOUNDED</span> <span class="pre">PRECEDING</span></code>: No upper bound.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time_expression</span> <span class="pre">PRECEDING</span></code>: If it is a time window, you can define a time offset. For example, ‘30d predicting’ means that the upper bound of the window is the time of the current line - 30 days.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">number</span> <span class="pre">PRECEDING</span></code>: If it is the number of rows, you can define the number of rows offset. For example, ‘100 predicting’ indicates the first 100 lines of the current line whose upper bound is.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EndFrameBound</span></code>: Represents the lower bound of the time window. In OpenMLDB, we can generally define the lower bound of the window as:</p></li>
+<li><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">CURRENT</span> <span class="pre">ROW</span></code>： Current row</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time_expression</span> <span class="pre">PRECEDING</span></code>: A certain time offset, such as’ 1D forecasting ‘. This indicates that the lower bound of the window is the time of the current line - 1 day.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">number</span> <span class="pre">PRECEDING</span></code>: If it is the number of rows, you can define the number of rows offset. For example,<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">PRECEDING</span></code> represents the first row of the current row whose upper bound of the window is.</p></li>
+</ul>
+</li>
+<li><p>When configuring the upper and lower boundaries of the window, please note:</p></li>
+<li><ul>
+<li><p>At present, OpenMLDB cannot support the time after the current row as the upper and lower bounds. For example,<code class="docutils literal notranslate"><span class="pre">1d</span> <span class="pre">FOLLOWING</span></code>. In other words, we can only deal with the historical time window. This also basically meets most of the application scenarios of feature engineering.</p></li>
+<li><p>Lower bound time of OpenMLDB must be &gt; = Upper bound time</p></li>
+<li><p>The number of lower bound entries of OpenMLDB must be &lt; = The number of upper bound entries</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="img" src="../_images/table_t1.png" /></p>
+<p>The following example shows that for the transaction table t1 shown above, we have two windows defined by time and two defined by number of rows. Note that the following window definitions are not a completed SQL. We will add aggregate functions later to complete runnable SQL.</p>
+<ul class="simple">
+<li><p>w1d: the window within the most recent day</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- The window of the user&#39;s most recent day containing the rows from the current to the most recent day</span>
+<span class="n">window</span><span class="w"> </span><span class="n">w1d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">trans_time</span><span class="w"> </span><span class="n">ROWS_RANGE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">1</span><span class="n">d</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">w1d</span></code> window shown in the above figure is for the row with <code class="docutils literal notranslate"><span class="pre">id=9</span></code>, and the <code class="docutils literal notranslate"><span class="pre">w1d</span></code> window contains three rows (<code class="docutils literal notranslate"><span class="pre">id=6</span></code>, <code class="docutils literal notranslate"><span class="pre">id=8</span></code>, <code class="docutils literal notranslate"><span class="pre">id=9</span></code>). These three rows fall within the time window [2022-02-07 12:00:00, 2022-02-08 12:00:00] .</p>
+<ul class="simple">
+<li><p>w1d_10d: the windows from 1 day ago to the last 10 days</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- The windows from 1 day ago to the last 10 days</span>
+<span class="n">window</span><span class="w"> </span><span class="n">w1d_10d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">trans_time</span><span class="w"> </span><span class="n">ROWS_RANGE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">10</span><span class="n">d</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">1</span><span class="n">d</span><span class="w"> </span><span class="n">PRECEDING</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The window <code class="docutils literal notranslate"><span class="pre">w1d_10d</span></code> for the row with <code class="docutils literal notranslate"><span class="pre">id=9</span></code> contains three rows, which are with <code class="docutils literal notranslate"><span class="pre">id=1</span></code>, <code class="docutils literal notranslate"><span class="pre">id=3</span></code> and <code class="docutils literal notranslate"><span class="pre">id=4</span></code>. These three rows fall within the time window of [2022-01-29 12:00:00, 2022-02-07 12:00:00]。</p>
+<ul class="simple">
+<li><p>w0_1: the window contains the last 0 ~ 1 rows</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- The window contains the last 0 ~ 1 rows, including the previous line and the current line</span>
+<span class="n">window</span><span class="w"> </span><span class="n">w0_1</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">trans_time</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The window <code class="docutils literal notranslate"><span class="pre">w0_1</span></code> for the row <code class="docutils literal notranslate"><span class="pre">id=10</span></code> contains 2 rows, which are <code class="docutils literal notranslate"><span class="pre">id=7</span></code> and <code class="docutils literal notranslate"><span class="pre">id=10</span></code>。</p>
+<ul class="simple">
+<li><p>w2_10: the window contains the last 2 ~ 10 rows</p></li>
+</ul>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- The window contains the last 2 ~ 10 rows</span>
+<span class="n">window</span><span class="w"> </span><span class="n">w2_10</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">trans_time</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The window <code class="docutils literal notranslate"><span class="pre">w2_10</span></code> for the row <code class="docutils literal notranslate"><span class="pre">id=10</span></code> contains 2 rows, which are <code class="docutils literal notranslate"><span class="pre">od=2</span></code> and <code class="docutils literal notranslate"><span class="pre">id=5</span></code>.</p>
+</section>
+<section id="step-2-construct-features-based-on-time-window">
+<h3>3.3.2. Step 2: Construct Features Based on Time Window<a class="headerlink" href="#step-2-construct-features-based-on-time-window" title="Permalink to this headline">#</a></h3>
+<p>After defining the time window, we can apply aggregate functions over windows.</p>
+<p><strong>Aggregate Functions</strong></p>
+<p>The following aggregate functions are currently supported: <code class="docutils literal notranslate"><span class="pre">count()</span></code>, <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, <code class="docutils literal notranslate"><span class="pre">max()</span></code>, <code class="docutils literal notranslate"><span class="pre">min()</span></code>, <code class="docutils literal notranslate"><span class="pre">avg()</span></code></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="c1">-- Total transaction amount in the last 30 days</span>
+<span class="k">sum</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_sum_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Maximum transaction amount in the last 30 days</span>
+<span class="k">max</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_max_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Average single transaction amount in the last 30 days</span>
+<span class="k">avg</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_avg_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Total number of transactions in the last 30 days</span>
+<span class="k">count</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_count_trans_amt</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span>
+<span class="n">window</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">trans_time</span><span class="w"> </span><span class="n">ROWS_RANGE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">30</span><span class="n">d</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Aggregate Functions with Filtering</strong></p>
+<p>First, filter the data set according to the conditions, and then apply the aggregate functions. Such functions are defined as  <code class="docutils literal notranslate"><span class="pre">xxx_where</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">xxx_where</span><span class="p">(</span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="n">filter_condition</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">col</span></code>：The column to be applied the aggregate function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter_condition</span></code>：Filter condition expression.</p></li>
+</ul>
+<p>Currently the supported functions are:<code class="docutils literal notranslate"><span class="pre">count_where</span></code>, <code class="docutils literal notranslate"><span class="pre">sum_where</span></code>, <code class="docutils literal notranslate"><span class="pre">avg_where</span></code>, <code class="docutils literal notranslate"><span class="pre">max_where</span></code>, <code class="docutils literal notranslate"><span class="pre">min_where</span></code> .</p>
+<p>Relevant examples are as follows:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="c1">-- Total POS transaction amount in the last 30 days</span>
+<span class="n">sum_where</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">trans_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;POS&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_sum_pos_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Maximum POS transaction amount in the last 30 days</span>
+<span class="n">max_where</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">trans_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;POS&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_max_pos_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Average single POS transaction amount in the last 30 days</span>
+<span class="n">avg_where</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">trans_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;POS&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_avg_pos_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Total number of POS transactions in the last 30 days</span>
+<span class="n">count_where</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">trans_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;POS&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_count_pos_trans_amt</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span>
+<span class="n">window</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">trans_time</span><span class="w"> </span><span class="n">ROWS_RANGE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">30</span><span class="n">d</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Aggregate Functions with Grouping</strong></p>
+<p>Data is grouped first, and then applied with aggregate functions. The results are saved as a string <code class="docutils literal notranslate"><span class="pre">&quot;k1:v1,k2:v2,k3:v3&quot;</span></code>.</p>
+<p>Such functions are defined as <code class="docutils literal notranslate"><span class="pre">xxx_cate</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">xxx_cate</span><span class="p">(</span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="n">cate</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">col</span></code>: The column to be applied the aggregate function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cate</span></code>: The column for grouping.</p></li>
+</ul>
+<p>Currently the supported functions are: <code class="docutils literal notranslate"><span class="pre">count_cate</span></code>, <code class="docutils literal notranslate"><span class="pre">sum_cate</span></code>, <code class="docutils literal notranslate"><span class="pre">avg_cate</span></code>, <code class="docutils literal notranslate"><span class="pre">max_cate</span></code>, <code class="docutils literal notranslate"><span class="pre">min_cate</span></code></p>
+<p>Relevant examples are as follows:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="c1">-- Total number of transactions in each city in the last 30 days, &quot;beijing:10,shanghai:3&quot;</span>
+<span class="n">count_cate</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_city_count_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Total transaction volume of each city in the last 30 days, &quot;beijing:100,shanghai:30&quot;</span>
+<span class="n">sum_cate</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_city_sum_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Average transaction volume of each city in the last 30 days, &quot;beijing:10,shanghai:10&quot;</span>
+<span class="n">avg_cate</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_city_avg_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Maximum transaction volume of each city in the last 30 days, &quot;beijing:30,shanghai:15&quot;</span>
+<span class="n">max_cate</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_city_max_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Minimum transaction volume of each city in the last 30 days, &quot;beijing:5,shanghai:5&quot;</span>
+<span class="n">min_cate</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_city_max_trans_amt</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span>
+<span class="n">window</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">trans_time</span><span class="w"> </span><span class="n">ROWS_RANGE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">30</span><span class="n">d</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Aggregate Functions with Filtering and Grouping</strong></p>
+<p>First, filter the rows according to conditions; then, group the data set according to a column; and finally apply the aggregate functions. The results are saved as a string<code class="docutils literal notranslate"><span class="pre">&quot;k1:v1,k2:v2,k3:v3&quot;</span></code>.</p>
+<p>Such functions are define as <code class="docutils literal notranslate"><span class="pre">xxx_cate_where</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>xxx_cate_where(col, filter_condition, cate) over w
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">col</span></code>：The column to be applied the aggregate function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filter_condition</span></code>：Filter condition expression.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cate</span></code>: The column for grouping.</p></li>
+</ul>
+<p>Currently, the supported statistical functions of grouping and aggregation after filtering are:<code class="docutils literal notranslate"><span class="pre">count_cate_where</span></code>, <code class="docutils literal notranslate"><span class="pre">sum_cate_where</span></code>, <code class="docutils literal notranslate"><span class="pre">avg_cate_where</span></code>, <code class="docutils literal notranslate"><span class="pre">max_cate_where</span></code>, <code class="docutils literal notranslate"><span class="pre">min_cate_where</span></code></p>
+<p>Relevant examples are as follows:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="c1">-- Number of POS transactions in each city in the last 30 days, &quot;beijing:5,shanghai:2&quot;</span>
+<span class="n">count_cate_where</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">trans_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;POS&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_city_count_pos_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Total POS transactions by city in the last 30 days, &quot;beijing:60,shanghai:25&quot;</span>
+<span class="n">sum_cate_where</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">trans_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;POS&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_city_sum_pos_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Average POS transaction volume of each city in the last 30 days, &quot;beijing:12,shanghai:12.5&quot;</span>
+<span class="n">avg_cate_where</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">trans_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;POS&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_city_avg_pos_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Maximum POS turnover of each city in the last 30 days, &quot;beijing:30,shanghai:15&quot;</span>
+<span class="n">max_cate_where</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">trans_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;POS&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_city_count_pos_trans_amt</span><span class="p">,</span><span class="w"></span>
+<span class="c1">-- Minimum POS transaction volume of each city in the last 30 days, &quot;beijing:5,shanghai:10&quot;</span>
+<span class="n">min_cate_where</span><span class="p">(</span><span class="n">trans_amt</span><span class="p">,</span><span class="w"> </span><span class="n">trans_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;POS&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">w30d_city_count_pos_trans_amt</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span>
+<span class="n">window</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">trans_time</span><span class="w"> </span><span class="n">ROWS_RANGE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">30</span><span class="n">d</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Frequency Statistics</strong></p>
+<p>We make frequency statistics for a given column.</p>
+<p><code class="docutils literal notranslate"><span class="pre">fz_top1_ratio</span></code>：Find the ratio of the maximum count of a category in the window to the total count of the window.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="c1">-- Ratio of transactions in cities with the largest number of transactions in the last 30 days</span>
+<span class="n">fz_top1_ratio</span><span class="p">(</span><span class="n">city</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">top_city_ratio</span><span class="w"> </span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span>
+<span class="n">window</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">trans_time</span><span class="w"> </span><span class="n">ROWS_RANGE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">30</span><span class="n">d</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">fz_topn_frequency(col,</span> <span class="pre">top_n)</span></code>: Find the <code class="docutils literal notranslate"><span class="pre">top_n</span></code> categories with the highest frequency in the window</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="c1">-- Two cities with the largest number of transactions in the last 30 days, &quot;beijing,shanghai&quot;</span>
+<span class="n">fz_topn_frequency</span><span class="p">(</span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">top_city_ratio</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span>
+<span class="n">window</span><span class="w"> </span><span class="n">w30d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">uid</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">trans_time</span><span class="w"> </span><span class="n">ROWS_RANGE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">30</span><span class="n">d</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="modes.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">The Workflow of Cluster Version and Execution Mode</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="tutorial_sql_2.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SQL for Feature Extraction (Part 2)</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:29 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

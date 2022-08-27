@@ -1,0 +1,1046 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>在线模块架构 &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SQL" href="../sql/index.html" />
+    <link rel="prev" title="架构" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../about/index.html">
+   关于
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../about/intro.html">
+     简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../about/milestones.html">
+     发展历程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../quickstart/index.html">
+   快速上手
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/openmldb_quickstart.html">
+     OpenMLDB 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/java_sdk.html">
+     Java SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/python_sdk.html">
+     Python SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/data_import_guide.html">
+     数据导入快速指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../tutorial/index.html">
+   教程
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorial/tutorial_sql_1.html">
+     基于 SQL 的特征开发（上）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorial/tutorial_sql_2.html">
+     基于 SQL 的特征开发（下）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorial/standalone_vs_cluster.html">
+     集群版 vs 单机版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorial/modes.html">
+     集群版使用流程及执行模式
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorial/openmldbspark_distribution.html">
+     OpenMLDB Spark 发行版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../tutorial/data_import.html">
+     在线数据导入工具使用
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../use_case/index.html">
+   使用案例
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../use_case/taxi_tour_duration_prediction.html">
+     OpenMLDB + LightGBM：出租车行程时间预测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../use_case/pulsar_connector_demo.html">
+     OpenMLDB Pulsar Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../use_case/kafka_connector_demo.html">
+     OpenMLDB Kafka Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../use_case/dolphinscheduler_task_demo.html">
+     DolphinScheduler OpenMLDB Task：打造端到端MLOps工作流
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../deploy/index.html">
+   安装部署
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../deploy/compile.html">
+     编译
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../deploy/install_deploy.html">
+     安装部署
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../deploy/conf.html">
+     配置文件
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../maintain/index.html">
+   运维
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../maintain/upgrade.html">
+     版本升级
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../maintain/backup.html">
+     备份与恢复
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../maintain/scale.html">
+     扩缩容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../maintain/monitoring.html">
+     监控
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../maintain/cli.html">
+     运维 CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../maintain/faq.html">
+     运维 FAQ
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../developer/index.html">
+   开发者文档
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../developer/contributing.html">
+     Contributing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../developer/code_structure.html">
+     代码结构
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../developer/built_in_function_develop_guide.html">
+     内置函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../developer/udf_develop_guide.html">
+     自定义函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../developer/sdk_develop.html">
+     SDK 开发指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   参考
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="index.html">
+     架构
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       在线模块架构
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../sql/language_structure/index.html">
+       语言结构
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/language_structure/keywords.html">
+         关键字
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/language_structure/object_names_identifiers.html">
+         SQL 对象名
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/language_structure/literals_value.html">
+         字面值
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/language_structure/case_sensitive.html">
+         大小写敏感
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/language_structure/comment.html">
+         注释
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../sql/data_types/index.html">
+       数据类型
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/data_types/numeric_types.html">
+         数值类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/data_types/string_types.html">
+         字符串类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/data_types/date_and_time_types.html">
+         日期与时间类型
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../sql/functions_and_operators/index.html">
+       表达式，函数和运算
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/functions_and_operators/operators.html">
+         运算符
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../sql/dql/index.html">
+       数据查询语句 （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/dql/SELECT_STATEMENT.html">
+         SELECT 概况
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         无表 SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../sql/dml/index.html">
+       数据操作语句（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../sql/ddl/index.html">
+       数据定义语句（DDL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/ddl/SHOW_COMPONENTS.html">
+         SHOW COMPONENTS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/ddl/SHOW_TABLE_STATUS.html">
+         SHOW TABLE STATUS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../sql/deployment_manage/index.html">
+       DEPLOYMENT 管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/deployment_manage/DEPLOY_STATEMENT.html">
+         创建 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         删除 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         查看 DEPLOYMENTS 列表
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         查看 DEPLOYMENT 详情
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL 上线规范和要求
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../sql/task_manage/index.html">
+       任务管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ip_tips.html">
+     IP 配置
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+当前版本: v0.5</br>
+版本列表：
+<ul>
+  <li><a href="../../../main/index.html">main</a></li>
+  <li><a href="online_arch.html">v0.5</a></li>
+  <li><a href="../../../v0.4/index.html">v0.4</a></li>
+  <li><a href="../../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/reference/arch/online_arch.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1. 概览
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apache-zookeeper">
+   2. Apache ZooKeeper
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nameserver">
+   3. Nameserver
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tablets">
+   4. Tablets
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-engine">
+     4.1 SQL Engine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stoage-engine">
+     4.2 Stoage Engine
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       数据分布
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       数据持久化及主从同步
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>在线模块架构</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1. 概览
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apache-zookeeper">
+   2. Apache ZooKeeper
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nameserver">
+   3. Nameserver
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tablets">
+   4. Tablets
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-engine">
+     4.1 SQL Engine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stoage-engine">
+     4.2 Stoage Engine
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       数据分布
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       数据持久化及主从同步
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>在线模块架构<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<section id="id2">
+<h2>1. 概览<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>OpenMLDB 的在线架构的主要模块包括 Apache ZooKeeper, nameserver 以及 tablets（进一步包含了SQL engine 和 storage engine）。如下图显示了这些模块之间的相互关系。其中 tablets 是整个 OpenMLDB 存储和计算的核心模块，也是消耗资源做多的模块；ZooKeeper 和 nameserver 主要用于辅助功能，如元数据的管理和高可用等。本文以下将会详细介绍各个模块的作用。
+<img alt="image-20220316160612968" src="../../_images/architecture.png" /></p>
+</section>
+<section id="apache-zookeeper">
+<h2>2. Apache ZooKeeper<a class="headerlink" href="#apache-zookeeper" title="Permalink to this headline">#</a></h2>
+<p>OpenMLDB 依赖 ZooKeeper 做服务发现和元数据存储和管理功能。ZooKeeper 和 OpenMLDB SDK，tablets, namesever 之间都会存在交互，用于分发和更新元数据。</p>
+</section>
+<section id="nameserver">
+<h2>3. Nameserver<a class="headerlink" href="#nameserver" title="Permalink to this headline">#</a></h2>
+<p>Nameserver 主要用来做 tablet 管理以及故障转移（failover）。当一个 tablet 节点宕机后，nameserver 就会触发一系列任务来执行故障转移，当节点恢复后会重新把数据加载到该节点中。同时，为了保证 nameserver 本身的高可用，nameserver 在部署时会部署多个实例，采用了 primary/secondary 节点的部署模式，同一时刻只会有一个 primary 节点。多个 nameserver 通过 ZooKeeper 实现 primary 节点的抢占。因此，如果当前的 primary 节点意外离线，则 secondary 节点会借助 ZooKeeper 选出一个节点重新作为 primary 节点。</p>
+</section>
+<section id="tablets">
+<h2>4. Tablets<a class="headerlink" href="#tablets" title="Permalink to this headline">#</a></h2>
+<p>Tablet 是 OpenMLDB 用来执行 SQL 和数据存储的模块，也是整个 OpenMLDB 功能实现的核心以及资源占用的瓶颈。Tablet 从功能上来看，进一步包含了 SQL engine 和 storage engine 两个模块。Tablet 也是 OpenMLDB 部署资源的可调配的最小粒度，一个 tablet 不能被拆分到多个物理节点；但是一个物理节点上可以有多个 tablets。</p>
+<section id="sql-engine">
+<h3>4.1 SQL Engine<a class="headerlink" href="#sql-engine" title="Permalink to this headline">#</a></h3>
+<p>SQL engine 负责执行 SQL 查询计算。SQL engine 收到 SQL 查询的请求后的执行过程如下图所示：
+<img alt="img" src="../../_images/sql_engine.png" />
+SQL 引擎通过 <a class="reference external" href="https://github.com/4paradigm/zetasql">ZetaSQL</a> 把 SQL 解析成AST语法树。因为我们加入了 <code class="docutils literal notranslate"><span class="pre">LAST</span> <span class="pre">JOIN</span></code>，<code class="docutils literal notranslate"><span class="pre">WINDOW</span> <span class="pre">UNION</span></code> 等针对特征工程扩展的特殊 SQL 语法，所以对开源的 ZetaSQL 做了优化。经过如上图一系列的编译转化、优化，以及基于 LLVM 的 codegen 之后，最终生成执行计划。SQL 引擎基于执行计划，通过 catalog 获取存储层数据做最终的 SQL 执行运算。在分布式版本中，会生成分布式的执行计划，会把执行任务发到其他 tablet 节点上执行。目前 OpenMLDB 的 SQL 引擎采用 push 的模式，将任务分发到数据所在的节点执行，而不是将数据拉回来。这样做的好处可以减少数据传输。</p>
+</section>
+<section id="stoage-engine">
+<h3>4.2 Stoage Engine<a class="headerlink" href="#stoage-engine" title="Permalink to this headline">#</a></h3>
+<p>Storage engine 负责 OpenMLDB 数据的存储，以及支持相应的高可用相关的功能。</p>
+<section id="id3">
+<h4>数据分布<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<p>OpenMLDB 集群版是一个分布式的数据库，一张表的数据会进行分片，并且建立多个副本，最终分布在不同的节点中。这里展开说明两个重要的概念：副本和分片。</p>
+<ul class="simple">
+<li><p>副本（replication）：为了保证高可用以及提升分布式查询的效率，数据表将会被存放多个拷贝，这些拷贝就叫做副本。</p></li>
+<li><p>分片（partition）：一张表（或者具体为一个副本）在具体存储时，会进一步被切割为多个分片用于分布式计算。分片数量可以在创建表时指定，但是一旦创建好，分片数就不能动态修改了。分片是存储引擎主从同步以及扩缩容的最小单位。一个分片可以灵活的在不同的 tablet 之间实现迁移。同时一个表的不同分片可以并行计算，提升分布式计算的性能。OpenMLDB 会自动尽量使得每一个 tablet 上的分片数目尽量平衡，以提升系统的整体性能。一张表的多个分片可能会分布在不同 tablet 上，分片的角色分为主分片（leader）和从分片（follower）。当获得计算请求时，请求将会被发送到数据所在对应的主分片上进行计算；从分片用于保证高可用性。</p></li>
+</ul>
+<p>如下图显示了一个数据表，在两个副本的情况下，基于四个分片，在三个 tablets 上的存储布局。实际使用中，如果某一个或者几个 tablet 的负载过高，可以基于分片，进行数据迁移，来改善系统的负载平衡和整体的吞吐。</p>
+<p><img alt="image-20220317150559595" src="../../_images/table_partition.png" /></p>
+</section>
+<section id="id4">
+<h4>数据持久化及主从同步<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<p>目前版本的 OpenMLDB 的在线数据全部保存在内存中，为了实现高可用会把数据通过 binlog 以及 snapshot 的形式持久化到硬盘中。</p>
+<p><img alt="image-20220317152718586" src="../../_images/binlog_snapshot.png" /></p>
+<p>如上图所示，服务端收到 SDK 的写请求后会同时写内存和 binlog。binlog 是用来做主从同步的，数据写到 binlog 后会有一个后台线程异步的把数据从 binlog 中读出来然后同步到从节点中。从节点收到同步请求后同样是写内存和 binlog。Snapshot 可以看作是内存数据的一个镜像，不过出于性能考虑，snapshot 并不是从内存 dump 出来，而是由 binlog 和上一个 snapshot 合并生成。在合并的过程中会删除掉过期的数据。OpenMLDB会记录主从同步和合并到 snapshot 中的 offset, 如果一个 binlog 文件中的数据全部被同步到从节点并且也合并到了 snapshot 中，这个 binlog 文件就会被后台线程删除。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>从 v0.5.0 版本开始，OpenMLDB 也会支持基于磁盘的存储引擎，则其持久化机制会和本文描述不一样。</p>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">架构</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../sql/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SQL</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:55:40 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

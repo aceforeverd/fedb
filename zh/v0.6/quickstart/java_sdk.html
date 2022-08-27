@@ -1,0 +1,1830 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Java SDK 快速上手 &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Python SDK 快速上手" href="python_sdk.html" />
+    <link rel="prev" title="OpenMLDB 快速上手" href="openmldb_quickstart.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   关于
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     发展历程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   快速上手
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="openmldb_quickstart.html">
+     OpenMLDB 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Java SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="python_sdk.html">
+     Python SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rest_api.html">
+     REST APIs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_import_guide.html">
+     数据导入快速指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   教程
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     基于 SQL 的特征开发（上）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     基于 SQL 的特征开发（下）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     集群版 vs 单机版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     集群版使用流程及执行模式
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/openmldbspark_distribution.html">
+     OpenMLDB Spark 发行版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     在线数据导入工具使用
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   使用案例
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/taxi_tour_duration_prediction.html">
+     OpenMLDB + LightGBM：出租车行程时间预测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/pulsar_connector_demo.html">
+     OpenMLDB Pulsar Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/kafka_connector_demo.html">
+     OpenMLDB Kafka Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/dolphinscheduler_task_demo.html">
+     DolphinScheduler OpenMLDB Task：打造端到端MLOps工作流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/talkingdata_demo.html">
+     TalkingData 广告欺诈检测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/OpenMLDB_Byzer_taxi.html">
+     OpenMLDB + Byzer: 基于 SQL 打造端到端机器学习应用
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/airflow_provider_demo.html">
+     Airflow OpenMLDB Provider 使用案例
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   安装部署
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     编译
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     安装部署
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     配置文件
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   运维
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     版本升级
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     备份与恢复
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     扩缩容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     监控
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     运维 CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/faq.html">
+     运维 FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/diagnose.html">
+     诊断工具
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   开发者文档
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/contributing.html">
+     Contributing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/code_structure.html">
+     代码结构
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     内置函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/udf_develop_guide.html">
+     自定义函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/sdk_develop.html">
+     SDK 开发指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   参考
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     架构
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       在线模块架构
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       语言结构
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         关键字
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL 对象名
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         字面值
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         大小写敏感
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         注释
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       数据类型
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         数值类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         字符串类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         日期与时间类型
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       表达式，函数和运算
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         运算符
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       数据查询语句 （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT 概况
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         无表 SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       数据操作语句（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       数据定义语句（DDL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_COMPONENTS.html">
+         SHOW COMPONENTS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLE_STATUS.html">
+         SHOW TABLE STATUS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT 管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         创建 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         删除 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         查看 DEPLOYMENTS 列表
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         查看 DEPLOYMENT 详情
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL 上线规范和要求
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       任务管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/ip_tips.html">
+     IP 配置
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/client_config/index.html">
+     客户端配置
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/client_config/client_spark_config.html">
+       客户端Spark配置文件
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+当前版本: v0.6</br>
+版本列表：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="java_sdk.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/quickstart/java_sdk.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1. Java SDK包安装
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linux-java-sdk">
+     Linux下 Java SDK包安装
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#macjava-sdk">
+     Mac下Java SDK包安装
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   2. Java SDK快速上手
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sqlclusterexecutor">
+     2.1 创建SqlClusterExecutor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     2.2 创建数据库
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     2.3 创建表
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     2.4 插入数据到表中
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       2.4.1 直接执行插入数据
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#placeholder">
+       2.4.2 使用placeholder的方式执行插入语句
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       2.4.3 使用placeholder的方式执行批量插入语句
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql">
+     2.5 执行SQL批式查询
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     2.6 执行SQL请求式查询
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     2.7 删除表
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     2.8 删除数据库
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pk">
+     2.9 删除指定索引下某个pk的所有数据
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   3. 完整的Java SDK使用范例
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jdbc">
+   4. JDBC连接方式
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Java SDK 快速上手</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1. Java SDK包安装
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linux-java-sdk">
+     Linux下 Java SDK包安装
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#macjava-sdk">
+     Mac下Java SDK包安装
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   2. Java SDK快速上手
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sqlclusterexecutor">
+     2.1 创建SqlClusterExecutor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     2.2 创建数据库
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     2.3 创建表
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     2.4 插入数据到表中
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       2.4.1 直接执行插入数据
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#placeholder">
+       2.4.2 使用placeholder的方式执行插入语句
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       2.4.3 使用placeholder的方式执行批量插入语句
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql">
+     2.5 执行SQL批式查询
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     2.6 执行SQL请求式查询
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     2.7 删除表
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     2.8 删除数据库
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pk">
+     2.9 删除指定索引下某个pk的所有数据
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   3. 完整的Java SDK使用范例
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jdbc">
+   4. JDBC连接方式
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="java-sdk">
+<h1>Java SDK 快速上手<a class="headerlink" href="#java-sdk" title="Permalink to this headline">#</a></h1>
+<section id="id1">
+<h2>1. Java SDK包安装<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<section id="linux-java-sdk">
+<h3>Linux下 Java SDK包安装<a class="headerlink" href="#linux-java-sdk" title="Permalink to this headline">#</a></h3>
+<p>配置maven pom</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.4paradigm.openmldb<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>openmldb-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.6.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.4paradigm.openmldb<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>openmldb-native<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.6.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="macjava-sdk">
+<h3>Mac下Java SDK包安装<a class="headerlink" href="#macjava-sdk" title="Permalink to this headline">#</a></h3>
+<p>配置maven pom</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.4paradigm.openmldb<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>openmldb-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.6.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.4paradigm.openmldb<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>openmldb-native<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>0.6.0-macos<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+<p>注意: 由于 openmldb-native 中包含了 OpenMLDB 编译的 C++ 静态库, 默认是 linux 静态库, macOS 上需将上述 openmldb-native 的 version 改成 <code class="docutils literal notranslate"><span class="pre">0.6.0-macos</span></code>, openmldb-jdbc 的版本保持不变。</p>
+</section>
+</section>
+<section id="id2">
+<h2>2. Java SDK快速上手<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<section id="sqlclusterexecutor">
+<h3>2.1 创建SqlClusterExecutor<a class="headerlink" href="#sqlclusterexecutor" title="Permalink to this headline">#</a></h3>
+<p>首先，进行OpenMLDB连接参数配置，java sdk集群版和单机版的区别在于连接参数配置不同，默认是集群版</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// 集群版配置方式如下：</span><span class="w"></span>
+<span class="n">SdkOption</span><span class="w"> </span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SdkOption</span><span class="p">();</span><span class="w"></span>
+<span class="n">option</span><span class="p">.</span><span class="na">setZkCluster</span><span class="p">(</span><span class="s">&quot;127.0.0.1:2181&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">option</span><span class="p">.</span><span class="na">setZkPath</span><span class="p">(</span><span class="s">&quot;/openmldb&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">option</span><span class="p">.</span><span class="na">setSessionTimeout</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span><span class="w"></span>
+<span class="n">option</span><span class="p">.</span><span class="na">setRequestTimeout</span><span class="p">(</span><span class="mi">60000</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// 单机版配置方式如下：</span><span class="w"></span>
+<span class="n">SdkOption</span><span class="w"> </span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SdkOption</span><span class="p">();</span><span class="w"></span>
+<span class="n">option</span><span class="p">.</span><span class="na">setHost</span><span class="p">(</span><span class="s">&quot;127.0.0.1&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">option</span><span class="p">.</span><span class="na">setPort</span><span class="p">(</span><span class="mi">6527</span><span class="p">);</span><span class="w"></span>
+<span class="n">option</span><span class="p">.</span><span class="na">setClusterMode</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span><span class="w"></span>
+<span class="n">option</span><span class="p">.</span><span class="na">setSessionTimeout</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span><span class="w"></span>
+<span class="n">option</span><span class="p">.</span><span class="na">setRequestTimeout</span><span class="p">(</span><span class="mi">60000</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>接着，使用SdkOption创建Executor。SqlClusterExecutor执行sql操作是多线程安全的，在实际环境中只创建一个<code class="docutils literal notranslate"><span class="pre">SqlClusterExecutor</span></code>即可:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">sqlExecutor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SqlClusterExecutor</span><span class="p">(</span><span class="n">option</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>2.2 创建数据库<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>使用<code class="docutils literal notranslate"><span class="pre">Statement::execute</span></code>接口创建数据库：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Statement</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getStatement</span><span class="p">();</span><span class="w"></span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;create database db_test&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>2.3 创建表<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>使用<code class="docutils literal notranslate"><span class="pre">Statement::execute</span></code>接口创建一张表：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Statement</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getStatement</span><span class="p">();</span><span class="w"></span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;use db_test&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">createTableSql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;create table trans(c1 string,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                    </span><span class="s">&quot;                   c3 int,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                    </span><span class="s">&quot;                   c4 bigint,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                    </span><span class="s">&quot;                   c5 float,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                    </span><span class="s">&quot;                   c6 double,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                    </span><span class="s">&quot;                   c7 timestamp,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                    </span><span class="s">&quot;                   c8 date,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                    </span><span class="s">&quot;                   index(key=c1, ts=c7));&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">createTableSql</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>2.4 插入数据到表中<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<section id="id6">
+<h4>2.4.1 直接执行插入数据<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h4>
+<p>第一步，使用<code class="docutils literal notranslate"><span class="pre">SqlClusterExecutor::getInsertPreparedStmt(db,</span> <span class="pre">insertSql)</span></code>接口获取InsertPrepareStatement。</p>
+<p>第二步，使用<code class="docutils literal notranslate"><span class="pre">PreparedStatement::execute()</span></code>接口执行insert语句。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">insertSql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;insert into trans values(\&quot;aa\&quot;,23,33,1.4,2.4,1590738993000,\&quot;2020-05-04\&quot;);&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">PreparedStatement</span><span class="w"> </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getInsertPreparedStmt</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">insertSql</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertTrue</span><span class="p">(</span><span class="n">pstmt</span><span class="p">.</span><span class="na">execute</span><span class="p">());</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">Assert</span><span class="p">.</span><span class="na">fail</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pstmt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// PrepareStatement用完之后必须close</span><span class="w"></span>
+<span class="w">            </span><span class="n">pstmt</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">throwables</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">throwables</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="placeholder">
+<h4>2.4.2 使用placeholder的方式执行插入语句<a class="headerlink" href="#placeholder" title="Permalink to this headline">#</a></h4>
+<p>第一步，使用<code class="docutils literal notranslate"><span class="pre">SqlClusterExecutor::getInsertPreparedStmt(db,</span> <span class="pre">insertSqlWithPlaceHolder)</span></code>接口获取InsertPrepareStatement。</p>
+<p>第二步，调用<code class="docutils literal notranslate"><span class="pre">PreparedStatement::setType(index,</span> <span class="pre">value)</span></code>接口，填充数据到InsertPrepareStatement中。</p>
+<p>第三步，使用<code class="docutils literal notranslate"><span class="pre">PreparedStatement::execute()</span></code>接口执行insert语句。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">insertSqlWithPlaceHolder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;insert into trans values(\&quot;aa\&quot;, ?, 33, ?, 2.4, 1590738993000, \&quot;2020-05-04\&quot;);&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">PreparedStatement</span><span class="w"> </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getInsertPreparedStmt</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">insertSqlWithPlaceHolder</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5f</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pstmt</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">Assert</span><span class="p">.</span><span class="na">fail</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pstmt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// PrepareStatement用完之后必须close</span><span class="w"></span>
+<span class="w">      </span><span class="n">pstmt</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">throwables</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">throwables</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>execute后，缓存的数据将被清除，无法重试execute。</p>
+</div>
+</section>
+<section id="id7">
+<h4>2.4.3 使用placeholder的方式执行批量插入语句<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h4>
+<p>第一步，使用<code class="docutils literal notranslate"><span class="pre">SqlClusterExecutor::getInsertPreparedStmt(db,</span> <span class="pre">insertSqlWithPlaceHolder)</span></code>接口获取InsertPrepareStatement。</p>
+<p>第二步，调用<code class="docutils literal notranslate"><span class="pre">PreparedStatement::setType(index,</span> <span class="pre">value)</span></code>接口，填充数据到InsertPrepareStatement中。</p>
+<p>第三步，使用<code class="docutils literal notranslate"><span class="pre">PreparedStatement::addBatch()</span></code>接口完成一行的填充。</p>
+<p>第四步，继续使用<code class="docutils literal notranslate"><span class="pre">setType(index,</span> <span class="pre">value)</span></code>和<code class="docutils literal notranslate"><span class="pre">addBatch()</span></code>，填充多行。</p>
+<p>第五步，使用<code class="docutils literal notranslate"><span class="pre">PreparedStatement::executeBatch()</span></code>接口完成批量插入。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">insertSqlWithPlaceHolder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;insert into trans values(\&quot;aa\&quot;, ?, 33, ?, 2.4, 1590738993000, \&quot;2020-05-04\&quot;);&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">PreparedStatement</span><span class="w"> </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getInsertPreparedStmt</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">insertSqlWithPlaceHolder</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5f</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pstmt</span><span class="p">.</span><span class="na">addBatch</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">1.7f</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">pstmt</span><span class="p">.</span><span class="na">addBatch</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">pstmt</span><span class="p">.</span><span class="na">executeBatch</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">Assert</span><span class="p">.</span><span class="na">fail</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pstmt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// PrepareStatement用完之后必须close</span><span class="w"></span>
+<span class="w">      </span><span class="n">pstmt</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">throwables</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">throwables</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>executeBatch后，缓存的所有数据将被清除，无法重试executeBatch。</p>
+</div>
+</section>
+</section>
+<section id="sql">
+<h3>2.5 执行SQL批式查询<a class="headerlink" href="#sql" title="Permalink to this headline">#</a></h3>
+<p>使用<code class="docutils literal notranslate"><span class="pre">Statement::execute</span></code>接口执行SQL批式查询语句:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Statement</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getStatement</span><span class="p">();</span><span class="w"></span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;use db_test&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// execute返回值是true的话说明有数据返回，可以通过getResultSet获取</span><span class="w"></span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;select * from trans;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertTrue</span><span class="p">(</span><span class="n">ret</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">getResultSet</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>访问查询结果:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// 访问结果集ResultSet，并输出前三列数据</span><span class="w"></span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultSet</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">resultSet</span><span class="p">.</span><span class="na">getLong</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">result</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">throwables</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">throwables</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h3>2.6 执行SQL请求式查询<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<p>第一步，使用<code class="docutils literal notranslate"><span class="pre">SqlClusterExecutor::getRequestPreparedStmt(db,</span> <span class="pre">selectSql)</span></code>接口获取RequestPrepareStatement。</p>
+<p>第二步，调用<code class="docutils literal notranslate"><span class="pre">PreparedStatement::setType(index,</span> <span class="pre">value)</span></code>接口设置请求数据。请根据数据表中每一列对应的数据类型调用setType接口以及配置合法的值。</p>
+<p>第三步，调用<code class="docutils literal notranslate"><span class="pre">Statement::executeQuery()</span></code>接口执行请求式查询语句。</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">String</span><span class="w"> </span><span class="n">selectSql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT c1, c3, sum(c4) OVER w1 as w1_c4_sum FROM trans WINDOW w1 AS &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                </span><span class="s">&quot;(PARTITION BY trans.c1 ORDER BY trans.c7 ROWS BETWEEN 2 PRECEDING AND CURRENT ROW);&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="n">PreparedStatement</span><span class="w"> </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="n">ResultSet</span><span class="w"> </span><span class="n">resultSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="cm">/*</span>
+<span class="cm">c1 string,\n&quot; +</span>
+<span class="cm">                &quot;                   c3 int,\n&quot; +</span>
+<span class="cm">                &quot;                   c4 bigint,\n&quot; +</span>
+<span class="cm">                &quot;                   c5 float,\n&quot; +</span>
+<span class="cm">                &quot;                   c6 double,\n&quot; +</span>
+<span class="cm">                &quot;                   c7 timestamp,\n&quot; +</span>
+<span class="cm">                &quot;                   c8 date,\n&quot; +</span>
+<span class="cm">*/</span><span class="w"></span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 第一步，获取RequestPrepareStatement</span><span class="w"></span>
+<span class="w">    </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getRequestPreparedStmt</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">selectSql</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// 第二步，执行request模式需要在RequestPreparedStatement设置一行请求数据</span><span class="w"></span>
+<span class="w">    </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bb&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setLong</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">34l</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setFloat</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5f</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setDouble</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mf">2.5</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setTimestamp</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Timestamp</span><span class="p">(</span><span class="mi">1590738994000l</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setDate</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="n">Date</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="s">&quot;2020-05-05&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// 调用executeQuery会执行这个select sql, 然后将结果放在了resultSet中</span><span class="w"></span>
+<span class="w">    </span><span class="n">resultSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pstmt</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// 访问resultSet</span><span class="w"></span>
+<span class="w">    </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getMetaData</span><span class="p">().</span><span class="na">getColumnCount</span><span class="p">(),</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertTrue</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">next</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;bb&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="mi">24</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getLong</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="mi">34</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// 普通请求式查询的返回结果集只包含一行结果，因此，第二次调用resultSet.next()结果为false</span><span class="w"></span>
+<span class="w">    </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertFalse</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">next</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">Assert</span><span class="p">.</span><span class="na">fail</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">resultSet</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// result用完之后需要close</span><span class="w"></span>
+<span class="w">        </span><span class="n">resultSet</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pstmt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">pstmt</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">throwables</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">throwables</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3>2.7 删除表<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<p>使用<code class="docutils literal notranslate"><span class="pre">Statement::execute</span></code>接口删除一张表：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Statement</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getStatement</span><span class="p">();</span><span class="w"></span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;use db_test&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;drop table trans;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h3>2.8 删除数据库<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<p>使用<code class="docutils literal notranslate"><span class="pre">Statement::execute</span></code>接口删除指定数据库：</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Statement</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getStatement</span><span class="p">();</span><span class="w"></span>
+<span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;drop database db_test;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="n">finaly</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">state</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="pk">
+<h3>2.9 删除指定索引下某个pk的所有数据<a class="headerlink" href="#pk" title="Permalink to this headline">#</a></h3>
+<p>通过java sdk可以有一下两种方式删除:</p>
+<ul class="simple">
+<li><p>直接执行delete SQL</p></li>
+<li><p>使用 delete preparestatement</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">java</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">Statement</span> <span class="n">state</span> <span class="o">=</span> <span class="n">router</span><span class="o">.</span><span class="n">getStatement</span><span class="p">();</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM t1 WHERE col2 = &#39;key1&#39;;&quot;</span><span class="p">;</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sql</span><span class="p">);</span>
+    <span class="n">sql</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM t1 WHERE col2 = ?;&quot;</span><span class="p">;</span>
+    <span class="n">java</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">PreparedStatement</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">router</span><span class="o">.</span><span class="n">getDeletePreparedStmt</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">sql</span><span class="p">);</span>
+    <span class="n">p1</span><span class="o">.</span><span class="n">setString</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;key2&quot;</span><span class="p">);</span>
+    <span class="n">p1</span><span class="o">.</span><span class="n">executeUpdate</span><span class="p">();</span>
+    <span class="n">p1</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+<span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="ne">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">e</span><span class="o">.</span><span class="n">printStackTrace</span><span class="p">();</span>
+    <span class="n">Assert</span><span class="o">.</span><span class="n">fail</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="ne">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">e</span><span class="o">.</span><span class="n">printStackTrace</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id11">
+<h2>3. 完整的Java SDK使用范例<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h2>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">com._4paradigm.openmldb.jdbc.CallablePreparedStatement</span><span class="p">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">com._4paradigm.openmldb.sdk.*</span><span class="p">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">com._4paradigm.openmldb.sdk.impl.SqlClusterExecutor</span><span class="p">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">org.testng.Assert</span><span class="p">;</span><span class="w"></span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.sql.*</span><span class="p">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.ArrayList</span><span class="p">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span><span class="w"></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.concurrent.TimeUnit</span><span class="p">;</span><span class="w"></span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Demo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">SqlExecutor</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;mydb16&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;trans&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">sp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sp&quot;</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">Demo</span><span class="w"> </span><span class="n">demo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Demo</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 初始化构造SqlExecutor</span><span class="w"></span>
+<span class="w">            </span><span class="n">demo</span><span class="p">.</span><span class="na">init</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">demo</span><span class="p">.</span><span class="na">createDataBase</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">demo</span><span class="p">.</span><span class="na">createTable</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 通过insert语句插入</span><span class="w"></span>
+<span class="w">            </span><span class="n">demo</span><span class="p">.</span><span class="na">insertWithoutPlaceholder</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 通过placeholder的方式插入。placeholder方式不会重复编译sql, 在性能上会比直接insert好很多</span><span class="w"></span>
+<span class="w">            </span><span class="n">demo</span><span class="p">.</span><span class="na">insertWithPlaceholder</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 执行select语句</span><span class="w"></span>
+<span class="w">            </span><span class="n">demo</span><span class="p">.</span><span class="na">select</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 在request模式下执行sql</span><span class="w"></span>
+<span class="w">            </span><span class="n">demo</span><span class="p">.</span><span class="na">requestSelect</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 删除表</span><span class="w"></span>
+<span class="w">            </span><span class="n">demo</span><span class="p">.</span><span class="na">dropTable</span><span class="p">();</span><span class="w"></span>
+<span class="w">          	</span><span class="c1">// 删除数据库</span><span class="w"></span>
+<span class="w">            </span><span class="n">demo</span><span class="p">.</span><span class="na">dropDataBase</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SqlException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">SdkOption</span><span class="w"> </span><span class="n">option</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SdkOption</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">option</span><span class="p">.</span><span class="na">setZkCluster</span><span class="p">(</span><span class="s">&quot;172.27.128.37:7181&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">option</span><span class="p">.</span><span class="na">setZkPath</span><span class="p">(</span><span class="s">&quot;/rtidb_wb&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">option</span><span class="p">.</span><span class="na">setSessionTimeout</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">option</span><span class="p">.</span><span class="na">setRequestTimeout</span><span class="p">(</span><span class="mi">60000</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// sqlExecutor执行sql操作是多线程安全的，在实际环境中只创建一个即可</span><span class="w"></span>
+<span class="w">        </span><span class="n">sqlExecutor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SqlClusterExecutor</span><span class="p">(</span><span class="n">option</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">createDataBase</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Statement</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getStatement</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;create database &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">db</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">dropDataBase</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Statement</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getStatement</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;drop database &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">db</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">createTable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">createTableSql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;create table trans(c1 string,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                </span><span class="s">&quot;                   c3 int,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                </span><span class="s">&quot;                   c4 bigint,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                </span><span class="s">&quot;                   c5 float,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                </span><span class="s">&quot;                   c6 double,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                </span><span class="s">&quot;                   c7 timestamp,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                </span><span class="s">&quot;                   c8 date,\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                </span><span class="s">&quot;                   index(key=c1, ts=c7));&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;use &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">db</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">createTableSql</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">dropTable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Statement</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getStatement</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="s">&quot;drop table trans;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">getInputSchema</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">selectSql</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">Schema</span><span class="w"> </span><span class="n">inputSchema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getInputSchema</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">selectSql</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">inputSchema</span><span class="p">.</span><span class="na">getColumnList</span><span class="p">().</span><span class="na">size</span><span class="p">(),</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Column</span><span class="w"> </span><span class="n">column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputSchema</span><span class="p">.</span><span class="na">getColumnList</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">column</span><span class="p">.</span><span class="na">getColumnName</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;c1&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">column</span><span class="p">.</span><span class="na">getSqlType</span><span class="p">(),</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">VARCHAR</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">column</span><span class="p">.</span><span class="na">isConstant</span><span class="p">(),</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">column</span><span class="p">.</span><span class="na">isNotNull</span><span class="p">(),</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">throwables</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">throwables</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insertWithoutPlaceholder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">insertSql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;insert into trans values(\&quot;aa\&quot;,23,33,1.4,2.4,1590738993000,\&quot;2020-05-04\&quot;);&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getInsertPreparedStmt</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">insertSql</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertTrue</span><span class="p">(</span><span class="n">pstmt</span><span class="p">.</span><span class="na">execute</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">fail</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pstmt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="c1">// PrepareStatement用完之后必须close</span><span class="w"></span>
+<span class="w">                    </span><span class="n">pstmt</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">throwables</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">throwables</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">insertWithPlaceholder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">insertSql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;insert into trans values(\&quot;aa\&quot;, ?, 33, ?, 2.4, 1590738993000, \&quot;2020-05-04\&quot;);&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getInsertPreparedStmt</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">insertSql</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">ResultSetMetaData</span><span class="w"> </span><span class="n">metaData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pstmt</span><span class="p">.</span><span class="na">getMetaData</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">setData</span><span class="p">(</span><span class="n">pstmt</span><span class="p">,</span><span class="w"> </span><span class="n">metaData</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertTrue</span><span class="p">(</span><span class="n">pstmt</span><span class="p">.</span><span class="na">execute</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">fail</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pstmt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">pstmt</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">throwables</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">throwables</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">select</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">selectSql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;select * from trans;&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">ResultSet</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Statement</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getStatement</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kt">boolean</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">selectSql</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertTrue</span><span class="p">(</span><span class="n">ret</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">getResultSet</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">num</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">result</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="n">state</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">throwables</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">throwables</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// result数据解析参考下面requestSelect方法</span><span class="w"></span>
+<span class="w">        </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">requestSelect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">selectSql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT c1, c3, sum(c4) OVER w1 as w1_c4_sum FROM trans WINDOW w1 AS &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                </span><span class="s">&quot;(PARTITION BY trans.c1 ORDER BY trans.c7 ROWS BETWEEN 2 PRECEDING AND CURRENT ROW);&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">resultSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getRequestPreparedStmt</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">selectSql</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 如果是执行deployment, 可以通过名字获取preparedstatement</span><span class="w"></span>
+<span class="w">            </span><span class="c1">//pstmt = sqlExecutor.getCallablePreparedStmt(db, deploymentName);</span><span class="w"></span>
+<span class="w">            </span><span class="n">ResultSetMetaData</span><span class="w"> </span><span class="n">metaData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pstmt</span><span class="p">.</span><span class="na">getMetaData</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 执行request模式需要在RequestPreparedStatement设置一行请求数据</span><span class="w"></span>
+<span class="w">            </span><span class="n">setData</span><span class="p">(</span><span class="n">pstmt</span><span class="p">,</span><span class="w"> </span><span class="n">metaData</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 调用executeQuery会执行这个select sql, 然后将结果放在了resultSet中</span><span class="w"></span>
+<span class="w">            </span><span class="n">resultSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pstmt</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertTrue</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">next</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getMetaData</span><span class="p">().</span><span class="na">getColumnCount</span><span class="p">(),</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;bb&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="mi">24</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getLong</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="mi">34</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertFalse</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">next</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">fail</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">resultSet</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="c1">// result用完之后需要close</span><span class="w"></span>
+<span class="w">                    </span><span class="n">resultSet</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pstmt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">pstmt</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">throwables</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">throwables</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">batchRequestSelect</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="n">String</span><span class="w"> </span><span class="n">selectSql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;SELECT c1, c3, sum(c4) OVER w1 as w1_c4_sum FROM trans WINDOW w1 AS &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">                </span><span class="s">&quot;(PARTITION BY trans.c1 ORDER BY trans.c7 ROWS BETWEEN 2 PRECEDING AND CURRENT ROW);&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">ResultSet</span><span class="w"> </span><span class="n">resultSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">pstmt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlExecutor</span><span class="p">.</span><span class="na">getBatchRequestPreparedStmt</span><span class="p">(</span><span class="n">db</span><span class="p">,</span><span class="w"> </span><span class="n">selectSql</span><span class="p">,</span><span class="w"> </span><span class="n">list</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 如果是执行deployment, 可以通过名字获取preparedstatement </span><span class="w"></span>
+<span class="w">            </span><span class="c1">// pstmt = sqlExecutor.getCallablePreparedStmtBatch(db, deploymentName);</span><span class="w"></span>
+<span class="w">            </span><span class="n">ResultSetMetaData</span><span class="w"> </span><span class="n">metaData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pstmt</span><span class="p">.</span><span class="na">getMetaData</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 执行request模式需要在设置PreparedStatement请求数据</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 设置一个batch发送多少条数据</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">batchSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">batchSize</span><span class="p">;</span><span class="w"> </span><span class="n">idx</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">setData</span><span class="p">(</span><span class="n">pstmt</span><span class="p">,</span><span class="w"> </span><span class="n">metaData</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="c1">// 每次设置完一行数据后需要调用一次addBatch</span><span class="w"></span>
+<span class="w">                </span><span class="n">pstmt</span><span class="p">.</span><span class="na">addBatch</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 调用executeQuery会执行这个select sql, 然后将结果放在了resultSet中</span><span class="w"></span>
+<span class="w">            </span><span class="n">resultSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pstmt</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 依次取出每一条数据对应的特征结果</span><span class="w"></span>
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">next</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getMetaData</span><span class="p">().</span><span class="na">getColumnCount</span><span class="p">(),</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;bb&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="mi">24</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">Assert</span><span class="p">.</span><span class="na">assertEquals</span><span class="p">(</span><span class="n">resultSet</span><span class="p">.</span><span class="na">getLong</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="mi">34</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="n">Assert</span><span class="p">.</span><span class="na">fail</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">resultSet</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="c1">// result用完之后需要close</span><span class="w"></span>
+<span class="w">                    </span><span class="n">resultSet</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pstmt</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">pstmt</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">throwables</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">throwables</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setData</span><span class="p">(</span><span class="n">PreparedStatement</span><span class="w"> </span><span class="n">pstmt</span><span class="p">,</span><span class="w"> </span><span class="n">ResultSetMetaData</span><span class="w"> </span><span class="n">metaData</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">metaData</span><span class="p">.</span><span class="na">getColumnCount</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">columnType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">metaData</span><span class="p">.</span><span class="na">getColumnType</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">columnType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">BOOLEAN</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setBoolean</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">columnType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">SMALLINT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setShort</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">short</span><span class="p">)</span><span class="w"> </span><span class="mi">22</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">columnType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">INTEGER</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">columnType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">BIGINT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setLong</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">34l</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">columnType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">FLOAT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setFloat</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5f</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">columnType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">DOUBLE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setDouble</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2.5</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">columnType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">TIMESTAMP</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setTimestamp</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Timestamp</span><span class="p">(</span><span class="mi">1590738994000l</span><span class="p">));</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">columnType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">DATE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setDate</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Date</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="s">&quot;2020-05-05&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">columnType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Types</span><span class="p">.</span><span class="na">VARCHAR</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">pstmt</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;bb&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SQLException</span><span class="p">(</span><span class="s">&quot;set data failed&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="jdbc">
+<h2>4. JDBC连接方式<a class="headerlink" href="#jdbc" title="Permalink to this headline">#</a></h2>
+<p>除了直接使用SDK外，我们还提供了JDBC的方式，目前只能连接集群版OpenMLDB。连接方式如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Class</span><span class="o">.</span><span class="n">forName</span><span class="p">(</span><span class="s2">&quot;com._4paradigm.openmldb.jdbc.SQLDriver&quot;</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">No</span> <span class="n">database</span> <span class="ow">in</span> <span class="n">jdbcUrl</span>
+<span class="n">Connection</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">DriverManager</span><span class="o">.</span><span class="n">getConnection</span><span class="p">(</span><span class="s2">&quot;jdbc:openmldb:///?zk=localhost:6181&amp;zkPath=/openmldb&quot;</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Set</span> <span class="n">database</span> <span class="ow">in</span> <span class="n">jdbcUrl</span>
+<span class="n">Connection</span> <span class="n">connection1</span> <span class="o">=</span> <span class="n">DriverManager</span><span class="o">.</span><span class="n">getConnection</span><span class="p">(</span><span class="s2">&quot;jdbc:openmldb:///test_db?zk=localhost:6181&amp;zkPath=/openmldb&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>未设置db的Connection功能有限，更推荐创建Connection时就指定db。</p>
+<p>默认为在线模式（之后会调整为“默认离线”）。</p>
+<p>通过<code class="docutils literal notranslate"><span class="pre">Statement</span></code>的方式可以执行所有的sql命令，离线在线均可。切换为离线模式，仍使用<code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">&#64;&#64;execute_mode='offline';</span></code>的方式。例如：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Statement</span> <span class="n">stmt</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">createStatement</span><span class="p">();</span>
+<span class="n">stmt</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * from t1&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">PreparedStatement</span></code>可支持<code class="docutils literal notranslate"><span class="pre">SELECT</span></code>,<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>两种sql，<code class="docutils literal notranslate"><span class="pre">INSERT</span></code>仅支持插入到在线。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PreparedStatement</span> <span class="n">selectStatement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">prepareStatement</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM t1 WHERE id=?&quot;</span><span class="p">);</span>
+<span class="n">PreparedStatement</span> <span class="n">insertStatement</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">prepareStatement</span><span class="p">(</span><span class="s2">&quot;INSERT INTO t1 VALUES (?,?)&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="openmldb_quickstart.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">OpenMLDB 快速上手</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="python_sdk.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Python SDK 快速上手</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:56:12 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

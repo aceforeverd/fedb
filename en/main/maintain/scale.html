@@ -1,0 +1,1088 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Scale-Out and Scale-In &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Diagnostic Tool" href="diagnose.html" />
+    <link rel="prev" title="Operation and Maintenance FAQ" href="faq.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     Milestones
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     The Workflow of Cluster Version and Execution Mode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     SQL for Feature Extraction (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     SQL for Feature Extraction (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/openmldbspark_distribution.html">
+     OpenMLDB Spark Distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   Use Cases
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/lightgbm_demo.html">
+     OpenMLDB + LightGBM: Taxi Trip Duration Prediction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/pulsar_connector_demo.html">
+     Importing Real-Time Data Streams from Pulsar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/kafka_connector_demo.html">
+     Importing Real-Time Data Streams from Kafka
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/dolphinscheduler_task_demo.html">
+     Building End-to-End MLOps Workflows (OpenMLDB + DolphinScheduler)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/JD_recommendation_en.html">
+     OpenMLDB + OneFlow: Prediction of Purchase Intention for High Potential Customers
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   Deployment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Maintenance
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="upgrade.html">
+     Upgrade
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="backup.html">
+     Backup and Restore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="monitoring.html">
+     Monitoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cli.html">
+     Operations in CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="faq.html">
+     Operation and Maintenance FAQ
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Scale-Out and Scale-In
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="diagnose.html">
+     Diagnostic Tool
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   References
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     Architecture
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       Online Module Architecture
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       Language Structure
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         Keywords
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL Object Name
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         Literal Value
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         Case Sensitive
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         Notes
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       Data Type
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         Numeric Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         String Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         Date and Time Type
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       Expressions, Functions, and Operations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         Operator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       Data Query Statement （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT Overview
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         No-table SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       Data Manipulation Statement（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       Data Definition Statement (DDL)
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         DEPLOY
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         Delete DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         View DEPLOYMENTS List
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         View DEPLOYMENT Details
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL On-Line Specifications and Requirements
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       Task Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/ip_tips.html">
+     IP Configuration
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/client_config/index.html">
+     Client Configuration
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/client_config/client_spark_config.html">
+       Spark Client Configuration
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: main</br>
+Versions：
+<ul>
+  <li><a href="scale.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/maintain/scale.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scale-out">
+   Scale-Out
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-starting-a-new-tablet-node">
+     Step 1. Starting a new tablet node
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-2-migrating-replications">
+     Step 2. Migrating replications
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scale-in">
+   Scale-In
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-selecting-the-node-that-you-want-to-go-offline">
+     Step 1. Selecting the node that you want to go offline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-2-migrating-partitions-on-nodes-that-need-to-be-taken-offline-to-other-nodes">
+     Step 2. Migrating partitions on nodes that need to be taken offline to other nodes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-3-making-the-targeted-node-offline">
+     Step 3. Making the targeted node offline
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Scale-Out and Scale-In</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scale-out">
+   Scale-Out
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-starting-a-new-tablet-node">
+     Step 1. Starting a new tablet node
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-2-migrating-replications">
+     Step 2. Migrating replications
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scale-in">
+   Scale-In
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-selecting-the-node-that-you-want-to-go-offline">
+     Step 1. Selecting the node that you want to go offline
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-2-migrating-partitions-on-nodes-that-need-to-be-taken-offline-to-other-nodes">
+     Step 2. Migrating partitions on nodes that need to be taken offline to other nodes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-3-making-the-targeted-node-offline">
+     Step 3. Making the targeted node offline
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="scale-out-and-scale-in">
+<h1>Scale-Out and Scale-In<a class="headerlink" href="#scale-out-and-scale-in" title="Permalink to this headline">#</a></h1>
+<section id="scale-out">
+<h2>Scale-Out<a class="headerlink" href="#scale-out" title="Permalink to this headline">#</a></h2>
+<p>With the development of business, dynamic scale-out is required if the current cluster topology cannot meet the requirements. Scale-out is to migrate some partitions from existing tablet nodes to new tablet nodes.</p>
+<section id="step-1-starting-a-new-tablet-node">
+<h3>Step 1. Starting a new tablet node<a class="headerlink" href="#step-1-starting-a-new-tablet-node" title="Permalink to this headline">#</a></h3>
+<p>You need to first start a new tablet node as following steps, please refer to the <a class="reference internal" href="../deploy/install_deploy.html"><span class="doc std std-doc">deploy doc</span></a> for details:</p>
+<ul>
+<li><p>Check time and zone settings, disable <code class="docutils literal notranslate"><span class="pre">THP</span></code> and <code class="docutils literal notranslate"><span class="pre">swap</span></code></p></li>
+<li><p>Download the package</p></li>
+<li><p>Modify the configuration file: conf/tablet.flags</p></li>
+<li><p>Start a new tablet</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>  sh bin/start.sh start tablet
+</pre></div>
+</div>
+</li>
+</ul>
+<p>After startup, you need to check whether the new node has joined the cluster. If the <code class="docutils literal notranslate"><span class="pre">showtablet</span></code> command is executed and the new node endpoint is listed, it means that it has joined the cluster</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --zk_cluster<span class="o">=</span><span class="m">172</span>.27.128.31:8090,172.27.128.32:8090,172.27.128.33:8090 --zk_root_path<span class="o">=</span>/openmldb_cluster --role<span class="o">=</span>ns_client
+&gt; showtablet
+  endpoint            state           age
+-------------------------------------------
+  <span class="m">172</span>.27.128.31:8541  kTabletHealthy  15d
+  <span class="m">172</span>.27.128.32:8541  kTabletHealthy  15d
+  <span class="m">172</span>.27.128.33:8541  kTabletHealthy  15d
+  <span class="m">172</span>.27.128.37:8541  kTabletHealthy  1min
+</pre></div>
+</div>
+</section>
+<section id="step-2-migrating-replications">
+<h3>Step 2. Migrating replications<a class="headerlink" href="#step-2-migrating-replications" title="Permalink to this headline">#</a></h3>
+<p>The command used for replication migration is <code class="docutils literal notranslate"><span class="pre">migrate</span></code>. The command format is: <code class="docutils literal notranslate"><span class="pre">migrate</span> <span class="pre">src_endpoint</span> <span class="pre">table_name</span> <span class="pre">partition</span> <span class="pre">des_endpoint</span></code></p>
+<p><strong>Once the table is created, partitions cannot be added or removed, only can be migrated. When migrating, only leader partitions can be migrated, not follower partitions</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --zk_cluster<span class="o">=</span><span class="m">172</span>.27.128.31:8090,172.27.128.32:8090,172.27.128.33:8090 --zk_root_path<span class="o">=</span>/openmldb_cluster --role<span class="o">=</span>ns_client
+&gt; use demo_db
+&gt; showtable
+  name    tid  pid  endpoint            role      ttl       is_alive  compress_type  offset   record_cnt  memused
+----------------------------------------------------------------------------------------------------------------------
+  flow    <span class="m">4</span>   <span class="m">0</span>    <span class="m">172</span>.27.128.32:8541  leader    0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">0</span>    <span class="m">172</span>.27.128.33:8541  follower  0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">0</span>    <span class="m">172</span>.27.128.31:8541  follower  0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">1</span>    <span class="m">172</span>.27.128.33:8541  leader    0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">1</span>    <span class="m">172</span>.27.128.31:8541  follower  0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">1</span>    <span class="m">172</span>.27.128.32:8541  follower  0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+&gt; migrate <span class="m">172</span>.27.128.33:8541 flow <span class="m">0</span> <span class="m">172</span>.27.128.37:8541
+&gt; showopstatus flow
+  op_id  op_type     name  pid  status  start_time      execute_time  end_time        cur_task
+------------------------------------------------------------------------------------------------
+  <span class="m">51</span>     kMigrateOP  flow  <span class="m">0</span>    kDone   <span class="m">20180824163316</span>  12s           <span class="m">20180824163328</span>  -
+&gt; showtable
+  name    tid  pid  endpoint            role      ttl       is_alive  compress_type  offset   record_cnt  memused
+----------------------------------------------------------------------------------------------------------------------
+  flow    <span class="m">4</span>   <span class="m">0</span>    <span class="m">172</span>.27.128.32:8541  leader    0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">0</span>    <span class="m">172</span>.27.128.37:8541  follower  0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">0</span>    <span class="m">172</span>.27.128.31:8541  follower  0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">1</span>    <span class="m">172</span>.27.128.33:8541  leader    0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">1</span>    <span class="m">172</span>.27.128.31:8541  follower  0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">1</span>    <span class="m">172</span>.27.128.32:8541  follower  0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+</pre></div>
+</div>
+<p>Note that, migrating replicatins can also be done by deleting replicatins and then adding new ones.</p>
+</section>
+</section>
+<section id="scale-in">
+<h2>Scale-In<a class="headerlink" href="#scale-in" title="Permalink to this headline">#</a></h2>
+<p>Scaling in your cluster is to reduce the number of nodes in the cluster.</p>
+<section id="step-1-selecting-the-node-that-you-want-to-go-offline">
+<h3>Step 1. Selecting the node that you want to go offline<a class="headerlink" href="#step-1-selecting-the-node-that-you-want-to-go-offline" title="Permalink to this headline">#</a></h3>
+</section>
+<section id="step-2-migrating-partitions-on-nodes-that-need-to-be-taken-offline-to-other-nodes">
+<h3>Step 2. Migrating partitions on nodes that need to be taken offline to other nodes<a class="headerlink" href="#step-2-migrating-partitions-on-nodes-that-need-to-be-taken-offline-to-other-nodes" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">showtable</span></code> command to view the partitions of a table</p></li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">migrage</span></code> command to migrate the targeted partitions to another node. If the leader exists on the offline node, you can run the <code class="docutils literal notranslate"><span class="pre">changeleader</span></code> command to switch the leader to another node</p></li>
+</ul>
+</section>
+<section id="step-3-making-the-targeted-node-offline">
+<h3>Step 3. Making the targeted node offline<a class="headerlink" href="#step-3-making-the-targeted-node-offline" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Execute <code class="docutils literal notranslate"><span class="pre">stop</span></code> command</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh bin/start.sh stop tablet
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If nameserver is deployed on the node, you need to disable the nameserver.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh bin/start.sh stop nameserver
+</pre></div>
+</div>
+<p>Note that, at least two Nameserver nodes are required to maintain high availability</p>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="faq.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Operation and Maintenance FAQ</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="diagnose.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Diagnostic Tool</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:29 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

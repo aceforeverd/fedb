@@ -1,0 +1,1316 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Importing Real-Time Data Streams from Pulsar &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Importing Real-Time Data Streams from Kafka" href="kafka_connector_demo.html" />
+    <link rel="prev" title="OpenMLDB + LightGBM: Taxi Trip Duration Prediction" href="lightgbm_demo.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     Milestones
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     The Workflow of Cluster Version and Execution Mode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     SQL for Feature Extraction (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     SQL for Feature Extraction (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Use Cases
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="lightgbm_demo.html">
+     OpenMLDB + LightGBM: Taxi Trip Duration Prediction
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Importing Real-Time Data Streams from Pulsar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="kafka_connector_demo.html">
+     Importing Real-Time Data Streams from Kafka
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dolphinscheduler_task_demo.html">
+     Building End-to-End MLOps Workflows (OpenMLDB + DolphinScheduler)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   Deployment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   Maintenance
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     Upgrade
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     Backup and Restore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     Monitoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     Operations in CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/faq.html">
+     Operation and Maintenance FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     Scale-Out and Scale-In
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/diagnose.html">
+     Diagnostic Tool
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   References
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     Architecture
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       Online Module Architecture
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       Language Structure
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         Keywords
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL Object Name
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         Literal Value
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         Case Sensitive
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         Notes
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       Data Type
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         Numeric Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         String Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         Date and Time Type
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       Expressions, Functions, and Operations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         Operator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       Data Query Statement （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT Overview
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         No-table SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       Data Manipulation Statement（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       Data Definition Statement (DDL)
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         DEPLOY
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         Delete DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         View DEPLOYMENTS List
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         View DEPLOYMENT Details
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL On-Line Specifications and Requirements
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       Task Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/ip_tips.html">
+     IP Configuration
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/client_config/index.html">
+     Client Configuration
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/client_config/client_spark_config.html">
+       Spark Client Configuration
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: v0.6</br>
+Versions：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="pulsar_connector_demo.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/use_case/pulsar_connector_demo.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download">
+     Download
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#workflow">
+     Workflow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1">
+   Step 1
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-openmldb-cluster">
+     Create OpenMLDB Cluster
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-table">
+     Create table
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2">
+   Step 2
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-pulsar-standalone">
+     Start Pulsar Standalone
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#q-a">
+       Q&amp;A
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#connector-installation-optional">
+     Connector installation(Optional)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-sink">
+     Create sink
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-schema">
+     Create Schema
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test">
+   Test
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#send-messages">
+     Send messages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#check">
+     Check
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#check-in-pulsar">
+       Check in Pulsar
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#check-in-openmldb">
+       Check in OpenMLDB
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Importing Real-Time Data Streams from Pulsar</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download">
+     Download
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#workflow">
+     Workflow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1">
+   Step 1
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-openmldb-cluster">
+     Create OpenMLDB Cluster
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-table">
+     Create table
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2">
+   Step 2
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-pulsar-standalone">
+     Start Pulsar Standalone
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#q-a">
+       Q&amp;A
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#connector-installation-optional">
+     Connector installation(Optional)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-sink">
+     Create sink
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-schema">
+     Create Schema
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test">
+   Test
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#send-messages">
+     Send messages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#check">
+     Check
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#check-in-pulsar">
+       Check in Pulsar
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#check-in-openmldb">
+       Check in OpenMLDB
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="importing-real-time-data-streams-from-pulsar">
+<h1>Importing Real-Time Data Streams from Pulsar<a class="headerlink" href="#importing-real-time-data-streams-from-pulsar" title="Permalink to this headline">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>Apache Pulsar is a cloud-native, distributed messaging and streaming platform. It can be used as online data source for OpenMLDB to import real-time data streams. You can learn more about Pulsar from the project website <a class="reference external" href="https://pulsar.apache.org/">https://pulsar.apache.org/</a>. We have developed an OpenMLDB JDBC Connector to work seamlessly with Pulsar. In this document, you will learn the concepts and usages of this connector.</p>
+<p>Note that, for the sake of simplicity, for this document, we use Pulsar Standalone, OpenMLDB cluster and a simple JSON message producer to show how the OpenMLDB JDBC Connector works. The connector also works well with the Pulsar Cluster.</p>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
+<section id="download">
+<h3>Download<a class="headerlink" href="#download" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>You can download the entire demo package <a class="reference external" href="https://openmldb.ai/download/pulsar-connector/files.tar.gz">here</a>, which are needed by this demo, including the connector nar, schema files, and config files.</p></li>
+<li><p>If you would like to download the connector only, you can <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/releases/download/v0.4.4/pulsar-io-jdbc-openmldb-2.11.0-SNAPSHOT.nar">download it here</a> from the OpenMLDB release.</p></li>
+</ul>
+</section>
+<section id="workflow">
+<h3>Workflow<a class="headerlink" href="#workflow" title="Permalink to this headline">#</a></h3>
+<p>The below figure summarizes the workflow of using this connector. We will further explain the detail later. Moreover, we have recorded the steps at <a class="reference external" href="https://terminalizer.com/view/be2309235671">terminalizer page</a> for easy reference; or you can also download the demo script <a class="reference external" href="https://github.com/vagetablechicken/pulsar-openmldb-connector-demo/blob/main/demo.yml">demo.yml</a>.
+<img alt="demo steps" src="../_images/demo_steps.png" /></p>
+</section>
+</section>
+<section id="step-1">
+<h2>Step 1<a class="headerlink" href="#step-1" title="Permalink to this headline">#</a></h2>
+<section id="create-openmldb-cluster">
+<h3>Create OpenMLDB Cluster<a class="headerlink" href="#create-openmldb-cluster" title="Permalink to this headline">#</a></h3>
+<p>Use docker to start it simply, and we need to create a test table, you can check on <a class="reference external" href="https://openmldb.ai/docs/en/v0.5/quickstart/openmldb_quickstart.html#get-started-with-cluster-version-of-openmldb">Get started with cluster version of OpenMLDB</a> .</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Only OpenMLDB cluster mode can be the sink dist, and only write to online storage.</p>
+</div>
+<p>We recommend that you use ‘host network’ to run docker. And bind volume ‘files’ too. The sql scripts are in it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run -dit --network host -v `pwd`/files:/work/pulsar_files --name openmldb 4pdosc/openmldb:0.6.0 bash
+docker exec -it openmldb bash
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Even the host network, docker on macOS cannot support connecting to the container from the host. You only can connect openmldb cluster in other containers, like pulsar container.</p>
+</div>
+<p>In OpenMLDB container, start the cluster:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">init</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</section>
+<section id="create-table">
+<h3>Create table<a class="headerlink" href="#create-table" title="Permalink to this headline">#</a></h3>
+<p>We use a script to create the table, create.sql content:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">create</span> <span class="n">database</span> <span class="n">pulsar_test</span><span class="p">;</span>
+<span class="n">use</span> <span class="n">pulsar_test</span><span class="p">;</span>
+<span class="n">create</span> <span class="n">table</span> <span class="n">connector_test</span><span class="p">(</span><span class="nb">id</span> <span class="n">string</span><span class="p">,</span> <span class="n">vendor_id</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pickup_datetime</span> <span class="n">bigint</span><span class="p">,</span> <span class="n">dropoff_datetime</span> <span class="n">bigint</span><span class="p">,</span> <span class="n">passenger_count</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pickup_longitude</span> <span class="n">double</span><span class="p">,</span> <span class="n">pickup_latitude</span> <span class="n">double</span><span class="p">,</span> <span class="n">dropoff_longitude</span> <span class="n">double</span><span class="p">,</span> <span class="n">dropoff_latitude</span> <span class="n">double</span><span class="p">,</span> <span class="n">store_and_fwd_flag</span> <span class="n">string</span><span class="p">,</span> <span class="n">trip_duration</span> <span class="nb">int</span><span class="p">);</span>
+<span class="n">desc</span> <span class="n">connector_test</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Run the script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">openmldb</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">2181</span> <span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">sql_client</span> <span class="o">&lt;</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">pulsar_files</span><span class="o">/</span><span class="n">create</span><span class="o">.</span><span class="n">sql</span>
+</pre></div>
+</div>
+<p><img alt="table desc" src="../_images/table.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>JSONSchema and JDBC base connector can’t support ‘java.sql.Timestamp’ now. So we use ‘bigint’ to be the timestamp column type(it works in OpenMLDB).</p>
+</div>
+</section>
+</section>
+<section id="step-2">
+<h2>Step 2<a class="headerlink" href="#step-2" title="Permalink to this headline">#</a></h2>
+<section id="start-pulsar-standalone">
+<h3>Start Pulsar Standalone<a class="headerlink" href="#start-pulsar-standalone" title="Permalink to this headline">#</a></h3>
+<p>It’s simpler and quicker to run Pulsar in docker.</p>
+<p>We <strong>recommend</strong> that you use ‘host network’ to run docker, to avoid network problems about docker containers.</p>
+<p>And we need to use pulsar-admin to create a sink, it’s in the docker container. So we will run the container in bash first, and run cmds in it.</p>
+<p>Don’t forget to bind the dir ‘files’.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run -dit --network host -v `pwd`/files:/pulsar/files --name pulsar apachepulsar/pulsar:2.9.1 bash
+docker exec -it pulsar bash
+</pre></div>
+</div>
+<p>In Pulsar container, start the pulsar standalone server.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="o">/</span><span class="n">pulsar</span><span class="o">-</span><span class="n">daemon</span> <span class="n">start</span> <span class="n">standalone</span> <span class="o">--</span><span class="n">zookeeper</span><span class="o">-</span><span class="n">port</span> <span class="mi">5181</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>OpenMLDB want to use the port 2181, so we should change the zk port here. We will use zk port 2181 to connect OpenMLDB, but zk port in Pulsar standalone won’t affect anything.</p>
+</div>
+<p>You can check if the pulsar runs well, <code class="docutils literal notranslate"><span class="pre">ps</span></code> or check the log.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ps</span> <span class="n">axu</span><span class="o">|</span><span class="n">grep</span> <span class="n">pulsar</span>
+</pre></div>
+</div>
+<p>When you start a local standalone cluster, a public/default namespace is created automatically. The namespace is used for development purposes,  ref <a class="reference external" href="https://pulsar.apache.org/docs/en/2.9.0/standalone/#start-pulsar-standalone">pulsar doc</a>.</p>
+<p><strong>We will create the sink in the namespace</strong>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>If you really want to start pulsar locally, see <a class="reference external" href="https://pulsar.apache.org/docs/en/standalone/">Set up a standalone Pulsar locally</a>.</p>
+</div>
+<section id="q-a">
+<h4>Q&amp;A<a class="headerlink" href="#q-a" title="Permalink to this headline">#</a></h4>
+<p>Q:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">07</span><span class="n">T03</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span><span class="mi">289</span><span class="o">+</span><span class="mi">0000</span> <span class="p">[</span><span class="n">main</span><span class="p">]</span> <span class="n">INFO</span>  <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">zookeeper</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">NIOServerCnxnFactory</span> <span class="o">-</span> <span class="n">binding</span> <span class="n">to</span> <span class="n">port</span> <span class="mf">0.0.0.0</span><span class="o">/</span><span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">5181</span>
+<span class="mi">2022</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">07</span><span class="n">T03</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">59</span><span class="p">,</span><span class="mi">289</span><span class="o">+</span><span class="mi">0000</span> <span class="p">[</span><span class="n">main</span><span class="p">]</span> <span class="n">ERROR</span> <span class="n">org</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">pulsar</span><span class="o">.</span><span class="n">zookeeper</span><span class="o">.</span><span class="n">LocalBookkeeperEnsemble</span> <span class="o">-</span> <span class="ne">Exception</span> <span class="k">while</span> <span class="n">instantiating</span> <span class="n">ZooKeeper</span>
+<span class="n">java</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">BindException</span><span class="p">:</span> <span class="n">Address</span> <span class="n">already</span> <span class="ow">in</span> <span class="n">use</span>
+</pre></div>
+</div>
+<p>How to fix it?
+A: Pulsar wants an unused address to start zk server，5181 is used too. Change another port in ‘–zookeeper-port’.</p>
+<p>Q: 8080 is already used?
+A: change the port ‘webServicePort’ in <code class="docutils literal notranslate"><span class="pre">conf/standalone.conf</span></code>. Don’t forget the ‘webServiceUrl’ in <code class="docutils literal notranslate"><span class="pre">conf/client.conf</span></code>, pulsar-admin needs the conf.</p>
+<p>Q: 6650 is already used?
+A: change ‘brokerServicePort’ in <code class="docutils literal notranslate"><span class="pre">conf/standalone.conf</span></code> and ‘brokerServiceUrl’ in <code class="docutils literal notranslate"><span class="pre">conf/client.conf</span></code>.</p>
+</section>
+</section>
+<section id="connector-installation-optional">
+<h3>Connector installation(Optional)<a class="headerlink" href="#connector-installation-optional" title="Permalink to this headline">#</a></h3>
+<p>In the previous step, we bind mount ‘files’, the connector nar is in it.
+We’ll use ‘non built-in connector’ mode to set up the connector(use ‘archive’ in sink config).</p>
+<p>If you really want the connector to be the built-in connector, copy it to ‘connectors’.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">connectors</span>
+<span class="n">cp</span> <span class="n">files</span><span class="o">/</span><span class="n">pulsar</span><span class="o">-</span><span class="n">io</span><span class="o">-</span><span class="n">jdbc</span><span class="o">-</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">2.11.0</span><span class="o">-</span><span class="n">SNAPSHOT</span><span class="o">.</span><span class="n">nar</span>  <span class="n">connectors</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>You want to change or add more connectors, you can update connectors when pulsar standalone is running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="o">/</span><span class="n">pulsar</span><span class="o">-</span><span class="n">admin</span> <span class="n">sinks</span> <span class="n">reload</span>
+</pre></div>
+</div>
+<p>Built-in OpenMLDB connector’s sink type is ‘jdbc-openmldb’.</p>
+</section>
+<section id="create-sink">
+<h3>Create sink<a class="headerlink" href="#create-sink" title="Permalink to this headline">#</a></h3>
+<p>We use the ‘public/default’ namespace to create sink, and we need a sink config file, it’s <code class="docutils literal notranslate"><span class="pre">files/pulsar-openmldb-jdbc-sink.yaml</span></code>, content:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">tenant</span><span class="p">:</span> <span class="s2">&quot;public&quot;</span>
+ <span class="n">namespace</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span>
+ <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;openmldb-test-sink&quot;</span>
+ <span class="n">archive</span><span class="p">:</span> <span class="s2">&quot;files/pulsar-io-jdbc-openmldb-2.11.0-SNAPSHOT.nar&quot;</span>
+ <span class="n">inputs</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;test_openmldb&quot;</span><span class="p">]</span>
+ <span class="n">configs</span><span class="p">:</span>
+     <span class="n">jdbcUrl</span><span class="p">:</span> <span class="s2">&quot;jdbc:openmldb:///pulsar_test?zk=localhost:2181&amp;zkPath=/openmldb&quot;</span>
+     <span class="n">tableName</span><span class="p">:</span> <span class="s2">&quot;connector_test&quot;</span>
+</pre></div>
+</div>
+<p>Then create a sink and check it, notice that the input topic is ‘test_openmldb’.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulsar</span><span class="o">-</span><span class="n">admin</span> <span class="n">sinks</span> <span class="n">create</span> <span class="o">--</span><span class="n">sink</span><span class="o">-</span><span class="n">config</span><span class="o">-</span><span class="n">file</span> <span class="n">files</span><span class="o">/</span><span class="n">pulsar</span><span class="o">-</span><span class="n">openmldb</span><span class="o">-</span><span class="n">jdbc</span><span class="o">-</span><span class="n">sink</span><span class="o">.</span><span class="n">yaml</span>
+<span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulsar</span><span class="o">-</span><span class="n">admin</span> <span class="n">sinks</span> <span class="n">status</span> <span class="o">--</span><span class="n">name</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">sink</span>
+</pre></div>
+</div>
+<p><img alt="init sink status" src="../_images/init_sink_status.png" /></p>
+</section>
+<section id="create-schema">
+<h3>Create Schema<a class="headerlink" href="#create-schema" title="Permalink to this headline">#</a></h3>
+<p>Upload schema to topic ‘test_openmldb’, schema type is JSON. We’ll produce the JSON message in the same schema later. The schema file is ‘files/openmldb-table-schema’.
+Schema content:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">{</span>
+     <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;JSON&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;schema&quot;</span><span class="p">:</span><span class="s2">&quot;{</span><span class="se">\&quot;</span><span class="s2">type</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">record</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">OpenMLDBSchema</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">namespace</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">com.foo</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">fields</span><span class="se">\&quot;</span><span class="s2">:[{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">id</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">type</span><span class="se">\&quot;</span><span class="s2">:[</span><span class="se">\&quot;</span><span class="s2">null</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">string</span><span class="se">\&quot;</span><span class="s2">],</span><span class="se">\&quot;</span><span class="s2">default</span><span class="se">\&quot;</span><span class="s2">:null},{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">vendor_id</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">type</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">int</span><span class="se">\&quot;</span><span class="s2">},{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">pickup_datetime</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">type</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">long</span><span class="se">\&quot;</span><span class="s2">},{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">dropoff_datetime</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">type</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">long</span><span class="se">\&quot;</span><span class="s2">},{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">passenger_count</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">type</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">int</span><span class="se">\&quot;</span><span class="s2">},{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">pickup_longitude</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">type</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">double</span><span class="se">\&quot;</span><span class="s2">},{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">pickup_latitude</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">type</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">double</span><span class="se">\&quot;</span><span class="s2">},{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">dropoff_longitude</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">type</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">double</span><span class="se">\&quot;</span><span class="s2">},{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">dropoff_latitude</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">type</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">double</span><span class="se">\&quot;</span><span class="s2">},{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">store_and_fwd_flag</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">type</span><span class="se">\&quot;</span><span class="s2">:[</span><span class="se">\&quot;</span><span class="s2">null</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">string</span><span class="se">\&quot;</span><span class="s2">],</span><span class="se">\&quot;</span><span class="s2">default</span><span class="se">\&quot;</span><span class="s2">:null},{</span><span class="se">\&quot;</span><span class="s2">name</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">trip_duration</span><span class="se">\&quot;</span><span class="s2">,</span><span class="se">\&quot;</span><span class="s2">type</span><span class="se">\&quot;</span><span class="s2">:</span><span class="se">\&quot;</span><span class="s2">int</span><span class="se">\&quot;</span><span class="s2">}]}&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{}</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>Upload schema and check it, commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulsar</span><span class="o">-</span><span class="n">admin</span> <span class="n">schemas</span> <span class="n">upload</span> <span class="n">test_openmldb</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">files</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="n">table</span><span class="o">-</span><span class="n">schema</span>
+<span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulsar</span><span class="o">-</span><span class="n">admin</span> <span class="n">schemas</span> <span class="n">get</span> <span class="n">test_openmldb</span>
+</pre></div>
+</div>
+<p>For demonstration purposes, we omit the fields part. The result as follows:
+<img alt="topic schema" src="../_images/topic_schema.png" /></p>
+</section>
+</section>
+<section id="test">
+<h2>Test<a class="headerlink" href="#test" title="Permalink to this headline">#</a></h2>
+<section id="send-messages">
+<h3>Send messages<a class="headerlink" href="#send-messages" title="Permalink to this headline">#</a></h3>
+<p>We use the first 2 rows of sample data(in openmldb docker <code class="docutils literal notranslate"><span class="pre">data/taxi_tour_table_train_simple.csv</span></code>) to be the test messages, as follows.</p>
+<p><img alt="test data" src="../_images/test_data.png" /></p>
+<p>Producer JAVA code in <a class="reference external" href="https://github.com/vagetablechicken/pulsar-client-java">demo producer</a>. Essential code is <img alt="snippet" src="../_images/producer_code.png" /></p>
+<p>So the producer will send the 2 messages to topic ‘test_openmldb’. And then Pulsar will read the messages and write them to OpenMLDB cluster online storage.</p>
+<p>The package is in ‘files’. You can run it directly.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">java</span> <span class="o">-</span><span class="n">cp</span> <span class="n">files</span><span class="o">/</span><span class="n">pulsar</span><span class="o">-</span><span class="n">client</span><span class="o">-</span><span class="n">java</span><span class="o">-</span><span class="mf">1.0</span><span class="o">-</span><span class="n">SNAPSHOT</span><span class="o">-</span><span class="n">jar</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">dependencies</span><span class="o">.</span><span class="n">jar</span> <span class="n">org</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">Client</span>
+</pre></div>
+</div>
+</section>
+<section id="check">
+<h3>Check<a class="headerlink" href="#check" title="Permalink to this headline">#</a></h3>
+<section id="check-in-pulsar">
+<h4>Check in Pulsar<a class="headerlink" href="#check-in-pulsar" title="Permalink to this headline">#</a></h4>
+<p>We can check the sink status:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">pulsar</span><span class="o">-</span><span class="n">admin</span> <span class="n">sinks</span> <span class="n">status</span> <span class="o">--</span><span class="n">name</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">sink</span> 
+</pre></div>
+</div>
+<p><img alt="sink status" src="../_images/sink_status.png" /></p>
+</section>
+<section id="check-in-openmldb">
+<h4>Check in OpenMLDB<a class="headerlink" href="#check-in-openmldb" title="Permalink to this headline">#</a></h4>
+<p>And we can get these messages data in the OpenMLDB table’s <strong>online storage</strong> now.
+The script select.sql content:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="o">@</span><span class="nd">@execute_mode</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">;</span>
+<span class="n">use</span> <span class="n">pulsar_test</span><span class="p">;</span>
+<span class="n">select</span> <span class="o">*</span><span class="p">,</span> <span class="n">string</span><span class="p">(</span><span class="n">timestamp</span><span class="p">(</span><span class="n">pickup_datetime</span><span class="p">)),</span> <span class="n">string</span><span class="p">(</span><span class="n">timestamp</span><span class="p">(</span><span class="n">dropoff_datetime</span><span class="p">))</span> <span class="kn">from</span> <span class="nn">connector_test</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In OpenMLDB container, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">openmldb</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">2181</span> <span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">sql_client</span> <span class="o">&lt;</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">pulsar_files</span><span class="o">/</span><span class="n">select</span><span class="o">.</span><span class="n">sql</span>
+</pre></div>
+</div>
+<p><img alt="openmldb result" src="../_images/openmldb_result.png" /></p>
+</section>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="lightgbm_demo.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">OpenMLDB + LightGBM: Taxi Trip Duration Prediction</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="kafka_connector_demo.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Importing Real-Time Data Streams from Kafka</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:54 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

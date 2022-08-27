@@ -1,0 +1,1197 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>IP 配置 &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="客户端配置" href="client_config/index.html" />
+    <link rel="prev" title="SUBMIT JOB" href="sql/task_manage/SUBMIT_JOB.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   关于
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     发展历程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   快速上手
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/data_import_guide.html">
+     数据导入快速指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   教程
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     基于 SQL 的特征开发（上）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     基于 SQL 的特征开发（下）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     集群版 vs 单机版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     集群版使用流程及执行模式
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/openmldbspark_distribution.html">
+     OpenMLDB Spark 发行版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     在线数据导入工具使用
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   使用案例
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/taxi_tour_duration_prediction.html">
+     OpenMLDB + LightGBM：出租车行程时间预测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/pulsar_connector_demo.html">
+     OpenMLDB Pulsar Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/kafka_connector_demo.html">
+     OpenMLDB Kafka Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/dolphinscheduler_task_demo.html">
+     DolphinScheduler OpenMLDB Task：打造端到端MLOps工作流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/talkingdata_demo.html">
+     TalkingData 广告欺诈检测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/OpenMLDB_Byzer_taxi.html">
+     OpenMLDB + Byzer: 基于 SQL 打造端到端机器学习应用
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/airflow_provider_demo.html">
+     Airflow OpenMLDB Provider 使用案例
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/JD_recommendation.html">
+     OpenMLDB + OneFlow: 高潜用户购买意向预测
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   安装部署
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     编译
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     安装部署
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     配置文件
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   运维
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     版本升级
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     备份与恢复
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     扩缩容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     监控
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     运维 CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/faq.html">
+     运维 FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/diagnose.html">
+     诊断工具
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   开发者文档
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/contributing.html">
+     Contributing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/code_structure.html">
+     代码结构
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     内置函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/udf_develop_guide.html">
+     自定义函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/sdk_develop.html">
+     SDK 开发指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   参考
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="arch/index.html">
+     架构
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="arch/online_arch.html">
+       在线模块架构
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="sql/language_structure/index.html">
+       语言结构
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/language_structure/keywords.html">
+         关键字
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/language_structure/object_names_identifiers.html">
+         SQL 对象名
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/language_structure/literals_value.html">
+         字面值
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/language_structure/case_sensitive.html">
+         大小写敏感
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/language_structure/comment.html">
+         注释
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="sql/data_types/index.html">
+       数据类型
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/data_types/numeric_types.html">
+         数值类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/data_types/string_types.html">
+         字符串类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/data_types/date_and_time_types.html">
+         日期与时间类型
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="sql/functions_and_operators/index.html">
+       表达式，函数和运算
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/functions_and_operators/operators.html">
+         运算符
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="sql/dql/index.html">
+       数据查询语句 （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/dql/SELECT_STATEMENT.html">
+         SELECT 概况
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         无表 SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="sql/dml/index.html">
+       数据操作语句（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="sql/ddl/index.html">
+       数据定义语句（DDL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/SHOW_COMPONENTS.html">
+         SHOW COMPONENTS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/SHOW_TABLE_STATUS.html">
+         SHOW TABLE STATUS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="sql/deployment_manage/index.html">
+       DEPLOYMENT 管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/deployment_manage/DEPLOY_STATEMENT.html">
+         创建 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         删除 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         查看 DEPLOYMENTS 列表
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         查看 DEPLOYMENT 详情
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL 上线规范和要求
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="sql/task_manage/index.html">
+       任务管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     IP 配置
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="client_config/index.html">
+     客户端配置
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="client_config/client_spark_config.html">
+       客户端Spark配置文件
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+当前版本: main</br>
+版本列表：
+<ul>
+  <li><a href="ip_tips.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/reference/ip_tips.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   概述
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oneboxopenmldb">
+   Onebox型OpenMLDB外部访问
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#http">
+     Http
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#onebox-apiserver">
+       物理机onebox apiserver
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       容器onebox apiserver
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cli-sdk">
+     CLI/SDK
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cli-sdk-onebox">
+       CLI/SDK-&gt;物理机onebox
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       CLI/SDK-&gt;容器onebox
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>IP 配置</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   概述
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#oneboxopenmldb">
+   Onebox型OpenMLDB外部访问
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#http">
+     Http
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#onebox-apiserver">
+       物理机onebox apiserver
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       容器onebox apiserver
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cli-sdk">
+     CLI/SDK
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cli-sdk-onebox">
+       CLI/SDK-&gt;物理机onebox
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       CLI/SDK-&gt;容器onebox
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="ip">
+<h1>IP 配置<a class="headerlink" href="#ip" title="Permalink to this headline">#</a></h1>
+<section id="id1">
+<h2>概述<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>OpenMLDB docker镜像或发布包内的ip配置默认都是127.0.0.1，如果是外部访问，需要更改ip配置。如果使用容器，可能还需要更改容器启动方式。</p>
+<p>首先，让我们定义下，什么是外部？</p>
+<ul class="simple">
+<li><p>物理机：一台主机访问另一台主机，就是外部。同一主机上，使用127.0.0.1也可正常通讯；外部则必须使用“被访问主机“的公网IP。</p></li>
+<li><p>容器：同一主机的容器外，都是外部，包括同一主机的另一个容器、同一主机的物理环境，另外的主机。</p></li>
+</ul>
+<p>其次，让我们明确下，OpenMLDB有哪几种分布形式？</p>
+<ul class="simple">
+<li><p>onebox，所有OpenMLDB server都在一个环境下，同一物理机或一个容器内。例如，我们的<a class="reference internal" href="../quickstart/openmldb_quickstart.html"><span class="doc std std-doc">快速上手</span></a>，就是将所有进程都放在一个容器内。</p></li>
+<li><p>分布式，正式生产环境中常用分布式，server在不同物理机上，它们自然是需要绑定公网IP。</p></li>
+</ul>
+<p>由于容器的网络限制，onebox型的OpenMLDB常出现，IP配置错误等问题。相反，分布式由于一定要绑定公网IP，反而没有太多疑问。</p>
+<p>下面我们将介绍<strong>onebox型OpenMLDB</strong>如何修改配置实现<strong>外部访问</strong>。</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>单机版中，不只是需要改endpoint，nameserver的配置中的tablet IP <code class="docutils literal notranslate"><span class="pre">--tablet=</span></code>也需要修改。</p>
+</div>
+</section>
+<section id="oneboxopenmldb">
+<h2>Onebox型OpenMLDB外部访问<a class="headerlink" href="#oneboxopenmldb" title="Permalink to this headline">#</a></h2>
+<p>OpenMLDB有多种访问方式，包括HTTP，多种SDK，以及命令行CLI。</p>
+<section id="http">
+<h3>Http<a class="headerlink" href="#http" title="Permalink to this headline">#</a></h3>
+<p>如果你只需要用restful http接口，那么，只需要考虑apiserver的ip是否可访问。（onebox型OpenMLDB的apiserver与其他server在同一环境下，它可以自由访问其他server）。</p>
+<p>可以通过</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">IP</span><span class="p">:</span><span class="n">port</span><span class="o">&gt;/</span><span class="n">dbs</span><span class="o">/</span><span class="n">foo</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="o">-</span><span class="n">d</span><span class="s1">&#39;{&quot;mode&quot;:&quot;online&quot;, &quot;sql&quot;:&quot;show components&quot;}&#39;</span>
+</pre></div>
+</div>
+<p>可以确认apiserver是否正常工作。这里的nameserver、tablet server等ip即使是127.0.0.1，也不会有问题，因为apiserver可以通过127.0.0.1访问到这些server。</p>
+<section id="onebox-apiserver">
+<h4>物理机onebox apiserver<a class="headerlink" href="#onebox-apiserver" title="Permalink to this headline">#</a></h4>
+<p>跨主机访问物理机上的onebox，只需要让apiserver的endpoint（绑定ip）改为公网ip。</p>
+</section>
+<section id="id2">
+<h4>容器onebox apiserver<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<p>如果是本机访问容器onebox中的apiserver，可以<strong>任选一种</strong>下面的方式：</p>
+<ul class="simple">
+<li><p>可以通过bridge的方式，只需让apiserver的endpoint改为<code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code>（也就是绑定容器ip），然后http使用容器ip即可。</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>bridge IP通过<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">network</span> <span class="pre">inspect</span> <span class="pre">bridge</span></code>来查看，通过容器ID或Name找到IP。</p>
+<p>Docker Desktop for Mac无法支持从物理机访问容器（以下任何模式都不能），参考<a class="reference external" href="https://docs.docker.com/desktop/mac/networking/#i-cannot-ping-my-containers">i-cannot-ping-my-containers</a>。</p>
+<p>但macOS中，可以从容器内访问其他容器。</p>
+</div>
+<ul>
+<li><p>暴露端口，也需要修改apiserver的endpoint改为<code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code>。这样可以使用127.0.0.1或是公网ip访问到apiserver。
+单机版：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8080</span><span class="p">:</span><span class="mi">8080</span> <span class="o">-</span><span class="n">it</span> <span class="mi">4</span><span class="n">pdosc</span><span class="o">/</span><span class="n">openmldb</span><span class="p">:</span><span class="mf">0.6.0</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<p>集群版：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9080</span><span class="p">:</span><span class="mi">9080</span> <span class="o">-</span><span class="n">it</span> <span class="mi">4</span><span class="n">pdosc</span><span class="o">/</span><span class="n">openmldb</span><span class="p">:</span><span class="mf">0.6.0</span> <span class="n">bash</span>
+</pre></div>
+</div>
+</li>
+<li><p>使用host网络，可以不用修改endpoint配置。缺点是容易引起端口冲突。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">network</span> <span class="n">host</span> <span class="o">-</span><span class="n">it</span> <span class="mi">4</span><span class="n">pdosc</span><span class="o">/</span><span class="n">openmldb</span><span class="p">:</span><span class="mf">0.6.0</span> <span class="n">bash</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>如果是跨主机访问容器onebox中的apiserver，可以<strong>任选一种</strong>下面的方式：</p>
+<ul class="simple">
+<li><p>暴露端口，并修改apiserver的endpoint改为<code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code>。docker启动详情见上。</p></li>
+<li><p>使用host网络，并修改apiserver的endpoint改为<code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code>或是公网IP。docker启动详情见上。</p></li>
+</ul>
+<p>只需要让apiserver的endpoint（绑定ip）改为公网ip，使它可访问。apiserver与集群内server的交互都在同一台server上，或同一容器内，并不需要更改。
+还是跨主机</p>
+</section>
+</section>
+<section id="cli-sdk">
+<h3>CLI/SDK<a class="headerlink" href="#cli-sdk" title="Permalink to this headline">#</a></h3>
+<p>如果你需要在外部使用CLI/SDK，情况比只连接apiserver要复杂，需要保证CLI/SDK能访问到tablet server和taskmanager server。</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>由于server间内部通信是使用<code class="docutils literal notranslate"><span class="pre">endpoint</span></code>绑定的ip通信，而CLI/SDK也是直接获取同样的ip，直连tablet server或taskmanager，因此，nameserver和tablet/taskmanager通信正常，CLI/SDK却有可能因为跨主机或容器，无法正常连接到tablet/taskmanager。</p>
+</div>
+<p>你可以通过这样一个简单的SQL脚本来测试确认连接是否正常。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">show</span> <span class="n">components</span><span class="p">;</span>
+<span class="n">create</span> <span class="n">database</span> <span class="n">db</span><span class="p">;</span>
+<span class="n">use</span> <span class="n">db</span><span class="p">;</span>
+<span class="n">create</span> <span class="n">table</span> <span class="n">t1</span><span class="p">(</span><span class="n">c1</span> <span class="nb">int</span><span class="p">);</span>
+<span class="nb">set</span> <span class="o">@</span><span class="nd">@execute_mode</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">;</span>
+<span class="n">insert</span> <span class="n">into</span> <span class="n">t1</span> <span class="n">values</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">select</span> <span class="o">*</span> <span class="kn">from</span> <span class="nn">t1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>其中<code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">components</span></code>可以看到CLI获得的tablet/taskmanager ip是什么样的。<code class="docutils literal notranslate"><span class="pre">insert</span></code>语句可以测试是否能连接并将数据写入tablet server。</p>
+<p>下面，我们分情况讨论如何配置。</p>
+<section id="cli-sdk-onebox">
+<h4>CLI/SDK-&gt;物理机onebox<a class="headerlink" href="#cli-sdk-onebox" title="Permalink to this headline">#</a></h4>
+<p>跨主机访问物理机上的onebox，只需将所有endpoint改为公网IP。</p>
+<p>可使用以下命令快速修改。
+单机版：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="n">s</span><span class="o">/</span><span class="mf">127.0.0.1</span><span class="o">/&lt;</span><span class="n">IP</span><span class="o">&gt;/</span><span class="n">g</span> <span class="n">openmldb</span><span class="o">/</span><span class="n">conf</span><span class="o">/</span><span class="n">standalone</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>集群版：
+简单地可以更改所有conf文件，</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="n">s</span><span class="o">/</span><span class="mf">127.0.0.1</span><span class="o">/&lt;</span><span class="n">IP</span><span class="o">&gt;/</span><span class="n">g</span> <span class="n">openmldb</span><span class="o">/</span><span class="n">conf</span><span class="o">/*</span>
+</pre></div>
+</div>
+<p>或者，精确的只修改集群版的配置文件。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">openmldb</span><span class="o">/</span><span class="n">conf</span><span class="o">/</span> <span class="o">&amp;&amp;</span> <span class="n">ls</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">v</span> <span class="n">_</span> <span class="o">|</span> <span class="n">xargs</span> <span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="n">s</span><span class="o">/</span><span class="mf">127.0.0.1</span><span class="o">/&lt;</span><span class="n">IP</span><span class="o">&gt;/</span><span class="n">g</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="o">-</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h4>CLI/SDK-&gt;容器onebox<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<p>如果是本机的容器外CLI访问容器onebox，可以<strong>任选一种</strong>下面的方式：</p>
+<ul class="simple">
+<li><p>bridge连接，bridge IP查看参考<a class="reference internal" href="#id2"><span class="std std-doc">容器onebox-apiserver</span></a>，将所有endpoint配置改为bridge ip。不可以是<code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code>，容器外CLI/SDK无法通过<code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code>找到容器内的server。</p></li>
+<li><p>暴露端口，并将conf所有endpoint改为bridge IP或<code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code>。本机也可以顺利通信。</p></li>
+</ul>
+<p>单机版需要暴露三个组件（nameserver，tabletserver，apiserver）的端口：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">6527</span><span class="p">:</span><span class="mi">6527</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9921</span><span class="p">:</span><span class="mi">9921</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8080</span><span class="p">:</span><span class="mi">8080</span> <span class="o">-</span><span class="n">it</span> <span class="mi">4</span><span class="n">pdosc</span><span class="o">/</span><span class="n">openmldb</span><span class="p">:</span><span class="mf">0.6.0</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<p>集群版需要暴露zk端口与所有组件的端口：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">2181</span><span class="p">:</span><span class="mi">2181</span> <span class="o">-</span><span class="n">p</span> <span class="mi">7527</span><span class="p">:</span><span class="mi">7527</span> <span class="o">-</span><span class="n">p</span> <span class="mi">10921</span><span class="p">:</span><span class="mi">10921</span> <span class="o">-</span><span class="n">p</span> <span class="mi">10922</span><span class="p">:</span><span class="mi">10922</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8080</span><span class="p">:</span><span class="mi">8080</span> <span class="o">-</span><span class="n">p</span> <span class="mi">9902</span><span class="p">:</span><span class="mi">9902</span> <span class="o">-</span><span class="n">it</span> <span class="mi">4</span><span class="n">pdosc</span><span class="o">/</span><span class="n">openmldb</span><span class="p">:</span><span class="mf">0.6.0</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>使用host网络，可以不用修改endpoint配置。见<a class="reference internal" href="#id2"><span class="std std-doc">容器onebox-apiserver</span></a></p></li>
+</ul>
+<p>如果是跨主机使用CLI/SDK访问问容器onebox，只能通过<code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code>，并更改所有endpoint为公网IP，才能顺利访问。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code class="docutils literal notranslate"><span class="pre">-p</span></code> 将“物理机端口”和“容器内端口”进行绑定，可能出现“容器端口号”在物理机上已被使用的情况。我们不推荐“切换暴露端口号”的方式，请改变conf中endpoint的端口号，暴露时使用同样的端口号。</p>
+<p>暴露端口的模式，会无法绑定物理机ip（容器中仅有docker bridge ip和127.0.0.1），所以，想要绑定公网IP，必须使用host网络。</p>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="sql/task_manage/SUBMIT_JOB.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">SUBMIT JOB</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="client_config/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">客户端配置</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:55:21 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

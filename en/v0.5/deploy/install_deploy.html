@@ -1,0 +1,1378 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Install and Deploy &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Configuration File" href="conf.html" />
+    <link rel="prev" title="Build" href="compile.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     Milestones
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     SQL for Feature Extraction (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     SQL for Feature Extraction (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   Use Cases
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/pulsar_connector_demo.html">
+     Integration with Pulsar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/kafka_connector_demo.html">
+     OpenMLDB Kafka Connector：Connecting Real-Time Data Streams
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Deployment
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   Maintenance
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     Upgrade
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     Backup and Restore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     Monitoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     Operations in CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/faq.html">
+     Operation and Maintenance FAQ
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: v0.5</br>
+Versions：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="install_deploy.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/deploy/install_deploy.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#software-and-hardware-requirements">
+   Software and Hardware Requirements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deployment-package">
+   Deployment Package
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-environment-linux">
+   Configure Environment (Linux)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disable-system-swap">
+     Disable system swap
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disable-thp-transparent-huge-pages">
+     Disable THP (Transparent Huge Pages)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-and-zone-settings">
+     Time and zone settings
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploy-standalone-version">
+   Deploy Standalone Version
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-tablet">
+     Deploy tablet
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#download-the-openmldb-deployment-package">
+       1. Download the OpenMLDB Deployment Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-standalone-tablet-flags">
+       2. Modify the Configuration File: conf/standalone_tablet.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#start-the-service">
+       3. Start the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-nameserver">
+     Deploy Nameserver
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       1. Download the OpenMLDB Deployment Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-standalone-nameserver-flags">
+       2. Modify the Configuration File: conf/standalone_nameserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       3. Start the Service
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#verify-the-running-status-of-the-service">
+       4. Verify the Running Status of the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-apiserver">
+     Deploy APIServer
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       1. Download the OpenMLDB Deployment Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-standalone-apiserver-flags">
+       2. Modify the Configuration File: conf/standalone_apiserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       3. Start the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploy-cluster-version">
+   Deploy Cluster Version
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-zookeeper">
+     Deploy Zookeeper
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#download-the-zookeeper-installation-package">
+       1. Download the Zookeeper Installation Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file">
+       2. Modify the Configuration File
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#start-zookeeper">
+       3. Start Zookeeper
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Deploy Tablet
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       1. Download the OpenMLDB Deployment Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-tablet-flags">
+       2. Modify the Configuration File: conf/tablet.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       3. Start the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Deploy Nameserver
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       1. Download the OpenMLDB Deployment Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-nameserver-flags">
+       2. Modify the Configuration File: conf/nameserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       3. Start the Service
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       4. Verify the Running Status of the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     Deploy APIServer
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       1. Download the OpenMLDB Deployment Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-apiserver-flags">
+       2. Modify the Configuration File: conf/apiserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       3. Start the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-taskmanager">
+     Deploy TaskManager
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#download-the-openmldb-spark-distribution-that-is-optimized-for-feature-engineering">
+       1. Download the OpenMLDB Spark Distribution that is Optimized for Feature Engineering
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-taskmanager-properties">
+       2. Modify the Configuration File conf/taskmanager.properties
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       3. Start the Service
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       4. Verify the Running Status of the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Install and Deploy</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#software-and-hardware-requirements">
+   Software and Hardware Requirements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deployment-package">
+   Deployment Package
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-environment-linux">
+   Configure Environment (Linux)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disable-system-swap">
+     Disable system swap
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#disable-thp-transparent-huge-pages">
+     Disable THP (Transparent Huge Pages)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-and-zone-settings">
+     Time and zone settings
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploy-standalone-version">
+   Deploy Standalone Version
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-tablet">
+     Deploy tablet
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#download-the-openmldb-deployment-package">
+       1. Download the OpenMLDB Deployment Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-standalone-tablet-flags">
+       2. Modify the Configuration File: conf/standalone_tablet.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#start-the-service">
+       3. Start the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-nameserver">
+     Deploy Nameserver
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       1. Download the OpenMLDB Deployment Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-standalone-nameserver-flags">
+       2. Modify the Configuration File: conf/standalone_nameserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       3. Start the Service
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#verify-the-running-status-of-the-service">
+       4. Verify the Running Status of the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-apiserver">
+     Deploy APIServer
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       1. Download the OpenMLDB Deployment Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-standalone-apiserver-flags">
+       2. Modify the Configuration File: conf/standalone_apiserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       3. Start the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploy-cluster-version">
+   Deploy Cluster Version
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-zookeeper">
+     Deploy Zookeeper
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#download-the-zookeeper-installation-package">
+       1. Download the Zookeeper Installation Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file">
+       2. Modify the Configuration File
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#start-zookeeper">
+       3. Start Zookeeper
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Deploy Tablet
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       1. Download the OpenMLDB Deployment Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-tablet-flags">
+       2. Modify the Configuration File: conf/tablet.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       3. Start the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Deploy Nameserver
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       1. Download the OpenMLDB Deployment Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-nameserver-flags">
+       2. Modify the Configuration File: conf/nameserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       3. Start the Service
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       4. Verify the Running Status of the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     Deploy APIServer
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       1. Download the OpenMLDB Deployment Package
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-apiserver-flags">
+       2. Modify the Configuration File: conf/apiserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       3. Start the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deploy-taskmanager">
+     Deploy TaskManager
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#download-the-openmldb-spark-distribution-that-is-optimized-for-feature-engineering">
+       1. Download the OpenMLDB Spark Distribution that is Optimized for Feature Engineering
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#modify-the-configuration-file-conf-taskmanager-properties">
+       2. Modify the Configuration File conf/taskmanager.properties
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       3. Start the Service
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       4. Verify the Running Status of the Service
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="install-and-deploy">
+<h1>Install and Deploy<a class="headerlink" href="#install-and-deploy" title="Permalink to this headline">#</a></h1>
+<section id="software-and-hardware-requirements">
+<h2>Software and Hardware Requirements<a class="headerlink" href="#software-and-hardware-requirements" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Operating system: CentOS 7, Ubuntu 20.04, macOS &gt;= 10.15. Where Linux glibc version &gt;= 2.17. Other operating system versions have not been fully tested and cannot be guaranteed to be fully compatible.</p></li>
+<li><p>Memory: Depends on the amount of data, 8 GB and above is recommended.</p></li>
+<li><p>CPU:</p>
+<ul>
+<li><p>Currently only the x86 architecture is supported, and architectures such as ARM are currently not supported.</p></li>
+<li><p>The number of cores is recommended to be no less than 4 cores. If the CPU does not support the AVX2 instruction set in the Linux environment, the deployment package needs to be recompiled from the source code.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="deployment-package">
+<h2>Deployment Package<a class="headerlink" href="#deployment-package" title="Permalink to this headline">#</a></h2>
+<p>The precompiled OpenMLDB deployment package is used by default in this documentation (<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/releases/download/v0.5.2/openmldb-0.5.2-linux.tar.gz">Linux</a> , <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/releases/download/v0.5.2/openmldb-0.5.2-darwin.tar.gz">macOS</a>), the supported operating system requirements are: CentOS 7, Ubuntu 20.04, macOS &gt;= 10.15. If the user wishes to compile by himself (for example, for OpenMLDB source code development, the operating system or CPU architecture is not in the support list of the precompiled deployment package, etc.), the user can choose to compile and use in the docker container or compile from the source code. For details, please refer to our <a class="reference internal" href="compile.html"><span class="doc std std-doc">compile documentation</span></a>.</p>
+</section>
+<section id="configure-environment-linux">
+<h2>Configure Environment (Linux)<a class="headerlink" href="#configure-environment-linux" title="Permalink to this headline">#</a></h2>
+<section id="disable-system-swap">
+<h3>Disable system swap<a class="headerlink" href="#disable-system-swap" title="Permalink to this headline">#</a></h3>
+<p>Check the status of the swap area.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ free
+              total used free shared buff/cache available
+Mem: <span class="m">264011292</span> <span class="m">67445840</span> <span class="m">2230676</span> <span class="m">3269180</span> <span class="m">194334776</span> <span class="m">191204160</span>
+Swap: <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>
+</pre></div>
+</div>
+<p>If the swap item is all 0, it means it has been closed, otherwise run the following command to disable all swap.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ swapoff -a
+</pre></div>
+</div>
+</section>
+<section id="disable-thp-transparent-huge-pages">
+<h3>Disable THP (Transparent Huge Pages)<a class="headerlink" href="#disable-thp-transparent-huge-pages" title="Permalink to this headline">#</a></h3>
+<p>Check the status of THP.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat /sys/kernel/mm/transparent_hugepage/enabled
+always [madvise] never
+$ cat /sys/kernel/mm/transparent_hugepage/defrag
+[always] madvise never
+</pre></div>
+</div>
+<p>If “never” is not surrounded by square brackets in the above two configurations, it needs to be set.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;never&#39;</span> &gt; /sys/kernel/mm/transparent_hugepage/enabled
+$ <span class="nb">echo</span> <span class="s1">&#39;never&#39;</span> &gt; /sys/kernel/mm/transparent_hugepage/defrag
+</pre></div>
+</div>
+<p>Check whether the setting is successful. If “never” is surrounded by square brackets, it means that the setting has been successful, as shown below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat /sys/kernel/mm/transparent_hugepage/enabled
+always madvise <span class="o">[</span>never<span class="o">]</span>
+$ cat /sys/kernel/mm/transparent_hugepage/defrag
+always madvise <span class="o">[</span>never<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="time-and-zone-settings">
+<h3>Time and zone settings<a class="headerlink" href="#time-and-zone-settings" title="Permalink to this headline">#</a></h3>
+<p>The OpenMLDB data expiration deletion mechanism relies on the system clock. If the system clock is incorrect, the expired data will not be deleted or the data that has not expired will be deleted.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$date</span>
+Wed Aug <span class="m">22</span> <span class="m">16</span>:33:50 CST <span class="m">2018</span>
+</pre></div>
+</div>
+<p>Please make sure the time is correct.</p>
+</section>
+</section>
+<section id="deploy-standalone-version">
+<h2>Deploy Standalone Version<a class="headerlink" href="#deploy-standalone-version" title="Permalink to this headline">#</a></h2>
+<p>OpenMLDB standalone version needs to deploy a nameserver and a tablet. The nameserver is used for table management and metadata storage, and the tablet is used for data storage. APIServer is optional. If you want to interact with OpenMLDB using REST APIs, you need to deploy this module.</p>
+<p><strong>Notice:</strong> It is best to deploy different components in different directories for easy upgrades individually.</p>
+<section id="deploy-tablet">
+<h3>Deploy tablet<a class="headerlink" href="#deploy-tablet" title="Permalink to this headline">#</a></h3>
+<section id="download-the-openmldb-deployment-package">
+<h4>1. Download the OpenMLDB Deployment Package<a class="headerlink" href="#download-the-openmldb-deployment-package" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">tablet</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">tablet</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="modify-the-configuration-file-conf-standalone-tablet-flags">
+<h4>2. Modify the Configuration File: conf/standalone_tablet.flags<a class="headerlink" href="#modify-the-configuration-file-conf-standalone-tablet-flags" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>. The endpoint is the deployment machine ip/domain name and port number separated by colons.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">9527</span>
+</pre></div>
+</div>
+<p><strong>Notice:</strong></p>
+<ul class="simple">
+<li><p>The endpoint cannot use 0.0.0.0 and 127.0.0.1.</p></li>
+<li><p>If the domain name is used here, all the machines where the client using OpenMLDB is located must be equipped with the corresponding host. Otherwise, it will not be accessible.</p></li>
+</ul>
+</section>
+<section id="start-the-service">
+<h4>3. Start the Service<a class="headerlink" href="#start-the-service" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span> <span class="n">standalone_tablet</span>
+</pre></div>
+</div>
+<p><strong>Notice</strong>: After the service is started, the standalone_tablet.pid file will be generated in the bin directory, and the process number at startup will be saved in it. If the pid inside the file is running, the startup will fail.</p>
+</section>
+</section>
+<section id="deploy-nameserver">
+<h3>Deploy Nameserver<a class="headerlink" href="#deploy-nameserver" title="Permalink to this headline">#</a></h3>
+<section id="id1">
+<h4>1. Download the OpenMLDB Deployment Package<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">ns</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">ns</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="modify-the-configuration-file-conf-standalone-nameserver-flags">
+<h4>2. Modify the Configuration File: conf/standalone_nameserver.flags<a class="headerlink" href="#modify-the-configuration-file-conf-standalone-nameserver-flags" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>. The endpoint is the deployment machine ip/domain name and port number separated by colons.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">tablet</span></code> configuration item needs to be configured with the address of the tablet that was started earlier.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">6527</span>
+<span class="o">--</span><span class="n">tablet</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">9527</span>
+</pre></div>
+</div>
+<p><strong>Notice</strong>: The endpoint cannot use 0.0.0.0 and 127.0.0.1.</p>
+</section>
+<section id="id2">
+<h4>3. Start the Service<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span> <span class="n">standalone_nameserver</span>
+</pre></div>
+</div>
+</section>
+<section id="verify-the-running-status-of-the-service">
+<h4>4. Verify the Running Status of the Service<a class="headerlink" href="#verify-the-running-status-of-the-service" title="Permalink to this headline">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --host<span class="o">=</span><span class="m">172</span>.27.128.33 --port<span class="o">=</span><span class="m">6527</span>
+&gt; show databases<span class="p">;</span>
+ -------------
+  Databases
+ -------------
+<span class="m">0</span> row <span class="k">in</span> <span class="nb">set</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="deploy-apiserver">
+<h3>Deploy APIServer<a class="headerlink" href="#deploy-apiserver" title="Permalink to this headline">#</a></h3>
+<p>APIServer is responsible for receiving http requests, forwarding them to OpenMLDB and returning results. It is stateless and is not a must-deploy component of OpenMLDB.
+Before starting the APIServer, make sure that the OpenMLDB cluster has been started, otherwise APIServer will fail to initialize and exit the process.</p>
+<section id="id3">
+<h4>1. Download the OpenMLDB Deployment Package<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">apiserver</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">apiserver</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="modify-the-configuration-file-conf-standalone-apiserver-flags">
+<h4>2. Modify the Configuration File: conf/standalone_apiserver.flags<a class="headerlink" href="#modify-the-configuration-file-conf-standalone-apiserver-flags" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>. The endpoint is the deployment machine ip/domain name and port number separated by colons.</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">nameserver</span></code> to be the address of Nameserver.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8080</span>
+<span class="o">--</span><span class="n">nameserver</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">6527</span>
+</pre></div>
+</div>
+<p><strong>Notice:</strong></p>
+<ul class="simple">
+<li><p>The endpoint cannot use 0.0.0.0 and 127.0.0.1. You can also choose not to set <code class="docutils literal notranslate"><span class="pre">--endpoint</span></code>, and only configure the port number <code class="docutils literal notranslate"><span class="pre">--port</span></code>.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h4>3. Start the Service<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span> <span class="n">standalone_apiserver</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="deploy-cluster-version">
+<h2>Deploy Cluster Version<a class="headerlink" href="#deploy-cluster-version" title="Permalink to this headline">#</a></h2>
+<p>OpenMLDB cluster version needs to deploy Zookeeper, Nameserver, Tablet and other modules. Among them, Zookeeper is used for service discovery and saving metadata information. The Nameserver is used to manage the tablet, achieve high availability and failover. Tablets are used to store data and synchronize data between master and slave. APIServer is optional. If you want to interact with OpenMLDB in http, you need to deploy this module.</p>
+<p><strong>Notice:</strong> It is best to deploy different components in different directories for easy upgrades individually. If multiple tablets are deployed on the same machine, they also need to be deployed in different directories.</p>
+<section id="deploy-zookeeper">
+<h3>Deploy Zookeeper<a class="headerlink" href="#deploy-zookeeper" title="Permalink to this headline">#</a></h3>
+<p>It is recommended to deploy version 3.4.14. If there is an available zookeeper cluster, you can skip this step.</p>
+<section id="download-the-zookeeper-installation-package">
+<h4>1. Download the Zookeeper Installation Package<a class="headerlink" href="#download-the-zookeeper-installation-package" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">archive</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">dist</span><span class="o">/</span><span class="n">zookeeper</span><span class="o">/</span><span class="n">zookeeper</span><span class="o">-</span><span class="mf">3.4.14</span><span class="o">/</span><span class="n">zookeeper</span><span class="o">-</span><span class="mf">3.4.14</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">cd</span> <span class="n">zookeeper</span><span class="o">-</span><span class="mf">3.4.14</span>
+<span class="n">cp</span> <span class="n">conf</span><span class="o">/</span><span class="n">zoo_sample</span><span class="o">.</span><span class="n">cfg</span> <span class="n">conf</span><span class="o">/</span><span class="n">zoo</span><span class="o">.</span><span class="n">cfg</span>
+</pre></div>
+</div>
+</section>
+<section id="modify-the-configuration-file">
+<h4>2. Modify the Configuration File<a class="headerlink" href="#modify-the-configuration-file" title="Permalink to this headline">#</a></h4>
+<p>Open the file <code class="docutils literal notranslate"><span class="pre">conf/zoo.cfg</span></code> and modify <code class="docutils literal notranslate"><span class="pre">dataDir</span></code> and <code class="docutils literal notranslate"><span class="pre">clientPort</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dataDir</span><span class="o">=./</span><span class="n">data</span>
+<span class="n">clientPort</span><span class="o">=</span><span class="mi">7181</span>
+</pre></div>
+</div>
+</section>
+<section id="start-zookeeper">
+<h4>3. Start Zookeeper<a class="headerlink" href="#start-zookeeper" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">zkServer</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span>
+</pre></div>
+</div>
+<p>Deploy the Zookeeper cluster <a class="reference external" href="https://zookeeper.apache.org/doc/r3.4.14/zookeeperStarted.html#sc_RunningReplicatedZooKeeper">refer to here</a>.</p>
+</section>
+</section>
+<section id="id5">
+<h3>Deploy Tablet<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<section id="id6">
+<h4>1. Download the OpenMLDB Deployment Package<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">tablet</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">tablet</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="modify-the-configuration-file-conf-tablet-flags">
+<h4>2. Modify the Configuration File: conf/tablet.flags<a class="headerlink" href="#modify-the-configuration-file-conf-tablet-flags" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>. The endpoint is the deployment machine ip/domain name and port number separated by colons.</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">zk_cluster</span></code> to the already started zk cluster address.</p></li>
+<li><p>If you share zk with other OpenMLDB, you need to modify <code class="docutils literal notranslate"><span class="pre">zk_root_path</span></code>.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">9527</span>
+<span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">tablet</span>
+
+<span class="c1"># If tablet run as cluster mode zk_cluster and zk_root_path should be set:</span>
+<span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">7181</span>
+<span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb_cluster</span>
+</pre></div>
+</div>
+<p><strong>Notice:</strong></p>
+<ul class="simple">
+<li><p>The endpoint cannot use 0.0.0.0 and 127.0.0.1.</p></li>
+<li><p>If the domain name is used here, all the machines with OpenMLDB clients must be configured with the corresponding host. Otherwise, it will not be accessible.</p></li>
+<li><p>The configuration of <code class="docutils literal notranslate"><span class="pre">zk_cluster</span></code> and <code class="docutils literal notranslate"><span class="pre">zk_root_path</span></code> is consistent with that of Nameserver.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h4>3. Start the Service<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span> <span class="n">tablet</span>
+</pre></div>
+</div>
+<p>Repeat the above steps to deploy multiple tablets.</p>
+<p><strong>Notice:</strong></p>
+<ul class="simple">
+<li><p>After the service is started, the tablet.pid file will be generated in the bin directory, and the process number at startup will be saved in it. If the pid inside the file is running, the startup will fail.</p></li>
+<li><p>Cluster version needs to deploy at least 2 tablets.</p></li>
+<li><p>If you need to deploy multiple tablets, deploy all the tablets before deploying the Nameserver.</p></li>
+</ul>
+</section>
+</section>
+<section id="id8">
+<h3>Deploy Nameserver<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<section id="id9">
+<h4>1. Download the OpenMLDB Deployment Package<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">ns</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">ns</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="modify-the-configuration-file-conf-nameserver-flags">
+<h4>2. Modify the Configuration File: conf/nameserver.flags<a class="headerlink" href="#modify-the-configuration-file-conf-nameserver-flags" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>. The endpoint is the deployment machine ip/domain name and port number separated by colons.</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">zk_cluster</span></code> to the address of the zk cluster that has been started. IP is the machine address where zk is located, and port is the port number configured by clientPort in the zk configuration file. If zk is in cluster mode, separate it with commas, and the format is ip1:port1,ip2:port2, ip3:port3.</p></li>
+<li><p>If you share zk with other OpenMLDB, you need to modify <code class="docutils literal notranslate"><span class="pre">zk_root_path</span></code>.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">6527</span>
+<span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">7181</span>
+<span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb_cluster</span>
+<span class="o">--</span><span class="n">enable_distsql</span><span class="o">=</span><span class="n">true</span>
+</pre></div>
+</div>
+<p><strong>Notice:</strong> The endpoint cannot use 0.0.0.0 and 127.0.0.1.</p>
+</section>
+<section id="id10">
+<h4>3. Start the Service<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span> <span class="n">nameserver</span>
+</pre></div>
+</div>
+<p>Repeat the above steps to deploy multiple nameservers.</p>
+</section>
+<section id="id11">
+<h4>4. Verify the Running Status of the Service<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --zk_cluster<span class="o">=</span><span class="m">172</span>.27.128.31:7181,172.27.128.32:7181,172.27.128.33:7181 --zk_root_path<span class="o">=</span>/openmldb_cluster --role<span class="o">=</span>ns_client
+&gt; shown
+  endpoint role
+-----------------------------
+  <span class="m">172</span>.27.128.31:6527 leader
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id12">
+<h3>Deploy APIServer<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h3>
+<p>APIServer is responsible for receiving http requests, forwarding them to OpenMLDB and returning results. It is stateless and is not a must-deploy component of OpenMLDB.
+Before running, make sure that the OpenMLDB cluster has been started, otherwise APIServer will fail to initialize and exit the process.</p>
+<section id="id13">
+<h4>1. Download the OpenMLDB Deployment Package<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">apiserver</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">apiserver</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="modify-the-configuration-file-conf-apiserver-flags">
+<h4>2. Modify the Configuration File: conf/apiserver.flags<a class="headerlink" href="#modify-the-configuration-file-conf-apiserver-flags" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>. The endpoint is the deployment machine ip/domain name and port number separated by colons.</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">zk_cluster</span></code> to the zk cluster address of OpenMLDB to be forwarded to.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8080</span>
+<span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">apiserver</span>
+<span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">7181</span>
+<span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb_cluster</span>
+<span class="o">--</span><span class="n">openmldb_log_dir</span><span class="o">=./</span><span class="n">logs</span>
+</pre></div>
+</div>
+<p><strong>Notice:</strong></p>
+<ul class="simple">
+<li><p>The endpoint cannot use 0.0.0.0 and 127.0.0.1. You can also choose not to set <code class="docutils literal notranslate"><span class="pre">--endpoint</span></code>, and only configure the port number <code class="docutils literal notranslate"><span class="pre">--port</span></code>.</p></li>
+<li><p>You can also configure the number of threads of APIServer, <code class="docutils literal notranslate"><span class="pre">--thread_pool_size</span></code>, the default is 16.</p></li>
+</ul>
+</section>
+<section id="id14">
+<h4>3. Start the Service<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span> <span class="n">apiserver</span>
+</pre></div>
+</div>
+<p><strong>Notice:</strong> If the program crashes when starting the nameserver/tablet/apiserver using the OpenMLDB release package, it is very likely that the instruction set is incompatible, and you need to compile OpenMLDB through the source code. For source code compilation, please refer to <a class="reference internal" href="compile.html"><span class="doc std std-doc">here</span></a>, you need to use method 3 to compile the complete source code.</p>
+</section>
+</section>
+<section id="deploy-taskmanager">
+<h3>Deploy TaskManager<a class="headerlink" href="#deploy-taskmanager" title="Permalink to this headline">#</a></h3>
+<section id="download-the-openmldb-spark-distribution-that-is-optimized-for-feature-engineering">
+<h4>1. Download the OpenMLDB Spark Distribution that is Optimized for Feature Engineering<a class="headerlink" href="#download-the-openmldb-spark-distribution-that-is-optimized-for-feature-engineering" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">spark</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v3</span><span class="mf">.0.0</span><span class="o">-</span><span class="n">openmldb0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">spark</span><span class="o">-</span><span class="mf">3.0.0</span><span class="o">-</span><span class="nb">bin</span><span class="o">-</span><span class="n">openmldbspark</span><span class="o">.</span><span class="n">tgz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">spark</span><span class="o">-</span><span class="mf">3.0.0</span><span class="o">-</span><span class="nb">bin</span><span class="o">-</span><span class="n">openmldbspark</span><span class="o">.</span><span class="n">tgz</span>
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">taskmanager</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">taskmanager</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="modify-the-configuration-file-conf-taskmanager-properties">
+<h4>2. Modify the Configuration File conf/taskmanager.properties<a class="headerlink" href="#modify-the-configuration-file-conf-taskmanager-properties" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">server.host</span></code>. The host is the ip/domain name of the deployment machine.</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">server.port</span></code>. The port is the port number of the deployment machine.</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">zk_cluster</span></code> to the address of the zk cluster that has been started. IP is the address of the machine where zk is located, and port is the port number configured by clientPort in the zk configuration file. If zk is in cluster mode, it is separated by commas, and the format is ip1:port1,ip2:port2,ip3:port3.</p></li>
+<li><p>If you share zk with other OpenMLDB, you need to modify zookeeper.root_path.</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">batchjob.jar.path</span></code> to the BatchJob Jar file path. If it is set to empty, it will search in the upper-level lib directory. If you use Yarn mode, you need to modify it to the corresponding HDFS path.</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">offline.data.prefix</span></code> to the offline table storage path. If Yarn mode is used, it needs to be modified to the corresponding HDFS path.</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">spark.master</span></code> to run in offline task mode, currently supports local and yarn modes.</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">spark.home</span></code> to the Spark environment path. If it is not configured or the configuration is empty, the configuration of the SPARK_HOME environment variable will be used. It needs to be set as the directory where the spark-optimized package is extracted in the first step, and the path is an absolute path.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">server</span><span class="o">.</span><span class="n">host</span><span class="o">=</span><span class="mf">0.0.0.0</span>
+<span class="n">server</span><span class="o">.</span><span class="n">port</span><span class="o">=</span><span class="mi">9902</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">cluster</span><span class="o">=</span><span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">7181</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">root_path</span><span class="o">=/</span><span class="n">openmldb_cluster</span>
+<span class="n">batchjob</span><span class="o">.</span><span class="n">jar</span><span class="o">.</span><span class="n">path</span><span class="o">=</span>
+<span class="n">offline</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">prefix</span><span class="o">=</span><span class="n">file</span><span class="p">:</span><span class="o">///</span><span class="n">tmp</span><span class="o">/</span><span class="n">openmldb_offline_storage</span><span class="o">/</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">master</span><span class="o">=</span><span class="n">local</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">home</span><span class="o">=</span>
+</pre></div>
+</div>
+</section>
+<section id="id15">
+<h4>3. Start the Service<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bin/start.sh start taskmanager
+</pre></div>
+</div>
+</section>
+<section id="id16">
+<h4>4. Verify the Running Status of the Service<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --zk_cluster<span class="o">=</span><span class="m">172</span>.27.128.31:7181,172.27.128.32:7181,172.27.128.33:7181 --zk_root_path<span class="o">=</span>/openmldb_cluster --role<span class="o">=</span>sql_client
+&gt; show jobs<span class="p">;</span>
+---- ---------- ------- ------------ ---------- ------- ---- --------- ---------------- -------
+ id job_type state start_time end_time parameter cluster application_id error
+---- ---------- ------- ------------ ---------- ------- ---- --------- ---------------- -------
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="compile.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Build</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="conf.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Configuration File</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:43 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

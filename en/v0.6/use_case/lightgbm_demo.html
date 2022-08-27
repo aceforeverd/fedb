@@ -1,0 +1,1314 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>OpenMLDB + LightGBM: Taxi Trip Duration Prediction &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Importing Real-Time Data Streams from Pulsar" href="pulsar_connector_demo.html" />
+    <link rel="prev" title="Use Cases" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     Milestones
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     The Workflow of Cluster Version and Execution Mode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     SQL for Feature Extraction (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     SQL for Feature Extraction (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Use Cases
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     OpenMLDB + LightGBM: Taxi Trip Duration Prediction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pulsar_connector_demo.html">
+     Importing Real-Time Data Streams from Pulsar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="kafka_connector_demo.html">
+     Importing Real-Time Data Streams from Kafka
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dolphinscheduler_task_demo.html">
+     Building End-to-End MLOps Workflows (OpenMLDB + DolphinScheduler)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   Deployment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   Maintenance
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     Upgrade
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     Backup and Restore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     Monitoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     Operations in CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/faq.html">
+     Operation and Maintenance FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     Scale-Out and Scale-In
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/diagnose.html">
+     Diagnostic Tool
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   References
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     Architecture
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       Online Module Architecture
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       Language Structure
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         Keywords
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL Object Name
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         Literal Value
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         Case Sensitive
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         Notes
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       Data Type
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         Numeric Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         String Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         Date and Time Type
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       Expressions, Functions, and Operations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         Operator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       Data Query Statement （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT Overview
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         No-table SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       Data Manipulation Statement（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       Data Definition Statement (DDL)
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         DEPLOY
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         Delete DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         View DEPLOYMENTS List
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         View DEPLOYMENT Details
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL On-Line Specifications and Requirements
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       Task Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/ip_tips.html">
+     IP Configuration
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/client_config/index.html">
+     Client Configuration
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/client_config/client_spark_config.html">
+       Spark Client Configuration
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: v0.6</br>
+Versions：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="lightgbm_demo.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/use_case/lightgbm_demo.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   OpenMLDB + LightGBM: Taxi Trip Duration Prediction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparation-and-preliminary-knowledge">
+   1. Preparation and Preliminary Knowledge
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pull-and-start-the-openmldb-docker-image">
+     1.1. Pull and Start the OpenMLDB Docker Image
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialize-environment">
+     1.2. Initialize Environment
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-openmldb-cli-client">
+     1.3. Start OpenMLDB CLI Client
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preliminary-knowledge-non-blocking-task-of-cluster-version">
+     1.4. Preliminary Knowledge: Non-Blocking Task of Cluster Version
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning-based-on-openmldb-and-lightgbm">
+   2. Machine Learning Based on OpenMLDB and LightGBM
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-databases-and-data-tables">
+     2.1. Creating Databases and Data Tables
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offline-data-preparation">
+     2.2. Offline Data Preparation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-feature-extraction-script">
+     2.3. The Feature Extraction Script
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offline-feature-extraction">
+     2.4. Offline Feature Extraction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-training">
+     2.5. Model Training
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#online-sql-deployment">
+     2.6. Online SQL Deployment
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#online-data-import">
+     2.7. Online Data Import
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-online-prediction-service">
+     2.8. Start Online Prediction Service
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#send-real-time-request">
+     2.9. Send Real-Time Request
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>OpenMLDB + LightGBM: Taxi Trip Duration Prediction</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   OpenMLDB + LightGBM: Taxi Trip Duration Prediction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparation-and-preliminary-knowledge">
+   1. Preparation and Preliminary Knowledge
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pull-and-start-the-openmldb-docker-image">
+     1.1. Pull and Start the OpenMLDB Docker Image
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialize-environment">
+     1.2. Initialize Environment
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-openmldb-cli-client">
+     1.3. Start OpenMLDB CLI Client
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preliminary-knowledge-non-blocking-task-of-cluster-version">
+     1.4. Preliminary Knowledge: Non-Blocking Task of Cluster Version
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning-based-on-openmldb-and-lightgbm">
+   2. Machine Learning Based on OpenMLDB and LightGBM
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-databases-and-data-tables">
+     2.1. Creating Databases and Data Tables
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offline-data-preparation">
+     2.2. Offline Data Preparation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-feature-extraction-script">
+     2.3. The Feature Extraction Script
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offline-feature-extraction">
+     2.4. Offline Feature Extraction
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-training">
+     2.5. Model Training
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#online-sql-deployment">
+     2.6. Online SQL Deployment
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#online-data-import">
+     2.7. Online Data Import
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-online-prediction-service">
+     2.8. Start Online Prediction Service
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#send-real-time-request">
+     2.9. Send Real-Time Request
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="openmldb-lightgbm-taxi-trip-duration-prediction">
+<h1>OpenMLDB + LightGBM: Taxi Trip Duration Prediction<a class="headerlink" href="#openmldb-lightgbm-taxi-trip-duration-prediction" title="Permalink to this headline">#</a></h1>
+<p>In this document, we will take <a class="reference external" href="https://www.kaggle.com/c/nyc-taxi-trip-duration/overview">the taxi travel time prediction problem on Kaggle as an example</a> to demonstrate how to use the OpenMLDB and LightGBM together to build a complete machine learning application.</p>
+<p>Note that: (1) this case is based on the OpenMLDB cluster version for tutorial demonstration; (2) this document uses the pre-compiled docker image. If you want to test it in the OpenMLDB environment compiled and built by yourself, you need to configure and use our <a class="reference external" href="https://github.com/4paradigm/spark">Spark Distribution for Feature Engineering Optimization</a>. Please refer to relevant documents of <a class="reference external" href="https://openmldb.ai/docs/en/main/deploy/compile.html">compilation</a> (Refer to Chapter: “Spark Distribution Optimized for OpenMLDB”) and the <a class="reference external" href="https://openmldb.ai/docs/en/main/deploy/install_deploy.html">installation and deployment documents</a> (Refer to the section: <a class="reference external" href="https://openmldb.ai/docs/en/main/deploy/install_deploy.html#deploy-taskmanager">Deploy TaskManager</a>).</p>
+</section>
+<section id="preparation-and-preliminary-knowledge">
+<h1>1. Preparation and Preliminary Knowledge<a class="headerlink" href="#preparation-and-preliminary-knowledge" title="Permalink to this headline">#</a></h1>
+<section id="pull-and-start-the-openmldb-docker-image">
+<h2>1.1. Pull and Start the OpenMLDB Docker Image<a class="headerlink" href="#pull-and-start-the-openmldb-docker-image" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Note: Please make sure that the Docker Engine version number is &gt; = 18.03</p></li>
+<li><p>Pull the OpenMLDB docker image and run the corresponding container:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -it 4pdosc/openmldb:0.6.0 bash
+</pre></div>
+</div>
+<p>The image is preinstalled with OpenMLDB and preset with all scripts, third-party libraries, open-source tools and training data required for this case.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that all the commands below run in the docker container by default, and are assumed to be in the default directory (<code class="docutils literal notranslate"><span class="pre">/work/taxi-trip</span></code>).</p>
+</div>
+</section>
+<section id="initialize-environment">
+<h2>1.2. Initialize Environment<a class="headerlink" href="#initialize-environment" title="Permalink to this headline">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./init.sh
+<span class="nb">cd</span> taxi-trip
+</pre></div>
+</div>
+<p>We provide the <a class="reference external" href="http://init.sh">init.sh</a> script in the image that helps users to quickly initialize the environment including:</p>
+<ul class="simple">
+<li><p>Configure zookeeper</p></li>
+<li><p>Start cluster version OpenMLDB</p></li>
+</ul>
+</section>
+<section id="start-openmldb-cli-client">
+<h2>1.3. Start OpenMLDB CLI Client<a class="headerlink" href="#start-openmldb-cli-client" title="Permalink to this headline">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/work/openmldb/bin/openmldb --zk_cluster<span class="o">=</span><span class="m">127</span>.0.0.1:2181 --zk_root_path<span class="o">=</span>/openmldb --role<span class="o">=</span>sql_client
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that most of the commands in this tutorial are executed under the OpenMLDB CLI. In order to distinguish from the ordinary shell environment, the commands executed under the OpenMLDB CLI use a special prompt of &gt;.</p>
+</div>
+</section>
+<section id="preliminary-knowledge-non-blocking-task-of-cluster-version">
+<h2>1.4. Preliminary Knowledge: Non-Blocking Task of Cluster Version<a class="headerlink" href="#preliminary-knowledge-non-blocking-task-of-cluster-version" title="Permalink to this headline">#</a></h2>
+<p>Some commands in the cluster version are non-blocking tasks, including <code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> in online mode and <code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code>, <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">INTO</span></code> commands in the offline mode. After submitting a task, you can use relevant commands such as <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code> and <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOB</span></code> to view the task progress. For details, see the offline task management document.</p>
+</section>
+</section>
+<section id="machine-learning-based-on-openmldb-and-lightgbm">
+<h1>2. Machine Learning Based on OpenMLDB and LightGBM<a class="headerlink" href="#machine-learning-based-on-openmldb-and-lightgbm" title="Permalink to this headline">#</a></h1>
+<section id="creating-databases-and-data-tables">
+<h2>2.1. Creating Databases and Data Tables<a class="headerlink" href="#creating-databases-and-data-tables" title="Permalink to this headline">#</a></h2>
+<p>The following commands are executed in the OpenMLDB CLI environment.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">vendor_id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">pickup_datetime</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">dropoff_datetime</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">passenger_count</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">pickup_longitude</span><span class="w"> </span><span class="n">double</span><span class="p">,</span><span class="w"> </span><span class="n">pickup_latitude</span><span class="w"> </span><span class="n">double</span><span class="p">,</span><span class="w"> </span><span class="n">dropoff_longitude</span><span class="w"> </span><span class="n">double</span><span class="p">,</span><span class="w"> </span><span class="n">dropoff_latitude</span><span class="w"> </span><span class="n">double</span><span class="p">,</span><span class="w"> </span><span class="n">store_and_fwd_flag</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">trip_duration</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="offline-data-preparation">
+<h2>2.2. Offline Data Preparation<a class="headerlink" href="#offline-data-preparation" title="Permalink to this headline">#</a></h2>
+<p>First, you need to switch to offline execution mode. Next, import the sample data <code class="docutils literal notranslate"><span class="pre">/work/taxi-trip/data/taxi_tour_table_train_simple.csv</span></code> as offline data that is used for offline feature calculation.</p>
+<p>The following commands are executed under the OpenMLDB CLI.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;offline&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/work/taxi-trip/data/taxi_tour_table_train_simple.snappy.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> is a non-blocking task. You can use the command <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code> to view the running status of the task. Please wait for the task to run successfully (<code class="docutils literal notranslate"><span class="pre">state</span></code> to <code class="docutils literal notranslate"><span class="pre">FINISHED</span></code> status) before proceeding to the next step.</p>
+</div>
+</section>
+<section id="the-feature-extraction-script">
+<h2>2.3. The Feature Extraction Script<a class="headerlink" href="#the-feature-extraction-script" title="Permalink to this headline">#</a></h2>
+<p>Usually, users need to analyze the data according to the goal of machine learning before designing the features, and then design and investigate the features according to the analysis. Data analysis and feature research of the machine learning are not the scope of this paper, and we will not expand it. We assumes that users already have the basic theoretical knowledge of machine learning, the ability to solve machine learning problems, the ability to understand SQL syntax, and the ability to use SQL syntax to construct features.</p>
+<p>For this case, the user has designed several features after the analysis and research:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature Name</p></th>
+<th class="head"><p>Feature Meaning</p></th>
+<th class="head"><p>SQL Feature Representation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>trip_duration</p></td>
+<td><p>Travel time of a single trip</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">trip_duration</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>passenger_count</p></td>
+<td><p>Number of passengers</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">passenger_count</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>vendor_sum_pl</p></td>
+<td><p>Cumulative number of taxis of the same brand in the time window in the past 1 day (pickup_latitude)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sum(pickup_latitude)</span> <span class="pre">OVER</span> <span class="pre">w</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>vendor_max_pl</p></td>
+<td><p>The largest number of taxis of the same brand in the time window in the past 1 day (pickup_latitude)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">max(pickup_latitude)</span> <span class="pre">OVER</span> <span class="pre">w</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>vendor_min_pl</p></td>
+<td><p>The minimum number of taxis of the same brand in the time window in the past 1 day (pickup_latitude)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">min(pickup_latitude)</span> <span class="pre">OVER</span> <span class="pre">w</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>vendor_avg_pl</p></td>
+<td><p>Average number of taxis of the same brand in the time window in the past 1 day (pickup_latitude)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">avg(pickup_latitude)</span> <span class="pre">OVER</span> <span class="pre">w</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>pc_sum_pl</p></td>
+<td><p>Cumulative trips of the same passenger capacity in the time window in the past 1 day (pickup_latitude)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sum(pickup_latitude)</span> <span class="pre">OVER</span> <span class="pre">w2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>pc_max_pl</p></td>
+<td><p>The maximum number of trips with the same passenger capacity in the time window in the past 1 day (pickup_latitude)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">max(pickup_latitude)</span> <span class="pre">OVER</span> <span class="pre">w2</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>pc_min_pl</p></td>
+<td><p>The minimum number of trips with the same passenger capacity in the time window in the past 1 day (pickup_latitude)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">min(pickup_latitude)</span> <span class="pre">OVER</span> <span class="pre">w2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>pc_avg_pl</p></td>
+<td><p>Average number of trips with the same passenger capacity in the time window in the past 1 day (pickup_latitude)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">avg(pickup_latitude)</span> <span class="pre">OVER</span> <span class="pre">w2</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>pc_cnt</p></td>
+<td><p>The total number of trips with the same passenger capacity in the time window in the past 1 day</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">count(vendor_id)</span> <span class="pre">OVER</span> <span class="pre">w2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>vendor_cnt</p></td>
+<td><p>Total trips of taxis of the same brand in the time window in the past 1 day</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">count(vendor_id)</span> <span class="pre">OVER</span> <span class="pre">w</span> <span class="pre">AS</span> <span class="pre">vendor_cnt</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="offline-feature-extraction">
+<h2>2.4. Offline Feature Extraction<a class="headerlink" href="#offline-feature-extraction" title="Permalink to this headline">#</a></h2>
+<p>In the offline mode, the user extracts features and outputs the feature results to <code class="docutils literal notranslate"><span class="pre">/tmp/feature_data</span></code> that is saved in the data directory for subsequent model training. The <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> command corresponds to the SQL feature extraction script generated based on the above table. The following commands are executed under the OpenMLDB CLI.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;offline&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">trip_duration</span><span class="p">,</span><span class="w"> </span><span class="n">passenger_count</span><span class="p">,</span><span class="w"></span>
+<span class="k">sum</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">vendor_sum_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">max</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">vendor_max_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">min</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">vendor_min_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">avg</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">vendor_avg_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">sum</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pc_sum_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">max</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pc_max_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">min</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pc_min_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">avg</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pc_avg_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">count</span><span class="p">(</span><span class="n">vendor_id</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pc_cnt</span><span class="p">,</span><span class="w"></span>
+<span class="k">count</span><span class="p">(</span><span class="n">vendor_id</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">vendor_cnt</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"></span>
+<span class="n">WINDOW</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">vendor_id</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pickup_datetime</span><span class="w"> </span><span class="n">ROWS_RANGE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">1</span><span class="n">d</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">),</span><span class="w"></span>
+<span class="n">w2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">passenger_count</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pickup_datetime</span><span class="w"> </span><span class="n">ROWS_RANGE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">1</span><span class="n">d</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">OUTFILE</span><span class="w"> </span><span class="s1">&#39;/tmp/feature_data&#39;</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that the cluster version <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">INTO</span></code> is a non-blocking task. You can use the command <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code> to view the running status of the task. Please wait for the task to run successfully (<code class="docutils literal notranslate"><span class="pre">state</span></code> to <code class="docutils literal notranslate"><span class="pre">FINISHED</span></code> status) before proceeding to the next step.</p>
+</section>
+<section id="model-training">
+<h2>2.5. Model Training<a class="headerlink" href="#model-training" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>Model training will not be carry out in the OpenMLDB thus, exit the OpenMLDB CLI through the following <code class="docutils literal notranslate"><span class="pre">quit</span></code> command.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; quit
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Then in the command line, you execute <a class="reference external" href="http://train.py">train.py</a>. It uses the open-source training tool <code class="docutils literal notranslate"><span class="pre">lightgbm</span></code> to train the model based on the offline features generated in the previous step, and the training results are stored in <code class="docutils literal notranslate"><span class="pre">/tmp/model.txt</span></code>.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 train.py /tmp/feature_data /tmp/model.txt
+</pre></div>
+</div>
+</section>
+<section id="online-sql-deployment">
+<h2>2.6. Online SQL Deployment<a class="headerlink" href="#online-sql-deployment" title="Permalink to this headline">#</a></h2>
+<p>Assuming that the model produced by the features designed in Section 2.3 in the previous model training meets the expectation. The next step is to deploy the feature extraction SQL script online to provide real-time feature extraction.</p>
+<ol class="arabic simple">
+<li><p>Restart OpenMLDB CLI for SQL online deployment</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/work/openmldb/bin/openmldb --zk_cluster<span class="o">=</span><span class="m">127</span>.0.0.1:2181 --zk_root_path<span class="o">=</span>/openmldb --role<span class="o">=</span>sql_client
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>To execute online deployment, the following commands are executed in OpenMLDB CLI.</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">DEPLOY</span><span class="w"> </span><span class="n">demo</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">trip_duration</span><span class="p">,</span><span class="w"> </span><span class="n">passenger_count</span><span class="p">,</span><span class="w"></span>
+<span class="k">sum</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">vendor_sum_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">max</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">vendor_max_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">min</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">vendor_min_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">avg</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">vendor_avg_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">sum</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pc_sum_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">max</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pc_max_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">min</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pc_min_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">avg</span><span class="p">(</span><span class="n">pickup_latitude</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pc_avg_pl</span><span class="p">,</span><span class="w"></span>
+<span class="k">count</span><span class="p">(</span><span class="n">vendor_id</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pc_cnt</span><span class="p">,</span><span class="w"></span>
+<span class="k">count</span><span class="p">(</span><span class="n">vendor_id</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">vendor_cnt</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">t1</span><span class="w"></span>
+<span class="n">WINDOW</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">vendor_id</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pickup_datetime</span><span class="w"> </span><span class="n">ROWS_RANGE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">1</span><span class="n">d</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">),</span><span class="w"></span>
+<span class="n">w2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">passenger_count</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">pickup_datetime</span><span class="w"> </span><span class="n">ROWS_RANGE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">1</span><span class="n">d</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="online-data-import">
+<h2>2.7. Online Data Import<a class="headerlink" href="#online-data-import" title="Permalink to this headline">#</a></h2>
+<p>We need to import the data for real-time feature extraction. First, you need to switch to <strong>online</strong> execution mode. Then, in the online mode, import the sample data <code class="docutils literal notranslate"><span class="pre">/work/taxi-trip/data/taxi_tour_table_train_simple.csv</span></code> as the online data source. The following commands are executed under the OpenMLDB CLI.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;file:///work/taxi-trip/data/taxi_tour_table_train_simple.csv&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that the cluster version <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">INTO</span></code> is a non-blocking task. You can use the command <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code> to view the running status of the task. Please wait for the task to run successfully (<code class="docutils literal notranslate"><span class="pre">state</span></code> to <code class="docutils literal notranslate"><span class="pre">FINISHED</span></code> status) before proceeding to the next step.</p>
+</section>
+<section id="start-online-prediction-service">
+<h2>2.8. Start Online Prediction Service<a class="headerlink" href="#start-online-prediction-service" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>If you have not exited the OpenMLDB CLI, use the <code class="docutils literal notranslate"><span class="pre">quit</span></code> command to exit the OpenMLDB CLI.</p></li>
+<li><p>Start the prediction service from the command line:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">start_predict_server</span><span class="o">.</span><span class="n">sh</span> <span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">9080</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">model</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+<section id="send-real-time-request">
+<h2>2.9. Send Real-Time Request<a class="headerlink" href="#send-real-time-request" title="Permalink to this headline">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">predict.py</span></code> script will send a line of request data to the prediction service. A returned results will be received and finally, prints them out.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run inference with a HTTP request</span>
+python3 predict.py
+<span class="c1"># The following output is expected (the numbers might be slightly different)</span>
+----------------ins---------------
+<span class="o">[[</span> <span class="m">2</span>.       <span class="m">40</span>.774097 <span class="m">40</span>.774097 <span class="m">40</span>.774097 <span class="m">40</span>.774097 <span class="m">40</span>.774097 <span class="m">40</span>.774097
+  <span class="m">40</span>.774097 <span class="m">40</span>.774097  <span class="m">1</span>.        <span class="m">1</span>.      <span class="o">]]</span>
+---------------predict trip_duration -------------
+<span class="m">848</span>.014745715936 s
+</pre></div>
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Use Cases</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="pulsar_connector_demo.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Importing Real-Time Data Streams from Pulsar</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:54 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

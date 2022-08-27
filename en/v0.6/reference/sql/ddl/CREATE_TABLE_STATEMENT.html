@@ -1,0 +1,1716 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>CREATE TABLE &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="DROP TABLE" href="DROP_TABLE_STATEMENT.html" />
+    <link rel="prev" title="DESC" href="DESC_STATEMENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../about/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../about/milestones.html">
+     Milestones
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/modes.html">
+     The Workflow of Cluster Version and Execution Mode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/tutorial_sql_1.html">
+     SQL for Feature Extraction (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/tutorial_sql_2.html">
+     SQL for Feature Extraction (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../use_case/index.html">
+   Use Cases
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/lightgbm_demo.html">
+     OpenMLDB + LightGBM: Taxi Trip Duration Prediction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/pulsar_connector_demo.html">
+     Importing Real-Time Data Streams from Pulsar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/kafka_connector_demo.html">
+     Importing Real-Time Data Streams from Kafka
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/dolphinscheduler_task_demo.html">
+     Building End-to-End MLOps Workflows (OpenMLDB + DolphinScheduler)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../deploy/index.html">
+   Deployment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../deploy/compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../deploy/install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../deploy/conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../maintain/index.html">
+   Maintenance
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/upgrade.html">
+     Upgrade
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/backup.html">
+     Backup and Restore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/monitoring.html">
+     Monitoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/cli.html">
+     Operations in CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/faq.html">
+     Operation and Maintenance FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/scale.html">
+     Scale-Out and Scale-In
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/diagnose.html">
+     Diagnostic Tool
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../../index.html">
+   References
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../arch/index.html">
+     Architecture
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../arch/online_arch.html">
+       Online Module Architecture
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../index.html">
+     SQL
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../language_structure/index.html">
+       Language Structure
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/keywords.html">
+         Keywords
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/object_names_identifiers.html">
+         SQL Object Name
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/literals_value.html">
+         Literal Value
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/case_sensitive.html">
+         Case Sensitive
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/comment.html">
+         Notes
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../data_types/index.html">
+       Data Type
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../data_types/numeric_types.html">
+         Numeric Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../data_types/string_types.html">
+         String Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../data_types/date_and_time_types.html">
+         Date and Time Type
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../functions_and_operators/index.html">
+       Expressions, Functions, and Operations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../functions_and_operators/operators.html">
+         Operator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dql/index.html">
+       Data Query Statement （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/SELECT_STATEMENT.html">
+         SELECT Overview
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/NO_TABLE_SELECT_CLAUSE.html">
+         No-table SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dml/index.html">
+       Data Manipulation Statement（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 current active has-children">
+      <a class="reference internal" href="index.html">
+       Data Definition Statement (DDL)
+      </a>
+      <input checked="" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul class="current">
+       <li class="toctree-l4">
+        <a class="reference internal" href="CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4 current active">
+        <a class="current reference internal" href="#">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../deployment_manage/index.html">
+       DEPLOYMENT Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../deployment_manage/DEPLOY_STATEMENT.html">
+         DEPLOY
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         Delete DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../deployment_manage/SHOW_DEPLOYMENTS.html">
+         View DEPLOYMENTS List
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../deployment_manage/SHOW_DEPLOYMENT.html">
+         View DEPLOYMENT Details
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL On-Line Specifications and Requirements
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../task_manage/index.html">
+       Task Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ip_tips.html">
+     IP Configuration
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../client_config/index.html">
+     Client Configuration
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../client_config/client_spark_config.html">
+       Spark Client Configuration
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: v0.6</br>
+Versions：
+<ul>
+  <li><a href="../../../../main/index.html">main</a></li>
+  <li><a href="../../../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../../../v0.4/index.html">v0.4</a></li>
+  <li><a href="CREATE_TABLE_STATEMENT.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/reference/sql/ddl/CREATE_TABLE_STATEMENT.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntax">
+   Syntax
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#related-syntax-elements">
+     Related Syntax Elements
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#column-description-columndef-required">
+       Column Description ColumnDef (required)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table">
+         Example: Create a Table
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-configuration-columns-are-not-allowed-to-be-empty-not-null">
+         Example: Create A Table, Configuration Columns Are Not Allowed To Be Empty NOT NULL
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-configurion-column-default-value">
+         Example:  Create A Table, Configurion Column Default Value
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-the-same-name-repeatedly-in-the-same-database">
+         Example: Create A Table With The Same Name Repeatedly In The Same Database
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#columnindex-optional">
+       ColumnIndex (optional）
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-a-single-column-index">
+         Example: Create A Table With A Single-Column Index
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-a-union-column-index">
+         Example: Create A Table With A Union Column Index
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-a-single-column-index-time-column">
+         Example: Create A Table With A Single Column Index + Time Column
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-a-single-column-index-time-column-with-a-ttl-type-of-abusolute-and-configure-the-ttl-to-30-days">
+         Example: Create A Table With A Single Column Index + Time Column With A TTL Type Of Abusolute, And Configure The TTL To 30 Days
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-latest-ttl-type-with-a-single-column-index-time-column-and-configure-the-ttl-to-1">
+         Example: Create A Table With Latest TTL Type, With A Single Column Index + Time Column, And Configure The TTL To 1
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-a-single-column-index-time-column-whose-ttl-type-is-absandlat-and-configure-the-expiration-time-to-be-30-days-and-the-maximum-number-of-retained-records-as-10">
+         Example: Create A Table With A Single-Column Index + Time Column Whose TTL Type Is absANDlat, And Configure The Expiration Time To Be 30 Days And The Maximum Number Of Retained Records As 10
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-a-single-column-index-time-column-whose-ttl-type-is-absorlat-and-configure-the-expiration-time-to-be-30-days-and-the-maximum-number-of-retained-records-as-10">
+         Example: Create A Table With A Single-Column Index + Time Column Whose TTL Type Is absORlat, And Configure The Expiration Time To Be 30 Days And The Maximum Number Of Retained Records As 10
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-multi-index-table">
+         Example: Create A Multi-Index Table
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#table-property-tableoptions-optional">
+       Table Property TableOptions (optional)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#disk-table-storage-mode-hdd-ssd-with-memory-table-storage-mode-memory-the-difference">
+         Disk Table（
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           STORAGE_MODE
+          </span>
+         </code>
+         ==
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           HDD
+          </span>
+         </code>
+         |
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           SSD
+          </span>
+         </code>
+         ）With Memory Table（
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           STORAGE_MODE
+          </span>
+         </code>
+         ==
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           Memory
+          </span>
+         </code>
+         ）The Difference
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-band-table-configure-the-number-of-partions-as-8-the-number-of-replicas-as-3-and-the-storage-mode-as-hdd">
+         Example: Create A Band Table, Configure The Number Of Partions As 8, The Number Of Replicas As 3, And The Storage Mode As HDD
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#related-sql">
+   Related SQL
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>CREATE TABLE</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntax">
+   Syntax
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#related-syntax-elements">
+     Related Syntax Elements
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#column-description-columndef-required">
+       Column Description ColumnDef (required)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table">
+         Example: Create a Table
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-configuration-columns-are-not-allowed-to-be-empty-not-null">
+         Example: Create A Table, Configuration Columns Are Not Allowed To Be Empty NOT NULL
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-configurion-column-default-value">
+         Example:  Create A Table, Configurion Column Default Value
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-the-same-name-repeatedly-in-the-same-database">
+         Example: Create A Table With The Same Name Repeatedly In The Same Database
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#columnindex-optional">
+       ColumnIndex (optional）
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-a-single-column-index">
+         Example: Create A Table With A Single-Column Index
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-a-union-column-index">
+         Example: Create A Table With A Union Column Index
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-a-single-column-index-time-column">
+         Example: Create A Table With A Single Column Index + Time Column
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-a-single-column-index-time-column-with-a-ttl-type-of-abusolute-and-configure-the-ttl-to-30-days">
+         Example: Create A Table With A Single Column Index + Time Column With A TTL Type Of Abusolute, And Configure The TTL To 30 Days
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-latest-ttl-type-with-a-single-column-index-time-column-and-configure-the-ttl-to-1">
+         Example: Create A Table With Latest TTL Type, With A Single Column Index + Time Column, And Configure The TTL To 1
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-a-single-column-index-time-column-whose-ttl-type-is-absandlat-and-configure-the-expiration-time-to-be-30-days-and-the-maximum-number-of-retained-records-as-10">
+         Example: Create A Table With A Single-Column Index + Time Column Whose TTL Type Is absANDlat, And Configure The Expiration Time To Be 30 Days And The Maximum Number Of Retained Records As 10
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-table-with-a-single-column-index-time-column-whose-ttl-type-is-absorlat-and-configure-the-expiration-time-to-be-30-days-and-the-maximum-number-of-retained-records-as-10">
+         Example: Create A Table With A Single-Column Index + Time Column Whose TTL Type Is absORlat, And Configure The Expiration Time To Be 30 Days And The Maximum Number Of Retained Records As 10
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-multi-index-table">
+         Example: Create A Multi-Index Table
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#table-property-tableoptions-optional">
+       Table Property TableOptions (optional)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#disk-table-storage-mode-hdd-ssd-with-memory-table-storage-mode-memory-the-difference">
+         Disk Table（
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           STORAGE_MODE
+          </span>
+         </code>
+         ==
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           HDD
+          </span>
+         </code>
+         |
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           SSD
+          </span>
+         </code>
+         ）With Memory Table（
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           STORAGE_MODE
+          </span>
+         </code>
+         ==
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           Memory
+          </span>
+         </code>
+         ）The Difference
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example-create-a-band-table-configure-the-number-of-partions-as-8-the-number-of-replicas-as-3-and-the-storage-mode-as-hdd">
+         Example: Create A Band Table, Configure The Number Of Partions As 8, The Number Of Replicas As 3, And The Storage Mode As HDD
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#related-sql">
+   Related SQL
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="create-table">
+<h1>CREATE TABLE<a class="headerlink" href="#create-table" title="Permalink to this headline">#</a></h1>
+<section id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">#</a></h2>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">CreateTableStmt</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;CREATE&#39;</span><span class="w"> </span><span class="s1">&#39;TABLE&#39;</span><span class="w"> </span><span class="n">IfNotExists</span><span class="w"> </span><span class="n">TableName</span><span class="w"> </span><span class="p">(</span><span class="w"> </span>
+<span class="w">      </span><span class="n">TableElementList</span><span class="w"> </span><span class="n">CreateTableSelectOpt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">LikeTableWithOrWithoutParen</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">OnCommitOpt</span><span class="w"></span>
+
+<span class="n">IfNotExists</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="s1">&#39;IF&#39;</span><span class="w"> </span><span class="s1">&#39;NOT&#39;</span><span class="w"> </span><span class="s1">&#39;EXISTS&#39;</span><span class="p">)</span><span class="o">?</span><span class="w"></span>
+
+<span class="n">TableName</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">Identifier</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="n">Identifier</span><span class="p">)</span><span class="o">?</span><span class="w"></span>
+<span class="w">    </span>
+<span class="n">TableElementList</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">TableElement</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">TableElement</span><span class="w"> </span><span class="p">)</span><span class="o">*</span><span class="w"></span>
+
+<span class="n">TableElement</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">ColumnDef</span><span class="w"></span>
+<span class="o">|</span><span class="w">   </span><span class="n">ColumnIndex</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> statement is used to create a table. The table name must be unique if it’s in the same database. If the table with the same name is created repeatedly, an error will occur.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">table_element</span></code> list needs to be defined in the table creation statement. <code class="docutils literal notranslate"><span class="pre">table_element</span></code> is divided into column description <code class="docutils literal notranslate"><span class="pre">ColumnDef</span></code> and <code class="docutils literal notranslate"><span class="pre">Constraint</span></code>. OpenMLDB requires at least one ColumnDef in the <code class="docutils literal notranslate"><span class="pre">table_element</span></code> list.</p>
+<section id="related-syntax-elements">
+<h3>Related Syntax Elements<a class="headerlink" href="#related-syntax-elements" title="Permalink to this headline">#</a></h3>
+<section id="column-description-columndef-required">
+<h4>Column Description ColumnDef (required)<a class="headerlink" href="#column-description-columndef-required" title="Permalink to this headline">#</a></h4>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="n">ColumnDef</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">ColumnName</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">ColumnType</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="n">ColumnOptionList</span><span class="p">]</span><span class="w"></span>
+
+<span class="n">ColumnName</span><span class="w"></span>
+<span class="w">         </span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">Identifier</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="n">Identifier</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="n">Identifier</span><span class="w"> </span><span class="p">)</span><span class="o">?</span><span class="w"> </span><span class="p">)</span><span class="o">?</span><span class="w">      </span>
+<span class="w">         </span>
+<span class="n">ColumnType</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">						</span><span class="s1">&#39;INT&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;INT32&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;SMALLINT&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;INT16&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;BIGINT&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;INT64&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;FLOAT&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;DOUBLE&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;TIMESTAMP&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;DATE&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;STRING&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;VARCHAR&#39;</span><span class="w"></span>
+<span class="w">						</span>
+<span class="n">ColumnOptionList</span><span class="w"></span>
+<span class="w">         </span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">ColumnOption</span><span class="o">*</span><span class="w">	</span>
+<span class="n">ColumnOption</span><span class="w"> </span>
+<span class="w">				 </span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;DEFAULT&#39;</span><span class="w"> </span><span class="n">DefaultValueExpr</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;NOT&#39;</span><span class="w"> </span><span class="s1">&#39;NULL&#39;</span><span class="p">]</span><span class="w"></span>
+<span class="w">				 	  </span>
+<span class="n">DefaultValueExpr</span><span class="w"></span>
+<span class="w">				</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">int_literal</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">float_literal</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">double_literal</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">string_literal</span><span class="w"></span>
+</pre></div>
+</div>
+<p>A table contains one or more columns. The column description <code class="docutils literal notranslate"><span class="pre">ColumnDef</span></code> for each column describes the column name, column type, and class configuration.</p>
+<ul class="simple">
+<li><p>Column Name: The name of the column in the table. Column names within the same table must be unique.</p></li>
+<li><p>Column Type: The type of the column. To learn about the data types supported by OpenMLDB, please refer to <span class="xref myst">Data Types</span>.</p></li>
+<li><p>Column Constraint Configuration:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>: The configuration column does not allow null values.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code>: Configure column default values. The attribute of <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code> will also configure the default value of <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code>. In this case, when the data is checked, if the value of the column is not defined, the default value will be inserted. If the <code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code> attribute is configured and the <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code> value is not configured, OpenMLDB will throw an error when the change column value is not defined in the insert statement.创建一张表</p></li>
+</ul>
+</li>
+</ul>
+<section id="example-create-a-table">
+<h5>Example: Create a Table<a class="headerlink" href="#example-create-a-table" title="Permalink to this headline">#</a></h5>
+<p>Set the current database to <code class="docutils literal notranslate"><span class="pre">db1</span></code>, create a table <code class="docutils literal notranslate"><span class="pre">t1</span></code> in the current database, including the column <code class="docutils literal notranslate"><span class="pre">col0</span></code>, the column type is STRING</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create database successfully</span>
+
+<span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Database changed</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create successfully</span>
+</pre></div>
+</div>
+<p>Specifies to create a table <code class="docutils literal notranslate"><span class="pre">t1</span></code> in the database <code class="docutils literal notranslate"><span class="pre">db1</span></code>, including the column <code class="docutils literal notranslate"><span class="pre">col0</span></code>, the column type is STRING</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create successfully</span>
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">   </span><span class="k">Type</span><span class="w">      </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">    </span><span class="nb">Varchar</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">    </span><span class="nb">Int</span><span class="w">       </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">   </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w">       </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639524201</span><span class="w">   </span><span class="n">col0</span><span class="w">   </span><span class="o">-</span><span class="w">    </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+</pre></div>
+</div>
+</section>
+<section id="example-create-a-table-configuration-columns-are-not-allowed-to-be-empty-not-null">
+<h5>Example: Create A Table, Configuration Columns Are Not Allowed To Be Empty NOT NULL<a class="headerlink" href="#example-create-a-table-configuration-columns-are-not-allowed-to-be-empty-not-null" title="Permalink to this headline">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create successfully</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">   </span><span class="k">Type</span><span class="w">      </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">    </span><span class="nb">Varchar</span><span class="w">   </span><span class="k">NO</span><span class="w">              </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">    </span><span class="nb">Int</span><span class="w">       </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">   </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w">       </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639523978</span><span class="w">   </span><span class="n">col0</span><span class="w">   </span><span class="o">-</span><span class="w">    </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+</pre></div>
+</div>
+</section>
+<section id="example-create-a-table-configurion-column-default-value">
+<h5>Example:  Create A Table, Configurion Column Default Value<a class="headerlink" href="#example-create-a-table-configurion-column-default-value" title="Permalink to this headline">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="ss">&quot;NA&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create successfully</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">--- ------- --------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">   </span><span class="k">Type</span><span class="w">      </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="c1">--- ------- --------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">    </span><span class="nb">Varchar</span><span class="w">   </span><span class="k">NO</span><span class="w">     </span><span class="n">NA</span><span class="w">       </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">    </span><span class="nb">Int</span><span class="w">       </span><span class="n">YES</span><span class="w">             </span>
+<span class="c1">--- ------- --------- ------ --------- </span>
+<span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">   </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w">       </span>
+<span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639524344</span><span class="w">   </span><span class="n">col0</span><span class="w">   </span><span class="o">-</span><span class="w">    </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w">  </span>
+<span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+</pre></div>
+</div>
+</section>
+<section id="example-create-a-table-with-the-same-name-repeatedly-in-the-same-database">
+<h5>Example: Create A Table With The Same Name Repeatedly In The Same Database<a class="headerlink" href="#example-create-a-table-with-the-same-name-repeatedly-in-the-same-database" title="Permalink to this headline">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create successfully</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col1</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create successfully</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="columnindex-optional">
+<h4>ColumnIndex (optional）<a class="headerlink" href="#columnindex-optional" title="Permalink to this headline">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">ColumnIndex</span><span class="w"></span>
+<span class="w">         </span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;INDEX&#39;</span><span class="w"> </span><span class="n">IndexName</span><span class="w"> </span><span class="s1">&#39;(&#39;</span><span class="w"> </span><span class="n">IndexOptionList</span><span class="w"> </span><span class="s1">&#39;)&#39;</span><span class="w"> </span>
+<span class="w"> </span>
+<span class="n">IndexOptionList</span><span class="w"></span>
+<span class="w">         </span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">IndexOption</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">IndexOption</span><span class="w"> </span><span class="p">)</span><span class="o">*</span><span class="w"></span>
+<span class="n">IndexOption</span><span class="w"></span>
+<span class="w">         </span><span class="p">::</span><span class="o">=</span><span class="w">  </span><span class="s1">&#39;KEY&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">ColumnNameList</span><span class="w"> </span>
+<span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;TS&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">ColumnName</span><span class="w"></span>
+<span class="w">              </span><span class="o">|</span><span class="w"> </span>
+<span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;TTL&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">int_literal</span><span class="w"></span>
+<span class="w">              </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;REPLICANUM&#39;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">int_literal</span><span class="w"></span>
+<span class="w">  </span>
+<span class="c1">-- IndexKeyOption</span>
+<span class="n">IndexKeyOption</span><span class="w"> </span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;KEY&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">ColumnNameList</span><span class="w"> </span>
+<span class="n">ColumnNameList</span><span class="w"></span>
+<span class="w">				 </span><span class="p">::</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;(&#39;</span><span class="w"> </span><span class="n">ColumnName</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">ColumnName</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="s1">&#39;)&#39;</span><span class="w"></span>
+<span class="c1">-- IndexTsOption         </span>
+<span class="n">IndexTsOption</span><span class="w"> </span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;TS&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">ColumnName</span><span class="w"></span>
+<span class="c1">-- IndexTtlTypeOption					</span>
+<span class="n">IndexTtlTypeOption</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;TTL_TYPE&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">TTLType</span><span class="w"></span>
+<span class="n">TTLType</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"> </span>
+<span class="w">						</span><span class="s1">&#39;ABSOLUTE&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;LATEST&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;ABSORLAT&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;ABSANDLAT&#39;</span><span class="w"></span>
+<span class="w">   </span>
+<span class="c1">-- IndexTtlOption</span>
+<span class="n">IndexTtlOption</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;TTL&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">int_literal</span><span class="o">|</span><span class="n">interval_literal</span><span class="w"></span>
+
+<span class="n">interval_literal</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">int_literal</span><span class="w"> </span><span class="s1">&#39;S&#39;</span><span class="o">|</span><span class="s1">&#39;D&#39;</span><span class="o">|</span><span class="s1">&#39;M&#39;</span><span class="o">|</span><span class="s1">&#39;H&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Indexes can be used by database search engines to speed up data retrieval. Simply put, an index is a pointer to the data in a table. Configuring a column index generally requires configuring the index key, index time column, TTL and TTL_TYPE. The index key must be configured, and other configuration items are optional. The following table lists the column index configuration items：</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>configuration item</p></th>
+<th class="head"><p>describe</p></th>
+<th class="head"><p>Usage example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KEY</span></code></p></td>
+<td><p>Index column (required). OpenMLDB supports single-column indexes as well as joint indexes. When <code class="docutils literal notranslate"><span class="pre">KEY</span></code>=one column, a single-column index is configured. When <code class="docutils literal notranslate"><span class="pre">KEY</span></code>=multiple columns, the joint index of these columns is configured, specifically, several columns are spliced ​​into a string as an index in order.</p></td>
+<td><p>Single-column index: <code class="docutils literal notranslate"><span class="pre">INDEX(KEY=col1)</span></code><br />Joint index: <code class="docutils literal notranslate"><span class="pre">INDEX(KEY=(col1,</span> <span class="pre">col2))</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TS</span></code></p></td>
+<td><p>Index time column (optional). Data on the same index will be sorted by the time index column. When <code class="docutils literal notranslate"><span class="pre">TS</span></code> is not explicitly configured, the timestamp of data insertion is used as the index time.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INDEX(KEY=col1,</span> <span class="pre">TS=std_time)</span></code>. The index column is col1, and the data rows with the same col1 are sorted by std_time.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TTL_TYPE</span></code></p></td>
+<td><p>Elimination rules (optional). Including: <code class="docutils literal notranslate"><span class="pre">ABSOLUTE</span></code>, <code class="docutils literal notranslate"><span class="pre">LATEST</span></code>, <code class="docutils literal notranslate"><span class="pre">ABSORLAT</span></code>, <code class="docutils literal notranslate"><span class="pre">ABSANDLAT</span></code> these four types. When <code class="docutils literal notranslate"><span class="pre">TTL_TYPE</span></code> is not explicitly configured, the <code class="docutils literal notranslate"><span class="pre">ABSOLUTE</span></code> expiration configuration is used by default.</p></td>
+<td><p>For specific usage, please refer to “Configuration Rules for TTL and TTL_TYPE”</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TTL</span></code></p></td>
+<td><p>Maximum survival time/number of bars () is optional. Different TTL_TYPEs have different configuration methods. When <code class="docutils literal notranslate"><span class="pre">TTL</span></code> is not explicitly configured, <code class="docutils literal notranslate"><span class="pre">TTL=0</span></code>. A <code class="docutils literal notranslate"><span class="pre">TTL</span></code> of 0 means no eviction rule is set, and OpenMLDB will not evict records.</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Configuration details of TTL and TTL_TYPE:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>TTL_TYPE</p></th>
+<th class="head"><p>TTL</p></th>
+<th class="head"><p>describe</p></th>
+<th class="head"><p>Usage example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ABSOLUTE</span></code></p></td>
+<td><p>The value of TTL represents the expiration time. The configuration value is a time period such as <code class="docutils literal notranslate"><span class="pre">100m,</span> <span class="pre">12h,</span> <span class="pre">1d,</span> <span class="pre">365d</span></code>. The maximum configurable expiration time is <code class="docutils literal notranslate"><span class="pre">15768000m</span></code> (ie 30 years)</p></td>
+<td><p>When a record expires, it is eliminated.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INDEX(KEY=col1,</span> <span class="pre">TS=std_time,</span> <span class="pre">TTL_TYPE=absolute,</span> <span class="pre">TTL=100m)</span></code><br />OpenMLDB will delete data older than 100 minutes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LATEST</span></code></p></td>
+<td><p>The value of TTL represents the maximum number of surviving entries. That is, under the same index, the maximum number of data items allowed exists. Up to 1000 can be configured</p></td>
+<td><p>When the record exceeds the maximum number, it will be eliminated.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INDEX(KEY=col1,</span> <span class="pre">TS=std_time,</span> <span class="pre">TTL_TYPE=LATEST,</span> <span class="pre">TTL=10)</span></code>. OpenMLDB will only keep the last 10 records and delete the previous records.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ABSORLAT</span></code></p></td>
+<td><p>Configure the expiration time and the maximum number of live records. The configuration value is a 2-tuple of the form <code class="docutils literal notranslate"><span class="pre">(100m,</span> <span class="pre">10),</span> <span class="pre">(1d,</span> <span class="pre">1)</span></code>. The maximum can be configured <code class="docutils literal notranslate"><span class="pre">(15768000m,</span> <span class="pre">1000)</span></code>.</p></td>
+<td><p>Eliminates if and only if the record expires** or if the record exceeds the maximum number of records.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INDEX(key=c1,</span> <span class="pre">ts=c6,</span> <span class="pre">ttl=(120min,</span> <span class="pre">100),</span> <span class="pre">ttl_type=absorlat)</span></code>. When the record exceeds 100, <strong>OR</strong> when the record expires, it will be eliminated</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ABSANDLAT</span></code></p></td>
+<td><p>Configure the expiration time and the maximum number of live records. The configuration value is a 2-tuple of the form <code class="docutils literal notranslate"><span class="pre">(100m,</span> <span class="pre">10),</span> <span class="pre">(1d,</span> <span class="pre">1)</span></code>. The maximum can be configured <code class="docutils literal notranslate"><span class="pre">(15768000m,</span> <span class="pre">1000)</span></code>.</p></td>
+<td><p>When records expire <strong>AND</strong> records exceed the maximum number of records, records will be eliminated.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INDEX(key=c1,</span> <span class="pre">ts=c6,</span> <span class="pre">ttl=(120min,</span> <span class="pre">100),</span> <span class="pre">ttl_type=absandlat)</span></code>. When there are more than 100 records, <strong>AND</strong> the records expire, they will also be eliminated.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="example-create-a-table-with-a-single-column-index">
+<h5>Example: Create A Table With A Single-Column Index<a class="headerlink" href="#example-create-a-table-with-a-single-column-index" title="Permalink to this headline">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">));</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create successfully</span>
+
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">   </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w">       </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639524520</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="o">-</span><span class="w">    </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+</pre></div>
+</div>
+</section>
+<section id="example-create-a-table-with-a-union-column-index">
+<h5>Example: Create A Table With A Union Column Index<a class="headerlink" href="#example-create-a-table-with-a-union-column-index" title="Permalink to this headline">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="p">(</span><span class="n">col0</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="p">)));</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create successfully</span>
+
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ----------- ---- ------ --------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">        </span><span class="n">ts</span><span class="w">   </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w">       </span>
+<span class="w"> </span><span class="c1">--- -------------------- ----------- ---- ------ --------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639524576</span><span class="w">   </span><span class="n">col0</span><span class="o">|</span><span class="n">col1</span><span class="w">   </span><span class="o">-</span><span class="w">    </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ----------- ---- ------ --------------- </span>
+</pre></div>
+</div>
+</section>
+<section id="example-create-a-table-with-a-single-column-index-time-column">
+<h5>Example: Create A Table With A Single Column Index + Time Column<a class="headerlink" href="#example-create-a-table-with-a-single-column-index-time-column" title="Permalink to this headline">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">));</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create successfully</span>
+
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ --------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w">       </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ --------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639524645</span><span class="w">   </span><span class="n">col0</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ --------------- </span>
+</pre></div>
+</div>
+</section>
+<section id="example-create-a-table-with-a-single-column-index-time-column-with-a-ttl-type-of-abusolute-and-configure-the-ttl-to-30-days">
+<h5>Example: Create A Table With A Single Column Index + Time Column With A TTL Type Of Abusolute, And Configure The TTL To 30 Days<a class="headerlink" href="#example-create-a-table-with-a-single-column-index-time-column-with-a-ttl-type-of-abusolute-and-configure-the-ttl-to-30-days" title="Permalink to this headline">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">,</span><span class="w"> </span><span class="n">TTL_TYPE</span><span class="o">=</span><span class="k">absolute</span><span class="p">,</span><span class="w"> </span><span class="n">TTL</span><span class="o">=</span><span class="mi">30</span><span class="n">d</span><span class="p">));</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create successfully</span>
+
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ---------- --------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">        </span><span class="n">ttl_type</span><span class="w">       </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ---------- --------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639524729</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">43200</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ---------- --------------- </span>
+</pre></div>
+</div>
+</section>
+<section id="example-create-a-table-with-latest-ttl-type-with-a-single-column-index-time-column-and-configure-the-ttl-to-1">
+<h5>Example: Create A Table With Latest TTL Type, With A Single Column Index + Time Column, And Configure The TTL To 1<a class="headerlink" href="#example-create-a-table-with-latest-ttl-type-with-a-single-column-index-time-column-and-configure-the-ttl-to-1" title="Permalink to this headline">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">,</span><span class="w"> </span><span class="n">TTL_TYPE</span><span class="o">=</span><span class="n">latest</span><span class="p">,</span><span class="w"> </span><span class="n">TTL</span><span class="o">=</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create successfully</span>
+
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ----- ------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">   </span><span class="n">ttl_type</span><span class="w">     </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ----- ------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639524802</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">1</span><span class="w">     </span><span class="n">kLatestTime</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ----- ------------- </span>
+</pre></div>
+</div>
+</section>
+<section id="example-create-a-table-with-a-single-column-index-time-column-whose-ttl-type-is-absandlat-and-configure-the-expiration-time-to-be-30-days-and-the-maximum-number-of-retained-records-as-10">
+<h5>Example: Create A Table With A Single-Column Index + Time Column Whose TTL Type Is absANDlat, And Configure The Expiration Time To Be 30 Days And The Maximum Number Of Retained Records As 10<a class="headerlink" href="#example-create-a-table-with-a-single-column-index-time-column-whose-ttl-type-is-absandlat-and-configure-the-expiration-time-to-be-30-days-and-the-maximum-number-of-retained-records-as-10" title="Permalink to this headline">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">,</span><span class="w"> </span><span class="n">TTL_TYPE</span><span class="o">=</span><span class="n">absandlat</span><span class="p">,</span><span class="w"> </span><span class="n">TTL</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="n">d</span><span class="p">,</span><span class="mi">10</span><span class="p">)));</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create successfully</span>
+
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- -------------- ------------ </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">            </span><span class="n">ttl_type</span><span class="w">    </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- -------------- ------------ </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639525038</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">43200</span><span class="k">min</span><span class="o">&amp;&amp;</span><span class="mi">10</span><span class="w">   </span><span class="n">kAbsAndLat</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- -------------- ------------ </span>
+</pre></div>
+</div>
+</section>
+<section id="example-create-a-table-with-a-single-column-index-time-column-whose-ttl-type-is-absorlat-and-configure-the-expiration-time-to-be-30-days-and-the-maximum-number-of-retained-records-as-10">
+<h5>Example: Create A Table With A Single-Column Index + Time Column Whose TTL Type Is absORlat, And Configure The Expiration Time To Be 30 Days And The Maximum Number Of Retained Records As 10<a class="headerlink" href="#example-create-a-table-with-a-single-column-index-time-column-whose-ttl-type-is-absorlat-and-configure-the-expiration-time-to-be-30-days-and-the-maximum-number-of-retained-records-as-10" title="Permalink to this headline">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">,</span><span class="w"> </span><span class="n">TTL_TYPE</span><span class="o">=</span><span class="n">absorlat</span><span class="p">,</span><span class="w"> </span><span class="n">TTL</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="n">d</span><span class="p">,</span><span class="mi">10</span><span class="p">)));</span><span class="w"></span>
+<span class="c1">--SUCCEED: Create successfully</span>
+
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- -------------- ----------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">            </span><span class="n">ttl_type</span><span class="w">   </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- -------------- ----------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639525079</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">43200</span><span class="k">min</span><span class="o">||</span><span class="mi">10</span><span class="w">   </span><span class="n">kAbsOrLat</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- -------------- ----------- </span>
+</pre></div>
+</div>
+</section>
+<section id="example-create-a-multi-index-table">
+<h5>Example: Create A Multi-Index Table<a class="headerlink" href="#example-create-a-multi-index-table" title="Permalink to this headline">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col0</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">),</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">));</span><span class="w"></span>
+<span class="c1">--SUCCEED: Create successfully</span>
+
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ ---------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ ---------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ ---------</span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ ---------------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ ---------------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1648692457</span><span class="w">   </span><span class="n">col0</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w"></span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">INDEX_1_1648692457</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ ---------------</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="table-property-tableoptions-optional">
+<h4>Table Property TableOptions (optional)<a class="headerlink" href="#table-property-tableoptions-optional" title="Permalink to this headline">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">TableOptions</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;OPTIONS&#39;</span><span class="w"> </span><span class="s1">&#39;(&#39;</span><span class="w"> </span><span class="n">TableOptionItem</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">TableOptionItem</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="s1">&#39;)&#39;</span><span class="w"></span>
+
+<span class="n">TableOptionItem</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">PartitionNumOption</span><span class="w"></span>
+<span class="w">						    </span><span class="o">|</span><span class="w"> </span><span class="n">ReplicaNumOption</span><span class="w"></span>
+<span class="w">						    </span><span class="o">|</span><span class="w"> </span><span class="n">DistributeOption</span><span class="w"></span>
+<span class="w">						    </span><span class="o">|</span><span class="w"> </span><span class="n">StorageModeOption</span><span class="w"></span>
+<span class="w">								</span>
+<span class="c1">-- PartitionNum</span>
+<span class="n">PartitionNumOption</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PARTITIONNUM&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">int_literal</span><span class="w"></span>
+<span class="c1">-- ReplicaNumOption</span>
+<span class="n">ReplicaNumOption</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;REPLICANUM&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">int_literal</span><span class="w"></span>
+<span class="w">						</span>
+<span class="c1">-- DistributeOption				</span>
+<span class="n">DistributeOption</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;DISTRIBUTION&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">DistributionList</span><span class="w"></span>
+<span class="n">DistributionList</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">DistributionItem</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">DistributionItem</span><span class="p">)</span><span class="o">*</span><span class="w"></span>
+<span class="n">DistributionItem</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;(&#39;</span><span class="w"> </span><span class="n">LeaderEndpoint</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">FollowerEndpointList</span><span class="w"> </span><span class="s1">&#39;)&#39;</span><span class="w"></span>
+<span class="n">LeaderEndpoint</span><span class="w"> </span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> 	</span><span class="n">Endpoint</span><span class="w">	</span>
+<span class="n">FollowerEndpointList</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;[&#39;</span><span class="w"> </span><span class="n">Endpoint</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">Endpoint</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="s1">&#39;]&#39;</span><span class="w"></span>
+<span class="n">Endpoint</span><span class="w"></span>
+<span class="w">				</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">string_literals</span><span class="w"></span>
+
+<span class="c1">-- StorageModeOption</span>
+<span class="n">StorageModeOption</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;STORAGE_MODE&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">StorageMode</span><span class="w"></span>
+
+<span class="n">StorageMode</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Memory&#39;</span><span class="w"></span>
+<span class="w">						    </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;HDD&#39;</span><span class="w"></span>
+<span class="w">						    </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;SSD&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>| configuration item            | describe                                                                                                                                                               |
+Usage example                                                                          |
+|—————-|——————————————————————————————————————————————————————|——————————————————————————-|
+| <code class="docutils literal notranslate"><span class="pre">PARTITIONNUM</span></code> | Configure the number of partitions for the table. OpenMLDB divides the table into different partition blocks for storage. A partition is the basic unit of storage, replica, and failover related operations in OpenMLDB. When not explicitly configured, <code class="docutils literal notranslate"><span class="pre">PARTITIONNUM</span></code> defaults to 8.                                                                      | <code class="docutils literal notranslate"><span class="pre">OPTIONS</span> <span class="pre">(PARTITIONNUM=8)</span></code>                                                    |
+| <code class="docutils literal notranslate"><span class="pre">REPLICANUM</span></code>   | Configure the number of replicas for the table. Note that the number of replicas is only configurable in Cluster OpenMLDB.                                                                                                                        | <code class="docutils literal notranslate"><span class="pre">OPTIONS</span> <span class="pre">(REPLICANUM=3)</span></code>                                                      |
+| <code class="docutils literal notranslate"><span class="pre">DISTRIBUTION</span></code> | Configure the distributed node endpoint configuration. Generally, it contains a Leader node and several follower nodes. <code class="docutils literal notranslate"><span class="pre">(leader,</span> <span class="pre">[follower1,</span> <span class="pre">follower2,</span> <span class="pre">..])</span></code>. Without explicit configuration, OpenMLDB will automatically configure <code class="docutils literal notranslate"><span class="pre">DISTRIBUTION</span></code> according to the environment and node.                               | <code class="docutils literal notranslate"><span class="pre">DISTRIBUTION</span> <span class="pre">=</span> <span class="pre">[</span> <span class="pre">('127.0.0.1:6527',</span> <span class="pre">[</span> <span class="pre">'127.0.0.1:6528','127.0.0.1:6529'</span> <span class="pre">])]</span></code> |
+| <code class="docutils literal notranslate"><span class="pre">STORAGE_MODE</span></code> | The storage mode of the table. The supported modes are <code class="docutils literal notranslate"><span class="pre">Memory</span></code>, <code class="docutils literal notranslate"><span class="pre">HDD</span></code> or <code class="docutils literal notranslate"><span class="pre">SSD</span></code>. When not explicitly configured, it defaults to <code class="docutils literal notranslate"><span class="pre">Memory</span></code>. <br/>If you need to support a storage mode other than <code class="docutils literal notranslate"><span class="pre">Memory</span></code> mode, <code class="docutils literal notranslate"><span class="pre">tablet</span></code> requires additional configuration options. For details, please refer to [tablet configuration file conf/tablet.flags](…/…/…/deploy/ <a class="reference external" href="http://conf.md">conf.md</a>). | <code class="docutils literal notranslate"><span class="pre">OPTIONS</span> <span class="pre">(STORAGE_MODE='HDD')</span></code>                                                |</p>
+<section id="disk-table-storage-mode-hdd-ssd-with-memory-table-storage-mode-memory-the-difference">
+<h5>Disk Table（<code class="docutils literal notranslate"><span class="pre">STORAGE_MODE</span></code> == <code class="docutils literal notranslate"><span class="pre">HDD</span></code>|<code class="docutils literal notranslate"><span class="pre">SSD</span></code>）With Memory Table（<code class="docutils literal notranslate"><span class="pre">STORAGE_MODE</span></code> == <code class="docutils literal notranslate"><span class="pre">Memory</span></code>）The Difference<a class="headerlink" href="#disk-table-storage-mode-hdd-ssd-with-memory-table-storage-mode-memory-the-difference" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>Currently disk tables do not support GC operations</p></li>
+<li><p>When inserting data into a disk table, if (<code class="docutils literal notranslate"><span class="pre">key</span></code>, <code class="docutils literal notranslate"><span class="pre">ts</span></code>) are the same under the same index, the old data will be overwritten; a new piece of data will be inserted into the memory table</p></li>
+<li><p>Disk tables do not support <code class="docutils literal notranslate"><span class="pre">addindex</span></code> and <code class="docutils literal notranslate"><span class="pre">deleteindex</span></code> operations, so you need to define all required indexes when creating a disk table
+(The <code class="docutils literal notranslate"><span class="pre">deploy</span></code> command will automatically add the required indexes, so for a disk table, if the corresponding index is missing when it is created, <code class="docutils literal notranslate"><span class="pre">deploy</span></code> will fail)</p></li>
+</ul>
+</section>
+<section id="example-create-a-band-table-configure-the-number-of-partions-as-8-the-number-of-replicas-as-3-and-the-storage-mode-as-hdd">
+<h5>Example: Create A Band Table, Configure The Number Of Partions As 8, The Number Of Replicas As 3, And The Storage Mode As HDD<a class="headerlink" href="#example-create-a-band-table-configure-the-number-of-partions-as-8-the-number-of-replicas-as-3-and-the-storage-mode-as-hdd" title="Permalink to this headline">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">))</span><span class="w"> </span><span class="k">OPTIONS</span><span class="p">(</span><span class="n">partitionnum</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">replicanum</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">storage_mode</span><span class="o">=</span><span class="s1">&#39;HDD&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">--SUCCEED: Create successfully</span>
+
+<span class="k">DESC</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">--- ---------- ----------- ------ ----------</span>
+<span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ ---------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ ---------</span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ ---------------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ ---------------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1651143735</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ ---------------</span>
+<span class="w"> </span><span class="c1">--------------</span>
+<span class="w">  </span><span class="n">storage_mode</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------------</span>
+<span class="w">  </span><span class="n">HDD</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------------</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section id="related-sql">
+<h2>Related SQL<a class="headerlink" href="#related-sql" title="Permalink to this headline">#</a></h2>
+<p><a class="reference internal" href="CREATE_DATABASE_STATEMENT.html"><span class="doc std std-doc">CREATE DATABASE</span></a></p>
+<p><a class="reference internal" href="USE_DATABASE_STATEMENT.html"><span class="doc std std-doc">USE DATABASE</span></a></p>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="DESC_STATEMENT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">DESC</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="DROP_TABLE_STATEMENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">DROP TABLE</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:54 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

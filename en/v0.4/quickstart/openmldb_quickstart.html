@@ -1,0 +1,1085 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>OpenMLDB Quickstart &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Java SDK Quickstart" href="java_sdk.html" />
+    <link rel="prev" title="Quickstart" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     History
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     v0.4.x Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Quickstart
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     Guidelines for Feature Engineering Development (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     Guidelines for Feature Engineering Development (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   Deployment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   Maintenance
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     Operations in CLI
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: v0.4</br>
+Versions：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="openmldb_quickstart.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/quickstart/openmldb_quickstart.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-and-data-preparation">
+   1. Environment and data preparation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mirror-preparation">
+     1.1 Mirror preparation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sample-data">
+     1.2 Sample data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-start-with-the-standalone-version-of-openmldb">
+   2. Quick start with the standalone version of OpenMLDB
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standalone-server-and-client">
+     2.1 Standalone Server and Client
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-usage-process">
+     2.2 Basic usage process
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#create-database-and-table">
+       2.2.1 Create database and table
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-preparation">
+       2.2.2 Data preparation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#offline-feature-extraction">
+       2.2.3 Offline feature extraction
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sql-solution-deploy">
+       2.2.4 SQL solution deploy
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exit-the-cli">
+       2.2.5 Exit the CLI
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#real-time-feature-extraction">
+       2.2.6 Real-time feature extraction
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-started-with-cluster-version-of-openmldb">
+   3. Get started with cluster version of OpenMLDB
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cluster-edition-preparation-knowledge">
+     3.1 Cluster Edition preparation knowledge
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#server-and-client">
+     3.2 Server and Client
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     3.3 Basic usage process
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       3.3.1 Create database and table
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#offline-data-preparation">
+       3.3.2 Offline data preparation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       3.3.3 Offline feature extraction
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sql-solution-online">
+       3.3.4 SQL solution online
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#online-data-preparation">
+       3.3.5 Online data preparation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       3.3.6 Exit the CLI
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       3.3.7 Real-time feature extraction
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#result-description-of-real-time-feature-extraction">
+       3.3.8 Result description of real-time feature extraction
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>OpenMLDB Quickstart</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-and-data-preparation">
+   1. Environment and data preparation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mirror-preparation">
+     1.1 Mirror preparation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sample-data">
+     1.2 Sample data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-start-with-the-standalone-version-of-openmldb">
+   2. Quick start with the standalone version of OpenMLDB
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standalone-server-and-client">
+     2.1 Standalone Server and Client
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-usage-process">
+     2.2 Basic usage process
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#create-database-and-table">
+       2.2.1 Create database and table
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-preparation">
+       2.2.2 Data preparation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#offline-feature-extraction">
+       2.2.3 Offline feature extraction
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sql-solution-deploy">
+       2.2.4 SQL solution deploy
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#exit-the-cli">
+       2.2.5 Exit the CLI
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#real-time-feature-extraction">
+       2.2.6 Real-time feature extraction
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-started-with-cluster-version-of-openmldb">
+   3. Get started with cluster version of OpenMLDB
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cluster-edition-preparation-knowledge">
+     3.1 Cluster Edition preparation knowledge
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#server-and-client">
+     3.2 Server and Client
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     3.3 Basic usage process
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       3.3.1 Create database and table
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#offline-data-preparation">
+       3.3.2 Offline data preparation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       3.3.3 Offline feature extraction
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sql-solution-online">
+       3.3.4 SQL solution online
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#online-data-preparation">
+       3.3.5 Online data preparation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       3.3.6 Exit the CLI
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       3.3.7 Real-time feature extraction
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#result-description-of-real-time-feature-extraction">
+       3.3.8 Result description of real-time feature extraction
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="openmldb-quickstart">
+<h1>OpenMLDB Quickstart<a class="headerlink" href="#openmldb-quickstart" title="Permalink to this headline">#</a></h1>
+<p>This tutorial provides a quick start guide for OpenMLDB. Basic steps are: create database, import data, offline feature extraction, deploy SQL, online real-time feature extraction, the basic usage process of the standalone version of OpenMLDB and the cluster version of OpenMLDB is demonstrated.</p>
+<section id="environment-and-data-preparation">
+<h2>1. Environment and data preparation<a class="headerlink" href="#environment-and-data-preparation" title="Permalink to this headline">#</a></h2>
+<blockquote>
+<div><dl class="myst field-list simple">
+<dt class="field-odd">warning</dt>
+<dd class="field-odd"><p>docker engine version required &gt;= 18.03</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>This tutorial is developed and deployed based on the OpenMLDB CLI, so first you need to download the sample data and start the OpenMLDB CLI. We recommend using the prepared docker image for a quick experience.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">bulb</dt>
+<dd class="field-odd"><p>To compile and install it yourself, you can refer to our <a class="reference external" href="https://github.com/4paradigm/openmldb-docs-zh/blob/28159f05d2903a9f96e78d3205bd8e9a2d7cd5c3/deploy/install_deploy.md">installation and deployment documentation</a>.</p>
+</dd>
+</dl>
+<section id="mirror-preparation">
+<h3>1.1 Mirror preparation<a class="headerlink" href="#mirror-preparation" title="Permalink to this headline">#</a></h3>
+<p>Pull the image (image download size is about 1GB, after decompression is about 1.7 GB) and start the docker container</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -it 4pdosc/openmldb:0.4.2 bash
+</pre></div>
+</div>
+<dl class="myst field-list simple">
+<dt class="field-odd">bulb</dt>
+<dd class="field-odd"><p>**After the container is successfully started, the subsequent commands in this tutorial are executed within the container by default. **</p>
+</dd>
+</dl>
+</section>
+<section id="sample-data">
+<h3>1.2 Sample data<a class="headerlink" href="#sample-data" title="Permalink to this headline">#</a></h3>
+<p>Download sample data</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl https://openmldb.ai/demo/data.csv --output ./data/data.csv
+curl https://openmldb.ai/demo/data.parquet --output ./data/data.parquet
+</pre></div>
+</div>
+</section>
+</section>
+<section id="quick-start-with-the-standalone-version-of-openmldb">
+<h2>2. Quick start with the standalone version of OpenMLDB<a class="headerlink" href="#quick-start-with-the-standalone-version-of-openmldb" title="Permalink to this headline">#</a></h2>
+<section id="standalone-server-and-client">
+<h3>2.1 Standalone Server and Client<a class="headerlink" href="#standalone-server-and-client" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Start the standalone OpenMLDB server</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. initialize the environment and start standlone openmldb server</span>
+./init.sh standalone
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start the standalone OpenMLDB CLI client</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start the OpenMLDB CLI for the cluster deployed OpenMLDB</span>
+../openmldb/bin/openmldb --host <span class="m">127</span>.0.0.1 --port <span class="m">6527</span>
+</pre></div>
+</div>
+<p>The following screenshots show the correct execution of the above docker commands and the correct startup of the OpenMLDB CLI</p>
+<p><img alt="image-20220111142406534" src="https://github.com/4paradigm/openmldb-docs-zh/blob/28159f05d2903a9f96e78d3205bd8e9a2d7cd5c3/quickstart/images/cli.png" /></p>
+</section>
+<section id="basic-usage-process">
+<h3>2.2 Basic usage process<a class="headerlink" href="#basic-usage-process" title="Permalink to this headline">#</a></h3>
+<p>The workflow of the standalone version of OpenMLDB generally includes several stages: database and table establishment, data preparation, offline feature extraction, SQL solution online, and online real-time feature extraction.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">bulb</dt>
+<dd class="field-odd"><p>Unless otherwise specified, the commands shown below are executed under the standalone version of OpenMLDB CLI by default (CLI commands start with the prompt <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> for distinction).</p>
+</dd>
+</dl>
+<section id="create-database-and-table">
+<h4>2.2.1 Create database and table<a class="headerlink" href="#create-database-and-table" title="Permalink to this headline">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">(</span><span class="n">c1</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"> </span><span class="n">c4</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span><span class="w"> </span><span class="n">c5</span><span class="w"> </span><span class="n">double</span><span class="p">,</span><span class="w"> </span><span class="n">c6</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">c7</span><span class="w"> </span><span class="nb">date</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="data-preparation">
+<h4>2.2.2 Data preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">#</a></h4>
+<p>Import the previously downloaded sample data (the saved data in [1.2 Sample Data](#1.2-Sample Data)) as training data for offline and online feature extraction.</p>
+<p>⚠️ Note: The standalone version can use the same data for offline and online feature extraction. Of course, users can also manually import different data for offline and online. For simplicity, the standalone version of this tutorial uses the same data for offline and online extraction.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;data/data.csv&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Preview data</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----- ---- ---- ---------- ----------- --------------- - -------------</span>
+<span class="w">  </span><span class="n">c1</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="n">c4</span><span class="w"> </span><span class="n">c5</span><span class="w"> </span><span class="n">c6</span><span class="w"> </span><span class="n">c7</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----- ---- ---- ---------- ----------- --------------- - -------------</span>
+<span class="w">  </span><span class="n">aaa</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">12</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636097390000</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">19</span><span class="w"></span>
+<span class="w">  </span><span class="n">aaa</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">11</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636097290000</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">20</span><span class="w"></span>
+<span class="w">  </span><span class="n">dd</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">8</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">18</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636097990000</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">20</span><span class="w"></span>
+<span class="w">  </span><span class="n">aa</span><span class="w"> </span><span class="mi">13</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">13</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636097490000</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">20</span><span class="w"></span>
+<span class="w">  </span><span class="n">cc</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">7</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">17</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636097890000</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">26</span><span class="w"></span>
+<span class="w">  </span><span class="n">ff</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">9</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">19</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636098000000</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">10</span><span class="w"></span>
+<span class="w">  </span><span class="n">bb</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">6</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">16</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636097790000</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">20</span><span class="w"></span>
+<span class="w">  </span><span class="n">bb</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">5</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">15</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636097690000</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span><span class="w"></span>
+<span class="w">  </span><span class="n">bb</span><span class="w"> </span><span class="mi">14</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">4</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">14</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636097590000</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">23</span><span class="w"></span>
+<span class="w">  </span><span class="n">ee</span><span class="w"> </span><span class="mi">19</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">9</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">19</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636097000000</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">10</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----- ---- ---- ---------- ----------- --------------- - -------------</span>
+</pre></div>
+</div>
+</section>
+<section id="offline-feature-extraction">
+<h4>2.2.3 Offline feature extraction<a class="headerlink" href="#offline-feature-extraction" title="Permalink to this headline">#</a></h4>
+<p>Execute SQL for feature extraction, and store the generated features in a file for subsequent model training.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">w1_c3_sum</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="n">WINDOW</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c6</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">OUTFILE</span><span class="w"> </span><span class="s1">&#39;/tmp/feature.csv&#39;</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="sql-solution-deploy">
+<h4>2.2.4 SQL solution deploy<a class="headerlink" href="#sql-solution-deploy" title="Permalink to this headline">#</a></h4>
+<p>Deploy the explored SQL solution online. Notice, the deployed online SQL solution needs to be consistent with the corresponding offline feature extraction SQL solution.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">DEPLOY</span><span class="w"> </span><span class="n">demo_data_service</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">w1_c3_sum</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="n">WINDOW</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c6</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>After going online, you can view the deployed SQL solution through the command <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">DEPLOYMENTS</span></code>;</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DEPLOYMENTS</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="w">  </span><span class="n">DB</span><span class="w"> </span><span class="n">Deployment</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="w">  </span><span class="n">demo_db</span><span class="w"> </span><span class="n">demo_data_service</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"></span>
+</pre></div>
+</div>
+<dl class="myst field-list simple">
+<dt class="field-odd">bulb</dt>
+<dd class="field-odd"><p>Notice, the standalone version of this tutorial uses the same data for offline and online feature extraction. During deployment, offline data is automatically switched to online data for online computing. If you want to use a different dataset, you can do a data update on this basis, or re-import a new dataset before deployment.</p>
+</dd>
+</dl>
+</section>
+<section id="exit-the-cli">
+<h4>2.2.5 Exit the CLI<a class="headerlink" href="#exit-the-cli" title="Permalink to this headline">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">quit</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Up to this point, you have completed all the development and deployment work based on OpenMLDB CLI, and have returned to the operating system command line.</p>
+</section>
+<section id="real-time-feature-extraction">
+<h4>2.2.6 Real-time feature extraction<a class="headerlink" href="#real-time-feature-extraction" title="Permalink to this headline">#</a></h4>
+<p>Real-time online services can be provided through the following Web APIs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">dbs</span><span class="o">/</span><span class="n">demo_db</span><span class="o">/</span><span class="n">deployments</span><span class="o">/</span><span class="n">demo_data_service</span>
+        \<span class="n">___________</span><span class="o">/</span> \<span class="n">____</span><span class="o">/</span> \<span class="n">_____________</span><span class="o">/</span>
+              <span class="o">|</span> <span class="o">|</span> <span class="o">|</span>
+        <span class="n">APIServer</span> <span class="n">address</span> <span class="n">Database</span> <span class="n">name</span> <span class="n">Deployment</span> <span class="n">name</span>
+</pre></div>
+</div>
+<p>The input data of the real-time request accepts the <code class="docutils literal notranslate"><span class="pre">json</span></code> format, and we put a line of data into the <code class="docutils literal notranslate"><span class="pre">input</span></code> field of the request. The following example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl http://127.0.0.1:8080/dbs/demo_db/deployments/demo_data_service -X POST -d<span class="s1">&#39;{&quot;input&quot;: [[&quot;aaa&quot;, 11, 22, 1.2, 1.3, 1635247427000, &quot;2021-05- 20&quot;]]}&#39;</span>
+</pre></div>
+</div>
+<p>The following is the expected return result for this query (the computed features are stored in the <code class="docutils literal notranslate"><span class="pre">data</span></code> field):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;msg&quot;</span><span class="p">:</span><span class="s2">&quot;ok&quot;</span><span class="p">,</span><span class="nt">&quot;data&quot;</span><span class="p">:{</span><span class="nt">&quot;data&quot;</span><span class="p">:[[</span><span class="s2">&quot;aaa&quot;</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">22</span><span class="p">]]}}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>* The api server executes the request, which can support batch requests, and the “input” field supports arrays. The request extraction is performed separately for each line of input. For detailed parameter formats, see <span class="xref myst">RESTful API</span>.</p>
+<p>* For the description of the request result, see “3.3.8 Result description of real-time feature extraction” at the end of the article.</p>
+</section>
+</section>
+</section>
+<section id="get-started-with-cluster-version-of-openmldb">
+<h2>3. Get started with cluster version of OpenMLDB<a class="headerlink" href="#get-started-with-cluster-version-of-openmldb" title="Permalink to this headline">#</a></h2>
+<section id="cluster-edition-preparation-knowledge">
+<h3>3.1 Cluster Edition preparation knowledge<a class="headerlink" href="#cluster-edition-preparation-knowledge" title="Permalink to this headline">#</a></h3>
+<p>The biggest difference between the cluster version and the standalone version is mainly the following two points</p>
+<ul class="simple">
+<li><p>Some commands in the cluster version are non-blocking tasks, including <code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> in online mode, and <code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code>, <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">INTO</span></code> commands in offline mode. After submitting a task, you can use related commands such as <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code>, <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOB</span></code> to view the task progress. For details, see the <span class="xref myst">Offline Task Management</span> document.</p></li>
+<li><p>The cluster version needs to maintain offline and online data separately, and cannot use the same set of data as the stand-alone version.</p></li>
+</ul>
+<p>The above differences will be demonstrated based on examples in the following tutorials.</p>
+</section>
+<section id="server-and-client">
+<h3>3.2 Server and Client<a class="headerlink" href="#server-and-client" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Start the cluster version of the OpenMLDB server</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. initialize the environment and start cluster openmldb server</span>
+./init.sh
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start the clustered OpenMLDB CLI client</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start the OpenMLDB CLI for the cluster deployed OpenMLDB</span>
+&gt; ../openmldb/bin/openmldb --zk_cluster<span class="o">=</span><span class="m">127</span>.0.0.1:2181 --zk_root_path<span class="o">=</span>/openmldb --role<span class="o">=</span>sql_client
+</pre></div>
+</div>
+<p>The following screenshot shows the screen after the cluster version of the OpenMLDB CLI is correctly started</p>
+<p><img alt="image-20220111141358808" src="https://github.com/4paradigm/openmldb-docs-zh/blob/28159f05d2903a9f96e78d3205bd8e9a2d7cd5c3/quickstart/images/cli_cluster.png" /></p>
+</section>
+<section id="id1">
+<h3>3.3 Basic usage process<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>The workflow of the cluster version of OpenMLDB generally includes several stages: database and table creation, offline data preparation, offline feature extraction, SQL solution online, online data preparation, and online real-time feature extraction.</p>
+<p>The cluster version of OpenMLDB needs to manage offline data and online data separately. Therefore, after completing the SQL solution online, you must do the online data preparation steps.</p>
+<dl class="myst field-list simple">
+<dt class="field-odd">bulb</dt>
+<dd class="field-odd"><p>Unless otherwise specified, the commands shown below are executed under the OpenMLDB CLI by default (the CLI command starts with a prompt <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> for distinction).</p>
+</dd>
+</dl>
+<section id="id2">
+<h4>3.3.1 Create database and table<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">(</span><span class="n">c1</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"> </span><span class="n">c4</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span><span class="w"> </span><span class="n">c5</span><span class="w"> </span><span class="n">double</span><span class="p">,</span><span class="w"> </span><span class="n">c6</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">c7</span><span class="w"> </span><span class="nb">date</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Check out the datasheet:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- ----------- ------ ---------</span>
+<span class="w">  </span><span class="o">#</span><span class="w"> </span><span class="n">Field</span><span class="w"> </span><span class="k">Type</span><span class="w"> </span><span class="k">Null</span><span class="w"> </span><span class="k">Default</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- ----------- ------ ---------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="nb">Varchar</span><span class="w"> </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">2</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="nb">Int</span><span class="w"> </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">3</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="nb">BigInt</span><span class="w"> </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">4</span><span class="w"> </span><span class="n">c4</span><span class="w"> </span><span class="nb">Float</span><span class="w"> </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">5</span><span class="w"> </span><span class="n">c5</span><span class="w"> </span><span class="n">Double</span><span class="w"> </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">6</span><span class="w"> </span><span class="n">c6</span><span class="w"> </span><span class="k">Timestamp</span><span class="w"> </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">7</span><span class="w"> </span><span class="n">c7</span><span class="w"> </span><span class="nb">Date</span><span class="w"> </span><span class="n">YES</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- ----------- ------ ---------</span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ ------------- ----</span>
+<span class="w">  </span><span class="o">#</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="n">keys</span><span class="w"> </span><span class="n">ts</span><span class="w"> </span><span class="n">ttl</span><span class="w"> </span><span class="n">ttl_type</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ ------------- ----</span>
+<span class="w">  </span><span class="mi">1</span><span class="w"> </span><span class="n">INDEX_0_1641939290</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">0</span><span class="k">min</span><span class="w"> </span><span class="n">kAbsoluteTime</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ ------------- ----</span>
+</pre></div>
+</div>
+</section>
+<section id="offline-data-preparation">
+<h4>3.3.2 Offline data preparation<a class="headerlink" href="#offline-data-preparation" title="Permalink to this headline">#</a></h4>
+<p>First, please switch to offline execution mode. In this mode, only offline data import/insert and query operations are processed.</p>
+<p>Next, import the previously downloaded sample data (which downloaded in [1.2 Sample Data] (#1.2 - Sample Data)) as offline data for offline feature extraction.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;offline&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;file:///work/taxi-trip/data/data.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Notice, the <code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> command is non-blocking, and you can view the task progress through offline task management commands such as <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code>.</p>
+<p>To preview the data, you can also use the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement, but this command is also a non-blocking command in offline mode. You need to view the log for query results, which will not be expanded here.</p>
+</section>
+<section id="id3">
+<h4>3.3.3 Offline feature extraction<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<p>Execute SQL for feature extraction, and store the generated features in a file for subsequent model training.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;offline&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">w1_c3_sum</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="n">WINDOW</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c6</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">OUTFILE</span><span class="w"> </span><span class="s1">&#39;/tmp/feature_data&#39;</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Notice, the <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">INTO</span></code> command in offline mode is non-blocking, and you can view the running progress through offline task management commands such as <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code>.</p>
+</section>
+<section id="sql-solution-online">
+<h4>3.3.4 SQL solution online<a class="headerlink" href="#sql-solution-online" title="Permalink to this headline">#</a></h4>
+<p>Deploy the explored SQL solution online. Notice, the deployed online SQL solution needs to be consistent with the corresponding offline feature extraction SQL solution.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">DEPLOY</span><span class="w"> </span><span class="n">demo_data_service</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">w1_c3_sum</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="n">WINDOW</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c6</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>After going online, you can view the deployed SQL solution through the command <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">DEPLOYMENTS</span></code>;</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DEPLOYMENTS</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="w">  </span><span class="n">DB</span><span class="w"> </span><span class="n">Deployment</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="w">  </span><span class="n">demo_db</span><span class="w"> </span><span class="n">demo_data_service</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="online-data-preparation">
+<h4>3.3.5 Online data preparation<a class="headerlink" href="#online-data-preparation" title="Permalink to this headline">#</a></h4>
+<p>First, switch to <strong>Online</strong> execution mode. In this mode, only online data import/insert and query operations are processed. Then in the online mode, import the previously downloaded sample data (downloaded in [1.2 Sample Data] (#1.2-Sample Data)) as online data for online feature extraction.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;file:///work/taxi-trip/data/data.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Notice, the online mode of <code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> is also a non-blocking command, and you can view the running progress through offline task management commands such as <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code>.</p>
+<p>After waiting for the task to complete, preview the online data:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----- ---- ---- ---------- ----------- --------------- - -------------</span>
+<span class="w">  </span><span class="n">c1</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="n">c4</span><span class="w"> </span><span class="n">c5</span><span class="w"> </span><span class="n">c6</span><span class="w"> </span><span class="n">c7</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----- ---- ---- ---------- ----------- --------------- - -------------</span>
+<span class="w">  </span><span class="n">aaa</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">12</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636097890000</span><span class="w"> </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">aaa</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">11</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636097290000</span><span class="w"> </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">dd</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">8</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">18</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636111690000</span><span class="w"> </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">aa</span><span class="w"> </span><span class="mi">13</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">3</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">13</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636098490000</span><span class="w"> </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">cc</span><span class="w"> </span><span class="mi">17</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">7</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">17</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636108090000</span><span class="w"> </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">ff</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">9</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">19</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636270090000</span><span class="w"> </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">bb</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">6</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">16</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636104490000</span><span class="w"> </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">bb</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">5</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">15</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636100890000</span><span class="w"> </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">bb</span><span class="w"> </span><span class="mi">14</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">4</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">14</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636099090000</span><span class="w"> </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">ee</span><span class="w"> </span><span class="mi">19</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="mi">9</span><span class="p">.</span><span class="mi">200000</span><span class="w"> </span><span class="mi">19</span><span class="p">.</span><span class="mi">300000</span><span class="w"> </span><span class="mi">1636183690000</span><span class="w"> </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----- ---- ---- ---------- ----------- --------------- - -------------</span>
+</pre></div>
+</div>
+<dl class="myst field-list simple">
+<dt class="field-odd">bulb</dt>
+<dd class="field-odd"><p>Notice:</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Different from the stand-alone version of OpenMLDB, the cluster version of OpenMLDB needs to maintain offline and online data separately.</p></li>
+<li><p>Users need to successfully complete the online deployment of SQL before preparing to go online. Otherwise, the online data may fail.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h4>3.3.6 Exit the CLI<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">quit</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Up to this point, you have completed all the development and deployment work based on the cluster version of OpenMLDB CLI, and have returned to the operating system command line.</p>
+</section>
+<section id="id5">
+<h4>3.3.7 Real-time feature extraction<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h4>
+<p>Notice: warning:: According to the default deployment configuration, the http port for apiserver deployment is 9080.</p>
+<p>Real-time online services can be provided through the following Web APIs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">9080</span><span class="o">/</span><span class="n">dbs</span><span class="o">/</span><span class="n">demo_db</span><span class="o">/</span><span class="n">deployments</span><span class="o">/</span><span class="n">demo_data_service</span>
+        \<span class="n">___________</span><span class="o">/</span> \<span class="n">____</span><span class="o">/</span> \<span class="n">_____________</span><span class="o">/</span>
+              <span class="o">|</span> <span class="o">|</span> <span class="o">|</span>
+        <span class="n">APIServer</span> <span class="n">address</span> <span class="n">Database</span> <span class="n">name</span> <span class="n">Deployment</span> <span class="n">name</span>
+</pre></div>
+</div>
+<p>The input data of the real-time request accepts the <code class="docutils literal notranslate"><span class="pre">json</span></code> format, and we put a line of data into the <code class="docutils literal notranslate"><span class="pre">input</span></code> field of the request. The following example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl http://127.0.0.1:9080/dbs/demo_db/deployments/demo_data_service -X POST -d<span class="s1">&#39;{&quot;input&quot;: [[&quot;aaa&quot;, 11, 22, 1.2, 1.3, 1635247427000, &quot;2021-05- 20&quot;]]}&#39;</span>
+</pre></div>
+</div>
+<p>The following is the expected return result for this query (the computed features are stored in the <code class="docutils literal notranslate"><span class="pre">data</span></code> field):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;msg&quot;</span><span class="p">:</span><span class="s2">&quot;ok&quot;</span><span class="p">,</span><span class="nt">&quot;data&quot;</span><span class="p">:{</span><span class="nt">&quot;data&quot;</span><span class="p">:[[</span><span class="s2">&quot;aaa&quot;</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">22</span><span class="p">]]}}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="result-description-of-real-time-feature-extraction">
+<h4>3.3.8 Result description of real-time feature extraction<a class="headerlink" href="#result-description-of-real-time-feature-extraction" title="Permalink to this headline">#</a></h4>
+<p>Real-time request (deployment execution) is SQL execution in request mode. Unlike batch mode (batch mode), request mode will only perform SQL extractions on request rows. In the previous example, the POST input is used as the request line, assuming this line of data exists in the table demo_table1, and execute SQL on it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span> <span class="n">OVER</span> <span class="n">w1</span> <span class="n">AS</span> <span class="n">w1_c3_sum</span> <span class="n">FROM</span> <span class="n">demo_table1</span> <span class="n">WINDOW</span> <span class="n">w1</span> <span class="n">AS</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="n">BY</span> <span class="n">demo_table1</span><span class="o">.</span><span class="n">c1</span> <span class="n">ORDER</span> <span class="n">BY</span> <span class="n">demo_table1</span><span class="o">.</span><span class="n">c6</span> <span class="n">ROWS</span> <span class="n">BETWEEN</span> <span class="mi">2</span> <span class="n">PRECEDING</span> <span class="n">AND</span> <span class="n">CURRENT</span> <span class="n">ROW</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The specific extraction logic is as follows (the actual extraction will be optimized to reduce the computation):</p>
+<ol class="arabic simple">
+<li><p>According to the request line and the <code class="docutils literal notranslate"><span class="pre">PARTITION</span> <span class="pre">BY</span></code> in window clause, filter out the lines whose c1 is “aaa”, and sort them according to c6 from small to large. So theoretically, the intermediate data table after partition sorting is shown in the following table. Among them, the first row after the request behavior is sorted.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">-----</span> <span class="o">----</span> <span class="o">----</span> <span class="o">----------</span> <span class="o">-----------</span> <span class="o">---------------</span> <span class="o">-</span> <span class="o">-------------</span>
+  <span class="n">c1</span> <span class="n">c2</span> <span class="n">c3</span> <span class="n">c4</span> <span class="n">c5</span> <span class="n">c6</span> <span class="n">c7</span>
+ <span class="o">-----</span> <span class="o">----</span> <span class="o">----</span> <span class="o">----------</span> <span class="o">-----------</span> <span class="o">---------------</span> <span class="o">-</span> <span class="o">-------------</span>
+  <span class="n">aaa</span> <span class="mi">11</span> <span class="mi">22</span> <span class="mf">1.2</span> <span class="mf">1.3</span> <span class="mi">1635247427000</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">20</span>
+  <span class="n">aaa</span> <span class="mi">12</span> <span class="mi">22</span> <span class="mf">2.200000</span> <span class="mf">12.300000</span> <span class="mi">1636097890000</span> <span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span>
+  <span class="n">aaa</span> <span class="mi">11</span> <span class="mi">22</span> <span class="mf">1.200000</span> <span class="mf">11.300000</span> <span class="mi">1636097290000</span> <span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span>
+ <span class="o">-----</span> <span class="o">----</span> <span class="o">----</span> <span class="o">----------</span> <span class="o">-----------</span> <span class="o">---------------</span> <span class="o">-</span> <span class="o">-------------</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>The window range is <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">PRECEDING</span> <span class="pre">AND</span> <span class="pre">CURRENT</span> <span class="pre">ROW</span></code>, so we cut out the real window in the above table, the request row is the smallest row, the previous 2 rows do not exist, but the window contains the current row, so the window has only one row(the request row).</p></li>
+<li><p>Window aggregation, sum c3 of the data in the window (only one row), and get 22.</p></li>
+</ol>
+<p>The output is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">-----</span> <span class="o">----</span> <span class="o">-------------</span>
+  <span class="n">c1</span> <span class="n">c2</span> <span class="n">w1_c3_sum</span>
+ <span class="o">-----</span> <span class="o">----</span> <span class="o">-------------</span>
+  <span class="n">aaa</span> <span class="mi">11</span> <span class="mi">22</span>
+ <span class="o">-----</span> <span class="o">----</span> <span class="o">-------------</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Quickstart</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="java_sdk.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Java SDK Quickstart</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:48 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

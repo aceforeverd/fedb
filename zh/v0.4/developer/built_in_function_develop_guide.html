@@ -1,0 +1,2149 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>内置函数开发指南 &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="参考" href="../reference/index.html" />
+    <link rel="prev" title="代码结构" href="code_structure.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   关于 OpenMLDB
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     OpenMLDB 简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     OpenMLDB 发展历程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     v0.4.x Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   快速上手
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK 快速上手
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   教程
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     OpenMLDB 集群版和单机版区别
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     在线数据导入工具使用
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/openmldbspark_distribution.html">
+     面向特征工程优化的OpenMLDB Spark发行版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     深入浅出特征工程 – 基于 OpenMLDB 的实践指南（上）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     深入浅出特征工程 – 基于 OpenMLDB 的实践指南（下）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     集群版使用流程及执行模式详解
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   使用案例
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/taxi_tour_duration_prediction.html">
+     案例1：出租车行车时间预测
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   安装部署
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     编译
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     安装部署
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     配置文件说明
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   运维
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     版本升级
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     备份与恢复
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     扩缩容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     监控
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   开发者文档
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="contributing.html">
+     Contributing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="code_structure.html">
+     代码结构
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     内置函数开发指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   参考
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/cli.html">
+     OpenMLDB运维CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     架构
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       在线模块架构
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       语言结构
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         关键字
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL对象名
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         字面值
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         大小写敏感(Case sensitivity)
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         注释
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       数据类型
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         数值类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         字符串类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         日期与时间类型
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       表达式，函数和运算
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         运算符
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       数据查询语句 （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT语句概况
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         无表 SELECT 语句
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO语句
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       数据操作语句（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         插入语句
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE 语句
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       数据定义语句（DDL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT 管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         创建 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         删除 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         查看 DEPLOYMENTS 列表
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         查看 DEPLOYMENT 详情
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         OpenMLDB SQL上线规范和要求
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       任务管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+当前版本: v0.4</br>
+版本列表：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="built_in_function_develop_guide.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/developer/built_in_function_develop_guide.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1. 背景
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sql">
+   2. SQL函数开发步骤
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c">
+     2.1.  开发C++内置函数
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       2.1.1 开发位置
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       2.1.2 C++函数名规范
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#c-sql">
+       2.1.3 C++类型与SQL类型对应关系
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       2.1.4 函数参数和返回值
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       2.1.5 内存管理
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     2.2. 注册和配置接口
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       2.2.1 默认函数库
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       2.2.2 注册名
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       2.2.3 注册和配置函数
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       2.2.4 配置函数文档
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       2.2.5 注册函数别名
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     2.3 单元函数测试
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       2.3.1 添加函数单元测试
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       2.3.2 编译和执行单测
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   3. SQL函数开发模版
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     3.1 SQL函数返回值为布尔或数值类型
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sqlstring-timestampdate">
+     3.2 SQL函数返回值为
+     <strong>
+      STRING
+     </strong>
+     ,
+     <strong>
+      TIMESTAMP
+     </strong>
+     或
+     <strong>
+      DATE
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sqlnullable">
+     3.3 SQL函数的返回值类型是Nullable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     3.4 SQL函数参数是Nullable
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id19">
+   4. SQL函数开发实例
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-int-month-timestamp">
+     4.1 SQL函数返回值为布尔或数值类型 -
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       INT
+      </span>
+      <span class="pre">
+       Month(TIMESTAMP)
+      </span>
+     </code>
+     函数
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-1">
+       <strong>
+        step 1: 实现待注册的内置函数
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-2">
+       <strong>
+        step 2: 配置函数，并注册到默认函数库中
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-3">
+       step 3: 函数单元测试
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sqlstring-timestampdate-string-string-bool">
+     4.2 SQL函数返回值为
+     <strong>
+      STRING
+     </strong>
+     ,
+     <strong>
+      TIMESTAMP
+     </strong>
+     或DATE -
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       STRING
+      </span>
+      <span class="pre">
+       String(BOOL)
+      </span>
+     </code>
+     函数
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id20">
+       <strong>
+        step 1: 实现待注册的内置函数
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       <strong>
+        step 2: 配置参数，返回值并注册函数
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       step 3: 函数单元测试
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sqlnullable-date-date-timestamp">
+     4.3 SQL函数的返回值类型是Nullable -
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DATE
+      </span>
+      <span class="pre">
+       Date(TIMESTAMP)
+      </span>
+     </code>
+     函数
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id23">
+       <strong>
+        step 1: 实现待注册的内置函数
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id24">
+       <strong>
+        step 2: 配置参数，返回值并注册函数
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id25">
+       step 3: 函数单元测试
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>内置函数开发指南</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1. 背景
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sql">
+   2. SQL函数开发步骤
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c">
+     2.1.  开发C++内置函数
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       2.1.1 开发位置
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       2.1.2 C++函数名规范
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#c-sql">
+       2.1.3 C++类型与SQL类型对应关系
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       2.1.4 函数参数和返回值
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       2.1.5 内存管理
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     2.2. 注册和配置接口
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       2.2.1 默认函数库
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       2.2.2 注册名
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       2.2.3 注册和配置函数
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       2.2.4 配置函数文档
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       2.2.5 注册函数别名
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     2.3 单元函数测试
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       2.3.1 添加函数单元测试
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       2.3.2 编译和执行单测
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id16">
+   3. SQL函数开发模版
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     3.1 SQL函数返回值为布尔或数值类型
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sqlstring-timestampdate">
+     3.2 SQL函数返回值为
+     <strong>
+      STRING
+     </strong>
+     ,
+     <strong>
+      TIMESTAMP
+     </strong>
+     或
+     <strong>
+      DATE
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sqlnullable">
+     3.3 SQL函数的返回值类型是Nullable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     3.4 SQL函数参数是Nullable
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id19">
+   4. SQL函数开发实例
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-int-month-timestamp">
+     4.1 SQL函数返回值为布尔或数值类型 -
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       INT
+      </span>
+      <span class="pre">
+       Month(TIMESTAMP)
+      </span>
+     </code>
+     函数
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-1">
+       <strong>
+        step 1: 实现待注册的内置函数
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-2">
+       <strong>
+        step 2: 配置函数，并注册到默认函数库中
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-3">
+       step 3: 函数单元测试
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sqlstring-timestampdate-string-string-bool">
+     4.2 SQL函数返回值为
+     <strong>
+      STRING
+     </strong>
+     ,
+     <strong>
+      TIMESTAMP
+     </strong>
+     或DATE -
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       STRING
+      </span>
+      <span class="pre">
+       String(BOOL)
+      </span>
+     </code>
+     函数
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id20">
+       <strong>
+        step 1: 实现待注册的内置函数
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       <strong>
+        step 2: 配置参数，返回值并注册函数
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       step 3: 函数单元测试
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sqlnullable-date-date-timestamp">
+     4.3 SQL函数的返回值类型是Nullable -
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DATE
+      </span>
+      <span class="pre">
+       Date(TIMESTAMP)
+      </span>
+     </code>
+     函数
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id23">
+       <strong>
+        step 1: 实现待注册的内置函数
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id24">
+       <strong>
+        step 2: 配置参数，返回值并注册函数
+       </strong>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id25">
+       step 3: 函数单元测试
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>内置函数开发指南<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<section id="id2">
+<h2>1. 背景<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>OpenMLDB内置了上百个SQL函数，以供数据科学家作数据分析和特征抽取。目前，我们提供聚合类函数(Aggregate Function)如 <code class="docutils literal notranslate"><span class="pre">SUM</span></code>, <code class="docutils literal notranslate"><span class="pre">AVG</span></code>, <code class="docutils literal notranslate"><span class="pre">MAX</span></code>, <code class="docutils literal notranslate"><span class="pre">MIN</span></code>, <code class="docutils literal notranslate"><span class="pre">COUNT</span></code>来支持全表聚合和窗口聚合。同时，我们还提供了单行函数(Scalar Function)如<code class="docutils literal notranslate"><span class="pre">ABS</span></code>, <code class="docutils literal notranslate"><span class="pre">SIN</span></code>, <code class="docutils literal notranslate"><span class="pre">COS</span></code>, <code class="docutils literal notranslate"><span class="pre">DATE</span></code>, <code class="docutils literal notranslate"><span class="pre">YEAR</span></code>等支持单行数据处理。</p>
+<ul class="simple">
+<li><p>聚合函数（Aggregate Function）对数据集（如一列数据）执行计算，并返回单个值。</p></li>
+<li><p>单行函数（Scalar Function）对若干数据执行计算，并返回单个值。单行函数按功能不同，又可分为：</p>
+<ul>
+<li><p>数学函数</p></li>
+<li><p>逻辑函数</p></li>
+<li><p>时间和日期函数</p></li>
+<li><p>字符串函数</p></li>
+<li><p>类型转换函数</p></li>
+</ul>
+</li>
+</ul>
+<p>本文是SQL内置函数的开发入门指南，旨在指引开发者快速掌握基础的单行内置函数开发方法，暂不深入更为复杂的聚合函数开发细节。我们诚挚欢迎更多的开发者加入社区，帮助我们扩展和开发内置函数集。</p>
+</section>
+<section id="sql">
+<h2>2. SQL函数开发步骤<a class="headerlink" href="#sql" title="Permalink to this headline">#</a></h2>
+<p>本章节主要介绍SQL内置函数的注册和配置的基本步骤。内置函数的开发包含以下几个步骤：</p>
+<ul class="simple">
+<li><p>开发C++内置函数</p></li>
+<li><p>注册和配置函数</p></li>
+<li><p>函数单元测试</p></li>
+</ul>
+<section id="c">
+<h3>2.1.  开发C++内置函数<a class="headerlink" href="#c" title="Permalink to this headline">#</a></h3>
+<p>​		一般来说，开发者应需要为每一个SQL的内置函数开发一个对应的C++函数。用户通过SQL查询函数时，最终底层调用的就是这个C++函数。C++函数开发需要注意一下几点：</p>
+<section id="id3">
+<h4>2.1.1 开发位置<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<p>开发者需要在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.h">hybridse/src/udf/udf.h</a>中声明C++函数，并在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.cc">hybridse/src/udf/udf.cc</a>中实现C++函数。函数一般声明和定义在namespace <code class="docutils literal notranslate"><span class="pre">hybridse::udf::v1</span></code>下</p>
+<ul>
+<li><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// declare built-in function</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace hybridse</span>
+</pre></div>
+</div>
+</li>
+<li><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// implement built-in function</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace hybridse</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h4>2.1.2 C++函数名规范<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>C++内置函数名统一使用<a class="reference external" href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a>风格</p></li>
+<li><p>要求函数名能清晰表达函数功能</p></li>
+</ul>
+</section>
+<section id="c-sql">
+<h4>2.1.3 C++类型与SQL类型对应关系<a class="headerlink" href="#c-sql" title="Permalink to this headline">#</a></h4>
+<p>内置C++函数的参数类型限定为：BOOL类型，数值类型，时间戳日期类型和字符串类型。C++类型SQL类型对应关系如下：</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p>SQL类型</p></th>
+<th class="text-left head"><p>C/C++ 类型</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>BOOL</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>SMALLINT</p></td>
+<td class="text-left"><p>int16_t</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>INT</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">int32_t</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>BIGINT</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">int64_t</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>FLOAT</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>DOUBLE</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>STRING</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">codec::StringRef</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>TIMESTAMP</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">codec::Timestamp</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>DATE</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">codec::Date</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id5">
+<h4>2.1.4 函数参数和返回值<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h4>
+<ul>
+<li><p>C++函数与SQL函数参数相对位置相同</p></li>
+<li><p>C++函数与SQL函数与参数类型类型一一对应。详情参见<span class="xref myst">2.1.3 C++类型与SQL类型对应关系</span></p></li>
+<li><p>函数返回值要考虑以下几种情况：</p>
+<ul>
+<li><p>当SQL函数返回值为布尔或数值类型（如<strong>BOOL</strong>, <strong>SMALLINT</strong>, <strong>INT</strong>, <strong>BIGINT</strong>, <strong>FLOAT</strong>, <strong>DOUBLE</strong>）时，一般地，C++的函数返回值为与之对应的C++类型（<code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">int16_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int64_t</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>)。</p>
+<ul>
+<li><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// SQL: DOUBLE FUNC_DOUBLE(INT)</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">func_return_double</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span><span class="w"> </span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>当SQL函数返回值为<strong>STRING</strong>, <strong>TIMESTAMP</strong>或<strong>DATE</strong>时，要求C++函数通过参数来输出结果。这意味着，C++的<strong>输入参数</strong>后额外有一个指针类型的<strong>输出参数</strong>（<code class="docutils literal notranslate"><span class="pre">codec::StringRef*</span></code>, <code class="docutils literal notranslate"><span class="pre">codec::Timestamp*</span></code>或 <code class="docutils literal notranslate"><span class="pre">codec::Date*</span></code>)用来存放和返回结果值</p>
+<ul>
+<li><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// SQL: STRING FUNC_STR(INT)</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">func_output_str</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="o">*</span><span class="p">);</span><span class="w"> </span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>当SQL函数的返回值可能为空(<strong>Nullable</strong>)时，额外要有一个<code class="docutils literal notranslate"><span class="pre">bool*</span></code>类型的<strong>输出参数</strong>来存放结果为空与否</p>
+<ul>
+<li><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// SQL: Nullable&lt;DATE&gt; FUNC_NULLABLE_DATE(BIGINT)</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">func_output_nullable_date</span><span class="p">(</span><span class="kt">int64_t</span><span class="p">,</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">Date</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">*</span><span class="p">);</span><span class="w"> </span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>注意， SQL 函数返回值将对内置函数的实现和注册方式产生较大的影响，我们将在后续分别讨论，详情参见<span class="xref myst">3. SQL函数开发模版</span>。</p></li>
+</ul>
+</li>
+<li><p>参数Nullable的处理方式：</p>
+<ul class="simple">
+<li><p>一般地，OpenMLDB对所有built-in function采取统一的NULL参数处理方式。即任意一个参数为NULL时，返回直接返回NULL。</p></li>
+<li><p>但需要对NULL参数做特殊处理，那么可以将参数配置为<code class="docutils literal notranslate"><span class="pre">Nullable&lt;ArgType&gt;</span></code>，然后在C++ built-in function中将使用ArgType对应的C++类型和<code class="docutils literal notranslate"><span class="pre">bool*</span></code>来表达这个参数。详情参见<span class="xref myst">3. SQL函数开发模版</span>。</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id6">
+<h4>2.1.5 内存管理<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>C++内置函数中，不允许使用<code class="docutils literal notranslate"><span class="pre">new</span></code>操作符或者<code class="docutils literal notranslate"><span class="pre">malloc</span></code>函数开辟空间。</p></li>
+<li><p>若需要动态开辟空间，需要使用OpenMLDB提供的内存管理接口<code class="docutils literal notranslate"><span class="pre">hybridse::udf::v1::AllocManagedStringBuf(size)</span></code>。系统会从内存池<code class="docutils literal notranslate"><span class="pre">ByteMemoryPool</span></code>中分配指定大小的连续空间给该函数，并在安全的时候释放空间。</p></li>
+<li><p>若空间size大于2M字节，则分配失败，返回nullptr。</p></li>
+<li><p>若空间size &lt; 0，则分配失败，返回nullptr。</p></li>
+</ul>
+<p><strong>例子:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">hybridse::udf::v1::bool_to_string()</span></code>负责将bool值转位字符串”true”或者”false”。需要<code class="docutils literal notranslate"><span class="pre">AllocManagedStringBuf</span></code>动态开辟相应空间存放字符串。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="nf">bool_to_string</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">hybridse</span><span class="o">::</span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AllocManagedStringBuf</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+<span class="w">              </span><span class="n">memcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">data_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AllocManagedStringBuf</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">              </span><span class="n">memcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;false&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">data_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h3>2.2. 注册和配置接口<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<section id="id8">
+<h4>2.2.1 默认函数库<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h4>
+<p>OpenMLDB的 <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary</span></code> 负责存放和管理内置的全局SQL函数。默认函数库<code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary</span></code> 声明在文件<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.h">hybridse/src/udf/default_udf_library.h</a>文件中，实现在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>文件中。</p>
+<p>开发者先在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>中将C++函数注册到默认函数库 <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary</span></code> 中，用户才能通过SQL语句访问这个函数。为了更好的管理函数注册，<code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary</span></code>提供几类<code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary::InitXXXXUdf()</span></code> 接口来管理不同功能的函数配置注册:</p>
+<ul class="simple">
+<li><p>数学函数：在<code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary::InitMathUdf()</span></code>中注册</p></li>
+<li><p>逻辑函数：在<code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary::InitLogicalUdf()</span></code>中注册</p></li>
+<li><p>时间和日期函数：在<code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary::InitTimeAndDateUdf()</span></code>中注册</p></li>
+<li><p>字符串函数：在<code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary::InitStringUdf()</span></code>中注册</p></li>
+<li><p>类型转换函数：在<code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary::InitTypeUdf()</span></code>中注册</p></li>
+</ul>
+</section>
+<section id="id9">
+<h4>2.2.2 注册名<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>注册名就是外部用户可以访问的SQL函数名</p></li>
+<li><p>SQL函数注册名一般统一使用<a class="reference external" href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a>风格。</p></li>
+<li><p>SQL函数名<strong>不要求</strong>与对C++函数名<strong>完全一致</strong>。因为SQL函数名和C++函数是通过函数注册操作关联在一起</p></li>
+<li><p>用户使用SQL函数时，是函数名是<a class="reference external" href="https://en.wiktionary.org/wiki/case_insensitive">大小写不敏感</a>的。（例如，注册名为”aaa_bb”。用户在SQL语句中通过AAA_BB(), Aaa_Bb(), aAa_bb()均可调用”aaa_bb”关联的函数）</p></li>
+</ul>
+</section>
+<section id="id10">
+<h4>2.2.3 注册和配置函数<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary</span></code>提供<code class="docutils literal notranslate"><span class="pre">RegisterExternal</span></code> 接口用以创建一个<code class="docutils literal notranslate"><span class="pre">ExternalFuncRegistryHelper</span></code>对象，来辅助内置函数的注册，并初始化函数的注册名。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ExternalFuncRegistryHelper</span><span class="w"> </span><span class="n">helper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;register_func_name&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// ... ignore function configuration details</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ExternalFuncRegistryHelper</span></code> 是OpenMLDB的内置函数开发最重要的辅助类。它提供一套API来配置函数，并将配置好的函数注册到相应的函数库中。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;register_func_name&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">arg_type</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">return_type</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">arg_type</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v1</span><span class="o">::</span><span class="n">func_ptr</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">return_by_arg</span><span class="p">(</span><span class="n">bool_value</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">returns</span><span class="o">&lt;</span><span class="n">return_type</span><span class="o">&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>函数的配置一般包括：函数指针配置、参数类型配置，返回值配置</p>
+<ul class="simple">
+<li><p>配置C++函数指针: <code class="docutils literal notranslate"><span class="pre">func_ptr</span></code>。注意，考虑代码的可读性和编译安全，需要使用static_cast将指针转为的函数指针。</p></li>
+<li><p>配置参数类型：<code class="docutils literal notranslate"><span class="pre">args&lt;arg_type,...&gt;</span></code></p></li>
+<li><p>配置返回值类型：<code class="docutils literal notranslate"><span class="pre">returns&lt;return_type&gt;</span></code>。一般不需要显示地指明返回类型。但如果函数结果时nullable时，需要将<em><strong>return type</strong></em>显示地配置<em><strong>returns&lt;Nullable&lt;return_type&gt;&gt;</strong></em></p></li>
+<li><p>配置返回方式：<code class="docutils literal notranslate"><span class="pre">return_by_arg()</span></code>  .</p></li>
+<li><p>当 <strong>return_by_arg(false)</strong> 时，结果直接通过<code class="docutils literal notranslate"><span class="pre">return</span></code>返回。 OpenMLDB 默认配置  <code class="docutils literal notranslate"><span class="pre">return_by_arg(false)</span> </code></p></li>
+<li><p>当 <strong>return_by_arg(true)</strong> 时，结果通过参数返回</p>
+<ul>
+<li><p>若返回类型是<em><strong>non-nullable</strong></em>，函数结果将通过最后一个参数返回</p></li>
+<li><p>若返回类型是<strong>nullable</strong>，函数结果值将通过倒数第二个参数返回，而 <em><strong>null flag</strong></em> 将通过最后一个参数返回。如果<em><strong>null flag</strong></em>为<em><strong>true</strong></em>, 那么函数结果为<em><strong>null</strong></em>，否则函数结果从倒数第二个参数读取</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id11">
+<h4>2.2.4 配置函数文档<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">ExternalFuncRegistryHelper</span></code> 提供了<code class="docutils literal notranslate"><span class="pre">doc(doc_string)</span></code>API来配置文档。函数文档用来描述函数的功能和用法。它的主要受众是普通用户。因此，要求文档清晰易懂。一般需要包含一下几类信息：</p>
+<ul class="simple">
+<li><p><strong>&#64;brief</strong> ：简要描述函数的功能</p></li>
+<li><p><strong>&#64;param</strong>：函数参数描述</p></li>
+<li><p><strong>Examples</strong>： 函数的使用示例。一般需要提供SQL的查询示例。SQL语句需要放置在 <code class="docutils literal notranslate"><span class="pre">&#64;code/&#64;endcode</span></code> 代码块中。</p></li>
+<li><p><strong>&#64;since</strong> ：指明引入该函数的OpenMLDB版本。OpenMLDB版本可以从项目的 <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/CMakeLists.txt">CMakeList.txt</a>获得:<code class="docutils literal notranslate"> <span class="pre">${OPENMLDB_VERSION_MAJOR}.${OPENMLDB_VERSION_MINOR}.${OPENMLDB_VERSION_BUG}</span></code></p></li>
+</ul>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;function_name&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="c1">//...</span>
+<span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">      		@brief a brief summary of the my_function&#39;s purpose and behavior</span>
+
+<span class="s"> 					@param param1 a brief description of param1</span>
+
+<span class="s">          Example:</span>
+
+<span class="s">          @code{.sql}</span>
+<span class="s">             select my_function(1);</span>
+<span class="s">              -- output xxx</span>
+<span class="s">          @endcode</span>
+<span class="s">          @since 0.4.0</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id12">
+<h4>2.2.5 注册函数别名<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h4>
+<p>一般情况下，需要开发C++函数，然后注册到<code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary</span></code>中去。但开发已有函数的别名函数时，则不需要遵循标准开发流程；仅需要使用<code class="docutils literal notranslate"><span class="pre">RegisterAlias(&quot;alias_func&quot;,</span> <span class="pre">&quot;original_func&quot;)</span></code>API将别名关联到到已注册函数上即可。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;substring&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">StringRef</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                 </span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">udf</span><span class="o">::</span><span class="n">v1</span><span class="o">::</span><span class="n">sub_string</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">return_by_arg</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">            @brief Return a substring `len` characters long from string str, starting at position `pos`.</span>
+<span class="s">            Alias function: `substr`</span>
+
+<span class="s">            Example:</span>
+
+<span class="s">            @code{.sql}</span>
+
+<span class="s">                select substr(&quot;hello world&quot;, 3, 6);</span>
+<span class="s">                -- output &quot;llo wo&quot;</span>
+
+<span class="s">            @endcode</span>
+
+<span class="s">            @param str</span>
+<span class="s">            @param pos: define the begining of the substring.</span>
+
+<span class="s">             - If `pos` is positive, the begining of the substring is `pos` charactors from the start of string.</span>
+<span class="s">             - If `pos` is negative, the beginning of the substring is `pos` characters from the end of the string, rather than the beginning.</span>
+
+<span class="s">            @param len length of substring. If len is less than 1, the result is the empty string.</span>
+
+<span class="s">            @since 0.1.0</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// substring() is registered into default library already </span>
+<span class="n">RegisterAlias</span><span class="p">(</span><span class="s">&quot;substr&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;substring&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id13">
+<h3>2.3 单元函数测试<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h3>
+<section id="id14">
+<h4>2.3.1 添加函数单元测试<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h4>
+<p>函数开发完成后，开发者需要添加相对应的测试例以确保系统运行正确。一般地，可以在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/codegen/udf_ir_builder_test.cc">src/codegen/udf_ir_builder_test.cc</a>中添加<code class="docutils literal notranslate"><span class="pre">TEST_F</span></code>单测。我们提供了CheckUdf函数以便开发者检验函数结果。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">return_type</span><span class="p">,</span><span class="w"> </span><span class="n">arg_type</span><span class="p">,...</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;function_name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">expect_result</span><span class="p">,</span><span class="w"> </span><span class="n">arg_value</span><span class="p">,...);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>对每一个函数（每一种参数组合），我们至少需要实现:</p>
+<ul class="simple">
+<li><p>添加一个单测，验证普通结果</p></li>
+<li><p>如果结果是<em><strong>nullable</strong></em>,需要添加一个单测，验证结果为空</p></li>
+</ul>
+<p><strong>示例:</strong></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// month(timestamp) normal check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">month_timestamp_udf_test</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Timestamp</span><span class="w"> </span><span class="nf">time</span><span class="p">(</span><span class="mf">1589958000000L</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="n">Timestamp</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;month&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="c1">// date(timestamp) normal check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">timestamp_to_date_test_0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Date</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Timestamp</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">Date</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="w"> </span><span class="mo">05</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="p">(</span><span class="mf">1589958000000L</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="c1">// date(timestamp) null check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">timestamp_to_date_test_null_0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Date</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Timestamp</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id15">
+<h4>2.3.2 编译和执行单测<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 编译 udf_ir_builder_test, 默认输出路径为 build/hybridse/src/codegen/</span>
+make <span class="nv">OPENMLDB_BUILD_TARGET</span><span class="o">=</span>udf_ir_builder_test <span class="nv">TESTING_ENABLE</span><span class="o">=</span>ON
+
+<span class="c1"># 运行测试程序, 注意需要指定环境变量 SQL_CASE_BASE_DIR 到 OpenMLDB 项目到克隆路径</span>
+<span class="nv">SQL_CASE_BASE_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">OPENMLDB_DIR</span><span class="si">}</span> ./build/hybridse/src/codegen/udf_ir_builder_test
+</pre></div>
+</div>
+<p>了解更多编译信息参见 <a class="reference internal" href="../deploy/compile.html"><span class="doc std std-doc">compile.md</span></a></p>
+</section>
+</section>
+</section>
+<section id="id16">
+<h2>3. SQL函数开发模版<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h2>
+<p>我们按内置函数的返回类型将函数基本分为三种类型：</p>
+<ul class="simple">
+<li><p>SQL函数返回值为布尔或数值类型</p></li>
+<li><p>SQL函数返回值为<strong>STRING</strong>, <strong>TIMESTAMP</strong>或<strong>DATE</strong></p></li>
+<li><p>SQL函数的返回值可能为空</p></li>
+</ul>
+<p>我们将详细介绍这几种类型的函数的开发和注册的基本流程。</p>
+<section id="id17">
+<h3>3.1 SQL函数返回值为布尔或数值类型<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h3>
+<p>当SQL函数返回值为布尔或数值类型（如<strong>BOOL</strong>, <strong>SMALLINT</strong>, <strong>INT</strong>, <strong>BIGINT</strong>, <strong>FLOAT</strong>, <strong>DOUBLE</strong>）时，一般地，C++的函数返回值为与之对应的C++类型（<code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">int16_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int64_t</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>)。可以将函数设计为如下的样子：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">Ret</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">Ret</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span><span class="w"> </span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>同时，在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>中注册和配置函数：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/default_udf_library.cc</span>
+<span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;my_func&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">R</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v1</span><span class="o">::</span><span class="n">func</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">            documenting my_func</span>
+<span class="s">        </span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="sqlstring-timestampdate">
+<h3>3.2 SQL函数返回值为<strong>STRING</strong>, <strong>TIMESTAMP</strong>或<strong>DATE</strong><a class="headerlink" href="#sqlstring-timestampdate" title="Permalink to this headline">#</a></h3>
+<p>当SQL函数返回值为<strong>STRING</strong>, <strong>TIMESTAMP</strong>或<strong>DATE</strong>时，要求C++函数通过参数来输出结果。这意味着，普通参数后额外有一个指针类型的参数（<code class="docutils literal notranslate"><span class="pre">codec::StringRef*</span></code>, <code class="docutils literal notranslate"><span class="pre">codec::Timestamp*</span></code>或 <code class="docutils literal notranslate"><span class="pre">codec::Date*</span></code>)用来存放和返回结果值。</p>
+<p>具体地，我们可以将函数设计为如下的样子：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Ret</span><span class="o">*</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Ret</span><span class="o">*</span><span class="w"> </span><span class="n">ret</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="c1">// *ret = result value</span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>同时，在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>中注册和配置函数。请注意：由于函数结果存通过参数输出，所以要配置<code class="docutils literal notranslate"><span class="pre">return_by_arg(true)</span></code></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/default_udf_library.cc</span>
+<span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;my_func&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">R</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Ret</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v1</span><span class="o">::</span><span class="n">func</span><span class="p">))</span><span class="w"></span>
+<span class="w">  			</span><span class="p">.</span><span class="n">return_by_arg</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">            documenting my_func</span>
+<span class="s">        </span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="sqlnullable">
+<h3>3.3 SQL函数的返回值类型是Nullable<a class="headerlink" href="#sqlnullable" title="Permalink to this headline">#</a></h3>
+<p>当SQL函数的返回值可能为空(<strong>Nullable</strong>)时，额外要有一个<code class="docutils literal notranslate"><span class="pre">bool*</span></code>类型的参数来存放结果为空与否。</p>
+<p>具体地，我们可以将函数设计为如下的样子：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Ret</span><span class="o">*</span><span class="w"> </span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">*</span><span class="w"> </span><span class="n">null_flag</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Ret</span><span class="o">*</span><span class="w"> </span><span class="n">ret</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">*</span><span class="w"> </span><span class="n">null_flag</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="c1">// if result value is null</span>
+<span class="w">        </span><span class="c1">// 	*null_flag = true</span>
+<span class="w">        </span><span class="c1">// else </span>
+<span class="w">        </span><span class="c1">// 	*ret = result value</span>
+<span class="w">        </span><span class="c1">// *null_flag = false</span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span>
+<span class="p">}</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>同时，在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>中注册和配置函数：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/default_udf_library.cc</span>
+<span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;my_func&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">R</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v1</span><span class="o">::</span><span class="n">func</span><span class="p">))</span><span class="w"></span>
+<span class="w">  			</span><span class="p">.</span><span class="n">return_by_arg</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"></span>
+<span class="w">  			</span><span class="p">.</span><span class="n">returns</span><span class="o">&lt;</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Ret</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">            documenting my_func</span>
+<span class="s">        </span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h3>3.4 SQL函数参数是Nullable<a class="headerlink" href="#id18" title="Permalink to this headline">#</a></h3>
+<p>OpenMLDB对函数的NULL参数有默认的处理机制。即，任意一个参数为NULL时，函数返回NULL。但如果开发者想要在函数中获得参数是否为NULL并特别处理NULL参数时，我们需要把参数NULL的信息传递到函数中去。</p>
+<p>一般地做法是将这个参数配置为<code class="docutils literal notranslate"><span class="pre">Nullable</span></code>，并且在C++函数的对应参数后面加一个<code class="docutils literal notranslate"><span class="pre">bool</span></code>参数才存放参数值是否为空的信息。</p>
+<p>具体地，我们可以将函数设计为如下的样子：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// we are going to handle null arg2 in the function</span>
+<span class="w">      </span><span class="n">Ret</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_arg2_null</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">Ret</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_arg2_null</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="c1">// if is_arg1_null</span>
+<span class="w">        </span><span class="c1">// 	return Ret(0)</span>
+<span class="w">        </span><span class="c1">// else </span>
+<span class="w">        </span><span class="c1">// 	compute and return result</span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span>
+<span class="p">}</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>同时，在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>中注册和配置函数：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/default_udf_library.cc</span>
+<span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;my_func&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Nulable</span><span class="o">&lt;</span><span class="n">Arg2</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">R</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v1</span><span class="o">::</span><span class="n">func</span><span class="p">))()</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">            documenting my_func</span>
+<span class="s">        </span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id19">
+<h2>4. SQL函数开发实例<a class="headerlink" href="#id19" title="Permalink to this headline">#</a></h2>
+<section id="sql-int-month-timestamp">
+<h3>4.1 SQL函数返回值为布尔或数值类型 - <code class="docutils literal notranslate"><span class="pre">INT</span> <span class="pre">Month(TIMESTAMP)</span></code>函数<a class="headerlink" href="#sql-int-month-timestamp" title="Permalink to this headline">#</a></h3>
+<p>Month()函数接受一个<strong>TIMESTAMP</strong>的时间戳参数，返回一个<strong>INT</strong>整数值，它表示指定日期的月份。参考<span class="xref myst">3.1 SQL函数返回值为布尔或数值类型</span></p>
+<section id="step-1">
+<h4><strong>step 1: 实现待注册的内置函数</strong><a class="headerlink" href="#step-1" title="Permalink to this headline">#</a></h4>
+<p>在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.h">hybridse/src/udf/udf.h</a>声明<code class="docutils literal notranslate"><span class="pre">month()</span></code>函数：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="kt">int64_t</span><span class="w"> </span><span class="n">ts</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="w"> </span><span class="o">*</span><span class="n">ts</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namepsace hybridse</span>
+</pre></div>
+</div>
+<p>在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.cc">hybridse/src/udf/udf.cc</a>中实现<code class="docutils literal notranslate"><span class="pre">month()</span></code>函数:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="kt">int64_t</span><span class="w"> </span><span class="n">ts</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="kt">time_t</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ts</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TZ_OFFSET</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="k">struct</span><span class="w"> </span><span class="nc">tm</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="n">gmtime_r</span><span class="p">(</span><span class="o">&amp;</span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">t</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">tm_mon</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="w"> </span><span class="o">*</span><span class="n">ts</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">month</span><span class="p">(</span><span class="n">ts</span><span class="o">-&gt;</span><span class="n">ts_</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namepsace hybridse</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2">
+<h4><strong>step 2: 配置函数，并注册到默认函数库中</strong><a class="headerlink" href="#step-2" title="Permalink to this headline">#</a></h4>
+<p>在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>中注册和配置函数：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">DefaultUdfLibrary::InitTimeAndDateUdf</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;month&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">Timestamp</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">Timestamp</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v1</span><span class="o">::</span><span class="n">month</span><span class="p">))</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">              @brief Return the month part of a timestamp</span>
+
+<span class="s">              Example:</span>
+<span class="s">              @code{.sql}</span>
+<span class="s">                  select month(timestamp(1590115420000));</span>
+<span class="s">                  -- output 5</span>
+<span class="s">              @endcode</span>
+<span class="s">              @since 0.1.0</span>
+<span class="s">          </span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namepsace hybridse</span>
+</pre></div>
+</div>
+</section>
+<section id="step-3">
+<h4>step 3: 函数单元测试<a class="headerlink" href="#step-3" title="Permalink to this headline">#</a></h4>
+<p>在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/codegen/udf_ir_builder_test.cc">src/codegen/udf_ir_builder_test.cc</a>中添加<code class="docutils literal notranslate"><span class="pre">TEST_F</span></code>单测，并<span class="xref myst">编译和运行单元测试</span>。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// month(timestamp) normal check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">month_timestamp_udf_test</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Timestamp</span><span class="w"> </span><span class="nf">time</span><span class="p">(</span><span class="mf">1589958000000L</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="n">Timestamp</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;month&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>SQL函数开发完成后，可通过SQL语句中调用month函数（注意：函数名大小写不敏感）：</p>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="k">MONTH</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="p">(</span><span class="mi">1590115420000</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">m1</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">(</span><span class="k">timestamp</span><span class="p">(</span><span class="mi">1590115420000</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">m2</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">---- ---- </span>
+<span class="w">  </span><span class="n">m1</span><span class="w">   </span><span class="n">m2</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">---- ---- </span>
+<span class="w">  </span><span class="mi">5</span><span class="w">    </span><span class="mi">5</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">---- ---- </span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sqlstring-timestampdate-string-string-bool">
+<h3>4.2 SQL函数返回值为<strong>STRING</strong>, <strong>TIMESTAMP</strong>或DATE - <code class="docutils literal notranslate"><span class="pre">STRING</span> <span class="pre">String(BOOL)</span></code>函数<a class="headerlink" href="#sqlstring-timestampdate-string-string-bool" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">STRING</span> <span class="pre">String(BOOL)</span></code>函数接受一个<strong>BOOL</strong>参数，并将BOOL值转为<strong>STRING</strong>类型的值输出。详情参考[3.2 SQL函数返回值为<strong>STRING</strong>, <strong>TIMESTAMP</strong>或<strong>DATE</strong>](#3.2-SQL函数返回值为<strong>STRING</strong>, <strong>TIMESTAMP</strong>或<strong>DATE</strong>)</p>
+<section id="id20">
+<h4><strong>step 1: 实现待注册的内置函数</strong><a class="headerlink" href="#id20" title="Permalink to this headline">#</a></h4>
+<p>在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.h">hybridse/src/udf/udf.h</a>声明<strong>bool_to_string()</strong>)函数：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="nf">bool_to_string</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">hybridse</span><span class="o">::</span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namepsace hybridse</span>
+</pre></div>
+</div>
+<p>在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.cc">hybridse/src/udf/udf.cc</a>中实现**bool_to_string()**函数:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">bool_to_string</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">hybridse</span><span class="o">::</span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AllocManagedStringBuf</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">memcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">data_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AllocManagedStringBuf</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">memcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;false&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">data_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// namepsace hybridse</span>
+</pre></div>
+</div>
+<p>请注意，我们使用<code class="docutils literal notranslate"><span class="pre">AllocManagedStringBuf</span></code>向OpenMLDB的内存池申请空间，而不使用<code class="docutils literal notranslate"><span class="pre">new</span></code>操作符或者<code class="docutils literal notranslate"><span class="pre">malloc</span></code>函数。</p>
+</section>
+<section id="id21">
+<h4><strong>step 2: 配置参数，返回值并注册函数</strong><a class="headerlink" href="#id21" title="Permalink to this headline">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">STRING</span> <span class="pre">String(BOOL)</span></code>是类型转换函数，建议在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>的<code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary::InitTypeUdf()</span></code>方法中注册和配置函数。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">	</span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">DefaultUdfLibrary::InitTypeUdf</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// ...    </span>
+<span class="w">        </span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">                          </span><span class="n">udf</span><span class="o">::</span><span class="n">v1</span><span class="o">::</span><span class="n">bool_to_string</span><span class="p">))</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">return_by_arg</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">              @brief Return string converted from bool expression</span>
+
+<span class="s">              Example:</span>
+
+<span class="s">              @code{.sql}</span>
+<span class="s">                  select string(true);</span>
+<span class="s">                  -- output &quot;true&quot;</span>
+
+<span class="s">                  select string(false);</span>
+<span class="s">                  -- output &quot;false&quot;</span>
+<span class="s">              @endcode</span>
+<span class="s">              @since 0.1.0</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namepsace hybridse</span>
+</pre></div>
+</div>
+</section>
+<section id="id22">
+<h4>step 3: 函数单元测试<a class="headerlink" href="#id22" title="Permalink to this headline">#</a></h4>
+<p>在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/codegen/udf_ir_builder_test.cc">src/codegen/udf_ir_builder_test.cc</a>中添加<code class="docutils literal notranslate"><span class="pre">TEST_F</span></code>单测，并<span class="xref myst">编译和运行单元测试</span>。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// string(bool) normal check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">bool_to_string_test</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Timestamp</span><span class="w"> </span><span class="nf">time</span><span class="p">(</span><span class="mf">1589958000000L</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">StringRef</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">  	</span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">StringRef</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;false&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>SQL函数开发完成后，可通过SQL调用String()函数。(注：函数名大小写不敏感）：</p>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="n">STRING</span><span class="p">(</span><span class="k">true</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">str_true</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="k">false</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">str_false</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----------  ---------- </span>
+<span class="w">  </span><span class="n">str_true</span><span class="w">   </span><span class="n">str_false</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">----------  ---------- </span>
+<span class="w">   </span><span class="k">true</span><span class="w">        </span><span class="k">true</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----------  ---------- </span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sqlnullable-date-date-timestamp">
+<h3>4.3 SQL函数的返回值类型是Nullable - <code class="docutils literal notranslate"><span class="pre">DATE</span> <span class="pre">Date(TIMESTAMP)</span></code>函数<a class="headerlink" href="#sqlnullable-date-date-timestamp" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">DATE</span> <span class="pre">Date(TIMESTAMP)</span></code>函数接受一个<code class="docutils literal notranslate"><span class="pre">TIMESTAMP</span></code>参数，并将转成<code class="docutils literal notranslate"><span class="pre">DATE</span></code>类型输出。</p>
+<p>参考<span class="xref myst">#3.3 SQL函数的返回值类型是Nullable </span>和[#3.2 SQL函数返回值为<strong>STRING</strong>, <strong>TIMESTAMP</strong>或<strong>DATE</strong>](#3.2-SQL函数返回值为<strong>STRING</strong>, <strong>TIMESTAMP</strong>或<strong>DATE</strong>)</p>
+<section id="id23">
+<h4><strong>step 1: 实现待注册的内置函数</strong><a class="headerlink" href="#id23" title="Permalink to this headline">#</a></h4>
+<p>由于OpenMLDB的<code class="docutils literal notranslate"><span class="pre">date</span></code>类型是一个结构体类型，设计函数是，不直接返回结果，而是将结果存放在参数中返回。同时，考虑到日期转换可能有异常或失败，返回结果是<em><strong>nullable</strong></em>的。因此，我们额外增加一个<em><strong>is_null</strong></em>参数保存结果是否为空。</p>
+<p>在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.h">hybridse/src/udf/udf.h</a>声明<code class="docutils literal notranslate"><span class="pre">timestamp_to_date()</span></code>函数：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="nf">timestamp_to_date</span><span class="p">(</span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="w"> </span><span class="o">*</span><span class="n">timestamp</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">codec</span><span class="o">::</span><span class="n">Date</span><span class="w"> </span><span class="o">*</span><span class="n">ret</span><span class="w"> </span><span class="cm">/*result output*/</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">*</span><span class="n">is_null</span><span class="w"> </span><span class="cm">/*null flag*/</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace hybridse</span>
+</pre></div>
+</div>
+<p>在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.cc">hybridse/src/udf/udf.cc</a>中实现<code class="docutils literal notranslate"><span class="pre">timestamp_to_date()</span></code>函数:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">timestamp_to_date</span><span class="p">(</span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="w"> </span><span class="o">*</span><span class="n">timestamp</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="n">codec</span><span class="o">::</span><span class="n">Date</span><span class="w"> </span><span class="o">*</span><span class="n">ret</span><span class="w"> </span><span class="cm">/*result output*/</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">*</span><span class="n">is_null</span><span class="w"> </span><span class="cm">/*null flag*/</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="kt">time_t</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">timestamp</span><span class="o">-&gt;</span><span class="n">ts_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TZ_OFFSET</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="k">struct</span><span class="w"> </span><span class="nc">tm</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">nullptr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">gmtime_r</span><span class="p">(</span><span class="o">&amp;</span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">t</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="o">*</span><span class="n">is_null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">              </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="o">*</span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">Date</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">tm_year</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1900</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">tm_mon</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">tm_mday</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="o">*</span><span class="n">is_null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace hybridse</span>
+</pre></div>
+</div>
+</section>
+<section id="id24">
+<h4><strong>step 2: 配置参数，返回值并注册函数</strong><a class="headerlink" href="#id24" title="Permalink to this headline">#</a></h4>
+<p>函数名和函数参数的配置和普通函数配置一样。但需要额外注意返回值类型的配置：</p>
+<ul class="simple">
+<li><p>因为函数结果存放在参数中返回，所以配置<code class="docutils literal notranslate"><span class="pre">return_by_arg(true)</span></code></p></li>
+<li><p>因为函数结果可能为null所以配置<code class="docutils literal notranslate"><span class="pre">.returns&lt;Nullable&lt;Date&gt;&gt;</span></code></p></li>
+</ul>
+<p>因为<code class="docutils literal notranslate"><span class="pre">DATE</span> <span class="pre">Date(TIMESTAMP)</span></code>函数是时间和日期函数，所以建议在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>的<code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary::InitTimeAndDateUdf()</span></code>方法中注册和配置函数：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">DefaultUdfLibrary::InitTimeAndDateUdf</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// ...    </span>
+<span class="w">        </span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;date&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">Timestamp</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">Date</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v1</span><span class="o">::</span><span class="n">timestamp_to_date</span><span class="p">))</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">return_by_arg</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">returns</span><span class="o">&lt;</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Date</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">              @brief Cast timestamp or string expression to date</span>
+<span class="s">              Example:</span>
+
+<span class="s">              @code{.sql}</span>
+<span class="s">                  select date(timestamp(1590115420000));</span>
+<span class="s">                  -- output 2020-05-22</span>
+<span class="s">              @endcode</span>
+<span class="s">              @since 0.1.0</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace hybridse</span>
+</pre></div>
+</div>
+</section>
+<section id="id25">
+<h4>step 3: 函数单元测试<a class="headerlink" href="#id25" title="Permalink to this headline">#</a></h4>
+<p>在<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/codegen/udf_ir_builder_test.cc">src/codegen/udf_ir_builder_test.cc</a>中添加<code class="docutils literal notranslate"><span class="pre">TEST_F</span></code>单测，并<span class="xref myst">编译和运行单元测试</span>。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// date(timestamp) normal check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">timestamp_to_date_test_0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Date</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Timestamp</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">Date</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="w"> </span><span class="mo">05</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="p">(</span><span class="mf">1589958000000L</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="c1">// date(timestamp) null check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">timestamp_to_date_test_null_0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Date</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Timestamp</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>SQL函数开发完成后，可通过SQL调用Date()函数。(注：函数名大小写不敏感）：</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="nb">date</span><span class="p">(</span><span class="k">timestamp</span><span class="p">(</span><span class="mi">1590115420000</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----------</span>
+<span class="w">     </span><span class="n">dt</span><span class="w"></span>
+<span class="w"> </span><span class="c1">------------</span>
+<span class="w">  </span><span class="mi">2020</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span>
+<span class="w"> </span><span class="c1">------------</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="code_structure.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">代码结构</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../reference/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">参考</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:55:56 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

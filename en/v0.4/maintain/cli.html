@@ -1,0 +1,1188 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Operations in CLI &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developers" href="../developer/index.html" />
+    <link rel="prev" title="Maintenance" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     History
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     v0.4.x Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     Guidelines for Feature Engineering Development (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     Guidelines for Feature Engineering Development (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   Deployment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Maintenance
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Operations in CLI
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: v0.4</br>
+Versions：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="cli.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/maintain/cli.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ns-client">
+   NS Client
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#use">
+     use
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showtable">
+     showtable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showtablet">
+     showtablet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#addreplica">
+     addreplica
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delreplica">
+     delreplica
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#migrate">
+     migrate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confget">
+     confget
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confsets">
+     confsets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offlineendpoint">
+     offlineendpoint
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recoverendpoint">
+     recoverendpoint
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changeleader">
+     changeleader
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recoverable">
+     recoverable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cancelop">
+     cancelop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showopstatus">
+     showopstatus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updatetablealive">
+     updatetablealive
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showns">
+     showns
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exit">
+     exit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quit">
+     quit
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tablet-client">
+   Tablet Client
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loadtable">
+     loadtable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changerole">
+     changerole
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gettablestatus">
+     gettablestatus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getfollower">
+     getfollower
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     exit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     quit
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Operations in CLI</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ns-client">
+   NS Client
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#use">
+     use
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showtable">
+     showtable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showtablet">
+     showtablet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#addreplica">
+     addreplica
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delreplica">
+     delreplica
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#migrate">
+     migrate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confget">
+     confget
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confsets">
+     confsets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offlineendpoint">
+     offlineendpoint
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recoverendpoint">
+     recoverendpoint
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changeleader">
+     changeleader
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recoverable">
+     recoverable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cancelop">
+     cancelop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showopstatus">
+     showopstatus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updatetablealive">
+     updatetablealive
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showns">
+     showns
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exit">
+     exit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quit">
+     quit
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tablet-client">
+   Tablet Client
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loadtable">
+     loadtable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changerole">
+     changerole
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gettablestatus">
+     gettablestatus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getfollower">
+     getfollower
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     exit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     quit
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="operations-in-cli">
+<h1>Operations in CLI<a class="headerlink" href="#operations-in-cli" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="#ns-client"><span class="std std-doc">NS Client</span></a></p></li>
+<li><p><a class="reference internal" href="#tablet-client"><span class="std std-doc">Tablet Client</span></a></p></li>
+</ul>
+<section id="ns-client">
+<h2>NS Client<a class="headerlink" href="#ns-client" title="Permalink to this headline">#</a></h2>
+<p>Connecting to the NS Client requires specifying zk_cluster, zk_root_path and role. Where zk_cluster is the zk address, zk_root_path is the root path of the cluster in zk, role is the role to be started and needs to be specified as ns_client</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --zk_cluster<span class="o">=</span><span class="m">172</span>.27.2.52:12200 --zk_root_path<span class="o">=</span>/onebox --role<span class="o">=</span>ns_client
+</pre></div>
+</div>
+<section id="use">
+<h3>use<a class="headerlink" href="#use" title="Permalink to this headline">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">use</span></code> command can switch to a database</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">use</span> <span class="n">demodb</span>
+</pre></div>
+</div>
+</section>
+<section id="showtable">
+<h3>showtable<a class="headerlink" href="#showtable" title="Permalink to this headline">#</a></h3>
+<p>View all tables or specify a table</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">showtable</span> <span class="pre">[table_name]</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">6531</span> <span class="n">demo_db</span> <span class="o">&gt;</span> <span class="n">showtable</span>
+   <span class="n">name</span> <span class="n">tid</span> <span class="n">pid</span> <span class="n">endpoint</span> <span class="n">role</span> <span class="n">is_alive</span> <span class="n">offset</span> <span class="n">record_cnt</span> <span class="n">memused</span> <span class="n">diskused</span>
+<span class="o">--------------------------------------------------</span> <span class="o">--------------------------------------------------</span> <span class="o">--</span>
+  <span class="n">aaa</span> <span class="mi">22</span> <span class="mi">0</span> <span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">9971</span> <span class="n">leader</span> <span class="n">yes</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span> <span class="mf">8.646</span> <span class="n">K</span>
+  <span class="n">auto_VCeOIIKA</span> <span class="mi">25</span> <span class="mi">0</span> <span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">9971</span> <span class="n">leader</span> <span class="n">yes</span> <span class="mi">8</span> <span class="mi">4</span> <span class="mf">498.000</span> <span class="mf">9.128</span> <span class="n">K</span>
+  <span class="n">t1</span> <span class="mi">21</span> <span class="mi">0</span> <span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">9971</span> <span class="n">leader</span> <span class="n">yes</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mf">301.000</span> <span class="mf">9.353</span> <span class="n">K</span>
+<span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">6531</span> <span class="n">demo_db</span><span class="o">&gt;</span> <span class="n">showtable</span> <span class="n">auto_VCeOIIKA</span>
+   <span class="n">name</span> <span class="n">tid</span> <span class="n">pid</span> <span class="n">endpoint</span> <span class="n">role</span> <span class="n">is_alive</span> <span class="n">offset</span> <span class="n">record_cnt</span> <span class="n">memused</span> <span class="n">diskused</span>
+<span class="o">--------------------------------------------------</span> <span class="o">--------------------------------------------------</span> <span class="o">--</span>
+  <span class="n">auto_VCeOIIKA</span> <span class="mi">25</span> <span class="mi">0</span> <span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">9971</span> <span class="n">leader</span> <span class="n">yes</span> <span class="mi">8</span> <span class="mi">4</span> <span class="mf">498.000</span> <span class="mf">9.128</span> <span class="n">K</span>
+</pre></div>
+</div>
+</section>
+<section id="showtablet">
+<h3>showtablet<a class="headerlink" href="#showtablet" title="Permalink to this headline">#</a></h3>
+<p>View tablet information(if the serverName is specified and the local IP auto-configuration is enabled, then the endpoint is shown as the serverName and the real_endpoint is shown as “-”)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">showtablet</span>
+  <span class="n">endpoint</span> <span class="n">real_endpoint</span> <span class="n">state</span> <span class="n">age</span>
+<span class="o">--------------------------------------------------</span> <span class="o">------------</span>
+  <span class="mi">6534708411798331392</span> <span class="mf">172.17.0.12</span><span class="p">:</span><span class="mi">9531</span> <span class="n">kTabletHealthy</span> <span class="mi">1</span><span class="n">d</span>
+  <span class="mi">6534708415948603392</span> <span class="mf">172.17.0.13</span><span class="p">:</span><span class="mi">9532</span> <span class="n">kTabletHealthy</span> <span class="mi">1</span><span class="n">d</span>
+  <span class="mi">6534708420092481536</span> <span class="mf">172.17.0.14</span><span class="p">:</span><span class="mi">9533</span> <span class="n">kTabletHealthy</span> <span class="mi">14</span><span class="n">h</span>
+</pre></div>
+</div>
+</section>
+<section id="addreplica">
+<h3>addreplica<a class="headerlink" href="#addreplica" title="Permalink to this headline">#</a></h3>
+<p>Add replicas</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">addreplica</span> <span class="pre">table_name</span> <span class="pre">pid_group</span> <span class="pre">endpoint</span></code></p>
+<ul class="simple">
+<li><p>table_name: the table name</p></li>
+<li><p>pid_group: the collection of shard IDs. There can be the following situations</p>
+<ul>
+<li><p>A single shard</p></li>
+<li><p>Multiple shard IDs, separated by commas. Such as 1,3,5</p></li>
+<li><p>A range of shard IDs with a closed interval; for example, 1-5 means shard 1, 2, 3, 4, 5</p></li>
+</ul>
+</li>
+<li><p>endpoint: The endpoint of the node to be added as a replica</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">showtable</span> <span class="n">test1</span>
+  <span class="n">name</span> <span class="n">tid</span> <span class="n">pid</span> <span class="n">endpoint</span> <span class="n">role</span> <span class="n">ttl</span> <span class="n">is_alive</span> <span class="n">compress_type</span> <span class="n">offset</span> <span class="n">record_cnt</span> <span class="n">memused</span>
+<span class="o">--------------------------------------------------</span> <span class="o">--------------------------------------------------</span> <span class="o">--------</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">0</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">1</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">2</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">3</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+<span class="o">&gt;</span> <span class="n">addreplica</span> <span class="n">test1</span> <span class="mi">0</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">AddReplica</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">showtable</span> <span class="n">test1</span>
+  <span class="n">name</span> <span class="n">tid</span> <span class="n">pid</span> <span class="n">endpoint</span> <span class="n">role</span> <span class="n">ttl</span> <span class="n">is_alive</span> <span class="n">compress_type</span> <span class="n">offset</span> <span class="n">record_cnt</span> <span class="n">memused</span>
+<span class="o">--------------------------------------------------</span> <span class="o">--------------------------------------------------</span> <span class="o">--------</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">0</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">0</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span> <span class="n">follower</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">1</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">2</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">3</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+<span class="o">&gt;</span> <span class="n">addreplica</span> <span class="n">test1</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">AddReplica</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">addreplica</span> <span class="n">test1</span> <span class="mi">1</span><span class="o">-</span><span class="mi">3</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">AddReplica</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<section id="delreplica">
+<h3>delreplica<a class="headerlink" href="#delreplica" title="Permalink to this headline">#</a></h3>
+<p>Delete replicas</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">delreplica</span> <span class="pre">table_name</span> <span class="pre">pid_group</span> <span class="pre">endpoint</span></code></p>
+<ul class="simple">
+<li><p>table_name: the table name</p></li>
+<li><p>pid_group: the collection of shard IDs. There can be the following situations</p>
+<ul>
+<li><p>a single shard</p></li>
+<li><p>Multiple shard IDs, separated by commas. Such as 1,3,5</p></li>
+<li><p>A range of shard IDs with a closed interval; for example, 1-5 means shard 1, 2, 3, 4, 5</p></li>
+</ul>
+</li>
+<li><p>endpoint: The endpoint of node to be deleted as a replica</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">showtable</span> <span class="n">test1</span>
+  <span class="n">name</span> <span class="n">tid</span> <span class="n">pid</span> <span class="n">endpoint</span> <span class="n">role</span> <span class="n">ttl</span> <span class="n">is_alive</span> <span class="n">compress_type</span> <span class="n">offset</span> <span class="n">record_cnt</span> <span class="n">memused</span>
+<span class="o">--------------------------------------------------</span> <span class="o">--------------------------------------------------</span> <span class="o">--------</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">0</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">0</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span> <span class="n">follower</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">1</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">1</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span> <span class="n">follower</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">2</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">2</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span> <span class="n">follower</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">3</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">3</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span> <span class="n">follower</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+<span class="o">&gt;</span> <span class="n">delreplica</span> <span class="n">test1</span> <span class="mi">0</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">DelReplica</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">showtable</span> <span class="n">test1</span>
+  <span class="n">name</span> <span class="n">tid</span> <span class="n">pid</span> <span class="n">endpoint</span> <span class="n">role</span> <span class="n">ttl</span> <span class="n">is_alive</span> <span class="n">compress_type</span> <span class="n">offset</span> <span class="n">record_cnt</span> <span class="n">memused</span>
+<span class="o">--------------------------------------------------</span> <span class="o">--------------------------------------------------</span> <span class="o">--------</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">0</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">1</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">1</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span> <span class="n">follower</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">2</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">2</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span> <span class="n">follower</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">3</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">leader</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+  <span class="n">test1</span> <span class="mi">13</span> <span class="mi">3</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span> <span class="n">follower</span> <span class="mi">0</span><span class="nb">min</span> <span class="n">yes</span> <span class="n">kNoCompress</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mf">0.000</span>
+<span class="o">&gt;</span> <span class="n">delreplica</span> <span class="n">test1</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">DelReplica</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">delreplica</span> <span class="n">test1</span> <span class="mi">1</span><span class="o">-</span><span class="mi">3</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">DelReplica</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<section id="migrate">
+<h3>migrate<a class="headerlink" href="#migrate" title="Permalink to this headline">#</a></h3>
+<p>Replicas migration</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">migrate</span> <span class="pre">src_endpoint</span> <span class="pre">table_name</span> <span class="pre">pid_group</span> <span class="pre">des_endpoint</span></code></p>
+<ul class="simple">
+<li><p>src_endpoint: The endpoint of the node that needs to be checked out</p></li>
+<li><p>table_name: the table name</p></li>
+<li><p>pid_group:  the collection of shard IDs. There can be the following situations</p>
+<ul>
+<li><p>a single shard</p></li>
+<li><p>Multiple shard IDs, separated by commas. Such as 1,3,5</p></li>
+<li><p>A range of shard IDs with a closed interval; for example, 1-5 means shard 1, 2, 3, 4, 5</p></li>
+</ul>
+</li>
+<li><p>des_endpoint: the endpoint of the destination node for migration</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">migrate</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9991</span> <span class="n">table1</span> <span class="mi">1</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9992</span>
+<span class="n">partition</span> <span class="n">migrate</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">migrate</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9991</span> <span class="n">table1</span> <span class="mi">1</span><span class="o">-</span><span class="mi">5</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9992</span>
+<span class="n">partition</span> <span class="n">migrate</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">migrate</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9991</span> <span class="n">table1</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9992</span>
+<span class="n">partition</span> <span class="n">migrate</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<section id="confget">
+<h3>confget<a class="headerlink" href="#confget" title="Permalink to this headline">#</a></h3>
+<p>Get configuration information, currently only supports auto_failover</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">confget</span> <span class="pre">[conf_name]</span></code></p>
+<ul class="simple">
+<li><p>conf_name: the configuration item name, optional</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">confget</span>
+  <span class="n">key</span> <span class="n">value</span>
+<span class="o">-----------------------------</span>
+  <span class="n">auto_failover</span> <span class="n">false</span>
+<span class="o">&gt;</span> <span class="n">confget</span> <span class="n">auto_failover</span>
+  <span class="n">key</span> <span class="n">value</span>
+<span class="o">------------------------</span>
+  <span class="n">auto_failover</span> <span class="n">false</span>
+</pre></div>
+</div>
+</section>
+<section id="confsets">
+<h3>confsets<a class="headerlink" href="#confsets" title="Permalink to this headline">#</a></h3>
+<p>Modify configuration information, currently only supports auto_failover</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">confset</span> <span class="pre">conf_name</span> <span class="pre">value</span></code></p>
+<ul class="simple">
+<li><p>conf_name: the configuration item name</p></li>
+<li><p>value: The value set by the configuration item</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">confset</span> <span class="n">auto_failover</span> <span class="n">true</span>
+<span class="nb">set</span> <span class="n">auto_failover</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<section id="offlineendpoint">
+<h3>offlineendpoint<a class="headerlink" href="#offlineendpoint" title="Permalink to this headline">#</a></h3>
+<p>Make a node offline. This command is asynchronous. After it succeeds, you can view the running status through <code class="docutils literal notranslate"><span class="pre">showopstatus</span></code></p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">offlineendpoint</span> <span class="pre">endpoint</span> <span class="pre">[concurrency]</span></code></p>
+<ul class="simple">
+<li><p>endpoint: This is the given endpoint to go offline. This command will perform the following operations on all shards under the node:</p>
+<ul>
+<li><p>If it is a master, execute the re-election of the master</p></li>
+<li><p>If it is a slave, find the master node and delete the current endpoint copy from the master node</p></li>
+<li><p>Modify is_alive status to no</p></li>
+</ul>
+</li>
+<li><p>concurrency: the concurrent number of task execution. This configuration is optional, the default is 2 (name_server_task_concurrency configuration can be configured), and the maximum value is the value configured by name_server_task_max_concurrency</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; offlineendpoint <span class="m">172</span>.27.128.32:8541
+offline endpoint ok
+&gt;showtable
+  name tid pid endpoint role ttl is_alive compress_type offset record_cnt memused
+-------------------------------------------------- -------------------------------------------------- ------------------
+  flow <span class="m">4</span> <span class="m">0</span> <span class="m">172</span>.27.128.32:8541 leader 0min no kNoCompress <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>.000
+  flow <span class="m">4</span> <span class="m">0</span> <span class="m">172</span>.27.128.33:8541 follower 0min yes kNoCompress <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>.000
+  flow <span class="m">4</span> <span class="m">0</span> <span class="m">172</span>.27.128.31:8541 follower 0min yes kNoCompress <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>.000
+  flow <span class="m">4</span> <span class="m">1</span> <span class="m">172</span>.27.128.33:8541 leader 0min yes kNoCompress <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>.000
+  flow <span class="m">4</span> <span class="m">1</span> <span class="m">172</span>.27.128.31:8541 follower 0min yes kNoCompress <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>.000
+  flow <span class="m">4</span> <span class="m">1</span> <span class="m">172</span>.27.128.32:8541 follower 0min no kNoCompress <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>.000
+</pre></div>
+</div>
+<p>After the command is executed successfully, all shards will have leaders in the yes state</p>
+</section>
+<section id="recoverendpoint">
+<h3>recoverendpoint<a class="headerlink" href="#recoverendpoint" title="Permalink to this headline">#</a></h3>
+<p>Restore node data. This command is asynchronous and after the successful return, you can view the running status through showopstatus</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">recoverendpoint</span> <span class="pre">endpoint</span> <span class="pre">[need_restore]</span> <span class="pre">[concurrency]</span></code></p>
+<ul class="simple">
+<li><p>endpoint: the endpoint of the node to restore</p></li>
+<li><p>need_restore: Whether the table topology is to be restored to the original state, this configuration is optional, the default is false. If set to true, a shard is the leader under this node, and it is still the leader after recoverendpoint is executed to restore data</p></li>
+<li><p>concurrency: the concurrent number of task execution. This configuration is optional, the default is 2 (name_server_task_concurrency configuration can be configured), and the maximum value is the value configured by name_server_task_max_concurrency</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">recoverendpoint</span> <span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">recover</span> <span class="n">endpoint</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">recoverendpoint</span> <span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">8541</span> <span class="n">true</span>
+<span class="n">recover</span> <span class="n">endpoint</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">recoverendpoint</span> <span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">8541</span> <span class="n">true</span> <span class="mi">3</span>
+<span class="n">recover</span> <span class="n">endpoint</span> <span class="n">ok</span>
+</pre></div>
+</div>
+<p><strong>Notice:</strong> Make sure the node is online before executing this command(showtablet command to view)</p>
+</section>
+<section id="changeleader">
+<h3>changeleader<a class="headerlink" href="#changeleader" title="Permalink to this headline">#</a></h3>
+<p>Perform a master-slave switchover for a specified shard. This command is asynchronous and after the successful return, you can view the running status through showopstatus</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">changeleader</span> <span class="pre">table_name</span> <span class="pre">pid</span> <span class="pre">[candidate_leader]</span></code></p>
+<ul class="simple">
+<li><p>table_name: the table name</p></li>
+<li><p>pid: the shard id</p></li>
+<li><p>candidate_leader: Candidate leader. This parameter is optional. If this parameter is not added, it is required that there is no leader whose alive is yes in the shard. If it is set to auto, it can switch even if the alive status of other nodes is yes.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">changeleader</span> <span class="n">flow</span> <span class="mi">0</span>
+<span class="n">change</span> <span class="n">leader</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">changeleader</span> <span class="n">flow</span> <span class="mi">0</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">change</span> <span class="n">leader</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">changeleader</span> <span class="n">flow</span> <span class="mi">0</span> <span class="n">auto</span>
+<span class="n">change</span> <span class="n">leader</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<section id="recoverable">
+<h3>recoverable<a class="headerlink" href="#recoverable" title="Permalink to this headline">#</a></h3>
+<p>Restore a shard data. This command is asynchronous and after the successful return, you can view the running status through showopstatus</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">recovertable</span> <span class="pre">table_name</span> <span class="pre">pid</span> <span class="pre">endpoint</span></code></p>
+<ul class="simple">
+<li><p>table_name: the table name</p></li>
+<li><p>pid: the shard id</p></li>
+<li><p>endpoint: The endpoint to restore the node endpoint where the shard is located</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">recovertable</span> <span class="n">flow</span> <span class="mi">1</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">recover</span> <span class="n">table</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<section id="cancelop">
+<h3>cancelop<a class="headerlink" href="#cancelop" title="Permalink to this headline">#</a></h3>
+<p>Cancels an ongoing or pending operation. After cancellation, the state of the task changes to kCanceled</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">cancelop</span> <span class="pre">op\_id</span></code></p>
+<ul class="simple">
+<li><p>op_id: the operation id to cancel</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; cancelop 5
+Cancel op ok!
+</pre></div>
+</div>
+</section>
+<section id="showopstatus">
+<h3>showopstatus<a class="headerlink" href="#showopstatus" title="Permalink to this headline">#</a></h3>
+<p>Display operation execution information</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">showopstatus</span> <span class="pre">[table_name</span> <span class="pre">pid]</span></code></p>
+<ul class="simple">
+<li><p>table_name: the table name</p></li>
+<li><p>pid: the shard id</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">showopstatus</span>
+  <span class="n">op_id</span> <span class="n">op_type</span> <span class="n">name</span> <span class="n">pid</span> <span class="n">status</span> <span class="n">start_time</span> <span class="n">execute_time</span> <span class="n">end_time</span> <span class="n">cur_task</span>
+<span class="o">--------------------------------------------------</span> <span class="o">--------------------------------------------------</span> <span class="o">--------</span>
+  <span class="mi">51</span> <span class="n">kMigrateOP</span> <span class="n">flow</span> <span class="mi">0</span> <span class="n">kDone</span> <span class="mi">20180824163316</span> <span class="mi">12</span><span class="n">s</span> <span class="mi">20180824163328</span> <span class="o">-</span>
+  <span class="mi">52</span> <span class="n">kRecoverTableOP</span> <span class="n">flow</span> <span class="mi">0</span> <span class="n">kDone</span> <span class="mi">20180824195252</span> <span class="mi">1</span><span class="n">s</span> <span class="mi">20180824195253</span> <span class="o">-</span>
+  <span class="mi">53</span> <span class="n">kRecoverTableOP</span> <span class="n">flow</span> <span class="mi">1</span> <span class="n">kDone</span> <span class="mi">20180824195252</span> <span class="mi">1</span><span class="n">s</span> <span class="mi">20180824195253</span> <span class="o">-</span>
+  <span class="mi">54</span> <span class="n">kUpdateTableAliveOP</span> <span class="n">flow</span> <span class="mi">0</span> <span class="n">kDone</span> <span class="mi">20180824195838</span> <span class="mi">2</span><span class="n">s</span> <span class="mi">20180824195840</span> <span class="o">-</span>
+  <span class="mi">55</span> <span class="n">kChangeLeaderOP</span> <span class="n">flow</span> <span class="mi">0</span> <span class="n">kDone</span> <span class="mi">20180824200135</span> <span class="mi">0</span><span class="n">s</span> <span class="mi">20180824200135</span> <span class="o">-</span>
+  <span class="mi">56</span> <span class="n">kOfflineReplicaOP</span> <span class="n">flow</span> <span class="mi">1</span> <span class="n">kDone</span> <span class="mi">20180824200135</span> <span class="mi">1</span><span class="n">s</span> <span class="mi">20180824200136</span> <span class="o">-</span>
+  <span class="mi">57</span> <span class="n">kReAddReplicaOP</span> <span class="n">flow</span> <span class="mi">0</span> <span class="n">kDone</span> <span class="mi">20180827114331</span> <span class="mi">12</span><span class="n">s</span> <span class="mi">20180827114343</span> <span class="o">-</span>
+  <span class="mi">58</span> <span class="n">kAddReplicaOP</span> <span class="n">test1</span> <span class="mi">0</span> <span class="n">kDone</span> <span class="mi">20180827205907</span> <span class="mi">8</span><span class="n">s</span> <span class="mi">20180827205915</span> <span class="o">-</span>
+  <span class="mi">59</span> <span class="n">kDelReplicaOP</span> <span class="n">test1</span> <span class="mi">0</span> <span class="n">kDone</span> <span class="mi">20180827210248</span> <span class="mi">4</span><span class="n">s</span> <span class="mi">20180827210252</span> <span class="o">-</span>
+<span class="o">&gt;</span> <span class="n">showopstatus</span> <span class="n">flow</span>
+  <span class="n">op_id</span> <span class="n">op_type</span> <span class="n">name</span> <span class="n">pid</span> <span class="n">status</span> <span class="n">start_time</span> <span class="n">execute_time</span> <span class="n">end_time</span> <span class="n">cur_task</span>
+<span class="o">--------------------------------------------------</span> <span class="o">--------------------------------------------------</span> <span class="o">-------</span>
+  <span class="mi">51</span> <span class="n">kMigrateOP</span> <span class="n">flow</span> <span class="mi">0</span> <span class="n">kDone</span> <span class="mi">20180824163316</span> <span class="mi">12</span><span class="n">s</span> <span class="mi">20180824163328</span> <span class="o">-</span>
+  <span class="mi">52</span> <span class="n">kRecoverTableOP</span> <span class="n">flow</span> <span class="mi">0</span> <span class="n">kDone</span> <span class="mi">20180824195252</span> <span class="mi">1</span><span class="n">s</span> <span class="mi">20180824195253</span> <span class="o">-</span>
+  <span class="mi">53</span> <span class="n">kRecoverTableOP</span> <span class="n">flow</span> <span class="mi">1</span> <span class="n">kDone</span> <span class="mi">20180824195252</span> <span class="mi">1</span><span class="n">s</span> <span class="mi">20180824195253</span> <span class="o">-</span>
+  <span class="mi">54</span> <span class="n">kUpdateTableAliveOP</span> <span class="n">flow</span> <span class="mi">0</span> <span class="n">kDone</span> <span class="mi">20180824195838</span> <span class="mi">2</span><span class="n">s</span> <span class="mi">20180824195840</span> <span class="o">-</span>
+  <span class="mi">55</span> <span class="n">kChangeLeaderOP</span> <span class="n">flow</span> <span class="mi">0</span> <span class="n">kDone</span> <span class="mi">20180824200135</span> <span class="mi">0</span><span class="n">s</span> <span class="mi">20180824200135</span> <span class="o">-</span>
+  <span class="mi">56</span> <span class="n">kOfflineReplicaOP</span> <span class="n">flow</span> <span class="mi">1</span> <span class="n">kDone</span> <span class="mi">20180824200135</span> <span class="mi">1</span><span class="n">s</span> <span class="mi">20180824200136</span> <span class="o">-</span>
+  <span class="mi">57</span> <span class="n">kUpdateTableAliveOP</span> <span class="n">flow</span> <span class="mi">0</span> <span class="n">kDone</span> <span class="mi">20180824200212</span> <span class="mi">0</span><span class="n">s</span> <span class="mi">20180824200212</span> <span class="o">-</span>
+<span class="o">&gt;</span><span class="n">showopstatus</span> <span class="n">flow</span> <span class="mi">1</span>
+  <span class="n">op_id</span> <span class="n">op_type</span> <span class="n">name</span> <span class="n">pid</span> <span class="n">status</span> <span class="n">start_time</span> <span class="n">execute_time</span> <span class="n">end_time</span> <span class="n">cur_task</span>
+<span class="o">--------------------------------------------------</span> <span class="o">--------------------------------------------------</span> <span class="o">-------</span>
+  <span class="mi">53</span> <span class="n">kRecoverTableOP</span> <span class="n">flow</span> <span class="mi">1</span> <span class="n">kDone</span> <span class="mi">20180824195252</span> <span class="mi">1</span><span class="n">s</span> <span class="mi">20180824195253</span> <span class="o">-</span>
+  <span class="mi">56</span> <span class="n">kOfflineReplicaOP</span> <span class="n">flow</span> <span class="mi">1</span> <span class="n">kDone</span> <span class="mi">20180824200135</span> <span class="mi">1</span><span class="n">s</span> <span class="mi">20180824200136</span> <span class="o">-</span>
+</pre></div>
+</div>
+</section>
+<section id="updatetablealive">
+<h3>updatetablealive<a class="headerlink" href="#updatetablealive" title="Permalink to this headline">#</a></h3>
+<p>Modify shard alive state</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">updatetablealive</span> <span class="pre">table_name</span> <span class="pre">pid</span> <span class="pre">endpoint</span> <span class="pre">is_alive</span></code></p>
+<ul class="simple">
+<li><p>table_name: the table name</p></li>
+<li><p>pid: the fragment id. If you want to modify all fragments of a table, specify pid as *</p></li>
+<li><p>endpoint: the endpoint of the node</p></li>
+<li><p>is_alive: The  node status, can only fill in yes or no</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">updatetablealive</span> <span class="n">test</span> <span class="o">*</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">no</span>
+<span class="n">update</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">updatetablealive</span> <span class="n">test</span> <span class="mi">1</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8542</span> <span class="n">no</span>
+<span class="n">update</span> <span class="n">ok</span>
+</pre></div>
+</div>
+<p><strong>Notice:</strong> This command cannot be used for failure recovery. It is generally used to cut traffic. The operation method is to change the alive state of a node table to no and read requests will not fall on the node</p>
+</section>
+<section id="showns">
+<h3>showns<a class="headerlink" href="#showns" title="Permalink to this headline">#</a></h3>
+<p>Display the nameserver node and its role (if the serverName and automatic local ip function are used, the endpoint is serverName, and the real_endpoint is “-”)</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">showns</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">showns</span>
+  <span class="n">endpoint</span> <span class="n">real_endpoint</span> <span class="n">role</span>
+<span class="o">-------------------------------------------------------</span>
+  <span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">6531</span> <span class="o">-</span> <span class="n">leader</span>
+</pre></div>
+</div>
+</section>
+<section id="exit">
+<h3>exit<a class="headerlink" href="#exit" title="Permalink to this headline">#</a></h3>
+<p>Exit the client</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">exit</span>
+<span class="n">bye</span>
+</pre></div>
+</div>
+</section>
+<section id="quit">
+<h3>quit<a class="headerlink" href="#quit" title="Permalink to this headline">#</a></h3>
+<p>Exit the client</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">quit</span>
+<span class="n">bye</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tablet-client">
+<h2>Tablet Client<a class="headerlink" href="#tablet-client" title="Permalink to this headline">#</a></h2>
+<p>To connect to the Tablet Client, you need to specify the endpoint and role. The endpoint is the endpoint that needs to be connected to the tablet, and the role is the role to start, which needs to be specified as client</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./openmldb --endpoint<span class="o">=</span><span class="m">172</span>.27.2.52:9520 --role<span class="o">=</span>client
+</pre></div>
+</div>
+<section id="loadtable">
+<h3>loadtable<a class="headerlink" href="#loadtable" title="Permalink to this headline">#</a></h3>
+<ol class="arabic simple">
+<li><p>Load an existing table</p></li>
+</ol>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">loadtable</span> <span class="pre">table_name</span> <span class="pre">tid</span> <span class="pre">pid</span> <span class="pre">ttl</span> <span class="pre">segment_cnt</span></code></p>
+<ul class="simple">
+<li><p>table_name: the table name</p></li>
+<li><p>tid: the id of the table</p></li>
+<li><p>pid: the shard id of the table</p></li>
+<li><p>ttl: Set the ttl value</p></li>
+<li><p>segment_cnt: Set the segment count, generally set to 8</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">loadtable</span> <span class="n">table1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">144000</span> <span class="mi">8</span>
+</pre></div>
+</div>
+<p>loadtable will fail if existing table is in memory</p>
+</section>
+<section id="changerole">
+<h3>changerole<a class="headerlink" href="#changerole" title="Permalink to this headline">#</a></h3>
+<p>Change the leader role of the table</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">changerole</span> <span class="pre">tid</span> <span class="pre">pid</span> <span class="pre">role</span> <span class="pre">\[term\]</span></code></p>
+<ul class="simple">
+<li><p>tid: the id of the table</p></li>
+<li><p>pid: the shard id of the table</p></li>
+<li><p>role: The role to be modified, the value is [leader, follower]</p></li>
+<li><p>term: Set the term’s value, this item is optional, the default is 0</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">changerole</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">followers</span>
+<span class="n">ChangeRole</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">changerole</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">leader</span>
+<span class="n">ChangeRole</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">changerole</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">leader</span> <span class="mi">1002</span>
+<span class="n">ChangeRole</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<section id="gettablestatus">
+<h3>gettablestatus<a class="headerlink" href="#gettablestatus" title="Permalink to this headline">#</a></h3>
+<p>Get table information</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">gettablestatus</span> <span class="pre">\[tid</span> <span class="pre">pid\]</span></code></p>
+<ul class="simple">
+<li><p>tid: the id of the table</p></li>
+<li><p>pid: the shard id of the table</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">gettablestatus</span>
+  <span class="n">tid</span> <span class="n">pid</span> <span class="n">offset</span> <span class="n">mode</span> <span class="n">state</span> <span class="n">enable_expire</span> <span class="n">ttl</span> <span class="n">ttl_offset</span> <span class="n">memused</span> <span class="n">compress_type</span>
+<span class="o">--------------------------------------------------</span> <span class="o">--------------------------------------------------</span> <span class="o">------------------------</span>
+  <span class="mi">1</span> <span class="mi">0</span> <span class="mi">4</span> <span class="n">kTableLeader</span> <span class="n">kSnapshotPaused</span> <span class="n">true</span> <span class="mi">144000</span><span class="nb">min</span> <span class="mi">0</span><span class="n">s</span> <span class="mf">1.313</span> <span class="n">K</span> <span class="n">kNoCompress</span>
+  <span class="mi">2</span> <span class="mi">0</span> <span class="mi">4</span> <span class="n">kTableLeader</span> <span class="n">kTableNormal</span> <span class="n">false</span> <span class="mi">0</span><span class="nb">min</span> <span class="mi">0</span><span class="n">s</span> <span class="mf">689.000</span> <span class="n">kNoCompress</span>
+<span class="o">&gt;</span> <span class="n">gettablestatus</span> <span class="mi">2</span> <span class="mi">0</span>
+  <span class="n">tid</span> <span class="n">pid</span> <span class="n">offset</span> <span class="n">mode</span> <span class="n">state</span> <span class="n">enable_expire</span> <span class="n">ttl</span> <span class="n">ttl_offset</span> <span class="n">memused</span> <span class="n">compress_type</span>
+<span class="o">--------------------------------------------------</span> <span class="o">--------------------------------------------------</span> <span class="o">-----</span>
+  <span class="mi">2</span> <span class="mi">0</span> <span class="mi">4</span> <span class="n">kTableLeader</span> <span class="n">kTableNormal</span> <span class="n">false</span> <span class="mi">0</span><span class="nb">min</span> <span class="mi">0</span><span class="n">s</span> <span class="mf">689.000</span> <span class="n">kNoCompress</span>
+</pre></div>
+</div>
+</section>
+<section id="getfollower">
+<h3>getfollower<a class="headerlink" href="#getfollower" title="Permalink to this headline">#</a></h3>
+<p>View slave node information</p>
+<p>Command format: <code class="docutils literal notranslate"><span class="pre">getfollower</span> <span class="pre">tid</span> <span class="pre">pid</span></code></p>
+<ul class="simple">
+<li><p>tid: the id of the table</p></li>
+<li><p>pid: the shard id of the table</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">getfollower</span> <span class="mi">4</span> <span class="mi">1</span>
+  <span class="c1"># tid pid leader_offset follower offset</span>
+<span class="o">--------------------------------------------------</span> <span class="o">---------</span>
+   <span class="mi">0</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">5923724</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="mi">5920714</span>
+   <span class="mi">1</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">5923724</span> <span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">8541</span> <span class="mi">5921707</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>exit<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>Exit the client</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">exit</span>
+<span class="n">bye</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>quit<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>Exit the client</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">quit</span>
+<span class="n">bye</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Maintenance</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../developer/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Developers</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:48 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

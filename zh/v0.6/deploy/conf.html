@@ -1,0 +1,1253 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>配置文件 &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="运维" href="../maintain/index.html" />
+    <link rel="prev" title="安装部署" href="install_deploy.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   关于
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     发展历程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   快速上手
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/data_import_guide.html">
+     数据导入快速指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   教程
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     基于 SQL 的特征开发（上）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     基于 SQL 的特征开发（下）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     集群版 vs 单机版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     集群版使用流程及执行模式
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/openmldbspark_distribution.html">
+     OpenMLDB Spark 发行版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     在线数据导入工具使用
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   使用案例
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/taxi_tour_duration_prediction.html">
+     OpenMLDB + LightGBM：出租车行程时间预测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/pulsar_connector_demo.html">
+     OpenMLDB Pulsar Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/kafka_connector_demo.html">
+     OpenMLDB Kafka Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/dolphinscheduler_task_demo.html">
+     DolphinScheduler OpenMLDB Task：打造端到端MLOps工作流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/talkingdata_demo.html">
+     TalkingData 广告欺诈检测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/OpenMLDB_Byzer_taxi.html">
+     OpenMLDB + Byzer: 基于 SQL 打造端到端机器学习应用
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/airflow_provider_demo.html">
+     Airflow OpenMLDB Provider 使用案例
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   安装部署
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="compile.html">
+     编译
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="install_deploy.html">
+     安装部署
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     配置文件
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   运维
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     版本升级
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     备份与恢复
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     扩缩容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     监控
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     运维 CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/faq.html">
+     运维 FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/diagnose.html">
+     诊断工具
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   开发者文档
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/contributing.html">
+     Contributing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/code_structure.html">
+     代码结构
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     内置函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/udf_develop_guide.html">
+     自定义函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/sdk_develop.html">
+     SDK 开发指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   参考
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     架构
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       在线模块架构
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       语言结构
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         关键字
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL 对象名
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         字面值
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         大小写敏感
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         注释
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       数据类型
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         数值类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         字符串类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         日期与时间类型
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       表达式，函数和运算
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         运算符
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       数据查询语句 （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT 概况
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         无表 SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       数据操作语句（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       数据定义语句（DDL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_COMPONENTS.html">
+         SHOW COMPONENTS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLE_STATUS.html">
+         SHOW TABLE STATUS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT 管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         创建 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         删除 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         查看 DEPLOYMENTS 列表
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         查看 DEPLOYMENT 详情
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL 上线规范和要求
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       任务管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/ip_tips.html">
+     IP 配置
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/client_config/index.html">
+     客户端配置
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/client_config/client_spark_config.html">
+       客户端Spark配置文件
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+当前版本: v0.6</br>
+版本列表：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="conf.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/deploy/conf.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nameserver-conf-nameserver-flags">
+   nameserver配置文件 conf/nameserver.flags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tablet-conf-tablet-flags">
+   tablet配置文件 conf/tablet.flags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apiserver-conf-tablet-flags">
+   apiserver配置文件 conf/tablet.flags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#taskmanager-conf-taskmanager-properties">
+   TaskManager配置文件 conf/taskmanager.properties
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>配置文件</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nameserver-conf-nameserver-flags">
+   nameserver配置文件 conf/nameserver.flags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tablet-conf-tablet-flags">
+   tablet配置文件 conf/tablet.flags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apiserver-conf-tablet-flags">
+   apiserver配置文件 conf/tablet.flags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#taskmanager-conf-taskmanager-properties">
+   TaskManager配置文件 conf/taskmanager.properties
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>配置文件<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<section id="nameserver-conf-nameserver-flags">
+<h2>nameserver配置文件 conf/nameserver.flags<a class="headerlink" href="#nameserver-conf-nameserver-flags" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># nameserver.conf </span>
+<span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">6527</span>
+<span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">nameserver</span>
+<span class="c1"># 如果是部署单机版不需要配置zk_cluster和zk_root_path，把这俩配置注释即可. 部署集群版需要配置这两项，一个集群中所有节点的这两个配置必须保持一致</span>
+<span class="c1">#--zk_cluster=127.0.0.1:7181</span>
+<span class="c1">#--zk_root_path=/openmldb_cluster</span>
+<span class="c1"># 单机版需要指定tablet的地址, 集群版此配置可忽略</span>
+<span class="o">--</span><span class="n">tablet</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">9921</span>
+<span class="c1"># 配置log目录</span>
+<span class="o">--</span><span class="n">openmldb_log_dir</span><span class="o">=./</span><span class="n">logs</span>
+<span class="c1"># 配置是否开启自动恢复。如果开启的话节点挂掉会自动执行leader切换，节点进程起来之后会自动恢复数据</span>
+<span class="o">--</span><span class="n">auto_failover</span><span class="o">=</span><span class="n">true</span>
+
+<span class="c1"># 配置线程池大小，不需要修改</span>
+<span class="c1">#--thread_pool_size=16</span>
+<span class="c1"># 配置失败重试次数，默认是3</span>
+<span class="c1">#--request_max_retry=3</span>
+<span class="c1"># 配置请求超时时间，默认是12妙</span>
+<span class="c1">#--request_timeout_ms=12000</span>
+<span class="c1"># 配置请求不可达时的重试间隔，一般不需要修改</span>
+<span class="c1">#--request_sleep_time=1000</span>
+<span class="c1"># 配置zookeeper session超时时间，单位是毫秒</span>
+<span class="o">--</span><span class="n">zk_session_timeout</span><span class="o">=</span><span class="mi">10000</span>
+<span class="c1"># 配置zookeeper健康检查间隔，单位是毫秒，一般不需要修改</span>
+<span class="c1">#--zk_keep_alive_check_interval=15000</span>
+<span class="c1"># 配置tablet心跳检测超时时间，默认是1分钟。如果tablet超过这个时间还没连接上，nameserver就认为此tablet不可用，会执行下线该节点的操作</span>
+<span class="o">--</span><span class="n">tablet_heartbeat_timeout</span><span class="o">=</span><span class="mi">60000</span>
+<span class="c1"># 配置tablet健康检查间隔，单位是毫秒</span>
+<span class="c1">#--tablet_offline_check_interval=1000</span>
+
+<span class="c1"># 执行高可用任务的队列数</span>
+<span class="c1">#--name_server_task_pool_size=8</span>
+<span class="c1"># 执行高可用任务的并发数</span>
+<span class="c1">#--name_server_task_concurrency=2</span>
+<span class="c1"># 执行高可用任务的最大并发数</span>
+<span class="c1">#--name_server_task_max_concurrency=8</span>
+<span class="c1"># 执行任务时检查任务的等待时间</span>
+<span class="c1">#--name_server_task_wait_time=1000</span>
+<span class="c1"># 执行任务的最大时间，如果超过后就会打日志</span>
+<span class="c1">#--name_server_op_execute_timeout=7200000</span>
+<span class="c1"># 获取任务的时间间隔</span>
+<span class="c1">#--get_task_status_interval=2000</span>
+<span class="c1"># 获取表状态的时间间隔</span>
+<span class="c1">#--get_table_status_interval=2000</span>
+<span class="c1"># 检查binlog同步进度的最小差值，如果主从offset小于这个值任务已同步成功</span>
+<span class="c1">#--check_binlog_sync_progress_delta=100000</span>
+<span class="c1"># 保存的最大任务数，如果超过这个值就会删除已完成和执行失败的op</span>
+<span class="c1">#--max_op_num=10000</span>
+
+<span class="c1"># 建表默认的副本数</span>
+<span class="c1">#--replica_num=3</span>
+<span class="c1"># 建表默认的分片数</span>
+<span class="c1">#--partition_num=8</span>
+<span class="c1"># 系统表默认的副本数</span>
+<span class="o">--</span><span class="n">system_table_replica_num</span><span class="o">=</span><span class="mi">2</span>
+</pre></div>
+</div>
+</section>
+<section id="tablet-conf-tablet-flags">
+<h2>tablet配置文件 conf/tablet.flags<a class="headerlink" href="#tablet-conf-tablet-flags" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># tablet.conf</span>
+<span class="c1"># 是否使用别名</span>
+<span class="c1">#--use_name=false</span>
+<span class="c1"># 启动的端口号，如果指定了endpoint就不需要指定port</span>
+<span class="c1">#--port=9527</span>
+<span class="c1"># 启动的ip/域名和端口号</span>
+<span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">9921</span>
+<span class="c1"># 启动的角色，不可修改</span>
+<span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">tablet</span>
+
+<span class="c1"># 如果启动集群版需要指定zk的地址和集群在zk的节点路径</span>
+<span class="c1">#--zk_cluster=127.0.0.1:7181</span>
+<span class="c1">#--zk_root_path=/openmldb_cluster</span>
+
+<span class="c1"># 配置线程池大小，建议和cpu核数一致</span>
+<span class="o">--</span><span class="n">thread_pool_size</span><span class="o">=</span><span class="mi">24</span>
+<span class="c1"># zk session的超时时间，单位为毫秒</span>
+<span class="o">--</span><span class="n">zk_session_timeout</span><span class="o">=</span><span class="mi">10000</span>
+<span class="c1"># 检查zk状态的时间间隔，单位为毫秒</span>
+<span class="c1">#--zk_keep_alive_check_interval=15000</span>
+
+<span class="c1"># 日志文件路径</span>
+<span class="o">--</span><span class="n">openmldb_log_dir</span><span class="o">=./</span><span class="n">logs</span>
+
+<span class="c1"># binlog conf</span>
+<span class="c1"># binlog没有新数据添加时的等待时间</span>
+<span class="c1">#--binlog_coffee_time=1000</span>
+<span class="c1"># 主从匹配offset的等待时间</span>
+<span class="c1">#--binlog_match_logoffset_interval=1000</span>
+<span class="c1"># 有数据写入时是否通知立马同步到follower</span>
+<span class="o">--</span><span class="n">binlog_notify_on_put</span><span class="o">=</span><span class="n">true</span>
+<span class="c1"># binlog文件的最大大小，单位时M</span>
+<span class="o">--</span><span class="n">binlog_single_file_max_size</span><span class="o">=</span><span class="mi">2048</span>
+<span class="c1"># 主从同步的batch大小</span>
+<span class="c1">#--binlog_sync_batch_size=32</span>
+<span class="c1"># binlog sync到磁盘的时间间隔，单位时毫秒</span>
+<span class="o">--</span><span class="n">binlog_sync_to_disk_interval</span><span class="o">=</span><span class="mi">5000</span>
+<span class="c1"># 如果没有新数据同步时的wait时间，单位为毫秒</span>
+<span class="c1">#--binlog_sync_wait_time=100</span>
+<span class="c1"># binlog文件名长度</span>
+<span class="c1">#--binlog_name_length=8</span>
+<span class="c1"># 删除binlog文件的时间间隔，单位时毫秒</span>
+<span class="c1">#--binlog_delete_interval=60000</span>
+<span class="c1"># binlog是否开启crc校验</span>
+<span class="c1">#--binlog_enable_crc=false</span>
+
+<span class="c1"># 执行io相关操作的线程池大小</span>
+<span class="c1">#--io_pool_size=2</span>
+<span class="c1"># 执行删除表，发送snapshot, load snapshot等任务的线程池大小</span>
+<span class="c1">#--task_pool_size=8</span>
+<span class="c1"># 配置是否要把表drop后数据放在recycle目录，默认是true</span>
+<span class="c1">#--recycle_bin_enabled=true</span>
+<span class="c1"># 配置recycle目录里数据的保存时间，如果超过这个时间就会删除对应的目录和数据。默认为0表示永远不删除, 单位是分钟</span>
+<span class="c1">#--recycle_ttl=0</span>
+
+<span class="c1"># 内存表数据文件路径</span>
+<span class="c1"># 配置数据目录，多个磁盘使用英文符号, 隔开</span>
+<span class="o">--</span><span class="n">db_root_path</span><span class="o">=./</span><span class="n">db</span>
+<span class="c1"># 配置数据回收站目录，drop表的数据就会放在这里</span>
+<span class="o">--</span><span class="n">recycle_bin_root_path</span><span class="o">=./</span><span class="n">recycle</span>
+<span class="c1">#</span>
+<span class="c1"># HDD表数据文件路径（可选，默认为空）</span>
+<span class="c1"># 配置数据目录，多个磁盘使用英文符号, 隔开</span>
+<span class="o">--</span><span class="n">hdd_root_path</span><span class="o">=./</span><span class="n">db_hdd</span>
+<span class="c1"># 配置数据回收站目录，drop表的数据就会放在这里</span>
+<span class="o">--</span><span class="n">recycle_bin_hdd_root_path</span><span class="o">=./</span><span class="n">recycle_hdd</span>
+<span class="c1">#</span>
+<span class="c1"># SSD表数据文件路径（可选，默认为空）</span>
+<span class="c1"># 配置数据目录，多个磁盘使用英文符号, 隔开</span>
+<span class="o">--</span><span class="n">ssd_root_path</span><span class="o">=./</span><span class="n">db_ssd</span>
+<span class="c1"># 配置数据回收站目录，drop表的数据就会放在这里</span>
+<span class="o">--</span><span class="n">recycle_bin_ssd_root_path</span><span class="o">=./</span><span class="n">recycle_ssd</span>
+
+<span class="c1"># snapshot conf</span>
+<span class="c1"># 配置做snapshot的时间，配置为一天中的几点。如23就表示每天23点做snapshot</span>
+<span class="o">--</span><span class="n">make_snapshot_time</span><span class="o">=</span><span class="mi">23</span>
+<span class="c1"># 做snapshot的检查时间间隔</span>
+<span class="c1">#--make_snapshot_check_interval=600000</span>
+<span class="c1"># 做snapshot的offset阈值，如果和上次snapshot的offset差值小于这个值就不会生成新的snapshot</span>
+<span class="c1">#--make_snapshot_threshold_offset=100000</span>
+<span class="c1"># snapshot线程池大小</span>
+<span class="c1">#--snapshot_pool_size=1</span>
+<span class="c1"># snapshot是否开启压缩。可以设置为off，zlib, snappy</span>
+<span class="c1">#--snapshot_compression=off</span>
+
+<span class="c1"># garbage collection conf</span>
+<span class="c1"># 执行内存表（即storage_mode=Memory）过期删除的时间间隔，单位是分钟</span>
+<span class="o">--</span><span class="n">gc_interval</span><span class="o">=</span><span class="mi">60</span>
+<span class="c1"># 执行磁盘表（即storage_mode=HDD/SSD）过期删除的时间间隔，单位是分钟</span>
+<span class="o">--</span><span class="n">disk_gc_interval</span><span class="o">=</span><span class="mi">60</span>
+<span class="c1"># 执行过期删除的线程池大小</span>
+<span class="o">--</span><span class="n">gc_pool_size</span><span class="o">=</span><span class="mi">2</span>
+
+<span class="c1"># send file conf</span>
+<span class="c1"># 发送文件的最大重试次数</span>
+<span class="c1">#--send_file_max_try=3</span>
+<span class="c1"># 发送文件时的块大小</span>
+<span class="c1">#--stream_block_size=1048576</span>
+<span class="c1"># 发送文件时的带宽限制，默认是20M/s</span>
+<span class="o">--</span><span class="n">stream_bandwidth_limit</span><span class="o">=</span><span class="mi">20971520</span>
+<span class="c1"># rpc请求的最大重试次数</span>
+<span class="c1">#--request_max_retry=3</span>
+<span class="c1"># rpc的超时时间，单位是毫秒</span>
+<span class="c1">#--request_timeout_ms=5000</span>
+<span class="c1"># 如果发生异常的重试等待时间，单位是毫秒</span>
+<span class="c1">#--request_sleep_time=1000</span>
+<span class="c1"># 文件发送失败的重试等待时间，单位是毫秒</span>
+<span class="c1">#--retry_send_file_wait_time_ms=3000</span>
+<span class="c1">#</span>
+<span class="c1"># 内存表配置</span>
+<span class="c1"># 第一层跳表的最大高度</span>
+<span class="c1">#--skiplist_max_height=12</span>
+<span class="c1"># 第二层跳表的最大高度</span>
+<span class="c1">#--key_entry_max_height=8</span>
+
+
+<span class="c1"># loadtable</span>
+<span class="c1"># load时給线程池提交一次任务的数据条数</span>
+<span class="c1">#--load_table_batch=30</span>
+<span class="c1"># 加载snapshot文件的线程数</span>
+<span class="c1">#--load_table_thread_num=3</span>
+<span class="c1"># load线程池的最大队列长度</span>
+<span class="c1">#--load_table_queue_size=1000</span>
+</pre></div>
+</div>
+</section>
+<section id="apiserver-conf-tablet-flags">
+<h2>apiserver配置文件 conf/tablet.flags<a class="headerlink" href="#apiserver-conf-tablet-flags" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># apiserver.conf</span>
+<span class="c1"># 配置启动apiserver的ip/域名和端口号</span>
+<span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8080</span>
+<span class="c1"># role不可以改动</span>
+<span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">apiserver</span>
+<span class="c1"># 如果部署的openmldb是单机版，需要指定nameserver的地址</span>
+<span class="o">--</span><span class="n">nameserver</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">6527</span>
+<span class="c1"># 如果部署的openmldb是集群版，需要指定zk地址和集群zk节点目录</span>
+<span class="c1">#--zk_cluster=127.0.0.1:7181</span>
+<span class="c1">#--zk_root_path=/openmldb_cluster</span>
+
+<span class="c1"># 配置日志路径</span>
+<span class="o">--</span><span class="n">openmldb_log_dir</span><span class="o">=./</span><span class="n">logs</span>
+
+<span class="c1"># 配置线程池大小</span>
+<span class="c1">#--thread_pool_size=16</span>
+</pre></div>
+</div>
+</section>
+<section id="taskmanager-conf-taskmanager-properties">
+<h2>TaskManager配置文件 conf/taskmanager.properties<a class="headerlink" href="#taskmanager-conf-taskmanager-properties" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Server Config</span>
+<span class="n">server</span><span class="o">.</span><span class="n">host</span><span class="o">=</span><span class="mf">0.0.0.0</span>
+<span class="n">server</span><span class="o">.</span><span class="n">port</span><span class="o">=</span><span class="mi">9902</span>
+<span class="n">server</span><span class="o">.</span><span class="n">worker_threads</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">server</span><span class="o">.</span><span class="n">io_threads</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">server</span><span class="o">.</span><span class="n">channel_keep_alive_time</span><span class="o">=</span><span class="mi">1800</span>
+<span class="n">prefetch</span><span class="o">.</span><span class="n">jobid</span><span class="o">.</span><span class="n">num</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">job</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">path</span><span class="o">=./</span><span class="n">logs</span><span class="o">/</span>
+<span class="n">external</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">dir</span><span class="o">=./</span><span class="n">udf</span><span class="o">/</span>
+<span class="n">track</span><span class="o">.</span><span class="n">unfinished</span><span class="o">.</span><span class="n">jobs</span><span class="o">=</span><span class="n">true</span>
+<span class="n">job</span><span class="o">.</span><span class="n">tracker</span><span class="o">.</span><span class="n">interval</span><span class="o">=</span><span class="mi">30</span>
+
+<span class="c1"># OpenMLDB Config</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">cluster</span><span class="o">=</span><span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">2181</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">root_path</span><span class="o">=/</span><span class="n">openmldb</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">session_timeout</span><span class="o">=</span><span class="mi">5000</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">connection_timeout</span><span class="o">=</span><span class="mi">5000</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">max_retries</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">base_sleep_time</span><span class="o">=</span><span class="mi">1000</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">max_connect_waitTime</span><span class="o">=</span><span class="mi">30000</span>
+
+<span class="c1"># Spark Config</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">home</span><span class="o">=</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">master</span><span class="o">=</span><span class="n">local</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">yarn</span><span class="o">.</span><span class="n">jars</span><span class="o">=</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">conf</span><span class="o">=</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">eventLog</span><span class="o">.</span><span class="n">dir</span><span class="o">=</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">yarn</span><span class="o">.</span><span class="n">maxAppAttempts</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">batchjob</span><span class="o">.</span><span class="n">jar</span><span class="o">.</span><span class="n">path</span><span class="o">=</span>
+<span class="n">namenode</span><span class="o">.</span><span class="n">uri</span><span class="o">=</span>
+<span class="n">offline</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">prefix</span><span class="o">=</span><span class="n">file</span><span class="p">:</span><span class="o">///</span><span class="n">tmp</span><span class="o">/</span><span class="n">openmldb_offline_storage</span><span class="o">/</span>
+<span class="n">hadoop</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">dir</span><span class="o">=</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>如果没有配置<code class="docutils literal notranslate"><span class="pre">spark.home</span></code>，则需要在TaskManager运行的环境变量配置<code class="docutils literal notranslate"><span class="pre">SPARK_HOME</span></code>。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spark.master</span></code>默认配置为<code class="docutils literal notranslate"><span class="pre">local</span></code>，可以配置为<code class="docutils literal notranslate"><span class="pre">local[*]</span></code>、<code class="docutils literal notranslate"><span class="pre">yarn</span></code>、<code class="docutils literal notranslate"><span class="pre">yarn-cluster</span></code>、<code class="docutils literal notranslate"><span class="pre">yarn-client</span></code>等。如果配置为Yarn集群模式，则需要修改<code class="docutils literal notranslate"><span class="pre">offline.data.prefix</span></code>配置为HDFS路径，避免保存离线文件到Yarn容器本地，同时需要配置环境变量<code class="docutils literal notranslate"><span class="pre">HADOOP_CONF_DIR</span></code>为Hadoop配置文件所在目录。</p></li>
+</ul>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="install_deploy.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">安装部署</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../maintain/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">运维</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:56:12 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,1695 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>运维 CLI &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="运维 FAQ" href="faq.html" />
+    <link rel="prev" title="监控" href="monitoring.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   关于
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     发展历程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   快速上手
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/data_import_guide.html">
+     数据导入快速指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   教程
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     基于 SQL 的特征开发（上）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     基于 SQL 的特征开发（下）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     集群版 vs 单机版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     集群版使用流程及执行模式
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/openmldbspark_distribution.html">
+     OpenMLDB Spark 发行版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     在线数据导入工具使用
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   使用案例
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/taxi_tour_duration_prediction.html">
+     OpenMLDB + LightGBM：出租车行程时间预测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/pulsar_connector_demo.html">
+     OpenMLDB Pulsar Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/kafka_connector_demo.html">
+     OpenMLDB Kafka Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/dolphinscheduler_task_demo.html">
+     DolphinScheduler OpenMLDB Task：打造端到端MLOps工作流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/talkingdata_demo.html">
+     TalkingData 广告欺诈检测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/OpenMLDB_Byzer_taxi.html">
+     OpenMLDB + Byzer: 基于 SQL 打造端到端机器学习应用
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/airflow_provider_demo.html">
+     Airflow OpenMLDB Provider 使用案例
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/JD_recommendation.html">
+     OpenMLDB + OneFlow: 高潜用户购买意向预测
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   安装部署
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     编译
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     安装部署
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     配置文件
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   运维
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="upgrade.html">
+     版本升级
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="backup.html">
+     备份与恢复
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="scale.html">
+     扩缩容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="monitoring.html">
+     监控
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     运维 CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="faq.html">
+     运维 FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="diagnose.html">
+     诊断工具
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   开发者文档
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/contributing.html">
+     Contributing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/code_structure.html">
+     代码结构
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     内置函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/udf_develop_guide.html">
+     自定义函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/sdk_develop.html">
+     SDK 开发指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   参考
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     架构
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       在线模块架构
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       语言结构
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         关键字
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL 对象名
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         字面值
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         大小写敏感
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         注释
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       数据类型
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         数值类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         字符串类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         日期与时间类型
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       表达式，函数和运算
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         运算符
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       数据查询语句 （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT 概况
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         无表 SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       数据操作语句（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       数据定义语句（DDL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_COMPONENTS.html">
+         SHOW COMPONENTS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLE_STATUS.html">
+         SHOW TABLE STATUS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT 管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         创建 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         删除 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         查看 DEPLOYMENTS 列表
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         查看 DEPLOYMENT 详情
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL 上线规范和要求
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       任务管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/ip_tips.html">
+     IP 配置
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/client_config/index.html">
+     客户端配置
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/client_config/client_spark_config.html">
+       客户端Spark配置文件
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+当前版本: main</br>
+版本列表：
+<ul>
+  <li><a href="cli.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/maintain/cli.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ns-client">
+   NS Client
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#use">
+     use
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showtable">
+     showtable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showtablet">
+     showtablet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#addreplica">
+     addreplica
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delreplica">
+     delreplica
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#migrate">
+     migrate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confget">
+     confget
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confset">
+     confset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offlineendpoint">
+     offlineendpoint
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recoverendpoint">
+     recoverendpoint
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changeleader">
+     changeleader
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recovertable">
+     recovertable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cancelop">
+     cancelop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showopstatus">
+     showopstatus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updatetablealive">
+     updatetablealive
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showns">
+     showns
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exit">
+     exit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quit">
+     quit
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tablet-client">
+   Tablet Client
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loadtable">
+     loadtable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changerole">
+     changerole
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gettablestatus">
+     gettablestatus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getfollower">
+     getfollower
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     exit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     quit
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>运维 CLI</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ns-client">
+   NS Client
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#use">
+     use
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showtable">
+     showtable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showtablet">
+     showtablet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#addreplica">
+     addreplica
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delreplica">
+     delreplica
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#migrate">
+     migrate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confget">
+     confget
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#confset">
+     confset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offlineendpoint">
+     offlineendpoint
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recoverendpoint">
+     recoverendpoint
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changeleader">
+     changeleader
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recovertable">
+     recovertable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cancelop">
+     cancelop
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showopstatus">
+     showopstatus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updatetablealive">
+     updatetablealive
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#showns">
+     showns
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exit">
+     exit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quit">
+     quit
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tablet-client">
+   Tablet Client
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loadtable">
+     loadtable
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changerole">
+     changerole
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gettablestatus">
+     gettablestatus
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getfollower">
+     getfollower
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     exit
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     quit
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="cli">
+<h1>运维 CLI<a class="headerlink" href="#cli" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="#ns-client"><span class="std std-doc">ns client</span></a></p></li>
+<li><p><a class="reference internal" href="#tablet-client"><span class="std std-doc">tablet client</span></a></p></li>
+</ul>
+<section id="ns-client">
+<h2>NS Client<a class="headerlink" href="#ns-client" title="Permalink to this headline">#</a></h2>
+<p>连接到ns client 需要指定zk_cluster、zk_root_path和role。其中zk_cluster是zk地址，zk_root_path是集群在zk的根路径，role是启动的角色需指定为ns_client</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --zk_cluster<span class="o">=</span><span class="m">172</span>.27.2.52:12200 --zk_root_path<span class="o">=</span>/onebox --role<span class="o">=</span>ns_client
+</pre></div>
+</div>
+<section id="use">
+<h3>use<a class="headerlink" href="#use" title="Permalink to this headline">#</a></h3>
+<p>use命令可以切换到某个database下</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">use</span> <span class="n">demodb</span>
+</pre></div>
+</div>
+</section>
+<section id="showtable">
+<h3>showtable<a class="headerlink" href="#showtable" title="Permalink to this headline">#</a></h3>
+<p>showtable可以查看所有表，也可以指定看某一个表</p>
+<p>命令格式：showtable [table_name]</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">6531</span> <span class="n">demo_db</span><span class="o">&gt;</span> <span class="n">showtable</span>
+   <span class="n">name</span>           <span class="n">tid</span>  <span class="n">pid</span>  <span class="n">endpoint</span>          <span class="n">role</span>    <span class="n">is_alive</span>  <span class="n">offset</span>  <span class="n">record_cnt</span>  <span class="n">memused</span>  <span class="n">diskused</span>
+<span class="o">------------------------------------------------------------------------------------------------------</span>
+  <span class="n">aaa</span>            <span class="mi">22</span>   <span class="mi">0</span>    <span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">9971</span>  <span class="n">leader</span>  <span class="n">yes</span>       <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>    <span class="mf">8.646</span> <span class="n">K</span>
+  <span class="n">auto_VCeOIIKA</span>  <span class="mi">25</span>   <span class="mi">0</span>    <span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">9971</span>  <span class="n">leader</span>  <span class="n">yes</span>       <span class="mi">8</span>       <span class="mi">4</span>           <span class="mf">498.000</span>  <span class="mf">9.128</span> <span class="n">K</span>
+  <span class="n">t1</span>             <span class="mi">21</span>   <span class="mi">0</span>    <span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">9971</span>  <span class="n">leader</span>  <span class="n">yes</span>       <span class="mi">1</span>       <span class="mi">1</span>           <span class="mf">301.000</span>  <span class="mf">9.353</span> <span class="n">K</span>
+<span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">6531</span> <span class="n">demo_db</span><span class="o">&gt;</span> <span class="n">showtable</span> <span class="n">auto_VCeOIIKA</span>
+   <span class="n">name</span>           <span class="n">tid</span>  <span class="n">pid</span>  <span class="n">endpoint</span>          <span class="n">role</span>    <span class="n">is_alive</span>  <span class="n">offset</span>  <span class="n">record_cnt</span>  <span class="n">memused</span>  <span class="n">diskused</span>
+<span class="o">------------------------------------------------------------------------------------------------------</span>
+  <span class="n">auto_VCeOIIKA</span>  <span class="mi">25</span>   <span class="mi">0</span>    <span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">9971</span>  <span class="n">leader</span>  <span class="n">yes</span>       <span class="mi">8</span>       <span class="mi">4</span>           <span class="mf">498.000</span>  <span class="mf">9.128</span> <span class="n">K</span>
+</pre></div>
+</div>
+</section>
+<section id="showtablet">
+<h3>showtablet<a class="headerlink" href="#showtablet" title="Permalink to this headline">#</a></h3>
+<p>查看tablet信息(如果使用的serverName和自动获取本地ip功能，则endpoint为serverName, real_endpoint为“-”)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">showtablet</span>
+  <span class="n">endpoint</span>             <span class="n">real_endpoint</span>     <span class="n">state</span>           <span class="n">age</span>
+<span class="o">--------------------------------------------------------------</span>
+  <span class="mi">6534708411798331392</span>  <span class="mf">172.17.0.12</span><span class="p">:</span><span class="mi">9531</span>  <span class="n">kTabletHealthy</span>  <span class="mi">1</span><span class="n">d</span>
+  <span class="mi">6534708415948603392</span>  <span class="mf">172.17.0.13</span><span class="p">:</span><span class="mi">9532</span>  <span class="n">kTabletHealthy</span>  <span class="mi">1</span><span class="n">d</span>
+  <span class="mi">6534708420092481536</span>  <span class="mf">172.17.0.14</span><span class="p">:</span><span class="mi">9533</span>  <span class="n">kTabletHealthy</span>  <span class="mi">14</span><span class="n">h</span>
+</pre></div>
+</div>
+</section>
+<section id="addreplica">
+<h3>addreplica<a class="headerlink" href="#addreplica" title="Permalink to this headline">#</a></h3>
+<p>添加副本</p>
+<p>命令格式: addreplica table_name pid_group endpoint</p>
+<ul class="simple">
+<li><p>table_name 表名</p></li>
+<li><p>pid_group 分片id集合. 可以有以下几种情况</p>
+<ul>
+<li><p>单个分片</p></li>
+<li><p>多个分片, 分片间用逗号分割. 如1,3,5</p></li>
+<li><p>分片区间, 区间为闭区间. 如1-5表示分片1,2,3,4,5</p></li>
+</ul>
+</li>
+<li><p>endpoint 要添加为副本的节点endpoint</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">showtable</span> <span class="n">test1</span>
+  <span class="n">name</span>  <span class="n">tid</span>  <span class="n">pid</span>  <span class="n">endpoint</span>            <span class="n">role</span>      <span class="n">ttl</span>   <span class="n">is_alive</span>  <span class="n">compress_type</span>  <span class="n">offset</span>  <span class="n">record_cnt</span>  <span class="n">memused</span>
+<span class="o">------------------------------------------------------------------------------------------------------------</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">0</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">1</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">2</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">3</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+<span class="o">&gt;</span> <span class="n">addreplica</span> <span class="n">test1</span> <span class="mi">0</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">AddReplica</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">showtable</span> <span class="n">test1</span>
+  <span class="n">name</span>  <span class="n">tid</span>  <span class="n">pid</span>  <span class="n">endpoint</span>            <span class="n">role</span>      <span class="n">ttl</span>   <span class="n">is_alive</span>  <span class="n">compress_type</span>  <span class="n">offset</span>  <span class="n">record_cnt</span>  <span class="n">memused</span>
+<span class="o">------------------------------------------------------------------------------------------------------------</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">0</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">0</span>    <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">follower</span>  <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">1</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">2</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">3</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+<span class="o">&gt;</span> <span class="n">addreplica</span> <span class="n">test1</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">AddReplica</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">addreplica</span> <span class="n">test1</span> <span class="mi">1</span><span class="o">-</span><span class="mi">3</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">AddReplica</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<section id="delreplica">
+<h3>delreplica<a class="headerlink" href="#delreplica" title="Permalink to this headline">#</a></h3>
+<p>删除副本</p>
+<p>命令格式: delreplica table_name pid_group endpoint</p>
+<ul class="simple">
+<li><p>table_name 表名</p></li>
+<li><p>pid_group 分片id集合. 可以有以下几种情况</p>
+<ul>
+<li><p>单个分片</p></li>
+<li><p>多个分片, 分片间用逗号分割. 如1,3,5</p></li>
+<li><p>分片区间, 区间为闭区间. 如1-5表示分片1,2,3,4,5</p></li>
+</ul>
+</li>
+<li><p>endpoint 要删除副本的endpoint</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">showtable</span> <span class="n">test1</span>
+  <span class="n">name</span>  <span class="n">tid</span>  <span class="n">pid</span>  <span class="n">endpoint</span>            <span class="n">role</span>      <span class="n">ttl</span>   <span class="n">is_alive</span>  <span class="n">compress_type</span>  <span class="n">offset</span>  <span class="n">record_cnt</span>  <span class="n">memused</span>
+<span class="o">------------------------------------------------------------------------------------------------------------</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">0</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">0</span>    <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">follower</span>  <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">1</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">1</span>    <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">follower</span>  <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">2</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">2</span>    <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">follower</span>  <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">3</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">3</span>    <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">follower</span>  <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+<span class="o">&gt;</span> <span class="n">delreplica</span> <span class="n">test1</span> <span class="mi">0</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">DelReplica</span> <span class="n">ok</span>  
+<span class="o">&gt;</span> <span class="n">showtable</span> <span class="n">test1</span>
+  <span class="n">name</span>  <span class="n">tid</span>  <span class="n">pid</span>  <span class="n">endpoint</span>            <span class="n">role</span>      <span class="n">ttl</span>   <span class="n">is_alive</span>  <span class="n">compress_type</span>  <span class="n">offset</span>  <span class="n">record_cnt</span>  <span class="n">memused</span>
+<span class="o">------------------------------------------------------------------------------------------------------------</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">0</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">1</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">1</span>    <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">follower</span>  <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">2</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">2</span>    <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">follower</span>  <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">3</span>    <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">leader</span>    <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+  <span class="n">test1</span>  <span class="mi">13</span>   <span class="mi">3</span>    <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>  <span class="n">follower</span>  <span class="mi">0</span><span class="nb">min</span>  <span class="n">yes</span>       <span class="n">kNoCompress</span>    <span class="mi">0</span>       <span class="mi">0</span>           <span class="mf">0.000</span>
+<span class="o">&gt;</span> <span class="n">delreplica</span> <span class="n">test1</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">DelReplica</span> <span class="n">ok</span>  
+<span class="o">&gt;</span> <span class="n">delreplica</span> <span class="n">test1</span> <span class="mi">1</span><span class="o">-</span><span class="mi">3</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">DelReplica</span> <span class="n">ok</span>  
+</pre></div>
+</div>
+</section>
+<section id="migrate">
+<h3>migrate<a class="headerlink" href="#migrate" title="Permalink to this headline">#</a></h3>
+<p>副本迁移</p>
+<p>命令格式: migrate src_endpoint table_name pid_group des_endpoint</p>
+<ul class="simple">
+<li><p>src_endpoint 需要迁出的节点</p></li>
+<li><p>table_name 表名</p></li>
+<li><p>pid_group 分片id集合. 可以有以下几种情况</p>
+<ul>
+<li><p>单个分片</p></li>
+<li><p>多个分片, 分片间用逗号分割. 如1,3,5</p></li>
+<li><p>分片区间, 区间为闭区间. 如1-5表示分片1,2,3,4,5</p></li>
+</ul>
+</li>
+<li><p>des_endpoint 迁移的目的节点</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">migrate</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9991</span> <span class="n">table1</span> <span class="mi">1</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9992</span>
+<span class="n">partition</span> <span class="n">migrate</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">migrate</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9991</span> <span class="n">table1</span> <span class="mi">1</span><span class="o">-</span><span class="mi">5</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9992</span>
+<span class="n">partition</span> <span class="n">migrate</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">migrate</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9991</span> <span class="n">table1</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9992</span>
+<span class="n">partition</span> <span class="n">migrate</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<section id="confget">
+<h3>confget<a class="headerlink" href="#confget" title="Permalink to this headline">#</a></h3>
+<p>获取配置信息，目前只支持auto_failover</p>
+<p>命令格式: confget [conf_name]</p>
+<ul class="simple">
+<li><p>conf_name 配置项名字，可选的</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">confget</span>
+  <span class="n">key</span>                 <span class="n">value</span>
+<span class="o">-----------------------------</span>
+  <span class="n">auto_failover</span>       <span class="n">false</span>
+<span class="o">&gt;</span> <span class="n">confget</span> <span class="n">auto_failover</span>
+  <span class="n">key</span>            <span class="n">value</span>
+<span class="o">------------------------</span>
+  <span class="n">auto_failover</span>  <span class="n">false</span>
+</pre></div>
+</div>
+</section>
+<section id="confset">
+<h3>confset<a class="headerlink" href="#confset" title="Permalink to this headline">#</a></h3>
+<p>修改配置信息，目前只支持auto_failover</p>
+<p>命令格式: confset conf_name value</p>
+<ul class="simple">
+<li><p>conf_name 配置项名字</p></li>
+<li><p>value 配置项设置的值</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">confset</span> <span class="n">auto_failover</span> <span class="n">true</span>
+<span class="nb">set</span> <span class="n">auto_failover</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<section id="offlineendpoint">
+<h3>offlineendpoint<a class="headerlink" href="#offlineendpoint" title="Permalink to this headline">#</a></h3>
+<p>下线节点。此命令是异步的返回成功后可通过showopstatus查看运行状态</p>
+<p>命令格式: offlineendpoint endpoint [concurrency]</p>
+<ul class="simple">
+<li><p>endpoint是发生故障节点的endpoint。该命令会对该节点下所有分片执行如下操作:</p>
+<ul>
+<li><p>如果是主, 执行重新选主</p></li>
+<li><p>如果是从, 找到主节点然后从主节点中删除当前endpoint副本</p></li>
+<li><p>修改is_alive状态为no</p></li>
+</ul>
+</li>
+<li><p>concurrency 控制任务执行的并发数. 此配置是可选的, 默认为2(name_server_task_concurrency配置可配), 最大值为name_server_task_max_concurrency配置的值</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; offlineendpoint <span class="m">172</span>.27.128.32:8541
+offline endpoint ok
+&gt;showtable
+  name    tid  pid  endpoint            role      ttl       is_alive  compress_type  offset   record_cnt  memused
+----------------------------------------------------------------------------------------------------------------------
+  flow    <span class="m">4</span>   <span class="m">0</span>    <span class="m">172</span>.27.128.32:8541  leader    0min       no        kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">0</span>    <span class="m">172</span>.27.128.33:8541  follower  0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">0</span>    <span class="m">172</span>.27.128.31:8541  follower  0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">1</span>    <span class="m">172</span>.27.128.33:8541  leader    0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">1</span>    <span class="m">172</span>.27.128.31:8541  follower  0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">1</span>    <span class="m">172</span>.27.128.32:8541  follower  0min       no        kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+</pre></div>
+</div>
+<p>该命令执行成功后所有分片都会有yes状态的leader</p>
+</section>
+<section id="recoverendpoint">
+<h3>recoverendpoint<a class="headerlink" href="#recoverendpoint" title="Permalink to this headline">#</a></h3>
+<p>恢复节点数据。此命令是异步的返回成功后可通过showopstatus查看运行状态</p>
+<p>命令格式: recoverendpoint endpoint [need_restore] [concurrency]</p>
+<ul class="simple">
+<li><p>endpoint是要恢复节点的endpoint</p></li>
+<li><p>need_restore 表拓扑是否要恢复到最初的状态, 此配置是可选的, 默认为false. 如果设置为true, 一个分片在该节点下为leader, 执行完recoverendpoint恢复数据后依然是leader</p></li>
+<li><p>concurrency 控制任务执行的并发数. 此配置是可选的, 默认为2(name_server_task_concurrency配置可配), 最大值为name_server_task_max_concurrency配置的值</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">recoverendpoint</span> <span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">recover</span> <span class="n">endpoint</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">recoverendpoint</span> <span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">8541</span> <span class="n">true</span>
+<span class="n">recover</span> <span class="n">endpoint</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">recoverendpoint</span> <span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">8541</span> <span class="n">true</span> <span class="mi">3</span>
+<span class="n">recover</span> <span class="n">endpoint</span> <span class="n">ok</span>
+</pre></div>
+</div>
+<p><strong>注:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>执行此命令前确保节点已经上线(showtablet命令查看)</strong></p></li>
+</ol>
+</section>
+<section id="changeleader">
+<h3>changeleader<a class="headerlink" href="#changeleader" title="Permalink to this headline">#</a></h3>
+<p>对某个指定的分片执行主从切换。此命令是异步的返回成功后可通过showopstatus查看运行状态</p>
+<p>命令格式: changeleader table_name pid [candidate_leader]</p>
+<ul class="simple">
+<li><p>table_name 表名</p></li>
+<li><p>pid 分片id</p></li>
+<li><p>candidate_leader 候选leader. 该参数是可选的。如果不加该参数则要求分片中不存在alive是yes的leader，如果设置成auto即使其他节点alive状态是yes也能切换</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">changeleader</span> <span class="n">flow</span> <span class="mi">0</span>
+<span class="n">change</span> <span class="n">leader</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">changeleader</span> <span class="n">flow</span> <span class="mi">0</span> <span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">change</span> <span class="n">leader</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">changeleader</span> <span class="n">flow</span> <span class="mi">0</span> <span class="n">auto</span>
+<span class="n">change</span> <span class="n">leader</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<section id="recovertable">
+<h3>recovertable<a class="headerlink" href="#recovertable" title="Permalink to this headline">#</a></h3>
+<p>恢复某个分片数据。此命令是异步的返回成功后可通过showopstatus查看运行状态</p>
+<p>命令格式: recovertable table_name pid endpoint</p>
+<ul class="simple">
+<li><p>table_name 表名</p></li>
+<li><p>pid 分片id</p></li>
+<li><p>endpoint 要恢复分片所在的节点endpoint</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">recovertable</span> <span class="n">flow</span> <span class="mi">1</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>
+<span class="n">recover</span> <span class="n">table</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<section id="cancelop">
+<h3>cancelop<a class="headerlink" href="#cancelop" title="Permalink to this headline">#</a></h3>
+<p>取消一个正在执行或者待执行的操作. 取消后任务就状态变成kCanceled</p>
+<p>命令格式: cancelop op_id</p>
+<ul class="simple">
+<li><p>op_id 需要取消的操作id</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; cancelop 5
+Cancel op ok!
+</pre></div>
+</div>
+</section>
+<section id="showopstatus">
+<h3>showopstatus<a class="headerlink" href="#showopstatus" title="Permalink to this headline">#</a></h3>
+<p>显示操作执行信息</p>
+<p>命令格式: showopstatus [table_name pid]</p>
+<ul class="simple">
+<li><p>table_name 表名</p></li>
+<li><p>pid 分片id</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">showopstatus</span>
+  <span class="n">op_id</span>  <span class="n">op_type</span>                <span class="n">name</span>   <span class="n">pid</span>  <span class="n">status</span>  <span class="n">start_time</span>      <span class="n">execute_time</span>  <span class="n">end_time</span>        <span class="n">cur_task</span>
+<span class="o">------------------------------------------------------------------------------------------------------------</span>
+  <span class="mi">51</span>     <span class="n">kMigrateOP</span>             <span class="n">flow</span>   <span class="mi">0</span>    <span class="n">kDone</span>   <span class="mi">20180824163316</span>  <span class="mi">12</span><span class="n">s</span>           <span class="mi">20180824163328</span>  <span class="o">-</span>
+  <span class="mi">52</span>     <span class="n">kRecoverTableOP</span>        <span class="n">flow</span>   <span class="mi">0</span>    <span class="n">kDone</span>   <span class="mi">20180824195252</span>  <span class="mi">1</span><span class="n">s</span>            <span class="mi">20180824195253</span>  <span class="o">-</span>
+  <span class="mi">53</span>     <span class="n">kRecoverTableOP</span>        <span class="n">flow</span>   <span class="mi">1</span>    <span class="n">kDone</span>   <span class="mi">20180824195252</span>  <span class="mi">1</span><span class="n">s</span>            <span class="mi">20180824195253</span>  <span class="o">-</span>
+  <span class="mi">54</span>     <span class="n">kUpdateTableAliveOP</span>    <span class="n">flow</span>   <span class="mi">0</span>    <span class="n">kDone</span>   <span class="mi">20180824195838</span>  <span class="mi">2</span><span class="n">s</span>            <span class="mi">20180824195840</span>  <span class="o">-</span>
+  <span class="mi">55</span>     <span class="n">kChangeLeaderOP</span>        <span class="n">flow</span>   <span class="mi">0</span>    <span class="n">kDone</span>   <span class="mi">20180824200135</span>  <span class="mi">0</span><span class="n">s</span>            <span class="mi">20180824200135</span>  <span class="o">-</span>
+  <span class="mi">56</span>     <span class="n">kOfflineReplicaOP</span>      <span class="n">flow</span>   <span class="mi">1</span>    <span class="n">kDone</span>   <span class="mi">20180824200135</span>  <span class="mi">1</span><span class="n">s</span>            <span class="mi">20180824200136</span>  <span class="o">-</span>
+  <span class="mi">57</span>     <span class="n">kReAddReplicaOP</span>        <span class="n">flow</span>   <span class="mi">0</span>    <span class="n">kDone</span>   <span class="mi">20180827114331</span>  <span class="mi">12</span><span class="n">s</span>           <span class="mi">20180827114343</span>  <span class="o">-</span>
+  <span class="mi">58</span>     <span class="n">kAddReplicaOP</span>          <span class="n">test1</span>  <span class="mi">0</span>    <span class="n">kDone</span>   <span class="mi">20180827205907</span>  <span class="mi">8</span><span class="n">s</span>            <span class="mi">20180827205915</span>  <span class="o">-</span>
+  <span class="mi">59</span>     <span class="n">kDelReplicaOP</span>          <span class="n">test1</span>  <span class="mi">0</span>    <span class="n">kDone</span>   <span class="mi">20180827210248</span>  <span class="mi">4</span><span class="n">s</span>            <span class="mi">20180827210252</span>  <span class="o">-</span>
+<span class="o">&gt;</span> <span class="n">showopstatus</span> <span class="n">flow</span>
+  <span class="n">op_id</span>  <span class="n">op_type</span>                <span class="n">name</span>  <span class="n">pid</span>  <span class="n">status</span>  <span class="n">start_time</span>      <span class="n">execute_time</span>  <span class="n">end_time</span>        <span class="n">cur_task</span>
+<span class="o">-----------------------------------------------------------------------------------------------------------</span>
+  <span class="mi">51</span>     <span class="n">kMigrateOP</span>             <span class="n">flow</span>  <span class="mi">0</span>    <span class="n">kDone</span>   <span class="mi">20180824163316</span>  <span class="mi">12</span><span class="n">s</span>           <span class="mi">20180824163328</span>  <span class="o">-</span>
+  <span class="mi">52</span>     <span class="n">kRecoverTableOP</span>        <span class="n">flow</span>  <span class="mi">0</span>    <span class="n">kDone</span>   <span class="mi">20180824195252</span>  <span class="mi">1</span><span class="n">s</span>            <span class="mi">20180824195253</span>  <span class="o">-</span>
+  <span class="mi">53</span>     <span class="n">kRecoverTableOP</span>        <span class="n">flow</span>  <span class="mi">1</span>    <span class="n">kDone</span>   <span class="mi">20180824195252</span>  <span class="mi">1</span><span class="n">s</span>            <span class="mi">20180824195253</span>  <span class="o">-</span>
+  <span class="mi">54</span>     <span class="n">kUpdateTableAliveOP</span>    <span class="n">flow</span>  <span class="mi">0</span>    <span class="n">kDone</span>   <span class="mi">20180824195838</span>  <span class="mi">2</span><span class="n">s</span>            <span class="mi">20180824195840</span>  <span class="o">-</span>
+  <span class="mi">55</span>     <span class="n">kChangeLeaderOP</span>        <span class="n">flow</span>  <span class="mi">0</span>    <span class="n">kDone</span>   <span class="mi">20180824200135</span>  <span class="mi">0</span><span class="n">s</span>            <span class="mi">20180824200135</span>  <span class="o">-</span>
+  <span class="mi">56</span>     <span class="n">kOfflineReplicaOP</span>      <span class="n">flow</span>  <span class="mi">1</span>    <span class="n">kDone</span>   <span class="mi">20180824200135</span>  <span class="mi">1</span><span class="n">s</span>            <span class="mi">20180824200136</span>  <span class="o">-</span>
+  <span class="mi">57</span>     <span class="n">kUpdateTableAliveOP</span>    <span class="n">flow</span>  <span class="mi">0</span>    <span class="n">kDone</span>   <span class="mi">20180824200212</span>  <span class="mi">0</span><span class="n">s</span>            <span class="mi">20180824200212</span>  <span class="o">-</span>
+<span class="o">&gt;</span><span class="n">showopstatus</span> <span class="n">flow</span> <span class="mi">1</span>
+  <span class="n">op_id</span>  <span class="n">op_type</span>                <span class="n">name</span>  <span class="n">pid</span>  <span class="n">status</span>  <span class="n">start_time</span>      <span class="n">execute_time</span>  <span class="n">end_time</span>        <span class="n">cur_task</span>
+<span class="o">-----------------------------------------------------------------------------------------------------------</span>
+  <span class="mi">53</span>     <span class="n">kRecoverTableOP</span>        <span class="n">flow</span>  <span class="mi">1</span>    <span class="n">kDone</span>   <span class="mi">20180824195252</span>  <span class="mi">1</span><span class="n">s</span>            <span class="mi">20180824195253</span>  <span class="o">-</span>
+  <span class="mi">56</span>     <span class="n">kOfflineReplicaOP</span>      <span class="n">flow</span>  <span class="mi">1</span>    <span class="n">kDone</span>   <span class="mi">20180824200135</span>  <span class="mi">1</span><span class="n">s</span>            <span class="mi">20180824200136</span>  <span class="o">-</span>
+</pre></div>
+</div>
+</section>
+<section id="updatetablealive">
+<h3>updatetablealive<a class="headerlink" href="#updatetablealive" title="Permalink to this headline">#</a></h3>
+<p>修改分片alive状态</p>
+<p>命令格式: updatetablealive table_name pid endpoint is_alive</p>
+<ul class="simple">
+<li><p>table_name 表名</p></li>
+<li><p>pid 分片id, 如果要修改某个表的所有分片将pid指定为*</p></li>
+<li><p>endpoint 节点endpoint</p></li>
+<li><p>is_alive 节点状态, 只能填yes或者no</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">updatetablealive</span> <span class="n">test</span> <span class="o">*</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span> <span class="n">no</span>
+<span class="n">update</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">updatetablealive</span> <span class="n">test</span> <span class="mi">1</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8542</span> <span class="n">no</span>
+<span class="n">update</span> <span class="n">ok</span>
+</pre></div>
+</div>
+<p><strong>注: 此命令不可当做故障恢复使用. 一般用于切流量，操作方式为将某个节点表的alive状态改为no读请求就不会落在该节点上</strong></p>
+</section>
+<section id="showns">
+<h3>showns<a class="headerlink" href="#showns" title="Permalink to this headline">#</a></h3>
+<p>显示nameserver节点及其角色(如果使用的serverName和自动获取本地ip功能，则endpoint为serverName, real_endpoint为“-”)</p>
+<p>命令格式: showns</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="n">showns</span>
+  <span class="n">endpoint</span>          <span class="n">real_endpoint</span>  <span class="n">role</span>
+<span class="o">-------------------------------------------</span>
+  <span class="mf">172.24.4.55</span><span class="p">:</span><span class="mi">6531</span>  <span class="o">-</span>              <span class="n">leader</span>
+</pre></div>
+</div>
+</section>
+<section id="exit">
+<h3>exit<a class="headerlink" href="#exit" title="Permalink to this headline">#</a></h3>
+<p>退出客户端</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">exit</span>
+<span class="n">bye</span>
+</pre></div>
+</div>
+</section>
+<section id="quit">
+<h3>quit<a class="headerlink" href="#quit" title="Permalink to this headline">#</a></h3>
+<p>退出客户端</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">quit</span>
+<span class="n">bye</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tablet-client">
+<h2>Tablet Client<a class="headerlink" href="#tablet-client" title="Permalink to this headline">#</a></h2>
+<p>连接到tablet client需要指定endpoint和role. 其中endpoint是需要连接tablet的endpoint，role是启动的角色需指定为client</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./openmldb --endpoint<span class="o">=</span><span class="m">172</span>.27.2.52:9520 --role<span class="o">=</span>client
+</pre></div>
+</div>
+<section id="loadtable">
+<h3>loadtable<a class="headerlink" href="#loadtable" title="Permalink to this headline">#</a></h3>
+<p>1、加载已有表</p>
+<p>命令格式: loadtable table_name tid pid ttl segment_cnt</p>
+<ul class="simple">
+<li><p>table_name 表名</p></li>
+<li><p>tid 指定table的id</p></li>
+<li><p>pid 指定table的分片id</p></li>
+<li><p>ttl 指定ttl</p></li>
+<li><p>segment_cnt 指定segment_cnt, 一般设置为8</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">loadtable</span> <span class="n">table1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">144000</span> <span class="mi">8</span>
+</pre></div>
+</div>
+<p>已有表如果在内存中则loadtable会失败</p>
+</section>
+<section id="changerole">
+<h3>changerole<a class="headerlink" href="#changerole" title="Permalink to this headline">#</a></h3>
+<p>改变表的leader角色</p>
+<p>命令格式: changerole tid pid role [term]</p>
+<ul class="simple">
+<li><p>tid 指定table的id</p></li>
+<li><p>pid 指定table的分片id</p></li>
+<li><p>role 要修改的角色, 取值为[leader, follower]</p></li>
+<li><p>term 设定term, 该项是可选的, 默认为0</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">changerole</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">follower</span>
+<span class="n">ChangeRole</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">changerole</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">leader</span>
+<span class="n">ChangeRole</span> <span class="n">ok</span>
+<span class="o">&gt;</span> <span class="n">changerole</span> <span class="mi">1</span> <span class="mi">0</span> <span class="n">leader</span> <span class="mi">1002</span>
+<span class="n">ChangeRole</span> <span class="n">ok</span>
+</pre></div>
+</div>
+</section>
+<section id="gettablestatus">
+<h3>gettablestatus<a class="headerlink" href="#gettablestatus" title="Permalink to this headline">#</a></h3>
+<p>获取表信息</p>
+<p>命令格式: gettablestatus [tid pid]</p>
+<ul class="simple">
+<li><p>tid 指定table的id</p></li>
+<li><p>pid 指定table的分片id</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">gettablestatus</span>
+  <span class="n">tid</span>   <span class="n">pid</span>  <span class="n">offset</span>   <span class="n">mode</span>            <span class="n">state</span>            <span class="n">enable_expire</span>  <span class="n">ttl</span>               <span class="n">ttl_offset</span>  <span class="n">memused</span>  <span class="n">compress_type</span>
+<span class="o">----------------------------------------------------------------------------------------------------------------------------</span>
+  <span class="mi">1</span>     <span class="mi">0</span>    <span class="mi">4</span>        <span class="n">kTableLeader</span>    <span class="n">kSnapshotPaused</span>  <span class="n">true</span>           <span class="mi">144000</span><span class="nb">min</span>         <span class="mi">0</span><span class="n">s</span>          <span class="mf">1.313</span> <span class="n">K</span>  <span class="n">kNoCompress</span>
+  <span class="mi">2</span>     <span class="mi">0</span>    <span class="mi">4</span>        <span class="n">kTableLeader</span>    <span class="n">kTableNormal</span>     <span class="n">false</span>          <span class="mi">0</span><span class="nb">min</span>              <span class="mi">0</span><span class="n">s</span>          <span class="mf">689.000</span>  <span class="n">kNoCompress</span>
+<span class="o">&gt;</span> <span class="n">gettablestatus</span> <span class="mi">2</span> <span class="mi">0</span>
+  <span class="n">tid</span>  <span class="n">pid</span>  <span class="n">offset</span>  <span class="n">mode</span>          <span class="n">state</span>         <span class="n">enable_expire</span>  <span class="n">ttl</span>   <span class="n">ttl_offset</span>  <span class="n">memused</span>  <span class="n">compress_type</span>
+<span class="o">---------------------------------------------------------------------------------------------------------</span>
+  <span class="mi">2</span>    <span class="mi">0</span>    <span class="mi">4</span>       <span class="n">kTableLeader</span>  <span class="n">kTableNormal</span>  <span class="n">false</span>          <span class="mi">0</span><span class="nb">min</span>  <span class="mi">0</span><span class="n">s</span>          <span class="mf">689.000</span>  <span class="n">kNoCompress</span>
+</pre></div>
+</div>
+</section>
+<section id="getfollower">
+<h3>getfollower<a class="headerlink" href="#getfollower" title="Permalink to this headline">#</a></h3>
+<p>查看从节点信息</p>
+<p>命令格式: getfollower tid pid</p>
+<ul class="simple">
+<li><p>tid 指定table的id</p></li>
+<li><p>pid 指定table的分片id</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">getfollower</span> <span class="mi">4</span> <span class="mi">1</span>
+  <span class="c1">#  tid  pid  leader_offset  follower            offset</span>
+<span class="o">-----------------------------------------------------------</span>
+  <span class="mi">0</span>  <span class="mi">4</span>    <span class="mi">1</span>    <span class="mi">5923724</span>        <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">8541</span>  <span class="mi">5920714</span>
+  <span class="mi">1</span>  <span class="mi">4</span>    <span class="mi">1</span>    <span class="mi">5923724</span>        <span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">8541</span>  <span class="mi">5921707</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>exit<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>退出客户端</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">exit</span>
+<span class="n">bye</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>quit<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>退出客户端</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">quit</span>
+<span class="n">bye</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="monitoring.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">监控</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="faq.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">运维 FAQ</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:55:21 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

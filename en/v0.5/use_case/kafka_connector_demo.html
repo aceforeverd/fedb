@@ -1,0 +1,819 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>OpenMLDB Kafka Connector：Connecting Real-Time Data Streams &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Deployment" href="../deploy/index.html" />
+    <link rel="prev" title="Integration with Pulsar" href="pulsar_connector_demo.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     Milestones
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     SQL for Feature Extraction (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     SQL for Feature Extraction (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Use Cases
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pulsar_connector_demo.html">
+     Integration with Pulsar
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     OpenMLDB Kafka Connector：Connecting Real-Time Data Streams
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   Deployment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   Maintenance
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     Upgrade
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     Backup and Restore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     Monitoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     Operations in CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/faq.html">
+     Operation and Maintenance FAQ
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: v0.5</br>
+Versions：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="kafka_connector_demo.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/use_case/kafka_connector_demo.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download-and-preparation">
+     Download and Preparation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#steps">
+     Steps
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-start-the-openmldb-and-create-a-database">
+   Step 1: Start the OpenMLDB and Create a Database
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-the-openmldb-cluster">
+     Start the OpenMLDB Cluster
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-database">
+     Create Database
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2-start-the-kafka-and-create-topic">
+   Step 2: Start the Kafka and Create topic
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-kafka">
+     Start Kafka
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-topics">
+     Create Topics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-start-the-connector">
+   Step 3: Start the Connector
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-test">
+   Step 4: Test
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#send-messages">
+     Send Messages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#check-results">
+     Check Results
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>OpenMLDB Kafka Connector：Connecting Real-Time Data Streams</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download-and-preparation">
+     Download and Preparation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#steps">
+     Steps
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-1-start-the-openmldb-and-create-a-database">
+   Step 1: Start the OpenMLDB and Create a Database
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-the-openmldb-cluster">
+     Start the OpenMLDB Cluster
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-database">
+     Create Database
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-2-start-the-kafka-and-create-topic">
+   Step 2: Start the Kafka and Create topic
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#start-kafka">
+     Start Kafka
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-topics">
+     Create Topics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-3-start-the-connector">
+   Step 3: Start the Connector
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-4-test">
+   Step 4: Test
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#send-messages">
+     Send Messages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#check-results">
+     Check Results
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="openmldb-kafka-connector-connecting-real-time-data-streams">
+<h1>OpenMLDB Kafka Connector：Connecting Real-Time Data Streams<a class="headerlink" href="#openmldb-kafka-connector-connecting-real-time-data-streams" title="Permalink to this headline">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<p>Apache Kafka is an event streaming platform. It can be used as the online data source of OpenMLDB, import the real-time data from data stream into OpenMLDB online. For more information about Kafka, please refer to the official website <a class="reference external" href="https://kafka.apache.org/">https://kafka.apache.org/</a>. We have developed a Kafka connector to bridge the OpenMLDB, which can connect Kafka and OpenMLDB without obstacles. In this document, you will learn the concept and usage of this connector.</p>
+<p>Please note that in order to make the demonstration easier, this article will use the Kafka Connect standalone mode to start the connector. The connector can be started in the distributed mode.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>For OpenMLDB Kafka Connector implementation, please refer to <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/tree/main/extensions/kafka-connect-jdbc">extensions/kafka-connect-jdbc</a>.</p>
+</div>
+</section>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
+<section id="download-and-preparation">
+<h3>Download and Preparation<a class="headerlink" href="#download-and-preparation" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Download Kafka: please click on <a class="reference external" href="https://dlcdn.apache.org/kafka/3.1.0/kafka_2.13-3.1.0.tgz">kafka_2.13-3.1.0</a>.</p></li>
+<li><p>Download the connector package and dependencies: please click on <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/releases/download/v0.5.0/kafka-connect-jdbc.tgz">kafka-connect-jdbc.tgz</a>.</p></li>
+<li><p>Download the configuration and script files (for the demonstration purpose used in this article): please click on <a class="reference external" href="http://openmldb.ai/download/kafka-connector/kafka_demo_files.tgz">kafka_demo_files.tgz</a>.</p></li>
+</ul>
+<p>This article will start the OpenMLDB in docker container, so there is no need to download the OpenMLDB separately. Moreover, Kafka and connector can be started in the same container. We recommend that you save the three downloaded packages to the same directory. Let’s assume that the packages are in the <code class="docutils literal notranslate"><span class="pre">/work/kafka</span></code> directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docker run -it -v `pwd`:/work/kafka --name openmldb 4pdosc/openmldb:0.5.2 bash
+</pre></div>
+</div>
+</section>
+<section id="steps">
+<h3>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">#</a></h3>
+<p>The brief process of using the connector is shown in the figure below. We will describe each step in detail next.</p>
+<p>In general, the use process can be summarized into four steps:</p>
+<ol class="arabic simple">
+<li><p>Start OpenMLDB and create the database</p></li>
+<li><p>Start Kafka and create topic</p></li>
+<li><p>Start OpenMLDB Kafka Connector</p></li>
+<li><p>Proceed for test or normal use</p></li>
+</ol>
+<p><img alt="demo steps" src="../_images/kafka_connector_steps.png" /></p>
+</section>
+</section>
+<section id="step-1-start-the-openmldb-and-create-a-database">
+<h2>Step 1: Start the OpenMLDB and Create a Database<a class="headerlink" href="#step-1-start-the-openmldb-and-create-a-database" title="Permalink to this headline">#</a></h2>
+<section id="start-the-openmldb-cluster">
+<h3>Start the OpenMLDB Cluster<a class="headerlink" href="#start-the-openmldb-cluster" title="Permalink to this headline">#</a></h3>
+<p>In the OpenMLDB container, start the cluster:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">init</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>At present, only the OpenMLDB cluster version can be used as the receiver of sink, and the data will only be sink to the online storage of the cluster.</p>
+</div>
+</section>
+<section id="create-database">
+<h3>Create Database<a class="headerlink" href="#create-database" title="Permalink to this headline">#</a></h3>
+<p>We can quickly create a database through the pipe without logging into the client CLI:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;create database kafka_test;&quot;</span> <span class="o">|</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">openmldb</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">2181</span> <span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">sql_client</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-2-start-the-kafka-and-create-topic">
+<h2>Step 2: Start the Kafka and Create topic<a class="headerlink" href="#step-2-start-the-kafka-and-create-topic" title="Permalink to this headline">#</a></h2>
+<section id="start-kafka">
+<h3>Start Kafka<a class="headerlink" href="#start-kafka" title="Permalink to this headline">#</a></h3>
+<p>Unzip the Kafka and start the Kafka using the start script.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">kafka</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xzf</span> <span class="n">kafka_2</span><span class="mf">.13</span><span class="o">-</span><span class="mf">3.1.0</span><span class="o">.</span><span class="n">tgz</span>
+<span class="n">cd</span> <span class="n">kafka_2</span><span class="mf">.13</span><span class="o">-</span><span class="mf">3.1.0</span>
+<span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">kafka</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">daemon</span> <span class="n">config</span><span class="o">/</span><span class="n">server</span><span class="o">.</span><span class="n">properties</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The OpenMLDB service has used port 2181 to start zookeeper. Kafka does not need to start zookeeper again. Therefore, you only need to start the server here.</p>
+</div>
+<p>You can check whether Kafka is working normally. You can either use <code class="docutils literal notranslate"><span class="pre">ps</span></code> or, check the log.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ps</span> <span class="n">axu</span><span class="o">|</span><span class="n">grep</span> <span class="n">kafka</span>
+</pre></div>
+</div>
+</section>
+<section id="create-topics">
+<h3>Create Topics<a class="headerlink" href="#create-topics" title="Permalink to this headline">#</a></h3>
+<p>We create a topic named <code class="docutils literal notranslate"><span class="pre">topic1</span></code>. Please note that special characters should not appear in the name of the topic.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">kafka</span><span class="o">-</span><span class="n">topics</span><span class="o">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">create</span> <span class="o">--</span><span class="n">topic</span> <span class="n">topic1</span> <span class="o">--</span><span class="n">bootstrap</span><span class="o">-</span><span class="n">server</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">9092</span>
+</pre></div>
+</div>
+<p>You can <code class="docutils literal notranslate"><span class="pre">describe</span></code> the topic to confirm whether it is normal.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">kafka</span><span class="o">-</span><span class="n">topics</span><span class="o">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">describe</span> <span class="o">--</span><span class="n">topic</span> <span class="n">topic1</span> <span class="o">--</span><span class="n">bootstrap</span><span class="o">-</span><span class="n">server</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">9092</span>
+</pre></div>
+</div>
+<p><img alt="topic status" src="../_images/kafka_topic_describe.png" /></p>
+</section>
+</section>
+<section id="step-3-start-the-connector">
+<h2>Step 3: Start the Connector<a class="headerlink" href="#step-3-start-the-connector" title="Permalink to this headline">#</a></h2>
+<p>First, unzip the connector and the kafka_demo_files package in <code class="docutils literal notranslate"><span class="pre">/work/kafka</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">kafka</span>
+<span class="n">tar</span> <span class="n">zxf</span> <span class="n">kafka</span><span class="o">-</span><span class="n">connect</span><span class="o">-</span><span class="n">jdbc</span><span class="o">.</span><span class="n">tgz</span>
+<span class="n">tar</span> <span class="n">zxf</span> <span class="n">kafka_demo_files</span><span class="o">.</span><span class="n">tgz</span>
+</pre></div>
+</div>
+<p>kafka_demo_files has the configuration files which are required to start the connector. And ensure to put the connector plug-in in the correct location.</p>
+<p>The first configuration file is the configuration of the connector itself, <code class="docutils literal notranslate"><span class="pre">connect-standalone.properties</span></code>. The key configuration of the “plug-in directory” is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plugin</span><span class="o">.</span><span class="n">path</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">java</span>
+</pre></div>
+</div>
+<p>Connector and all dependent packages required to run it need to be put into this directory. The command is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">java</span>
+<span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">kafka</span><span class="o">/</span><span class="n">kafka</span><span class="o">-</span><span class="n">connect</span><span class="o">-</span><span class="n">jdbc</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">java</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>The second configuration is the <code class="docutils literal notranslate"><span class="pre">openmldb-sink.properties</span></code> which is the config to connect the OpenMLDB cluster, as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>name=test-sink
+connector.class=io.confluent.connect.jdbc.JdbcSinkConnector
+tasks.max=1
+topics=topic1 
+connection.url=jdbc:openmldb:///kafka_test?zk=127.0.0.1:2181&amp;zkPath=/openmldb
+auto.create=true
+</pre></div>
+</div>
+<p>In the connection configuration, you need to fill in the correct OpenMLDB URL address. The connector receives the message of topic1 and automatically creates a table (auto.create).</p>
+<p>Next, start the connector using the Kafka connector standalone mode.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">kafka</span><span class="o">/</span><span class="n">kafka_2</span><span class="mf">.13</span><span class="o">-</span><span class="mf">3.1.0</span>
+<span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">connect</span><span class="o">-</span><span class="n">standalone</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">daemon</span> <span class="o">../</span><span class="n">kafka_demo_files</span><span class="o">/</span><span class="n">connect</span><span class="o">-</span><span class="n">standalone</span><span class="o">.</span><span class="n">properties</span> <span class="o">../</span><span class="n">kafka_demo_files</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="n">sink</span><span class="o">.</span><span class="n">properties</span>
+</pre></div>
+</div>
+<p>Check whether the connector is started and correctly connected to the OpenMLDB cluster. You can check with <code class="docutils literal notranslate"><span class="pre">logs/connect.log</span></code>. Under normal circumstances, the log should have <code class="docutils literal notranslate"><span class="pre">Executing</span> <span class="pre">sink</span> <span class="pre">task</span></code>.</p>
+</section>
+<section id="step-4-test">
+<h2>Step 4: Test<a class="headerlink" href="#step-4-test" title="Permalink to this headline">#</a></h2>
+<section id="send-messages">
+<h3>Send Messages<a class="headerlink" href="#send-messages" title="Permalink to this headline">#</a></h3>
+<p>We use the console producer provided by Kafka as the message sending tool for testing.</p>
+<p>Since we haven’t created a table yet, our message should contain the schema to help Kafka parse the message and write it to OpenMLDB.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;schema&quot;</span><span class="p">:{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;struct&quot;</span><span class="p">,</span><span class="s2">&quot;fields&quot;</span><span class="p">:[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;int16&quot;</span><span class="p">,</span><span class="s2">&quot;optional&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;c1_int16&quot;</span><span class="p">},{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;int32&quot;</span><span class="p">,</span><span class="s2">&quot;optional&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;c2_int32&quot;</span><span class="p">},{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;int64&quot;</span><span class="p">,</span><span class="s2">&quot;optional&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;c3_int64&quot;</span><span class="p">},{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;float&quot;</span><span class="p">,</span><span class="s2">&quot;optional&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;c4_float&quot;</span><span class="p">},{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;double&quot;</span><span class="p">,</span><span class="s2">&quot;optional&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;c5_double&quot;</span><span class="p">},{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span><span class="s2">&quot;optional&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;c6_boolean&quot;</span><span class="p">},{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;string&quot;</span><span class="p">,</span><span class="s2">&quot;optional&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;c7_string&quot;</span><span class="p">},{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;int64&quot;</span><span class="p">,</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;org.apache.kafka.connect.data.Date&quot;</span><span class="p">,</span><span class="s2">&quot;optional&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;c8_date&quot;</span><span class="p">},{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span><span class="s2">&quot;int64&quot;</span><span class="p">,</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;org.apache.kafka.connect.data.Timestamp&quot;</span><span class="p">,</span><span class="s2">&quot;optional&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;field&quot;</span><span class="p">:</span><span class="s2">&quot;c9_timestamp&quot;</span><span class="p">}],</span><span class="s2">&quot;optional&quot;</span><span class="p">:</span><span class="n">false</span><span class="p">,</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;foobar&quot;</span><span class="p">},</span><span class="s2">&quot;payload&quot;</span><span class="p">:{</span><span class="s2">&quot;c1_int16&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;c2_int32&quot;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;c3_int64&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="s2">&quot;c4_float&quot;</span><span class="p">:</span><span class="mf">4.4</span><span class="p">,</span><span class="s2">&quot;c5_double&quot;</span><span class="p">:</span><span class="mf">5.555</span><span class="p">,</span><span class="s2">&quot;c6_boolean&quot;</span><span class="p">:</span><span class="n">true</span><span class="p">,</span><span class="s2">&quot;c7_string&quot;</span><span class="p">:</span><span class="s2">&quot;c77777&quot;</span><span class="p">,</span><span class="s2">&quot;c8_date&quot;</span><span class="p">:</span><span class="mi">19109</span><span class="p">,</span><span class="s2">&quot;c9_timestamp&quot;</span><span class="p">:</span><span class="mi">1651051906000</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>More conveniently, we save the above message in the file <code class="docutils literal notranslate"><span class="pre">kafka_demo_files/message</span></code> where you can use it directly to send message to the Kafka with the console producer.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="nb">bin</span><span class="o">/</span><span class="n">kafka</span><span class="o">-</span><span class="n">console</span><span class="o">-</span><span class="n">producer</span><span class="o">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">topic</span> <span class="n">topic1</span> <span class="o">--</span><span class="n">bootstrap</span><span class="o">-</span><span class="n">server</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">9092</span> <span class="o">&lt;</span> <span class="o">../</span><span class="n">kafka_demo_files</span><span class="o">/</span><span class="n">message</span>
+</pre></div>
+</div>
+</section>
+<section id="check-results">
+<h3>Check Results<a class="headerlink" href="#check-results" title="Permalink to this headline">#</a></h3>
+<p>We can query OpenMLDB to check whether the insertion is successful. The query script of <code class="docutils literal notranslate"><span class="pre">kafka_demo_files/select.sql</span></code> is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span> <span class="o">@</span><span class="nd">@execute_mode</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">;</span>
+<span class="n">use</span> <span class="n">kafka_test</span><span class="p">;</span>
+<span class="n">select</span> <span class="o">*</span> <span class="kn">from</span> <span class="nn">topic1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You can directly run the query script with a query:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">openmldb</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">2181</span> <span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">sql_client</span> <span class="o">&lt;</span> <span class="o">../</span><span class="n">kafka_demo_files</span><span class="o">/</span><span class="n">select</span><span class="o">.</span><span class="n">sql</span>
+</pre></div>
+</div>
+<p><img alt="openmldb result" src="../_images/kafka_openmldb_result.png" /></p>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="pulsar_connector_demo.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Integration with Pulsar</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../deploy/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Deployment</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:43 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

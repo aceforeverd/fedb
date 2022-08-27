@@ -1,0 +1,1137 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>DEPLOY &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Delete DEPLOYMENT" href="DROP_DEPLOYMENT_STATEMENT.html" />
+    <link rel="prev" title="DEPLOYMENT Management" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../about/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../about/milestones.html">
+     Milestones
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/modes.html">
+     The Workflow of Cluster Version and Execution Mode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/tutorial_sql_1.html">
+     SQL for Feature Extraction (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/tutorial_sql_2.html">
+     SQL for Feature Extraction (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../use_case/index.html">
+   Use Cases
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/lightgbm_demo.html">
+     OpenMLDB + LightGBM: Taxi Trip Duration Prediction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/pulsar_connector_demo.html">
+     Importing Real-Time Data Streams from Pulsar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/kafka_connector_demo.html">
+     Importing Real-Time Data Streams from Kafka
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/dolphinscheduler_task_demo.html">
+     Building End-to-End MLOps Workflows (OpenMLDB + DolphinScheduler)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../deploy/index.html">
+   Deployment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../deploy/compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../deploy/install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../deploy/conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../maintain/index.html">
+   Maintenance
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/upgrade.html">
+     Upgrade
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/backup.html">
+     Backup and Restore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/monitoring.html">
+     Monitoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/cli.html">
+     Operations in CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/faq.html">
+     Operation and Maintenance FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/scale.html">
+     Scale-Out and Scale-In
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/diagnose.html">
+     Diagnostic Tool
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../../index.html">
+   References
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../arch/index.html">
+     Architecture
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../arch/online_arch.html">
+       Online Module Architecture
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../index.html">
+     SQL
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../language_structure/index.html">
+       Language Structure
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/keywords.html">
+         Keywords
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/object_names_identifiers.html">
+         SQL Object Name
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/literals_value.html">
+         Literal Value
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/case_sensitive.html">
+         Case Sensitive
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/comment.html">
+         Notes
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../data_types/index.html">
+       Data Type
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../data_types/numeric_types.html">
+         Numeric Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../data_types/string_types.html">
+         String Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../data_types/date_and_time_types.html">
+         Date and Time Type
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../functions_and_operators/index.html">
+       Expressions, Functions, and Operations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../functions_and_operators/operators.html">
+         Operator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dql/index.html">
+       Data Query Statement （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/SELECT_STATEMENT.html">
+         SELECT Overview
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/NO_TABLE_SELECT_CLAUSE.html">
+         No-table SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dml/index.html">
+       Data Manipulation Statement（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../ddl/index.html">
+       Data Definition Statement (DDL)
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 current active has-children">
+      <a class="reference internal" href="index.html">
+       DEPLOYMENT Management
+      </a>
+      <input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul class="current">
+       <li class="toctree-l4 current active">
+        <a class="current reference internal" href="#">
+         DEPLOY
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="DROP_DEPLOYMENT_STATEMENT.html">
+         Delete DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="SHOW_DEPLOYMENTS.html">
+         View DEPLOYMENTS List
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="SHOW_DEPLOYMENT.html">
+         View DEPLOYMENT Details
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="ONLINE_SERVING_REQUIREMENTS.html">
+         SQL On-Line Specifications and Requirements
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../task_manage/index.html">
+       Task Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ip_tips.html">
+     IP Configuration
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../client_config/index.html">
+     Client Configuration
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../client_config/client_spark_config.html">
+       Spark Client Configuration
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: v0.6</br>
+Versions：
+<ul>
+  <li><a href="../../../../main/index.html">main</a></li>
+  <li><a href="../../../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../../../v0.4/index.html">v0.4</a></li>
+  <li><a href="DEPLOY_STATEMENT.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/reference/sql/deployment_manage/DEPLOY_STATEMENT.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntax">
+   Syntax
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-deploy-sql-onto-online">
+     Example: Deploy SQL onto Online
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deployment-property-deployoptions-optional">
+     DEPLOYMENT Property DeployOptions (optional)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#long-window-optimization">
+       Long Window Optimization
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#long-window-optimization-options-format">
+         Long Window Optimization Options Format
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#limitation-factor">
+         Limitation Factor
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#relevant-sql">
+   Relevant SQL
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>DEPLOY</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntax">
+   Syntax
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-deploy-sql-onto-online">
+     Example: Deploy SQL onto Online
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deployment-property-deployoptions-optional">
+     DEPLOYMENT Property DeployOptions (optional)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#long-window-optimization">
+       Long Window Optimization
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#long-window-optimization-options-format">
+         Long Window Optimization Options Format
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#limitation-factor">
+         Limitation Factor
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#relevant-sql">
+   Relevant SQL
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="deploy">
+<h1>DEPLOY<a class="headerlink" href="#deploy" title="Permalink to this headline">#</a></h1>
+<section id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">#</a></h2>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CreateDeploymentStmt
+						::= &#39;DEPLOY&#39; [DeployOptions] DeploymentName SelectStmt
+
+DeployOptions（可选）
+						::= &#39;OPTIONS&#39; &#39;(&#39; DeployOptionItem (&#39;,&#39; DeployOptionItem)* &#39;)&#39;
+
+DeploymentName
+						::= identifier
+</pre></div>
+</div>
+<p>Please refer to [DEPLOYMENT Property DeployOptions (optional)](#DEPLOYMENT Property DeployOptions (optional)) for the definition of <code class="docutils literal notranslate"><span class="pre">DeployOptions</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">DEPLOY</span></code> statement is used to deploy SQL to online. It supports to deploy <a class="reference internal" href="../dql/SELECT_STATEMENT.html"><span class="doc std std-doc">Select Statement</span></a>，and the SQL should meet the requirement <a class="reference internal" href="ONLINE_SERVING_REQUIREMENTS.html"><span class="doc std std-doc">OpenMLDB SQL Requirement</span></a></p>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="n">DEPLOY</span><span class="w"> </span><span class="n">deployment_name</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">clause</span><span class="w"></span>
+</pre></div>
+</div>
+<section id="example-deploy-sql-onto-online">
+<h3>Example: Deploy SQL onto Online<a class="headerlink" href="#example-deploy-sql-onto-online" title="Permalink to this headline">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create database successfully</span>
+
+<span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Database changed</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">(</span><span class="n">c1</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"> </span><span class="n">c4</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span><span class="w"> </span><span class="n">c5</span><span class="w"> </span><span class="n">double</span><span class="p">,</span><span class="w"> </span><span class="n">c6</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">c7</span><span class="w"> </span><span class="nb">date</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Create successfully</span>
+
+<span class="n">DEPLOY</span><span class="w"> </span><span class="n">demo_deploy</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">w1_c3_sum</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="n">WINDOW</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c6</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- SUCCEED: deploy successfully</span>
+</pre></div>
+</div>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">DEPLOYMENT</span> <span class="pre">demo_deploy</span></code> command to see the detail of sepcific deployment：</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="w">  </span><span class="n">DB</span><span class="w">        </span><span class="n">Deployment</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="w">  </span><span class="n">demo_db</span><span class="w">   </span><span class="n">demo_deploy</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"></span>
+<span class="w"> </span><span class="c1">-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="w">  </span><span class="k">SQL</span><span class="w"></span>
+<span class="w"> </span><span class="c1">-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="w">  </span><span class="n">DEPLOY</span><span class="w"> </span><span class="n">demo_data_service</span><span class="w"> </span><span class="k">SELECT</span><span class="w"></span>
+<span class="w">  </span><span class="n">c1</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">c2</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">sum</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">w1</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">w1_c3_sum</span><span class="w"></span>
+<span class="k">FROM</span><span class="w"></span>
+<span class="w">  </span><span class="n">demo_table1</span><span class="w"></span>
+<span class="n">WINDOW</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c1</span><span class="w"></span>
+<span class="w">  </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c6</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">)</span><span class="w"></span>
+<span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"></span>
+<span class="o">#</span><span class="w"> </span><span class="k">Input</span><span class="w"> </span><span class="k">Schema</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- ------------ ------------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">   </span><span class="k">Type</span><span class="w">         </span><span class="n">IsConstant</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- ------------ ------------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">c1</span><span class="w">      </span><span class="n">kVarchar</span><span class="w">     </span><span class="k">NO</span><span class="w"></span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">c2</span><span class="w">      </span><span class="n">kInt32</span><span class="w">       </span><span class="k">NO</span><span class="w"></span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">c3</span><span class="w">      </span><span class="n">kInt64</span><span class="w">       </span><span class="k">NO</span><span class="w"></span>
+<span class="w">  </span><span class="mi">4</span><span class="w">   </span><span class="n">c4</span><span class="w">      </span><span class="n">kFloat</span><span class="w">       </span><span class="k">NO</span><span class="w"></span>
+<span class="w">  </span><span class="mi">5</span><span class="w">   </span><span class="n">c5</span><span class="w">      </span><span class="n">kDouble</span><span class="w">      </span><span class="k">NO</span><span class="w"></span>
+<span class="w">  </span><span class="mi">6</span><span class="w">   </span><span class="n">c6</span><span class="w">      </span><span class="n">kTimestamp</span><span class="w">   </span><span class="k">NO</span><span class="w"></span>
+<span class="w">  </span><span class="mi">7</span><span class="w">   </span><span class="n">c7</span><span class="w">      </span><span class="n">kDate</span><span class="w">        </span><span class="k">NO</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- ------------ ------------</span>
+
+<span class="o">#</span><span class="w"> </span><span class="k">Output</span><span class="w"> </span><span class="k">Schema</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ----------- ---------- ------------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">       </span><span class="k">Type</span><span class="w">       </span><span class="n">IsConstant</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ----------- ---------- ------------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">c1</span><span class="w">          </span><span class="n">kVarchar</span><span class="w">   </span><span class="k">NO</span><span class="w"></span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">c2</span><span class="w">          </span><span class="n">kInt32</span><span class="w">     </span><span class="k">NO</span><span class="w"></span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">w1_c3_sum</span><span class="w">   </span><span class="n">kInt64</span><span class="w">     </span><span class="k">NO</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ----------- ---------- ------------ </span>
+</pre></div>
+</div>
+</section>
+<section id="deployment-property-deployoptions-optional">
+<h3>DEPLOYMENT Property DeployOptions (optional)<a class="headerlink" href="#deployment-property-deployoptions-optional" title="Permalink to this headline">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">DeployOptions</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;OPTIONS&#39;</span><span class="w"> </span><span class="s1">&#39;(&#39;</span><span class="w"> </span><span class="n">DeployOptionItem</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">DeployOptionItem</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="s1">&#39;)&#39;</span><span class="w"></span>
+
+<span class="n">DeployOptionItem</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">LongWindowOption</span><span class="w"></span>
+
+<span class="n">LongWindowOption</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;LONG_WINDOWS&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">LongWindowDefinitions</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Currently only the optimization option for long windows <code class="docutils literal notranslate"><span class="pre">LONG_WINDOWS</span></code> is supported.</p>
+<section id="long-window-optimization">
+<h4>Long Window Optimization<a class="headerlink" href="#long-window-optimization" title="Permalink to this headline">#</a></h4>
+<section id="long-window-optimization-options-format">
+<h5>Long Window Optimization Options Format<a class="headerlink" href="#long-window-optimization-options-format" title="Permalink to this headline">#</a></h5>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">LongWindowDefinitions</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;LongWindowDefinition (, LongWindowDefinition)*&#39;</span><span class="w"></span>
+
+<span class="n">LongWindowDefinition</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;WindowName[:BucketSize]&#39;</span><span class="w"></span>
+
+<span class="n">WindowName</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">string_literal</span><span class="w"></span>
+
+<span class="n">BucketSize</span><span class="w"> </span><span class="p">(</span><span class="n">optional</span><span class="p">,</span><span class="w"> </span><span class="k">defaults</span><span class="w"> </span><span class="k">to</span><span class="p">)</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">int_literal</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">interval_literal</span><span class="w"></span>
+
+<span class="n">interval_literal</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">int_literal</span><span class="w"> </span><span class="s1">&#39;s&#39;</span><span class="o">|</span><span class="s1">&#39;m&#39;</span><span class="o">|</span><span class="s1">&#39;h&#39;</span><span class="o">|</span><span class="s1">&#39;d&#39;</span><span class="w"> </span><span class="p">(</span><span class="n">representing</span><span class="w"> </span><span class="n">seconds</span><span class="p">,</span><span class="w"> </span><span class="n">minutes</span><span class="p">,</span><span class="w"> </span><span class="n">hours</span><span class="p">,</span><span class="w"> </span><span class="n">days</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Among them, <code class="docutils literal notranslate"><span class="pre">BucketSize</span></code> is a performance optimization option. It will use <code class="docutils literal notranslate"><span class="pre">BucketSize</span></code> as the granularity to pre-aggregate the data in the table. The default value is <code class="docutils literal notranslate"><span class="pre">1d</span></code>.</p>
+<p>An example is as follows:</p>
+<div class="highlight-sqlite notranslate"><div class="highlight"><pre><span></span>DEPLOY demo_deploy OPTIONS(long_windows=&quot;w1:1d&quot;) SELECT col0, sum(col1) OVER w1 FROM t1
+    WINDOW w1 AS (PARTITION BY col0 ORDER BY col2 ROWS_RANGE BETWEEN 5d PRECEDING AND CURRENT ROW);
+-- SUCCEED: deploy successfully
+</pre></div>
+</div>
+</section>
+<section id="limitation-factor">
+<h5>Limitation Factor<a class="headerlink" href="#limitation-factor" title="Permalink to this headline">#</a></h5>
+<p>The current long window optimization has the following limitations:</p>
+<ul class="simple">
+<li><p>Only supports <code class="docutils literal notranslate"><span class="pre">SelectStmt</span></code> involving only one physical table, i.e. <code class="docutils literal notranslate"><span class="pre">SelectStmt</span></code> containing <code class="docutils literal notranslate"><span class="pre">join</span></code> or <code class="docutils literal notranslate"><span class="pre">union</span></code> is not supported</p></li>
+<li><p>Only supported aggregation operations: <code class="docutils literal notranslate"><span class="pre">sum</span></code>, <code class="docutils literal notranslate"><span class="pre">avg</span></code>, <code class="docutils literal notranslate"><span class="pre">count</span></code>, <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">count_where</span></code>, <code class="docutils literal notranslate"><span class="pre">min_where</span></code>, <code class="docutils literal notranslate"><span class="pre">max_where</span></code>, <code class="docutils literal notranslate"><span class="pre">sum_where</span></code>, <code class="docutils literal notranslate"><span class="pre">avg_where</span></code></p></li>
+<li><p>Do not allow data in the table when executing the <code class="docutils literal notranslate"><span class="pre">deploy</span></code> command</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">count_where</span></code>, <code class="docutils literal notranslate"><span class="pre">min_where</span></code>, <code class="docutils literal notranslate"><span class="pre">max_where</span></code>, <code class="docutils literal notranslate"><span class="pre">sum_where</span></code>, <code class="docutils literal notranslate"><span class="pre">avg_where</span></code>, there are extra limitations：</p>
+<ol class="arabic simple">
+<li><p>The main table over should be a memory type table (<code class="docutils literal notranslate"><span class="pre">storage_mode</span> <span class="pre">=</span> <span class="pre">'Memory'</span></code>)</p></li>
+<li><p>The type of <code class="docutils literal notranslate"><span class="pre">BucketSize</span></code> for deployment should be range, e.g.  <code class="docutils literal notranslate"><span class="pre">long_windows='w1:1d'</span></code> supported, whereas <code class="docutils literal notranslate"><span class="pre">long_windows='w1:100'</span></code> is not</p></li>
+<li><p>The expression for where should be the format of <code class="docutils literal notranslate"><span class="pre">&lt;column</span> <span class="pre">ref&gt;</span> <span class="pre">op</span> <span class="pre">&lt;const</span> <span class="pre">value&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">&lt;const</span> <span class="pre">value&gt;</span> <span class="pre">op</span> <span class="pre">&lt;column</span> <span class="pre">ref&gt;</span></code></p>
+<ul>
+<li><p>Supported where op: <code class="docutils literal notranslate"><span class="pre">&gt;,</span> <span class="pre">&lt;,</span> <span class="pre">&gt;=,</span> <span class="pre">&lt;=,</span> <span class="pre">=,</span> <span class="pre">!=</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">&lt;column</span> <span class="pre">ref&gt;</span></code> should not be type of date or timestamp</p></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+<section id="relevant-sql">
+<h2>Relevant SQL<a class="headerlink" href="#relevant-sql" title="Permalink to this headline">#</a></h2>
+<p><a class="reference internal" href="../ddl/USE_DATABASE_STATEMENT.html"><span class="doc std std-doc">USE DATABASE</span></a></p>
+<p><a class="reference internal" href="SHOW_DEPLOYMENT.html"><span class="doc std std-doc">SHOW DEPLOYMENT</span></a></p>
+<p><a class="reference internal" href="DROP_DEPLOYMENT_STATEMENT.html"><span class="doc std std-doc">DROP DEPLOYMENT</span></a></p>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">DEPLOYMENT Management</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="DROP_DEPLOYMENT_STATEMENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Delete DEPLOYMENT</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:54 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

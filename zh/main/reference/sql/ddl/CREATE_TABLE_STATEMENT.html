@@ -1,0 +1,1654 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>CREATE TABLE &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="DROP TABLE" href="DROP_TABLE_STATEMENT.html" />
+    <link rel="prev" title="DESC" href="DESC_STATEMENT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../about/index.html">
+   关于
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../about/intro.html">
+     简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../about/milestones.html">
+     发展历程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../quickstart/index.html">
+   快速上手
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../quickstart/openmldb_quickstart.html">
+     OpenMLDB 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../quickstart/java_sdk.html">
+     Java SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../quickstart/python_sdk.html">
+     Python SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../quickstart/data_import_guide.html">
+     数据导入快速指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../tutorial/index.html">
+   教程
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/tutorial_sql_1.html">
+     基于 SQL 的特征开发（上）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/tutorial_sql_2.html">
+     基于 SQL 的特征开发（下）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/standalone_vs_cluster.html">
+     集群版 vs 单机版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/modes.html">
+     集群版使用流程及执行模式
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/openmldbspark_distribution.html">
+     OpenMLDB Spark 发行版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../tutorial/data_import.html">
+     在线数据导入工具使用
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../use_case/index.html">
+   使用案例
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/taxi_tour_duration_prediction.html">
+     OpenMLDB + LightGBM：出租车行程时间预测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/pulsar_connector_demo.html">
+     OpenMLDB Pulsar Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/kafka_connector_demo.html">
+     OpenMLDB Kafka Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/dolphinscheduler_task_demo.html">
+     DolphinScheduler OpenMLDB Task：打造端到端MLOps工作流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/talkingdata_demo.html">
+     TalkingData 广告欺诈检测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/OpenMLDB_Byzer_taxi.html">
+     OpenMLDB + Byzer: 基于 SQL 打造端到端机器学习应用
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/airflow_provider_demo.html">
+     Airflow OpenMLDB Provider 使用案例
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../use_case/JD_recommendation.html">
+     OpenMLDB + OneFlow: 高潜用户购买意向预测
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../deploy/index.html">
+   安装部署
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../deploy/compile.html">
+     编译
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../deploy/install_deploy.html">
+     安装部署
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../deploy/conf.html">
+     配置文件
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../maintain/index.html">
+   运维
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/upgrade.html">
+     版本升级
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/backup.html">
+     备份与恢复
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/scale.html">
+     扩缩容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/monitoring.html">
+     监控
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/cli.html">
+     运维 CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/faq.html">
+     运维 FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../maintain/diagnose.html">
+     诊断工具
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../developer/index.html">
+   开发者文档
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../developer/contributing.html">
+     Contributing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../developer/code_structure.html">
+     代码结构
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../developer/built_in_function_develop_guide.html">
+     内置函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../developer/udf_develop_guide.html">
+     自定义函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../developer/sdk_develop.html">
+     SDK 开发指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../../index.html">
+   参考
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../arch/index.html">
+     架构
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../arch/online_arch.html">
+       在线模块架构
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="../index.html">
+     SQL
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../language_structure/index.html">
+       语言结构
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/keywords.html">
+         关键字
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/object_names_identifiers.html">
+         SQL 对象名
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/literals_value.html">
+         字面值
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/case_sensitive.html">
+         大小写敏感
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../language_structure/comment.html">
+         注释
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../data_types/index.html">
+       数据类型
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../data_types/numeric_types.html">
+         数值类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../data_types/string_types.html">
+         字符串类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../data_types/date_and_time_types.html">
+         日期与时间类型
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../functions_and_operators/index.html">
+       表达式，函数和运算
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../functions_and_operators/operators.html">
+         运算符
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dql/index.html">
+       数据查询语句 （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/SELECT_STATEMENT.html">
+         SELECT 概况
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/NO_TABLE_SELECT_CLAUSE.html">
+         无表 SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../dml/index.html">
+       数据操作语句（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 current active has-children">
+      <a class="reference internal" href="index.html">
+       数据定义语句（DDL）
+      </a>
+      <input checked="" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul class="current">
+       <li class="toctree-l4">
+        <a class="reference internal" href="CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4 current active">
+        <a class="current reference internal" href="#">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="SHOW_COMPONENTS.html">
+         SHOW COMPONENTS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="SHOW_TABLE_STATUS.html">
+         SHOW TABLE STATUS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../deployment_manage/index.html">
+       DEPLOYMENT 管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../deployment_manage/DEPLOY_STATEMENT.html">
+         创建 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         删除 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../deployment_manage/SHOW_DEPLOYMENTS.html">
+         查看 DEPLOYMENTS 列表
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../deployment_manage/SHOW_DEPLOYMENT.html">
+         查看 DEPLOYMENT 详情
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL 上线规范和要求
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../task_manage/index.html">
+       任务管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ip_tips.html">
+     IP 配置
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../client_config/index.html">
+     客户端配置
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../../client_config/client_spark_config.html">
+       客户端Spark配置文件
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+当前版本: main</br>
+版本列表：
+<ul>
+  <li><a href="CREATE_TABLE_STATEMENT.html">main</a></li>
+  <li><a href="../../../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../../../v0.4/index.html">v0.4</a></li>
+  <li><a href="../../../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/reference/sql/ddl/CREATE_TABLE_STATEMENT.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntax">
+   Syntax
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     相关语法元素
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#columndef">
+       列描述ColumnDef（必要）
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example">
+         Example
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#columnindex">
+       列索引ColumnIndex（可选）
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id2">
+         Example
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tableoptions">
+       表属性TableOptions（可选）
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#storage-mode-hdd-ssd-storage-mode-memory">
+         磁盘表（
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           STORAGE_MODE
+          </span>
+         </code>
+         ==
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           HDD
+          </span>
+         </code>
+         |
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           SSD
+          </span>
+         </code>
+         ）与内存表（
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           STORAGE_MODE
+          </span>
+         </code>
+         ==
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           Memory
+          </span>
+         </code>
+         ）区别
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id3">
+         Example
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sql">
+   相关SQL
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>CREATE TABLE</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#syntax">
+   Syntax
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     相关语法元素
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#columndef">
+       列描述ColumnDef（必要）
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#example">
+         Example
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#columnindex">
+       列索引ColumnIndex（可选）
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id2">
+         Example
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#tableoptions">
+       表属性TableOptions（可选）
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#storage-mode-hdd-ssd-storage-mode-memory">
+         磁盘表（
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           STORAGE_MODE
+          </span>
+         </code>
+         ==
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           HDD
+          </span>
+         </code>
+         |
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           SSD
+          </span>
+         </code>
+         ）与内存表（
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           STORAGE_MODE
+          </span>
+         </code>
+         ==
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           Memory
+          </span>
+         </code>
+         ）区别
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id3">
+         Example
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sql">
+   相关SQL
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="create-table">
+<h1>CREATE TABLE<a class="headerlink" href="#create-table" title="Permalink to this headline">#</a></h1>
+<section id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">#</a></h2>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">CreateTableStmt</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;CREATE&#39;</span><span class="w"> </span><span class="s1">&#39;TABLE&#39;</span><span class="w"> </span><span class="n">IfNotExists</span><span class="w"> </span><span class="n">TableName</span><span class="w"> </span><span class="p">(</span><span class="w"> </span>
+<span class="w">      </span><span class="n">TableElementList</span><span class="w"> </span><span class="n">CreateTableSelectOpt</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">LikeTableWithOrWithoutParen</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">OnCommitOpt</span><span class="w"></span>
+<span class="n">IfNotExists</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="s1">&#39;IF&#39;</span><span class="w"> </span><span class="s1">&#39;NOT&#39;</span><span class="w"> </span><span class="s1">&#39;EXISTS&#39;</span><span class="p">)</span><span class="o">?</span><span class="w"></span>
+<span class="n">TableName</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">Identifier</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="n">Identifier</span><span class="p">)</span><span class="o">?</span><span class="w"></span>
+<span class="w">    </span>
+<span class="n">TableElementList</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">TableElement</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">TableElement</span><span class="w"> </span><span class="p">)</span><span class="o">*</span><span class="w"></span>
+<span class="n">TableElement</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">ColumnDef</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ColumnIndex</span><span class="w"></span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> 语句用于创建一张表。同一个数据库下，表名在必须是唯一的，在同一个数据库下，重复创建同名表，会发生错误。</p>
+<p>建表语句中需要定义<code class="docutils literal notranslate"><span class="pre">table_element</span></code>列表。<code class="docutils literal notranslate"><span class="pre">table_element</span></code>分为列描述<code class="docutils literal notranslate"><span class="pre">ColumnDef</span></code>和列索引<code class="docutils literal notranslate"><span class="pre">ColumnIndex</span></code>。OpenMLDB要求<code class="docutils literal notranslate"><span class="pre">table_element</span></code>列表中至少包含一个<code class="docutils literal notranslate"><span class="pre">ColumnDef</span></code>。</p>
+<section id="id1">
+<h3>相关语法元素<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<section id="columndef">
+<h4>列描述ColumnDef（必要）<a class="headerlink" href="#columndef" title="Permalink to this headline">#</a></h4>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="n">ColumnDef</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">ColumnName</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">ColumnType</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="n">ColumnOptionList</span><span class="p">]</span><span class="w"></span>
+<span class="n">ColumnName</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">Identifier</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="n">Identifier</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="n">Identifier</span><span class="w"> </span><span class="p">)</span><span class="o">?</span><span class="w"> </span><span class="p">)</span><span class="o">?</span><span class="w">      </span>
+<span class="w">         </span>
+<span class="n">ColumnType</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"></span>
+<span class="w">						</span><span class="s1">&#39;INT&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;INT32&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;SMALLINT&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;INT16&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;BIGINT&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;INT64&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;FLOAT&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;DOUBLE&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;TIMESTAMP&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;DATE&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;BOOL&#39;</span><span class="w"></span>
+<span class="w">						</span><span class="o">|</span><span class="s1">&#39;STRING&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;VARCHAR&#39;</span><span class="w"></span>
+<span class="w">						</span>
+<span class="n">ColumnOptionList</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ColumnOption</span><span class="o">*</span><span class="w">	</span>
+<span class="n">ColumnOption</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="p">[</span><span class="s1">&#39;DEFAULT&#39;</span><span class="w"> </span><span class="n">DefaultValueExpr</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;NOT&#39;</span><span class="w"> </span><span class="s1">&#39;NULL&#39;</span><span class="p">]</span><span class="w"></span>
+<span class="w">				 	  </span>
+<span class="n">DefaultValueExpr</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="n">int_literal</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">float_literal</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">double_literal</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">string_literal</span><span class="w"></span>
+</pre></div>
+</div>
+<p>一张表中包含一个或多个列。每一列的列描述<code class="docutils literal notranslate"><span class="pre">ColumnDef</span></code>描述了列名、列类型以及类配置。</p>
+<ul class="simple">
+<li><p>列名：列在表中的名字。同一张表内的列名必须是唯一的。</p></li>
+<li><p>列类型：列的类型。想要了解OpenMLDB支持的数据类型，可以参考<a class="reference external" href="https://openmldb.ai/docs/zh/main/reference/sql/data_types/index.html">数据类型</a>。</p></li>
+<li><p>列约束配置：</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>: 该列的取值不允许为空。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code>: 设置该列的默认值。<code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>的属性推荐同时配置<code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code>默认值，在插入数据时，若没有定义该列的值，会插入默认值。若设置了<code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>属性但没有配置<code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code>值，插入语句中未定义该列值时，OpenMLDB会抛出错误。</p></li>
+</ul>
+</li>
+</ul>
+<section id="example">
+<h5>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h5>
+<p><strong>示例1：创建一张表</strong></p>
+<p>将当前数据库设为<code class="docutils literal notranslate"><span class="pre">db1</span></code>，在当前数据库中创建一张表<code class="docutils literal notranslate"><span class="pre">t1</span></code>，包含列<code class="docutils literal notranslate"><span class="pre">col0</span></code>，列类型为STRING</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">-- SUCCEED</span>
+<span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Database changed</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- SUCCEED</span>
+</pre></div>
+</div>
+<p>假如当前会话不在数据库<code class="docutils literal notranslate"><span class="pre">db1</span></code>下，但是仍要在<code class="docutils literal notranslate"><span class="pre">db1</span></code>中创建一张表<code class="docutils literal notranslate"><span class="pre">t2</span></code>，包含列<code class="docutils literal notranslate"><span class="pre">col0</span></code>，列类型为STRING；列<code class="docutils literal notranslate"><span class="pre">col1</span></code>，列类型为int。</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">db1</span><span class="p">.</span><span class="n">t2</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- SUCCEED</span>
+</pre></div>
+</div>
+<p>切换到数据库<code class="docutils literal notranslate"><span class="pre">db1</span></code>，查看表<code class="docutils literal notranslate"><span class="pre">t2</span></code>的详细信息。</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Database changed</span>
+<span class="k">desc</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">   </span><span class="k">Type</span><span class="w">      </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">    </span><span class="nb">Varchar</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">    </span><span class="nb">Int</span><span class="w">       </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">   </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w">       </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639524201</span><span class="w">   </span><span class="n">col0</span><span class="w">   </span><span class="o">-</span><span class="w">    </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+<span class="w"> </span><span class="c1">--------------</span>
+<span class="w">  </span><span class="n">storage_mode</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------------</span>
+<span class="w">  </span><span class="n">Memory</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------------</span>
+</pre></div>
+</div>
+<p><strong>示例2：在同一个数据库下重复创建同名表</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- SUCCEED</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- Error: table already exists</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="n">string</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- Error: table already exists</span>
+</pre></div>
+</div>
+<p><strong>示例3：创建一张表，配置列不允许为空（NOT NULL）</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">-- SUCCEED: Database changed</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t3</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- SUCCEED</span>
+</pre></div>
+</div>
+<p>查看该表的详细信息</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">desc</span><span class="w"> </span><span class="n">t3</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ ---------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">   </span><span class="k">Type</span><span class="w">      </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ ---------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">    </span><span class="nb">Varchar</span><span class="w">   </span><span class="k">NO</span><span class="w"></span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">    </span><span class="nb">Int</span><span class="w">       </span><span class="n">YES</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ ---------</span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ ---------------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">   </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ ---------------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1657327434</span><span class="w">   </span><span class="n">col0</span><span class="w">   </span><span class="o">-</span><span class="w">    </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ ---------------</span>
+<span class="w"> </span><span class="c1">--------------</span>
+<span class="w">  </span><span class="n">storage_mode</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------------</span>
+<span class="w">  </span><span class="n">Memory</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------------</span>
+</pre></div>
+</div>
+<p><strong>示例4：创建一张表，设置列默认值</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">--SUCCEED: Database changed</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t4</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="ss">&quot;NA&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="c1">-- SUCCEED</span>
+<span class="k">desc</span><span class="w"> </span><span class="n">t4</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ ---------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">   </span><span class="k">Type</span><span class="w">      </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ ---------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">    </span><span class="nb">Varchar</span><span class="w">   </span><span class="n">YES</span><span class="w">    </span><span class="n">NA</span><span class="w"></span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">    </span><span class="nb">Int</span><span class="w">       </span><span class="n">YES</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- --------- ------ ---------</span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ ---------------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">   </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ ---------------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1657327593</span><span class="w">   </span><span class="n">col0</span><span class="w">   </span><span class="o">-</span><span class="w">    </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ ---------------</span>
+<span class="w"> </span><span class="c1">--------------</span>
+<span class="w">  </span><span class="n">storage_mode</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------------</span>
+<span class="w">  </span><span class="n">Memory</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------------</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="columnindex">
+<h4>列索引ColumnIndex（可选）<a class="headerlink" href="#columnindex" title="Permalink to this headline">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">ColumnIndex</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="s1">&#39;INDEX&#39;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">OptionalIndexName</span><span class="o">&gt;</span><span class="w"> </span><span class="s1">&#39;(&#39;</span><span class="w"> </span><span class="n">IndexOptionList</span><span class="w"> </span><span class="s1">&#39;)&#39;</span><span class="w"> </span>
+<span class="w"> </span>
+<span class="n">IndexOptionList</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="n">IndexOption</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">IndexOption</span><span class="w"> </span><span class="p">)</span><span class="o">*</span><span class="w"></span>
+<span class="w">   </span>
+<span class="n">IndexOption</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"> </span>
+<span class="w">    </span><span class="n">IndexOptionName</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">expr</span><span class="w"></span>
+</pre></div>
+</div>
+<p>索引可以被数据库搜索引擎用来加速数据的检索。 简单说来，索引就是指向表中数据的指针。OpenMLDB 支持的索引配置项（<code class="docutils literal notranslate"><span class="pre">IndexOptionName</span></code>）有索引<code class="docutils literal notranslate"><span class="pre">KEY</span></code>，索引时间列<code class="docutils literal notranslate"><span class="pre">TS</span></code>, 最大存活时间/条数<code class="docutils literal notranslate"><span class="pre">TTL</span></code>和淘汰规则<code class="docutils literal notranslate"><span class="pre">TTL_TYPE</span></code>。其中<code class="docutils literal notranslate"><span class="pre">KEY</span></code>是必须配置的，其他配置项都为可选项。下表介绍了各索引配置项的含义、支持的表达式(<code class="docutils literal notranslate"><span class="pre">expr</span></code>)以及用法示例：</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>配置项</p></th>
+<th class="head"><p>描述</p></th>
+<th class="head"><p>expr</p></th>
+<th class="head"><p>用法示例</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">KEY</span></code></p></td>
+<td><p>索引列（必选）。OpenMLDB支持单列索引，也支持联合索引。当<code class="docutils literal notranslate"><span class="pre">KEY</span></code>后只有一列时，仅在该列上建立索引。当<code class="docutils literal notranslate"><span class="pre">KEY</span></code>后有多列时，建立这几列的联合索引：将多列按顺序拼接成一个字符串作为索引。</p></td>
+<td><p>支持单列索引：<code class="docutils literal notranslate"><span class="pre">ColumnName</span></code><br/>或联合索引：<br/><code class="docutils literal notranslate"><span class="pre">(ColumnName</span> <span class="pre">(,</span> <span class="pre">ColumnName)*</span> <span class="pre">)</span> </code></p></td>
+<td><p>单列索引：<code class="docutils literal notranslate"><span class="pre">INDEX(KEY=col1)</span></code><br />联合索引：<code class="docutils literal notranslate"><span class="pre">INDEX(KEY=(col1,</span> <span class="pre">col2))</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TS</span></code></p></td>
+<td><p>索引时间列（可选）。同一个索引上的数据将按照时间索引列排序。当不显式配置<code class="docutils literal notranslate"><span class="pre">TS</span></code>时，使用数据插入的时间戳作为索引时间。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ColumnName</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INDEX(KEY=col1,</span> <span class="pre">TS=std_time)</span></code>。索引列为col1,col1相同的数据行按std_time排序。</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TTL_TYPE</span></code></p></td>
+<td><p>淘汰规则（可选）。包括四种类型，当不显式配置<code class="docutils literal notranslate"><span class="pre">TTL_TYPE</span></code>时，默认使用<code class="docutils literal notranslate"><span class="pre">ABSOLUTE</span></code>过期配置。</p></td>
+<td><p>支持的expr如下：<code class="docutils literal notranslate"><span class="pre">ABSOLUTE</span></code> <br/> <code class="docutils literal notranslate"><span class="pre">LATEST</span></code><br/><code class="docutils literal notranslate"><span class="pre">ABSORLAT</span></code><br/> <code class="docutils literal notranslate"><span class="pre">ABSANDLAT</span></code>。</p></td>
+<td><p>具体用法可以参考下文“TTL和TTL_TYPE的配置细则”</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TTL</span></code></p></td>
+<td><p>最大存活时间/条数（可选）。依赖于<code class="docutils literal notranslate"><span class="pre">TTL_TYPE</span></code>，不同的<code class="docutils literal notranslate"><span class="pre">TTL_TYPE</span></code>有不同的<code class="docutils literal notranslate"><span class="pre">TTL</span></code> 配置方式。当不显式配置<code class="docutils literal notranslate"><span class="pre">TTL</span></code>时，<code class="docutils literal notranslate"><span class="pre">TTL=0</span></code>，表示不设置淘汰规则，OpenMLDB将不会淘汰记录。</p></td>
+<td><p>支持数值：<code class="docutils literal notranslate"><span class="pre">int_literal</span></code><br/>  或数值带时间单位(<code class="docutils literal notranslate"><span class="pre">S,M,H,D</span></code>)：<code class="docutils literal notranslate"><span class="pre">interval_literal</span></code><br/>或元组形式：<code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">interval_literal</span> <span class="pre">,</span> <span class="pre">int_literal</span> <span class="pre">)</span></code></p></td>
+<td><p>具体用法可以参考下文“TTL和TTL_TYPE的配置细则”</p></td>
+</tr>
+</tbody>
+</table>
+<p>TTL和TTL_TYPE的配置细则：</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>TTL_TYPE</p></th>
+<th class="head"><p>TTL</p></th>
+<th class="head"><p>描述</p></th>
+<th class="head"><p>用法示例</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ABSOLUTE</span></code></p></td>
+<td><p>TTL的值代表过期时间。配置值为时间段如<code class="docutils literal notranslate"><span class="pre">100m,</span> <span class="pre">12h,</span> <span class="pre">1d,</span> <span class="pre">365d</span></code>。最大可以配置的过期时间为<code class="docutils literal notranslate"><span class="pre">15768000m</span></code>(即30年)</p></td>
+<td><p>当记录过期时，会被淘汰。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INDEX(KEY=col1,</span> <span class="pre">TS=std_time,</span> <span class="pre">TTL_TYPE=absolute,</span> <span class="pre">TTL=100m)</span></code><br />OpenMLDB将会删除100分钟之前的数据。</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LATEST</span></code></p></td>
+<td><p>TTL的值代表最大存活条数。即同一个索引下面，最大允许存在的数据条数。最大可以配置1000条</p></td>
+<td><p>记录超过最大条数时，会被淘汰。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INDEX(KEY=col1,</span> <span class="pre">TS=std_time,</span> <span class="pre">TTL_TYPE=LATEST,</span> <span class="pre">TTL=10)</span></code>。OpenMLDB只会保留最近10条记录，删除以前的记录。</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ABSORLAT</span></code></p></td>
+<td><p>配置过期时间和最大存活条数。配置值是一个2元组，形如<code class="docutils literal notranslate"><span class="pre">(100m,</span> <span class="pre">10),</span> <span class="pre">(1d,</span> <span class="pre">1)</span></code>。最大可以配置<code class="docutils literal notranslate"><span class="pre">(15768000m,</span> <span class="pre">1000)</span></code>。</p></td>
+<td><p>当且仅当记录过期<strong>或</strong>记录超过最大条数时，才会淘汰。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INDEX(key=c1,</span> <span class="pre">ts=c6,</span> <span class="pre">ttl=(120min,</span> <span class="pre">100),</span> <span class="pre">ttl_type=absorlat)</span></code>。当记录超过100条，<strong>或者</strong>当记录过期时，会被淘汰</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ABSANDLAT</span></code></p></td>
+<td><p>配置过期时间和最大存活条数。配置值是一个2元组，形如<code class="docutils literal notranslate"><span class="pre">(100m,</span> <span class="pre">10),</span> <span class="pre">(1d,</span> <span class="pre">1)</span></code>。最大可以配置<code class="docutils literal notranslate"><span class="pre">(15768000m,</span> <span class="pre">1000)</span></code>。</p></td>
+<td><p>当记录过期<strong>且</strong>记录超过最大条数时，记录会被淘汰。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INDEX(key=c1,</span> <span class="pre">ts=c6,</span> <span class="pre">ttl=(120min,</span> <span class="pre">100),</span> <span class="pre">ttl_type=absandlat)</span></code>。当记录超过100条，<strong>而且</strong>记录过期时，会被淘汰</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id2">
+<h5>Example<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h5>
+<p><strong>示例1：创建一张带单列索引的表</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">--SUCCEED: Database changed</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">));</span><span class="w"></span>
+<span class="c1">-- SUCCEED</span>
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">   </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w">       </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639524520</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="o">-</span><span class="w">    </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ --------------- </span>
+</pre></div>
+</div>
+<p><strong>示例2：创建一张带联合列索引的表</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">--SUCCEED: Database changed</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="p">(</span><span class="n">col0</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="p">)));</span><span class="w"></span>
+<span class="c1">-- SUCCEED</span>
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ----------- ---- ------ --------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">        </span><span class="n">ts</span><span class="w">   </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w">       </span>
+<span class="w"> </span><span class="c1">--- -------------------- ----------- ---- ------ --------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639524576</span><span class="w">   </span><span class="n">col0</span><span class="o">|</span><span class="n">col1</span><span class="w">   </span><span class="o">-</span><span class="w">    </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ----------- ---- ------ --------------- </span>
+</pre></div>
+</div>
+<p><strong>示例3：创建一张带单列索引+时间列的表</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">--SUCCEED: Database changed</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">));</span><span class="w"></span>
+<span class="c1">-- SUCCEED</span>
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ --------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w">       </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ --------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639524645</span><span class="w">   </span><span class="n">col0</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ --------------- </span>
+</pre></div>
+</div>
+<p><strong>示例4：创建一张带单列索引+时间列的TTL type为abusolute表，并配置ttl为30天</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">--SUCCEED: Database changed</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">,</span><span class="w"> </span><span class="n">TTL_TYPE</span><span class="o">=</span><span class="k">absolute</span><span class="p">,</span><span class="w"> </span><span class="n">TTL</span><span class="o">=</span><span class="mi">30</span><span class="n">d</span><span class="p">));</span><span class="w"></span>
+<span class="c1">-- SUCCEED</span>
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ---------- --------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">        </span><span class="n">ttl_type</span><span class="w">       </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ---------- --------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639524729</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">43200</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ---------- --------------- </span>
+</pre></div>
+</div>
+<p><strong>示例5：创建一张带单列索引+时间列的TTL type为latest表，并配置ttl为1</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">--SUCCEED: Database changed</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">,</span><span class="w"> </span><span class="n">TTL_TYPE</span><span class="o">=</span><span class="n">latest</span><span class="p">,</span><span class="w"> </span><span class="n">TTL</span><span class="o">=</span><span class="mi">1</span><span class="p">));</span><span class="w"></span>
+<span class="c1">-- SUCCEED</span>
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ----- ------------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">   </span><span class="n">ttl_type</span><span class="w">     </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ----- ------------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639524802</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">1</span><span class="w">     </span><span class="n">kLatestTime</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ----- ------------- </span>
+</pre></div>
+</div>
+<p><strong>示例6：创建一张带单列索引+时间列的TTL type为absANDlat表，并配置过期时间为30天，最大留存条数为10条</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">--SUCCEED: Database changed</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">,</span><span class="w"> </span><span class="n">TTL_TYPE</span><span class="o">=</span><span class="n">absandlat</span><span class="p">,</span><span class="w"> </span><span class="n">TTL</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="n">d</span><span class="p">,</span><span class="mi">10</span><span class="p">)));</span><span class="w"></span>
+<span class="c1">-- SUCCEED</span>
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- -------------- ------------ </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">            </span><span class="n">ttl_type</span><span class="w">    </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- -------------- ------------ </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639525038</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">43200</span><span class="k">min</span><span class="o">&amp;&amp;</span><span class="mi">10</span><span class="w">   </span><span class="n">kAbsAndLat</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- -------------- ------------ </span>
+</pre></div>
+</div>
+<p><strong>示例7：创建一张带单列索引+时间列的TTL type为absORlat表，并配置过期时间为30天，最大留存条数为10条</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">--SUCCEED: Database changed</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">,</span><span class="w"> </span><span class="n">TTL_TYPE</span><span class="o">=</span><span class="n">absorlat</span><span class="p">,</span><span class="w"> </span><span class="n">TTL</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="n">d</span><span class="p">,</span><span class="mi">10</span><span class="p">)));</span><span class="w"></span>
+<span class="c1">--SUCCEED</span>
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w">             </span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w">             </span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ --------- </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- -------------- ----------- </span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">            </span><span class="n">ttl_type</span><span class="w">   </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- -------------- ----------- </span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1639525079</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">43200</span><span class="k">min</span><span class="o">||</span><span class="mi">10</span><span class="w">   </span><span class="n">kAbsOrLat</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- -------------- ----------- </span>
+</pre></div>
+</div>
+<p><strong>示例8：创建一张多索引的表</strong></p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">--SUCCEED: Database changed</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col0</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">),</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">));</span><span class="w"></span>
+<span class="c1">--SUCCEED</span>
+<span class="k">desc</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ ---------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ ---------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ ---------</span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ ---------------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ ---------------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1648692457</span><span class="w">   </span><span class="n">col0</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w"></span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">INDEX_1_1648692457</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ ---------------</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tableoptions">
+<h4>表属性TableOptions（可选）<a class="headerlink" href="#tableoptions" title="Permalink to this headline">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">TableOptions</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;OPTIONS&#39;</span><span class="w"> </span><span class="s1">&#39;(&#39;</span><span class="w"> </span><span class="n">TableOptionItem</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">TableOptionItem</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="s1">&#39;)&#39;</span><span class="w"></span>
+<span class="n">TableOptionItem</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">PartitionNumOption</span><span class="w"></span>
+<span class="w">						    </span><span class="o">|</span><span class="w"> </span><span class="n">ReplicaNumOption</span><span class="w"></span>
+<span class="w">						    </span><span class="o">|</span><span class="w"> </span><span class="n">DistributeOption</span><span class="w"></span>
+<span class="w">						    </span><span class="o">|</span><span class="w"> </span><span class="n">StorageModeOption</span><span class="w"></span>
+<span class="w">								</span>
+<span class="n">PartitionNumOption</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PARTITIONNUM&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">int_literal</span><span class="w"></span>
+<span class="n">ReplicaNumOption</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;REPLICANUM&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">int_literal</span><span class="w"></span>
+<span class="w">						</span>
+<span class="n">DistributeOption</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;DISTRIBUTION&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">DistributionList</span><span class="w"></span>
+<span class="n">DistributionList</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">DistributionItem</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">DistributionItem</span><span class="p">)</span><span class="o">*</span><span class="w"></span>
+<span class="n">DistributionItem</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;(&#39;</span><span class="w"> </span><span class="n">LeaderEndpoint</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">FollowerEndpointList</span><span class="w"> </span><span class="s1">&#39;)&#39;</span><span class="w"></span>
+<span class="n">LeaderEndpoint</span><span class="w"> </span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> 	</span><span class="n">Endpoint</span><span class="w">	</span>
+<span class="n">FollowerEndpointList</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;[&#39;</span><span class="w"> </span><span class="n">Endpoint</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="n">Endpoint</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="s1">&#39;]&#39;</span><span class="w"></span>
+<span class="n">Endpoint</span><span class="w"></span>
+<span class="w">				</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="n">string_literals</span><span class="w"></span>
+<span class="n">StorageModeOption</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;STORAGE_MODE&#39;</span><span class="w"> </span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="n">StorageMode</span><span class="w"></span>
+<span class="n">StorageMode</span><span class="w"></span>
+<span class="w">						</span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Memory&#39;</span><span class="w"></span>
+<span class="w">						    </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;HDD&#39;</span><span class="w"></span>
+<span class="w">						    </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;SSD&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>配置项</p></th>
+<th class="head"><p>描述</p></th>
+<th class="head"><p>用法示例</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PARTITIONNUM</span></code></p></td>
+<td><p>配置表的分区数。OpenMLDB将表分为不同的分区块来存储。分区是OpenMLDB的存储、副本、以及故障恢复相关操作的基本单元。不显式配置时，<code class="docutils literal notranslate"><span class="pre">PARTITIONNUM</span></code>默认值为8。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">OPTIONS</span> <span class="pre">(PARTITIONNUM=8)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">REPLICANUM</span></code></p></td>
+<td><p>配置表的副本数。请注意，副本数只有在集群版中才可以配置。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">OPTIONS</span> <span class="pre">(REPLICANUM=3)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DISTRIBUTION</span></code></p></td>
+<td><p>配置分布式的节点endpoint。一般包含一个Leader节点和若干Follower节点。<code class="docutils literal notranslate"><span class="pre">(leader,</span> <span class="pre">[follower1,</span> <span class="pre">follower2,</span> <span class="pre">..])</span></code>。不显式配置时，OpenMLDB会自动根据环境和节点来配置<code class="docutils literal notranslate"><span class="pre">DISTRIBUTION</span></code>。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DISTRIBUTION</span> <span class="pre">=</span> <span class="pre">[</span> <span class="pre">('127.0.0.1:6527',</span> <span class="pre">[</span> <span class="pre">'127.0.0.1:6528','127.0.0.1:6529'</span> <span class="pre">])]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">STORAGE_MODE</span></code></p></td>
+<td><p>表的存储模式，支持的模式有<code class="docutils literal notranslate"><span class="pre">Memory</span></code>、<code class="docutils literal notranslate"><span class="pre">HDD</span></code>或<code class="docutils literal notranslate"><span class="pre">SSD</span></code>。不显式配置时，默认为<code class="docutils literal notranslate"><span class="pre">Memory</span></code>。<br/>如果需要支持非<code class="docutils literal notranslate"><span class="pre">Memory</span></code>模式的存储模式，<code class="docutils literal notranslate"><span class="pre">tablet</span></code>需要额外的配置选项，具体可参考<a class="reference internal" href="../../../deploy/conf.html"><span class="doc std std-doc">tablet配置文件 conf/tablet.flags</span></a>。</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">OPTIONS</span> <span class="pre">(STORAGE_MODE='HDD')</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<section id="storage-mode-hdd-ssd-storage-mode-memory">
+<h5>磁盘表（<code class="docutils literal notranslate"><span class="pre">STORAGE_MODE</span></code> == <code class="docutils literal notranslate"><span class="pre">HDD</span></code>|<code class="docutils literal notranslate"><span class="pre">SSD</span></code>）与内存表（<code class="docutils literal notranslate"><span class="pre">STORAGE_MODE</span></code> == <code class="docutils literal notranslate"><span class="pre">Memory</span></code>）区别<a class="headerlink" href="#storage-mode-hdd-ssd-storage-mode-memory" title="Permalink to this headline">#</a></h5>
+<ul class="simple">
+<li><p>目前磁盘表不支持GC操作</p></li>
+<li><p>磁盘表插入数据，同一个索引下如果（<code class="docutils literal notranslate"><span class="pre">key</span></code>, <code class="docutils literal notranslate"><span class="pre">ts</span></code>）相同，会覆盖旧的数据；内存表则会插入一条新的数据</p></li>
+<li><p>磁盘表不支持<code class="docutils literal notranslate"><span class="pre">addindex</span></code>和<code class="docutils literal notranslate"><span class="pre">deleteindex</span></code>操作，所以创建磁盘表的时候需要定义好所有需要的索引
+（<code class="docutils literal notranslate"><span class="pre">deploy</span></code>命令会自动添加需要的索引，所以对于磁盘表，如果创建的时候缺失对应的索引，则<code class="docutils literal notranslate"><span class="pre">deploy</span></code>会失败）</p></li>
+</ul>
+</section>
+<section id="id3">
+<h5>Example<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h5>
+<p>创建一张表，配置分片数为8，副本数为3，存储模式为HDD</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">USE</span><span class="w"> </span><span class="n">db1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">--SUCCEED: Database changed    </span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="p">(</span><span class="n">col0</span><span class="w"> </span><span class="n">STRING</span><span class="p">,</span><span class="w"> </span><span class="n">col1</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">std_time</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="p">,</span><span class="w"> </span><span class="k">INDEX</span><span class="p">(</span><span class="k">KEY</span><span class="o">=</span><span class="n">col1</span><span class="p">,</span><span class="w"> </span><span class="n">TS</span><span class="o">=</span><span class="n">std_time</span><span class="p">))</span><span class="w"> </span><span class="k">OPTIONS</span><span class="p">(</span><span class="n">partitionnum</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="n">replicanum</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">storage_mode</span><span class="o">=</span><span class="s1">&#39;HDD&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">--SUCCEED</span>
+<span class="k">DESC</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w"></span>
+<span class="c1">--- ---------- ----------- ------ ----------</span>
+<span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">      </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ ---------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">col0</span><span class="w">       </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">col1</span><span class="w">       </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ---------- ----------- ------ ---------</span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ ---------------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">         </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ ---------------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1651143735</span><span class="w">   </span><span class="n">col1</span><span class="w">   </span><span class="n">std_time</span><span class="w">   </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---------- ------ ---------------</span>
+<span class="w"> </span><span class="c1">--------------</span>
+<span class="w">  </span><span class="n">storage_mode</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------------</span>
+<span class="w">  </span><span class="n">HDD</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------------</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section id="sql">
+<h2>相关SQL<a class="headerlink" href="#sql" title="Permalink to this headline">#</a></h2>
+<p><a class="reference internal" href="CREATE_DATABASE_STATEMENT.html"><span class="doc std std-doc">CREATE DATABASE</span></a></p>
+<p><a class="reference internal" href="USE_DATABASE_STATEMENT.html"><span class="doc std std-doc">USE DATABASE</span></a></p>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="DESC_STATEMENT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">DESC</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="DROP_TABLE_STATEMENT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">DROP TABLE</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:55:21 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

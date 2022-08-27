@@ -1,0 +1,1494 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>OpenMLDB 快速上手 &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Java SDK 快速上手" href="java_sdk.html" />
+    <link rel="prev" title="快速上手" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   关于 OpenMLDB
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     OpenMLDB 简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     OpenMLDB 发展历程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     v0.4.x Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   快速上手
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     OpenMLDB 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="java_sdk.html">
+     Java SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="python_sdk.html">
+     Python SDK 快速上手
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   教程
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     OpenMLDB 集群版和单机版区别
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     在线数据导入工具使用
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/openmldbspark_distribution.html">
+     面向特征工程优化的OpenMLDB Spark发行版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     深入浅出特征工程 – 基于 OpenMLDB 的实践指南（上）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     深入浅出特征工程 – 基于 OpenMLDB 的实践指南（下）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     集群版使用流程及执行模式详解
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   使用案例
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/taxi_tour_duration_prediction.html">
+     案例1：出租车行车时间预测
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   安装部署
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     编译
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     安装部署
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     配置文件说明
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   运维
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     版本升级
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     备份与恢复
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     扩缩容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     监控
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   开发者文档
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/contributing.html">
+     Contributing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/code_structure.html">
+     代码结构
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     内置函数开发指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   参考
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/cli.html">
+     OpenMLDB运维CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     架构
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       在线模块架构
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       语言结构
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         关键字
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL对象名
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         字面值
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         大小写敏感(Case sensitivity)
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         注释
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       数据类型
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         数值类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         字符串类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         日期与时间类型
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       表达式，函数和运算
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         运算符
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       数据查询语句 （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT语句概况
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         无表 SELECT 语句
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO语句
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       数据操作语句（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         插入语句
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE 语句
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       数据定义语句（DDL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT 管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         创建 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         删除 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         查看 DEPLOYMENTS 列表
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         查看 DEPLOYMENT 详情
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         OpenMLDB SQL上线规范和要求
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       任务管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+当前版本: v0.4</br>
+版本列表：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="openmldb_quickstart.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/quickstart/openmldb_quickstart.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1. 环境和数据准备
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     1.1 镜像准备
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.2 样例数据
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   2. 单机版OpenMLDB 快速上手
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     2.1 单机版服务端和客户端
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     2.2 基本使用流程
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       2.2.1 创建数据库和表
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       2.2.2 数据准备
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       2.2.3 离线特征计算
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sql">
+       2.2.4 SQL 方案上线
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cli">
+       2.2.5 退出 CLI
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       2.2.6 实时特征计算
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   3. 集群版OpenMLDB 快速上手
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     3.1 集群版准备知识
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     3.2 服务端和客户端
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     3.3 基本使用流程
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       3.3.1 创建数据库和表
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       3.3.2 离线数据准备
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id17">
+       3.3.3 离线特征计算
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       3.3.4 SQL 方案上线
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       3.3.5 在线数据准备
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id20">
+       3.3.6 退出 CLI
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       3.3.7 实时特征计算
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       3.3.8 实时特征计算的结果说明
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>OpenMLDB 快速上手</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1. 环境和数据准备
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     1.1 镜像准备
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.2 样例数据
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   2. 单机版OpenMLDB 快速上手
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     2.1 单机版服务端和客户端
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     2.2 基本使用流程
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       2.2.1 创建数据库和表
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       2.2.2 数据准备
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       2.2.3 离线特征计算
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sql">
+       2.2.4 SQL 方案上线
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cli">
+       2.2.5 退出 CLI
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       2.2.6 实时特征计算
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   3. 集群版OpenMLDB 快速上手
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     3.1 集群版准备知识
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     3.2 服务端和客户端
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     3.3 基本使用流程
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       3.3.1 创建数据库和表
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       3.3.2 离线数据准备
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id17">
+       3.3.3 离线特征计算
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       3.3.4 SQL 方案上线
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       3.3.5 在线数据准备
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id20">
+       3.3.6 退出 CLI
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       3.3.7 实时特征计算
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       3.3.8 实时特征计算的结果说明
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="openmldb">
+<h1>OpenMLDB 快速上手<a class="headerlink" href="#openmldb" title="Permalink to this headline">#</a></h1>
+<p>本教程提供OpenMLDB快速上手指南。通过建立数据库、导入数据、离线特征计算、SQL 方案上线、在线实时特征计算，演示了单机版OpenMLDB和集群版OpenMLDB的基本使用流程。</p>
+<section id="id1">
+<h2>1. 环境和数据准备<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Docker engine版本需求 &gt;= 18.03</p>
+</div>
+<p>本教程均基于 OpenMLDB CLI 进行开发和部署，因此首先需要下载样例数据并且启动 OpenMLDB CLI。我们推荐使用准备好的 docker 镜像来快速体验使用</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果你希望自己编译安装，可以参考我们的<span class="xref myst">安装部署文档</span>。</p>
+</div>
+<section id="id2">
+<h3>1.1 镜像准备<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>拉取镜像（镜像下载大小大约 1GB，解压后约 1.7 GB）和启动 docker 容器</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -it 4pdosc/openmldb:0.4.4 bash
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>成功启动容器以后，本教程中的后续命令默认均在容器内执行。</strong></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>本教程将在单个容器中启动 OpenMLDB 单机版或集群版，如果希望从外部访问该容器内的 OpenMLDB 服务端口，启动容器时需要 <code class="docutils literal notranslate"><span class="pre">-p</span></code> 暴露端口。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">p</span> <span class="mi">6527</span><span class="p">:</span><span class="mi">6527</span> <span class="o">-</span><span class="n">p</span> <span class="mi">2181</span><span class="p">:</span><span class="mi">2181</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8080</span><span class="p">:</span><span class="mi">8080</span> <span class="o">-</span><span class="n">it</span> <span class="mi">4</span><span class="n">pdosc</span><span class="o">/</span><span class="n">openmldb</span><span class="p">:</span><span class="mf">0.4.4</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<p>或者更方便地，使用 host networking，不进行端口隔离，例如</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">network</span> <span class="n">host</span> <span class="o">-</span><span class="n">it</span> <span class="mi">4</span><span class="n">pdosc</span><span class="o">/</span><span class="n">openmldb</span><span class="p">:</span><span class="mf">0.4.4</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<p>注意，OpenMLDB 所有 server 配置的 endpoint 地址都是 <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> 。如果想要外部主机访问本机容器内的服务，需要将回环地址改为外网 IP 或 <code class="docutils literal notranslate"><span class="pre">0.0.0.0</span></code> 。</p>
+</div>
+</section>
+<section id="id3">
+<h3>1.2 样例数据<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>下载样例数据</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl https://openmldb.ai/demo/data.csv --output ./data/data.csv
+curl https://openmldb.ai/demo/data.parquet --output ./data/data.parquet
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>2. 单机版OpenMLDB 快速上手<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<section id="id5">
+<h3>2.1 单机版服务端和客户端<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>启动单机版OpenMLDB服务端</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. initialize the environment and start standlone openmldb server</span>
+./init.sh standalone
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>启动单机版OpenMLDB CLI客户端</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start the OpenMLDB CLI for the cluster deployed OpenMLDB</span>
+../openmldb/bin/openmldb --host <span class="m">127</span>.0.0.1 --port <span class="m">6527</span>
+</pre></div>
+</div>
+<p>以下截图显示了以上 docker 内命令正确执行以及 OpenMLDB CLI 正确启动以后的画面</p>
+<p><img alt="image-20220111142406534" src="../_images/cli.png" /></p>
+</section>
+<section id="id6">
+<h3>2.2 基本使用流程<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<p>单机版OpenMLDB的工作流程一般包含：建立数据库和表、数据准备、离线特征计算、SQL 方案上线、在线实时特征计算几个阶段。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>以下演示的命令如无特别说明，默认均在 OpenMLDB CLI 下执行（CLI 命令以提示符 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 开头以作区分）。</p>
+</div>
+<section id="id7">
+<h4>2.2.1 创建数据库和表<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">(</span><span class="n">c1</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"> </span><span class="n">c4</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span><span class="w"> </span><span class="n">c5</span><span class="w"> </span><span class="n">double</span><span class="p">,</span><span class="w"> </span><span class="n">c6</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">c7</span><span class="w"> </span><span class="nb">date</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h4>2.2.2 数据准备<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h4>
+<p>导入之前下载的样例数据（在 <span class="xref myst">1.2 样例数据</span> 中下载保存的数据）作为训练数据，用于离线和在线特征计算。</p>
+<p>注意，单机版中一张表的数据没有离线在线隔离，所以该表将同时用于离线和在线特征计算。用户当然也可以手动为离线和在线导入不同的数据，即导入两张表。为简化起见，本教程的单机版使用了同一份数据做离线和在线计算。</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;data/data.csv&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>预览数据</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----- ---- ---- ---------- ----------- --------------- ------------</span>
+<span class="w">  </span><span class="n">c1</span><span class="w">    </span><span class="n">c2</span><span class="w">   </span><span class="n">c3</span><span class="w">   </span><span class="n">c4</span><span class="w">         </span><span class="n">c5</span><span class="w">          </span><span class="n">c6</span><span class="w">              </span><span class="n">c7</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----- ---- ---- ---------- ----------- --------------- ------------</span>
+<span class="w">  </span><span class="n">aaa</span><span class="w">   </span><span class="mi">12</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">2</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">12</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636097390000</span><span class="w">   </span><span class="mi">2021</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">19</span><span class="w"></span>
+<span class="w">  </span><span class="n">aaa</span><span class="w">   </span><span class="mi">11</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">1</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">11</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636097290000</span><span class="w">   </span><span class="mi">2021</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">20</span><span class="w"></span>
+<span class="w">  </span><span class="n">dd</span><span class="w">    </span><span class="mi">18</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">8</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">18</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636097990000</span><span class="w">   </span><span class="mi">2021</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">20</span><span class="w"></span>
+<span class="w">  </span><span class="n">aa</span><span class="w">    </span><span class="mi">13</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">3</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">13</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636097490000</span><span class="w">   </span><span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">20</span><span class="w"></span>
+<span class="w">  </span><span class="n">cc</span><span class="w">    </span><span class="mi">17</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">7</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">17</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636097890000</span><span class="w">   </span><span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">26</span><span class="w"></span>
+<span class="w">  </span><span class="n">ff</span><span class="w">    </span><span class="mi">20</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">9</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">19</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636098000000</span><span class="w">   </span><span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">10</span><span class="w"></span>
+<span class="w">  </span><span class="n">bb</span><span class="w">    </span><span class="mi">16</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">6</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">16</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636097790000</span><span class="w">   </span><span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">20</span><span class="w"></span>
+<span class="w">  </span><span class="n">bb</span><span class="w">    </span><span class="mi">15</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">5</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">15</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636097690000</span><span class="w">   </span><span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span><span class="w"></span>
+<span class="w">  </span><span class="n">bb</span><span class="w">    </span><span class="mi">14</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">4</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">14</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636097590000</span><span class="w">   </span><span class="mi">2021</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">23</span><span class="w"></span>
+<span class="w">  </span><span class="n">ee</span><span class="w">    </span><span class="mi">19</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">9</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">19</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636097000000</span><span class="w">   </span><span class="mi">2021</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">10</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----- ---- ---- ---------- ----------- --------------- ------------</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h4>2.2.3 离线特征计算<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h4>
+<p>执行 SQL进行 特征抽取，并且将生成的特征存储在一个文件中，供后续的模型训练使用。</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">w1_c3_sum</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="n">WINDOW</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c6</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">OUTFILE</span><span class="w"> </span><span class="s1">&#39;/tmp/feature.csv&#39;</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="sql">
+<h4>2.2.4 SQL 方案上线<a class="headerlink" href="#sql" title="Permalink to this headline">#</a></h4>
+<p>将探索好的SQL方案部署到线上，注意部署上线的 SQL 方案需要与对应的离线特征计算的 SQL 方案保持一致。</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">DEPLOY</span><span class="w"> </span><span class="n">demo_data_service</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">w1_c3_sum</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="n">WINDOW</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c6</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>上线后可以通过命令 <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">DEPLOYMENTS</span></code> 查看已部署的 SQL 方案；</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DEPLOYMENTS</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="w">  </span><span class="n">DB</span><span class="w">        </span><span class="n">Deployment</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="w">  </span><span class="n">demo_db</span><span class="w">   </span><span class="n">demo_data_service</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>本教程的单机版使用了同一份数据做离线和在线特征计算。如果用户希望使用另一份数据集，在部署之前重新导入新的数据集，并在部署中使用新数据集的表。</p>
+</div>
+</section>
+<section id="cli">
+<h4>2.2.5 退出 CLI<a class="headerlink" href="#cli" title="Permalink to this headline">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">quit</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>至此我们已经完成了全部基于 OpenMLDB CLI 的开发部署工作，并且已经回到了操作系统命令行下。</p>
+</section>
+<section id="id10">
+<h4>2.2.6 实时特征计算<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h4>
+<p>实时线上服务可以通过如下 Web API 提供服务：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">dbs</span><span class="o">/</span><span class="n">demo_db</span><span class="o">/</span><span class="n">deployments</span><span class="o">/</span><span class="n">demo_data_service</span>
+        \<span class="n">___________</span><span class="o">/</span>      \<span class="n">____</span><span class="o">/</span>              \<span class="n">_____________</span><span class="o">/</span>
+              <span class="o">|</span>               <span class="o">|</span>                        <span class="o">|</span>
+        <span class="n">APIServer地址</span>     <span class="n">Database名字</span>            <span class="n">Deployment名字</span>
+</pre></div>
+</div>
+<p>实时请求的输入数据接受 <code class="docutils literal notranslate"><span class="pre">json</span></code> 格式，我们把一行数据放到请求的 <code class="docutils literal notranslate"><span class="pre">input</span></code> 域中。如下示例:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl http://127.0.0.1:8080/dbs/demo_db/deployments/demo_data_service -X POST -d<span class="s1">&#39;{&quot;input&quot;: [[&quot;aaa&quot;, 11, 22, 1.2, 1.3, 1635247427000, &quot;2021-05-20&quot;]]}&#39;</span>
+</pre></div>
+</div>
+<p>如下为该查询预期的返回结果（计算得到的特征被存放在 <code class="docutils literal notranslate"><span class="pre">data</span></code> 域）：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;msg&quot;</span><span class="p">:</span><span class="s2">&quot;ok&quot;</span><span class="p">,</span><span class="nt">&quot;data&quot;</span><span class="p">:{</span><span class="nt">&quot;data&quot;</span><span class="p">:[[</span><span class="s2">&quot;aaa&quot;</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">22</span><span class="p">]]}}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>说明：</p>
+<ul class="simple">
+<li><p>api server执行请求，可以支持批请求，通过 <code class="docutils literal notranslate"><span class="pre">input</span></code> 字段支持数组。每行input单独进行 request 计算。详细参数格式见<a class="reference internal" href="../reference/rest_api.html"><span class="doc std std-doc">RESTful API</span></a>。</p></li>
+<li><p>request 结果说明见文末章节 ”3.3.8 实时特征计算的结果说明“。</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id11">
+<h2>3. 集群版OpenMLDB 快速上手<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h2>
+<section id="id12">
+<h3>3.1 集群版准备知识<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h3>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>集群版相对于单机版使用体验上的最大区别主要为以下两点：</p>
+<ul class="simple">
+<li><p>集群版需要<strong>分别维护</strong>离线和在线两部分的数据，即同一张表的数据有离线部分和在线部分，两部分是不共享的，需要分别导入。</p></li>
+<li><p>集群版的部分命令是非阻塞任务，包括在线模式的 <code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code>，以及离线模式的 <code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> ，<code class="docutils literal notranslate"><span class="pre">SELECT</span></code>，<code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">INTO</span></code> 命令。提交任务以后可以使用相关的命令如 <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code>, <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOB</span></code> 来查看任务进度，详情参见<a class="reference internal" href="../reference/sql/task_manage/reference.html"><span class="doc std std-doc">离线任务管理</span></a>文档。</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>集群版非阻塞任务可以设置为同步等待，详情见<a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html#id3"><span class="std std-doc">配置离线命令同步执行</span></a>。</p>
+</div>
+</div>
+<p>以上区别在下面的教程中都将会基于例子进行演示。</p>
+</section>
+<section id="id13">
+<h3>3.2 服务端和客户端<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>启动集群版OpenMLDB服务端</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. initialize the environment and start cluster openmldb server</span>
+./init.sh
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>启动集群版OpenMLDB CLI客户端</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start the OpenMLDB CLI for the cluster deployed OpenMLDB</span>
+&gt; ../openmldb/bin/openmldb --zk_cluster<span class="o">=</span><span class="m">127</span>.0.0.1:2181 --zk_root_path<span class="o">=</span>/openmldb --role<span class="o">=</span>sql_client
+</pre></div>
+</div>
+<p>以下截图显示正确启动集群版OpenMLDB CLI 以后的画面</p>
+<p><img alt="image-20220111141358808" src="../_images/cli_cluster.png" /></p>
+</section>
+<section id="id14">
+<h3>3.3 基本使用流程<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h3>
+<p>集群版OpenMLDB的工作流程一般包含：建立数据库和表、离线数据准备、离线特征计算、SQL 方案上线、在线数据准备、在线实时特征计算几个阶段。</p>
+<p>集群版OpenMLDB需要分别管理离线数据和在线数据。因此在完成SQL方案上线后，必须做在线数据的准备步骤。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>以下演示的命令如无特别说明，默认均集群版 OpenMLDB CLI 下执行（CLI 命令以提示符 <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> 开头以作区分）。</p>
+</div>
+<section id="id15">
+<h4>3.3.1 创建数据库和表<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">(</span><span class="n">c1</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"> </span><span class="n">c4</span><span class="w"> </span><span class="nb">float</span><span class="p">,</span><span class="w"> </span><span class="n">c5</span><span class="w"> </span><span class="n">double</span><span class="p">,</span><span class="w"> </span><span class="n">c6</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">c7</span><span class="w"> </span><span class="nb">date</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>查看数据表:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">desc</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- ----------- ------ ---------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">Field</span><span class="w">   </span><span class="k">Type</span><span class="w">        </span><span class="k">Null</span><span class="w">   </span><span class="k">Default</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- ----------- ------ ---------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">c1</span><span class="w">      </span><span class="nb">Varchar</span><span class="w">     </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">2</span><span class="w">   </span><span class="n">c2</span><span class="w">      </span><span class="nb">Int</span><span class="w">         </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">3</span><span class="w">   </span><span class="n">c3</span><span class="w">      </span><span class="nb">BigInt</span><span class="w">      </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">4</span><span class="w">   </span><span class="n">c4</span><span class="w">      </span><span class="nb">Float</span><span class="w">       </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">5</span><span class="w">   </span><span class="n">c5</span><span class="w">      </span><span class="n">Double</span><span class="w">      </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">6</span><span class="w">   </span><span class="n">c6</span><span class="w">      </span><span class="k">Timestamp</span><span class="w">   </span><span class="n">YES</span><span class="w"></span>
+<span class="w">  </span><span class="mi">7</span><span class="w">   </span><span class="n">c7</span><span class="w">      </span><span class="nb">Date</span><span class="w">        </span><span class="n">YES</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- ------- ----------- ------ ---------</span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ ---------------</span>
+<span class="w">  </span><span class="o">#</span><span class="w">   </span><span class="n">name</span><span class="w">                 </span><span class="n">keys</span><span class="w">   </span><span class="n">ts</span><span class="w">   </span><span class="n">ttl</span><span class="w">    </span><span class="n">ttl_type</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ ---------------</span>
+<span class="w">  </span><span class="mi">1</span><span class="w">   </span><span class="n">INDEX_0_1641939290</span><span class="w">   </span><span class="n">c1</span><span class="w">     </span><span class="o">-</span><span class="w">    </span><span class="mi">0</span><span class="k">min</span><span class="w">   </span><span class="n">kAbsoluteTime</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--- -------------------- ------ ---- ------ ---------------</span>
+</pre></div>
+</div>
+</section>
+<section id="id16">
+<h4>3.3.2 离线数据准备<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h4>
+<p>首先，请切换到离线执行模式。在该模式下，只会处理离线数据导入/插入以及查询操作。</p>
+<p>接着，导入之前下载的样例数据（在 <span class="xref myst">1.2 样例数据</span> 中已经下载）作为离线数据，用于离线特征计算。</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;offline&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;file:///work/taxi-trip/data/data.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>注意，<code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> 命令为非阻塞，可以通过 <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code> 等离线任务管理命令来查看任务进度。</p>
+<p>如果希望预览数据，用户亦可以使用 <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> 语句，但是离线模式下该命令亦为非阻塞命令，查询结果需要查看日志，在这里不再展开。</p>
+</section>
+<section id="id17">
+<h4>3.3.3 离线特征计算<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h4>
+<p>执行 SQL进行 特征抽取，并且将生成的特征存储在一个文件中，供后续的模型训练使用。</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;offline&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">w1_c3_sum</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="n">WINDOW</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c6</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">OUTFILE</span><span class="w"> </span><span class="s1">&#39;/tmp/feature_data&#39;</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>注意，离线模式<code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">INTO</span></code> 命令为非阻塞，可以通过 <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code> 等离线任务管理命令来查看运行进度。</p>
+</section>
+<section id="id18">
+<h4>3.3.4 SQL 方案上线<a class="headerlink" href="#id18" title="Permalink to this headline">#</a></h4>
+<p>将探索好的SQL方案部署到线上，注意部署上线的 SQL 方案需要与对应的离线特征计算的 SQL 方案保持一致。</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">DEPLOY</span><span class="w"> </span><span class="n">demo_data_service</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">w1_c3_sum</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="n">WINDOW</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c6</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>上线后可以通过命令 <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">DEPLOYMENTS</span></code> 查看已部署的 SQL 方案；</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">SHOW</span><span class="w"> </span><span class="n">DEPLOYMENTS</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="w">  </span><span class="n">DB</span><span class="w">        </span><span class="n">Deployment</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="w">  </span><span class="n">demo_db</span><span class="w">   </span><span class="n">demo_data_service</span><span class="w"></span>
+<span class="w"> </span><span class="c1">--------- -------------------</span>
+<span class="mi">1</span><span class="w"> </span><span class="k">row</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">set</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id19">
+<h4>3.3.5 在线数据准备<a class="headerlink" href="#id19" title="Permalink to this headline">#</a></h4>
+<p>首先，请切换到<strong>在线</strong>执行模式。在该模式下，只会处理在线数据导入/插入以及查询操作。接着在在线模式下，导入之前下载的样例数据（在 <span class="xref myst">1.2 样例数据</span> 中已经下载）作为在线数据，用于在线特征计算。</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;file:///work/taxi-trip/data/data.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>注意，<code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> 在线模式也是非阻塞命令，可以通过 <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code> 等离线任务管理命令来查看运行进度。</p>
+<p>等待任务完成以后，预览在线数据：</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">demo_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----- ---- ---- ---------- ----------- --------------- ------------</span>
+<span class="w">  </span><span class="n">c1</span><span class="w">    </span><span class="n">c2</span><span class="w">   </span><span class="n">c3</span><span class="w">   </span><span class="n">c4</span><span class="w">         </span><span class="n">c5</span><span class="w">          </span><span class="n">c6</span><span class="w">              </span><span class="n">c7</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----- ---- ---- ---------- ----------- --------------- ------------</span>
+<span class="w">  </span><span class="n">aaa</span><span class="w">   </span><span class="mi">12</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">2</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">12</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636097890000</span><span class="w">   </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">aaa</span><span class="w">   </span><span class="mi">11</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">1</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">11</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636097290000</span><span class="w">   </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">dd</span><span class="w">    </span><span class="mi">18</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">8</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">18</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636111690000</span><span class="w">   </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">aa</span><span class="w">    </span><span class="mi">13</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">3</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">13</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636098490000</span><span class="w">   </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">cc</span><span class="w">    </span><span class="mi">17</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">7</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">17</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636108090000</span><span class="w">   </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">ff</span><span class="w">    </span><span class="mi">20</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">9</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">19</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636270090000</span><span class="w">   </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">bb</span><span class="w">    </span><span class="mi">16</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">6</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">16</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636104490000</span><span class="w">   </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">bb</span><span class="w">    </span><span class="mi">15</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">5</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">15</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636100890000</span><span class="w">   </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">bb</span><span class="w">    </span><span class="mi">14</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">4</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">14</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636099090000</span><span class="w">   </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w">  </span><span class="n">ee</span><span class="w">    </span><span class="mi">19</span><span class="w">   </span><span class="mi">22</span><span class="w">   </span><span class="mi">9</span><span class="p">.</span><span class="mi">200000</span><span class="w">   </span><span class="mi">19</span><span class="p">.</span><span class="mi">300000</span><span class="w">   </span><span class="mi">1636183690000</span><span class="w">   </span><span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----- ---- ---- ---------- ----------- --------------- ------------</span>
+</pre></div>
+</div>
+<p>注意：</p>
+<ul class="simple">
+<li><p>与单机版的 OpenMLDB 不同，集群版的 OpenMLDB 需要分别维护离线和在线数据。</p></li>
+<li><p>用户需要成功完成 SQL 上线部署后，才能准备上线数据，否则可能会上线失败。</p></li>
+</ul>
+</section>
+<section id="id20">
+<h4>3.3.6 退出 CLI<a class="headerlink" href="#id20" title="Permalink to this headline">#</a></h4>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">quit</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>至此我们已经完成了全部基于集群版OpenMLDB CLI 的开发部署工作，并且已经回到了操作系统命令行下。</p>
+</section>
+<section id="id21">
+<h4>3.3.7 实时特征计算<a class="headerlink" href="#id21" title="Permalink to this headline">#</a></h4>
+<p>注意， 按照默认的部署配置，apiserver 部署的 http 端口为 9080。</p>
+<p>实时线上服务可以通过如下 Web API 提供服务：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">9080</span><span class="o">/</span><span class="n">dbs</span><span class="o">/</span><span class="n">demo_db</span><span class="o">/</span><span class="n">deployments</span><span class="o">/</span><span class="n">demo_data_service</span>
+        \<span class="n">___________</span><span class="o">/</span>      \<span class="n">____</span><span class="o">/</span>              \<span class="n">_____________</span><span class="o">/</span>
+              <span class="o">|</span>               <span class="o">|</span>                        <span class="o">|</span>
+        <span class="n">APIServer地址</span>     <span class="n">Database名字</span>            <span class="n">Deployment名字</span>
+</pre></div>
+</div>
+<p>实时请求的输入数据接受 <code class="docutils literal notranslate"><span class="pre">json</span></code> 格式，我们把一行数据放到请求的 <code class="docutils literal notranslate"><span class="pre">input</span></code> 域中。如下示例:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl http://127.0.0.1:9080/dbs/demo_db/deployments/demo_data_service -X POST -d<span class="s1">&#39;{&quot;input&quot;: [[&quot;aaa&quot;, 11, 22, 1.2, 1.3, 1635247427000, &quot;2021-05-20&quot;]]}&#39;</span>
+</pre></div>
+</div>
+<p>如下为该查询预期的返回结果（计算得到的特征被存放在 <code class="docutils literal notranslate"><span class="pre">data</span></code> 域）：</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;code&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;msg&quot;</span><span class="p">:</span><span class="s2">&quot;ok&quot;</span><span class="p">,</span><span class="nt">&quot;data&quot;</span><span class="p">:{</span><span class="nt">&quot;data&quot;</span><span class="p">:[[</span><span class="s2">&quot;aaa&quot;</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">22</span><span class="p">]]}}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id22">
+<h4>3.3.8 实时特征计算的结果说明<a class="headerlink" href="#id22" title="Permalink to this headline">#</a></h4>
+<p>实时请求（执行deployment），是请求模式（request模式）的SQL执行。与批处理模式（batch模式）不同，请求模式只会对请求行（request row）进行SQL计算。在前面的示例中，就是POST的input作为请求行，假设这行数据存在于表demo_table1中，并对它执行SQL：</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">w1_c3_sum</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">demo_table1</span><span class="w"> </span><span class="n">WINDOW</span><span class="w"> </span><span class="n">w1</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c1</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">demo_table1</span><span class="p">.</span><span class="n">c6</span><span class="w"> </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>具体计算逻辑如下（实际计算中会进行优化，减少计算量）：</p>
+<ol class="arabic simple">
+<li><p>根据请求行与窗口的<code class="docutils literal notranslate"><span class="pre">PARTITION</span> <span class="pre">BY</span></code>分区，筛选出c1为”aaa”的行，并按c6从小到大排序。所以理论上，分区排序后的中间数据表，如下表所示。其中，请求行为排序后的第一行。</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">-----</span> <span class="o">----</span> <span class="o">----</span> <span class="o">----------</span> <span class="o">-----------</span> <span class="o">---------------</span> <span class="o">------------</span>
+  <span class="n">c1</span>    <span class="n">c2</span>   <span class="n">c3</span>   <span class="n">c4</span>         <span class="n">c5</span>          <span class="n">c6</span>              <span class="n">c7</span>
+ <span class="o">-----</span> <span class="o">----</span> <span class="o">----</span> <span class="o">----------</span> <span class="o">-----------</span> <span class="o">---------------</span> <span class="o">------------</span>
+  <span class="n">aaa</span>   <span class="mi">11</span>   <span class="mi">22</span>   <span class="mf">1.2</span>        <span class="mf">1.3</span>         <span class="mi">1635247427000</span>   <span class="mi">2021</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">20</span>
+  <span class="n">aaa</span>   <span class="mi">12</span>   <span class="mi">22</span>   <span class="mf">2.200000</span>   <span class="mf">12.300000</span>   <span class="mi">1636097890000</span>   <span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span>
+  <span class="n">aaa</span>   <span class="mi">11</span>   <span class="mi">22</span>   <span class="mf">1.200000</span>   <span class="mf">11.300000</span>   <span class="mi">1636097290000</span>   <span class="mi">1970</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span>
+ <span class="o">-----</span> <span class="o">----</span> <span class="o">----</span> <span class="o">----------</span> <span class="o">-----------</span> <span class="o">---------------</span> <span class="o">------------</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>窗口范围是<code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">PRECEDING</span> <span class="pre">AND</span> <span class="pre">CURRENT</span> <span class="pre">ROW</span></code>，所以我们在上表中截取出真正的窗口，请求行就是最小的一行，往前2行都不存在，但窗口包含当前行，因此，窗口只有请求行这一行。</p></li>
+<li><p>窗口聚合，对窗口内的数据（仅一行）进行c3求和，得到22。</p></li>
+</ol>
+<p>于是输出结果为：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">-----</span> <span class="o">----</span> <span class="o">-----------</span> 
+  <span class="n">c1</span>    <span class="n">c2</span>   <span class="n">w1_c3_sum</span>   
+ <span class="o">-----</span> <span class="o">----</span> <span class="o">-----------</span>
+  <span class="n">aaa</span>   <span class="mi">11</span>      <span class="mi">22</span>
+ <span class="o">-----</span> <span class="o">----</span> <span class="o">-----------</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">快速上手</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="java_sdk.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Java SDK 快速上手</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:55:56 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

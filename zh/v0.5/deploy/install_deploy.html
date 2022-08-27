@@ -1,0 +1,1780 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>安装部署 &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="配置文件" href="conf.html" />
+    <link rel="prev" title="编译" href="compile.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   关于
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     发展历程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   快速上手
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/data_import_guide.html">
+     数据导入快速指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   教程
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     基于 SQL 的特征开发（上）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     基于 SQL 的特征开发（下）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     集群版 vs 单机版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     集群版使用流程及执行模式
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/openmldbspark_distribution.html">
+     OpenMLDB Spark 发行版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     在线数据导入工具使用
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   使用案例
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/taxi_tour_duration_prediction.html">
+     OpenMLDB + LightGBM：出租车行程时间预测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/pulsar_connector_demo.html">
+     OpenMLDB Pulsar Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/kafka_connector_demo.html">
+     OpenMLDB Kafka Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/dolphinscheduler_task_demo.html">
+     DolphinScheduler OpenMLDB Task：打造端到端MLOps工作流
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   安装部署
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="compile.html">
+     编译
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     安装部署
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conf.html">
+     配置文件
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   运维
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     版本升级
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     备份与恢复
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     扩缩容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     监控
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     运维 CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/faq.html">
+     运维 FAQ
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   开发者文档
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/contributing.html">
+     Contributing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/code_structure.html">
+     代码结构
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     内置函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/udf_develop_guide.html">
+     自定义函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/sdk_develop.html">
+     SDK 开发指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   参考
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     架构
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       在线模块架构
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       语言结构
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         关键字
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL 对象名
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         字面值
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         大小写敏感
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         注释
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       数据类型
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         数值类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         字符串类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         日期与时间类型
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       表达式，函数和运算
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         运算符
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       数据查询语句 （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT 概况
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         无表 SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       数据操作语句（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       数据定义语句（DDL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_COMPONENTS.html">
+         SHOW COMPONENTS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLE_STATUS.html">
+         SHOW TABLE STATUS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT 管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         创建 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         删除 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         查看 DEPLOYMENTS 列表
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         查看 DEPLOYMENT 详情
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL 上线规范和要求
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       任务管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/ip_tips.html">
+     IP 配置
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+当前版本: v0.5</br>
+版本列表：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="install_deploy.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/deploy/install_deploy.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   软硬件环境需求
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   部署包准备
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linux">
+   配置环境(Linux)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#swap">
+     关闭操作系统swap
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#thp-transparent-huge-pages">
+     关闭THP(Transparent Huge Pages)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     时间和时区设置
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   部署单机版
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tablet">
+     部署tablet
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#openmldb">
+       1 下载OpenMLDB部署包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-standalone-tablet-flags">
+       2 修改配置文件conf/standalone_tablet.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       3 启动服务
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nameserver">
+     部署nameserver
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       1 下载OpenMLDB部署包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-standalone-nameserver-flags">
+       2 修改配置文件conf/standalone_nameserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       3 启动服务
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       4 检查服务是否启动
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apiserver">
+     部署apiserver
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       1 下载OpenMLDB部署包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-standalone-apiserver-flags">
+       2 修改配置文件conf/standalone_apiserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       3 启动服务
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   部署集群版
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zookeeper">
+     部署zookeeper
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       1. 下载zookeeper安装包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       2. 修改配置文件
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       3. 启动Zookeeper
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     部署tablet
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id17">
+       1 下载OpenMLDB部署包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-tablet-flags">
+       2 修改配置文件conf/tablet.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       3 启动服务
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     部署nameserver
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id20">
+       1 下载OpenMLDB部署包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-nameserver-flags">
+       2 修改配置文件conf/nameserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       3 启动服务
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       4 检查服务是否启动
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
+     部署apiserver
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id24">
+       1 下载OpenMLDB部署包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-apiserver-flags">
+       2 修改配置文件conf/apiserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id25">
+       3 启动服务
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#taskmanager">
+     部署TaskManager
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#openmldb-spark">
+       1 下载 OpenMLDB 部署包和面向特征工程优化的 Spark 发行版
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-taskmanager-properties">
+       2 修改配置文件conf/taskmanager.properties
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id26">
+       3 启动服务
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id27">
+       4 检查服务是否启动
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>安装部署</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   软硬件环境需求
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   部署包准备
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linux">
+   配置环境(Linux)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#swap">
+     关闭操作系统swap
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#thp-transparent-huge-pages">
+     关闭THP(Transparent Huge Pages)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     时间和时区设置
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   部署单机版
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tablet">
+     部署tablet
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#openmldb">
+       1 下载OpenMLDB部署包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-standalone-tablet-flags">
+       2 修改配置文件conf/standalone_tablet.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       3 启动服务
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nameserver">
+     部署nameserver
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       1 下载OpenMLDB部署包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-standalone-nameserver-flags">
+       2 修改配置文件conf/standalone_nameserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       3 启动服务
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       4 检查服务是否启动
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#apiserver">
+     部署apiserver
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       1 下载OpenMLDB部署包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-standalone-apiserver-flags">
+       2 修改配置文件conf/standalone_apiserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       3 启动服务
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   部署集群版
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zookeeper">
+     部署zookeeper
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id13">
+       1. 下载zookeeper安装包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       2. 修改配置文件
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       3. 启动Zookeeper
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     部署tablet
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id17">
+       1 下载OpenMLDB部署包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-tablet-flags">
+       2 修改配置文件conf/tablet.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       3 启动服务
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     部署nameserver
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id20">
+       1 下载OpenMLDB部署包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-nameserver-flags">
+       2 修改配置文件conf/nameserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       3 启动服务
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       4 检查服务是否启动
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
+     部署apiserver
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id24">
+       1 下载OpenMLDB部署包
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-apiserver-flags">
+       2 修改配置文件conf/apiserver.flags
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id25">
+       3 启动服务
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#taskmanager">
+     部署TaskManager
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#openmldb-spark">
+       1 下载 OpenMLDB 部署包和面向特征工程优化的 Spark 发行版
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conf-taskmanager-properties">
+       2 修改配置文件conf/taskmanager.properties
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id26">
+       3 启动服务
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id27">
+       4 检查服务是否启动
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>安装部署<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<section id="id2">
+<h2>软硬件环境需求<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>操作系统：CentOS 7, Ubuntu 20.04, macOS &gt;= 10.15。其中Linux glibc版本 &gt;= 2.17。其他操作系统版本没有做完整的测试，不能保证完全正确运行。</p></li>
+<li><p>内存：视数据量而定，推荐在 8 GB 及以上。</p></li>
+<li><p>CPU：</p>
+<ul>
+<li><p>目前仅支持 x86 架构，暂不支持例如 ARM 等架构。</p></li>
+<li><p>核数推荐不少于 4 核，如果 Linux 环境下 CPU 不支持 AVX2 指令集，需要从源码重新编译部署包。</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h2>部署包准备<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>本说明文档中默认使用预编译好的 OpenMLDB 部署包（<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/releases/download/v0.5.2/openmldb-0.5.2-linux.tar.gz">Linux</a>, <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/releases/download/v0.5.2/openmldb-0.5.2-darwin.tar.gz">macOS</a>），所支持的操作系统要求为：CentOS 7, Ubuntu 20.04, macOS &gt;= 10.15。如果用户期望自己编译（如做 OpenMLDB 源代码开发，操作系统或者 CPU 架构不在预编译部署包的支持列表内等原因），用户可以选择在 docker 容器内编译使用或者从源码编译，具体请参照我们的<a class="reference internal" href="compile.html"><span class="doc std std-doc">编译文档</span></a>。</p>
+</section>
+<section id="linux">
+<h2>配置环境(Linux)<a class="headerlink" href="#linux" title="Permalink to this headline">#</a></h2>
+<section id="swap">
+<h3>关闭操作系统swap<a class="headerlink" href="#swap" title="Permalink to this headline">#</a></h3>
+<p>查看当前系统swap是否关闭</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ free
+              total        used        free      shared  buff/cache   available
+Mem:      <span class="m">264011292</span>    <span class="m">67445840</span>     <span class="m">2230676</span>     <span class="m">3269180</span>   <span class="m">194334776</span>   <span class="m">191204160</span>
+Swap:             <span class="m">0</span>           <span class="m">0</span>           <span class="m">0</span>
+</pre></div>
+</div>
+<p>如果swap一项全部为0表示已经关闭，否则运行下面命令关闭swap</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ swapoff -a
+</pre></div>
+</div>
+</section>
+<section id="thp-transparent-huge-pages">
+<h3>关闭THP(Transparent Huge Pages)<a class="headerlink" href="#thp-transparent-huge-pages" title="Permalink to this headline">#</a></h3>
+<p>查看THP是否关闭</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat /sys/kernel/mm/transparent_hugepage/enabled
+always [madvise] never
+$ cat /sys/kernel/mm/transparent_hugepage/defrag
+[always] madvise never
+</pre></div>
+</div>
+<p>如果上面两个配置中”never”没有被方括号圈住就需要设置一下</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;never&#39;</span> &gt; /sys/kernel/mm/transparent_hugepage/enabled
+$ <span class="nb">echo</span> <span class="s1">&#39;never&#39;</span> &gt; /sys/kernel/mm/transparent_hugepage/defrag
+</pre></div>
+</div>
+<p>查看是否设置成功，如果”never”被方括号圈住表明已经设置成功，如下所示：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cat /sys/kernel/mm/transparent_hugepage/enabled
+always madvise <span class="o">[</span>never<span class="o">]</span>
+$ cat /sys/kernel/mm/transparent_hugepage/defrag
+always madvise <span class="o">[</span>never<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>时间和时区设置<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>OpenMLDB数据过期删除机制依赖于系统时钟, 如果系统时钟不正确会导致过期数据没有删掉或者删掉了没有过期的数据</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ date
+Wed Aug <span class="m">22</span> <span class="m">16</span>:33:50 CST <span class="m">2018</span>
+</pre></div>
+</div>
+<p>请确保时间是正确的</p>
+</section>
+</section>
+<section id="id5">
+<h2>部署单机版<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<p>OpenMLDB单机版需要部署一个nameserver和一个tablet. nameserver用于表管理和元数据存储，tablet用于数据存储。APIServer是可选的，如果要用http的方式和OpenMLDB交互需要部署此模块</p>
+<p><strong>注意:</strong> 最好把不同的组件部署在不同的目录里，便于单独升级</p>
+<section id="tablet">
+<h3>部署tablet<a class="headerlink" href="#tablet" title="Permalink to this headline">#</a></h3>
+<section id="openmldb">
+<h4>1 下载OpenMLDB部署包<a class="headerlink" href="#openmldb" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">tablet</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">tablet</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="conf-standalone-tablet-flags">
+<h4>2 修改配置文件conf/standalone_tablet.flags<a class="headerlink" href="#conf-standalone-tablet-flags" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>修改endpoint。endpoint是用冒号分隔的部署机器ip/域名和端口号</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">9527</span>
+</pre></div>
+</div>
+<p><strong>注意：</strong></p>
+<ul class="simple">
+<li><p>endpoint不能用0.0.0.0和127.0.0.1</p></li>
+<li><p>如果此处使用的域名, 所有使用openmldb的client所在的机器都得配上对应的host. 不然会访问不到</p></li>
+</ul>
+</section>
+<section id="id6">
+<h4>3 启动服务<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span> <span class="n">standalone_tablet</span>
+</pre></div>
+</div>
+<p><strong>注: 服务启动后会在bin目录下产生standalone_tablet.pid文件, 里边保存启动时的进程号。如果该文件内的pid正在运行则会启动失败</strong></p>
+</section>
+</section>
+<section id="nameserver">
+<h3>部署nameserver<a class="headerlink" href="#nameserver" title="Permalink to this headline">#</a></h3>
+<section id="id7">
+<h4>1 下载OpenMLDB部署包<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">ns</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">ns</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="conf-standalone-nameserver-flags">
+<h4>2 修改配置文件conf/standalone_nameserver.flags<a class="headerlink" href="#conf-standalone-nameserver-flags" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>修改endpoint。endpoint是用冒号分隔的部署机器ip/域名和端口号</p></li>
+<li><p>tablet配置项需要配置上前面启动的tablet的地址</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">6527</span>
+<span class="o">--</span><span class="n">tablet</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">9527</span>
+</pre></div>
+</div>
+<p><strong>注: endpoint不能用0.0.0.0和127.0.0.1</strong></p>
+</section>
+<section id="id8">
+<h4>3 启动服务<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span>  <span class="n">standalone_nameserver</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h4>4 检查服务是否启动<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --host<span class="o">=</span><span class="m">172</span>.27.128.33 --port<span class="o">=</span><span class="m">6527</span>
+&gt; show databases<span class="p">;</span>
+ -----------
+  Databases
+ -----------
+<span class="m">0</span> row <span class="k">in</span> <span class="nb">set</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="apiserver">
+<h3>部署apiserver<a class="headerlink" href="#apiserver" title="Permalink to this headline">#</a></h3>
+<p>APIServer负责接收http请求，转发给OpenMLDB并返回结果。它是无状态的，而且并不是OpenMLDB必须部署的组件。
+运行前需确保OpenMLDB cluster已经启动，否则APIServer将初始化失败并退出进程。</p>
+<section id="id10">
+<h4>1 下载OpenMLDB部署包<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">apiserver</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">apiserver</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="conf-standalone-apiserver-flags">
+<h4>2 修改配置文件conf/standalone_apiserver.flags<a class="headerlink" href="#conf-standalone-apiserver-flags" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>修改endpoint。endpoint是用冒号分隔的部署机器ip/域名和端口号</p></li>
+<li><p>修改nameserver为nameserver的地址</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8080</span>
+<span class="o">--</span><span class="n">nameserver</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">6527</span>
+</pre></div>
+</div>
+<p><strong>注意：</strong></p>
+<ul class="simple">
+<li><p>endpoint不能用0.0.0.0和127.0.0.1。也可以选择不设置<code class="docutils literal notranslate"><span class="pre">--endpoint</span></code>，而只配置端口号 <code class="docutils literal notranslate"><span class="pre">--port</span></code>。</p></li>
+</ul>
+</section>
+<section id="id11">
+<h4>3 启动服务<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span> <span class="n">standalone_apiserver</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="id12">
+<h2>部署集群版<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h2>
+<p>OpenMLDB集群版需要部署zookeeper、nameserver、tablet等模块。其中zookeeper用于服务发现和保存元数据信息。nameserver用于管理tablet，实现高可用和failover。tablet用于存储数据和主从同步数据。APIServer是可选的，如果要用http的方式和OpenMLDB交互需要部署此模块</p>
+<p><strong>注意:</strong> 最好把不同的组件部署在不同的目录里，便于单独升级。如果在同一台机器部署多个tablet也需要部署在不同的目录里</p>
+<section id="zookeeper">
+<h3>部署zookeeper<a class="headerlink" href="#zookeeper" title="Permalink to this headline">#</a></h3>
+<p>建议部署3.4.14版本。如果已有可用zookeeper集群可略过此步骤</p>
+<section id="id13">
+<h4>1. 下载zookeeper安装包<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">archive</span><span class="o">.</span><span class="n">apache</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">dist</span><span class="o">/</span><span class="n">zookeeper</span><span class="o">/</span><span class="n">zookeeper</span><span class="o">-</span><span class="mf">3.4.14</span><span class="o">/</span><span class="n">zookeeper</span><span class="o">-</span><span class="mf">3.4.14</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">cd</span> <span class="n">zookeeper</span><span class="o">-</span><span class="mf">3.4.14</span>
+<span class="n">cp</span> <span class="n">conf</span><span class="o">/</span><span class="n">zoo_sample</span><span class="o">.</span><span class="n">cfg</span> <span class="n">conf</span><span class="o">/</span><span class="n">zoo</span><span class="o">.</span><span class="n">cfg</span>
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h4>2. 修改配置文件<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h4>
+<p>打开文件<code class="docutils literal notranslate"><span class="pre">conf/zoo.cfg</span></code>修改<code class="docutils literal notranslate"><span class="pre">dataDir</span></code>和<code class="docutils literal notranslate"><span class="pre">clientPort</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dataDir</span><span class="o">=./</span><span class="n">data</span>
+<span class="n">clientPort</span><span class="o">=</span><span class="mi">7181</span>
+</pre></div>
+</div>
+</section>
+<section id="id15">
+<h4>3. 启动Zookeeper<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">zkServer</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span>
+</pre></div>
+</div>
+<p>部署zookeeper集群<a class="reference external" href="https://zookeeper.apache.org/doc/r3.4.14/zookeeperStarted.html#sc_RunningReplicatedZooKeeper">参考这里</a></p>
+</section>
+</section>
+<section id="id16">
+<h3>部署tablet<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h3>
+<section id="id17">
+<h4>1 下载OpenMLDB部署包<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">tablet</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">tablet</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="conf-tablet-flags">
+<h4>2 修改配置文件conf/tablet.flags<a class="headerlink" href="#conf-tablet-flags" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>修改endpoint。endpoint是用冒号分隔的部署机器ip/域名和端口号</p></li>
+<li><p>修改zk_cluster为已经启动的zk集群地址</p></li>
+<li><p>如果和其他OpenMLDB共用zk需要修改zk_root_path</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">9527</span>
+<span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">tablet</span>
+
+<span class="c1"># if tablet run as cluster mode zk_cluster and zk_root_path should be set</span>
+<span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">7181</span>
+<span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb_cluster</span>
+</pre></div>
+</div>
+<p><strong>注意：</strong></p>
+<ul class="simple">
+<li><p>endpoint不能用0.0.0.0和127.0.0.1</p></li>
+<li><p>如果此处使用的域名, 所有使用openmldb的client所在的机器都得配上对应的host. 不然会访问不到</p></li>
+<li><p>zk_cluster和zk_root_path配置和nameserver的保持一致</p></li>
+</ul>
+</section>
+<section id="id18">
+<h4>3 启动服务<a class="headerlink" href="#id18" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span> <span class="n">tablet</span>
+</pre></div>
+</div>
+<p>重复以上步骤部署多个tablet</p>
+<p><strong>注意:</strong></p>
+<ul class="simple">
+<li><p>服务启动后会在bin目录下产生tablet.pid文件, 里边保存启动时的进程号。如果该文件内的pid正在运行则会启动失败</p></li>
+<li><p>集群版至少需要部署2个tablet</p></li>
+<li><p>如果需要部署多个tablet，把所有tablet部署完再部署nameserver</p></li>
+</ul>
+</section>
+</section>
+<section id="id19">
+<h3>部署nameserver<a class="headerlink" href="#id19" title="Permalink to this headline">#</a></h3>
+<section id="id20">
+<h4>1 下载OpenMLDB部署包<a class="headerlink" href="#id20" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">ns</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">ns</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="conf-nameserver-flags">
+<h4>2 修改配置文件conf/nameserver.flags<a class="headerlink" href="#conf-nameserver-flags" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>修改endpoint。endpoint是用冒号分隔的部署机器ip/域名和端口号</p></li>
+<li><p>修改zk_cluster为已经启动的zk集群地址. ip为zk所在机器的ip, port为zk配置文件中clientPort配置的端口号. 如果zk是集群模式用逗号分割, 格式为ip1:port1,ip2:port2,ip3:port3</p></li>
+<li><p>如果和其他OpenMLDB共用zk需要修改zk_root_path</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">6527</span>
+<span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">7181</span>
+<span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb_cluster</span>
+<span class="o">--</span><span class="n">enable_distsql</span><span class="o">=</span><span class="n">true</span>
+</pre></div>
+</div>
+<p><strong>注: endpoint不能用0.0.0.0和127.0.0.1</strong></p>
+</section>
+<section id="id21">
+<h4>3 启动服务<a class="headerlink" href="#id21" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span> <span class="n">nameserver</span>
+</pre></div>
+</div>
+<p>重复上述步骤部署多个nameserver</p>
+</section>
+<section id="id22">
+<h4>4 检查服务是否启动<a class="headerlink" href="#id22" title="Permalink to this headline">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --zk_cluster<span class="o">=</span><span class="m">172</span>.27.128.31:7181,172.27.128.32:7181,172.27.128.33:7181 --zk_root_path<span class="o">=</span>/openmldb_cluster --role<span class="o">=</span>ns_client
+&gt; showns
+  endpoint            role
+-----------------------------
+  <span class="m">172</span>.27.128.31:6527  leader
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id23">
+<h3>部署apiserver<a class="headerlink" href="#id23" title="Permalink to this headline">#</a></h3>
+<p>APIServer负责接收http请求，转发给OpenMLDB并返回结果。它是无状态的，而且并不是OpenMLDB必须部署的组件。
+运行前需确保OpenMLDB cluster已经启动，否则APIServer将初始化失败并退出进程。</p>
+<section id="id24">
+<h4>1 下载OpenMLDB部署包<a class="headerlink" href="#id24" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">apiserver</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">apiserver</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="conf-apiserver-flags">
+<h4>2 修改配置文件conf/apiserver.flags<a class="headerlink" href="#conf-apiserver-flags" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>修改endpoint。endpoint是用冒号分隔的部署机器ip/域名和端口号</p></li>
+<li><p>修改zk_cluster为需要转发到的OpenMLDB的zk集群地址</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">8080</span>
+<span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">apiserver</span>
+<span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">7181</span>
+<span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb_cluster</span>
+<span class="o">--</span><span class="n">openmldb_log_dir</span><span class="o">=./</span><span class="n">logs</span>
+</pre></div>
+</div>
+<p><strong>注意：</strong></p>
+<ul class="simple">
+<li><p>endpoint不能用0.0.0.0和127.0.0.1。也可以选择不设置<code class="docutils literal notranslate"><span class="pre">--endpoint</span></code>，而只配置端口号 <code class="docutils literal notranslate"><span class="pre">--port</span></code>。</p></li>
+<li><p>还可自行配置APIServer的线程数，<code class="docutils literal notranslate"><span class="pre">--thread_pool_size</span></code>，默认为16。</p></li>
+</ul>
+</section>
+<section id="id25">
+<h4>3 启动服务<a class="headerlink" href="#id25" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span> <span class="n">apiserver</span>
+</pre></div>
+</div>
+<p><strong>注</strong>: 如果在linux平台通过发布包启动nameserver/tablet/apiserver时core掉，很可能时指令集不兼容问题，需要通过源码编译openmldb。源码编译参考<a class="reference internal" href="compile.html"><span class="doc std std-doc">这里</span></a>, 需要采用方式三完整源代码编译。</p>
+</section>
+</section>
+<section id="taskmanager">
+<h3>部署TaskManager<a class="headerlink" href="#taskmanager" title="Permalink to this headline">#</a></h3>
+<section id="openmldb-spark">
+<h4>1 下载 OpenMLDB 部署包和面向特征工程优化的 Spark 发行版<a class="headerlink" href="#openmldb-spark" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">spark</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v3</span><span class="mf">.0.0</span><span class="o">-</span><span class="n">openmldb0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">spark</span><span class="o">-</span><span class="mf">3.0.0</span><span class="o">-</span><span class="nb">bin</span><span class="o">-</span><span class="n">openmldbspark</span><span class="o">.</span><span class="n">tgz</span> 
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">spark</span><span class="o">-</span><span class="mf">3.0.0</span><span class="o">-</span><span class="nb">bin</span><span class="o">-</span><span class="n">openmldbspark</span><span class="o">.</span><span class="n">tgz</span> 
+<span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="mi">4</span><span class="n">paradigm</span><span class="o">/</span><span class="n">OpenMLDB</span><span class="o">/</span><span class="n">releases</span><span class="o">/</span><span class="n">download</span><span class="o">/</span><span class="n">v0</span><span class="mf">.5.2</span><span class="o">/</span><span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">mv</span> <span class="n">openmldb</span><span class="o">-</span><span class="mf">0.5.2</span><span class="o">-</span><span class="n">linux</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">taskmanager</span><span class="o">-</span><span class="mf">0.5.2</span>
+<span class="n">cd</span> <span class="n">openmldb</span><span class="o">-</span><span class="n">taskmanager</span><span class="o">-</span><span class="mf">0.5.2</span>
+</pre></div>
+</div>
+</section>
+<section id="conf-taskmanager-properties">
+<h4>2 修改配置文件conf/taskmanager.properties<a class="headerlink" href="#conf-taskmanager-properties" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>修改server.host。host是部署机器的ip/域名。</p></li>
+<li><p>修改server.port。port是部署机器的端口号。</p></li>
+<li><p>修改zk_cluster为已经启动的zk集群地址。ip为zk所在机器的ip, port为zk配置文件中clientPort配置的端口号. 如果zk是集群模式用逗号分割, 格式为ip1:port1,ip2:port2,ip3:port3。</p></li>
+<li><p>如果和其他OpenMLDB共用zk需要修改zookeeper.root_path。</p></li>
+<li><p>修改batchjob.jar.path为BatchJob Jar文件路径，如果设置为空会到上一级lib目录下寻找。如果使用Yarn模式需要修改为对应HDFS路径。</p></li>
+<li><p>修改offline.data.prefix为离线表存储路径，如果使用Yarn模式需要修改为对应HDFS路径。</p></li>
+<li><p>修改spark.master为离线任务运行模式，目前支持local和yarn模式。</p></li>
+<li><p>修改spark.home为Spark环境路径，如果不配置或配置为空则使用SPARK_HOME环境变量的配置。需要设置为第一步解压出来spark优化版包的目录，路径为绝对路径</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">server</span><span class="o">.</span><span class="n">host</span><span class="o">=</span><span class="mf">0.0.0.0</span>
+<span class="n">server</span><span class="o">.</span><span class="n">port</span><span class="o">=</span><span class="mi">9902</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">cluster</span><span class="o">=</span><span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.32</span><span class="p">:</span><span class="mi">7181</span><span class="p">,</span><span class="mf">172.27.128.33</span><span class="p">:</span><span class="mi">7181</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">root_path</span><span class="o">=/</span><span class="n">openmldb_cluster</span>
+<span class="n">batchjob</span><span class="o">.</span><span class="n">jar</span><span class="o">.</span><span class="n">path</span><span class="o">=</span>
+<span class="n">offline</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">prefix</span><span class="o">=</span><span class="n">file</span><span class="p">:</span><span class="o">///</span><span class="n">tmp</span><span class="o">/</span><span class="n">openmldb_offline_storage</span><span class="o">/</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">master</span><span class="o">=</span><span class="n">local</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">home</span><span class="o">=</span>
+</pre></div>
+</div>
+</section>
+<section id="id26">
+<h4>3 启动服务<a class="headerlink" href="#id26" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="o">/</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span> <span class="n">start</span> <span class="n">taskmanager</span>
+</pre></div>
+</div>
+</section>
+<section id="id27">
+<h4>4 检查服务是否启动<a class="headerlink" href="#id27" title="Permalink to this headline">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --zk_cluster<span class="o">=</span><span class="m">172</span>.27.128.31:7181,172.27.128.32:7181,172.27.128.33:7181 --zk_root_path<span class="o">=</span>/openmldb_cluster --role<span class="o">=</span>sql_client
+&gt; show jobs<span class="p">;</span>
+---- ---------- ------- ------------ ---------- ----------- --------- ---------------- -------
+ id   job_type   state   start_time   end_time   parameter   cluster   application_id   error
+---- ---------- ------- ------------ ---------- ----------- --------- ---------------- -------
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="compile.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">编译</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="conf.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">配置文件</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:55:40 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

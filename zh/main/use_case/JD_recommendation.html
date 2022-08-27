@@ -1,0 +1,2003 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>OpenMLDB + OneFlow: 高潜用户购买意向预测 &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="安装部署" href="../deploy/index.html" />
+    <link rel="prev" title="Airflow OpenMLDB Provider 使用案例" href="airflow_provider_demo.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   关于
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     发展历程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   快速上手
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/data_import_guide.html">
+     数据导入快速指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   教程
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     基于 SQL 的特征开发（上）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     基于 SQL 的特征开发（下）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     集群版 vs 单机版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     集群版使用流程及执行模式
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/openmldbspark_distribution.html">
+     OpenMLDB Spark 发行版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     在线数据导入工具使用
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   使用案例
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="taxi_tour_duration_prediction.html">
+     OpenMLDB + LightGBM：出租车行程时间预测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pulsar_connector_demo.html">
+     OpenMLDB Pulsar Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="kafka_connector_demo.html">
+     OpenMLDB Kafka Connector：接入实时数据流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dolphinscheduler_task_demo.html">
+     DolphinScheduler OpenMLDB Task：打造端到端MLOps工作流
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="talkingdata_demo.html">
+     TalkingData 广告欺诈检测
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="OpenMLDB_Byzer_taxi.html">
+     OpenMLDB + Byzer: 基于 SQL 打造端到端机器学习应用
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="airflow_provider_demo.html">
+     Airflow OpenMLDB Provider 使用案例
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     OpenMLDB + OneFlow: 高潜用户购买意向预测
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   安装部署
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     编译
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     安装部署
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     配置文件
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   运维
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     版本升级
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     备份与恢复
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     扩缩容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     监控
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     运维 CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/faq.html">
+     运维 FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/diagnose.html">
+     诊断工具
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   开发者文档
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/contributing.html">
+     Contributing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/code_structure.html">
+     代码结构
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     内置函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/udf_develop_guide.html">
+     自定义函数开发
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/sdk_develop.html">
+     SDK 开发指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   参考
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     架构
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       在线模块架构
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       语言结构
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         关键字
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL 对象名
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         字面值
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         大小写敏感
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         注释
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       数据类型
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         数值类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         字符串类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         日期与时间类型
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       表达式，函数和运算
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         运算符
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       数据查询语句 （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT 概况
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         无表 SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       数据操作语句（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       数据定义语句（DDL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_COMPONENTS.html">
+         SHOW COMPONENTS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLE_STATUS.html">
+         SHOW TABLE STATUS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT 管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         创建 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         删除 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         查看 DEPLOYMENTS 列表
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         查看 DEPLOYMENT 详情
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL 上线规范和要求
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       任务管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/ip_tips.html">
+     IP 配置
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/client_config/index.html">
+     客户端配置
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/client_config/client_spark_config.html">
+       客户端Spark配置文件
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+当前版本: main</br>
+版本列表：
+<ul>
+  <li><a href="JD_recommendation.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/use_case/JD_recommendation.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.  环境准备和预备知识
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#oneflow">
+     1.1 OneFlow工具包安装
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#openmldb-docker">
+     1.2 拉取和启动 OpenMLDB Docker 镜像
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     1.3 初始化环境
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#openmldb-cli">
+     1.4 启动 OpenMLDB CLI 客户端
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.5 预备知识：集群版的非阻塞任务
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   2. 机器学习训练流程
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     2.1 流程概览
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#openmldb">
+     2.2 使用OpenMLDB进行离线特征抽取
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       2.2.1 创建数据库和数据表
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       2.2.2 离线数据准备
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       2.2.3 特征设计
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       2.2.4 离线特征抽取
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deepfm">
+     2.3 预处理数据集以配合DeepFM模型要求
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     2.4 启动OneFlow进行模型训练
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-deepfm-sh">
+       2.4.1 修改对应
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         train_deepfm.sh
+        </span>
+       </code>
+       配置文件
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       2.4.2 开始模型训练
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   3. 模型上线流程
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     3.1 流程概览
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     3.2 配置OpenMLDB进行在线特征抽取
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sql">
+       3.2.1 特征抽取SQL脚本上线
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       3.2.2 在线数据准备
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     3.3 配置OneFlow推理服务
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#demodir-oneflow-process-model">
+       3.3.1 检查模型路径（
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         $demodir/oneflow_process/model
+        </span>
+       </code>
+       ）中模型文件及组织方式是否正确
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#config-pbtxt">
+       3.3.2 确认
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         config.pbtxt
+        </span>
+       </code>
+       中的配置正确。
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#persistent-demodir-oneflow-process-persistent">
+       3.3.3 确认persistent路径（
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         $demodir/oneflow_process/persistent
+        </span>
+       </code>
+       ）正确
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     3.4 启动推理服务
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       3.4.1 启动OpenMLDB推理服务
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       3.4.2 启动OneFlow推理服务
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     3.5 发送预估请求
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-oneflow">
+   附录A – OneFlow定制代码编译
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-1">
+     A.1 容器环境准备
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-2-oneflow">
+     A.2 编译OneFlow
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-3-serving">
+     A.3 编译Serving
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-4-tritonserver">
+     A.4 测试TritonServer
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>OpenMLDB + OneFlow: 高潜用户购买意向预测</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1.  环境准备和预备知识
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#oneflow">
+     1.1 OneFlow工具包安装
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#openmldb-docker">
+     1.2 拉取和启动 OpenMLDB Docker 镜像
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     1.3 初始化环境
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#openmldb-cli">
+     1.4 启动 OpenMLDB CLI 客户端
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.5 预备知识：集群版的非阻塞任务
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   2. 机器学习训练流程
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     2.1 流程概览
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#openmldb">
+     2.2 使用OpenMLDB进行离线特征抽取
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       2.2.1 创建数据库和数据表
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id7">
+       2.2.2 离线数据准备
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       2.2.3 特征设计
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       2.2.4 离线特征抽取
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deepfm">
+     2.3 预处理数据集以配合DeepFM模型要求
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     2.4 启动OneFlow进行模型训练
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-deepfm-sh">
+       2.4.1 修改对应
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         train_deepfm.sh
+        </span>
+       </code>
+       配置文件
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id11">
+       2.4.2 开始模型训练
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   3. 模型上线流程
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     3.1 流程概览
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     3.2 配置OpenMLDB进行在线特征抽取
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sql">
+       3.2.1 特征抽取SQL脚本上线
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       3.2.2 在线数据准备
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     3.3 配置OneFlow推理服务
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#demodir-oneflow-process-model">
+       3.3.1 检查模型路径（
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         $demodir/oneflow_process/model
+        </span>
+       </code>
+       ）中模型文件及组织方式是否正确
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#config-pbtxt">
+       3.3.2 确认
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         config.pbtxt
+        </span>
+       </code>
+       中的配置正确。
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#persistent-demodir-oneflow-process-persistent">
+       3.3.3 确认persistent路径（
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         $demodir/oneflow_process/persistent
+        </span>
+       </code>
+       ）正确
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     3.4 启动推理服务
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       3.4.1 启动OpenMLDB推理服务
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       3.4.2 启动OneFlow推理服务
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     3.5 发送预估请求
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-oneflow">
+   附录A – OneFlow定制代码编译
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-1">
+     A.1 容器环境准备
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-2-oneflow">
+     A.2 编译OneFlow
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-3-serving">
+     A.3 编译Serving
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-4-tritonserver">
+     A.4 测试TritonServer
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="openmldb-oneflow">
+<h1>OpenMLDB + OneFlow: 高潜用户购买意向预测<a class="headerlink" href="#openmldb-oneflow" title="Permalink to this headline">#</a></h1>
+<p>本文我们将以<a class="reference external" href="https://jdata.jd.com/html/detail.html?id=1">京东高潜用户购买意向预测问题</a>为例，示范如何使用<a class="reference external" href="https://github.com/4paradigm/OpenMLDB">OpenMLDB</a>和 <a class="reference external" href="https://github.com/Oneflow-Inc/oneflow">OneFlow</a> 联合来打造一个完整的机器学习应用。</p>
+<p>如何从历史数据中找出规律，去预测用户未来的购买需求，让最合适的商品遇见最需要的人，是大数据应用在精准营销中的关键问题，也是所有电商平台在做智能化升级时所需要的核心技术。京东作为中国最大的自营式电商，沉淀了数亿的忠实用户，积累了海量的真实数据。本案例以京东商城真实的用户、商品和行为数据（脱敏后）为基础，通过数据挖掘的技术和机器学习的算法，构建用户购买商品的预测模型，输出高潜用户和目标商品的匹配结果，为精准营销提供高质量的目标群体，挖掘数据背后潜在的意义，为电商用户提供更简单、快捷、省心的购物体验。本案例使用OpenMLDB进行数据挖掘，使用OneFlow中的<a class="reference external" href="https://github.com/Oneflow-Inc/models/tree/main/RecommenderSystems/deepfm">DeepFM</a>模型进行高性能训练推理，提供精准的商品推荐。全量数据<a class="reference external" href="https://openmldb.ai/download/jd-recommendation/JD_data.tgz">下载链接</a>。</p>
+<p>本案例基于 OpenMLDB 集群版进行教程演示。注意，本文档使用的是预编译好的 docker 镜像。如果希望在自己编译和搭建的 OpenMLDB 环境下进行测试，需要配置使用我们<a class="reference external" href="https://openmldb.ai/docs/zh/main/tutorial/openmldbspark_distribution.html">面向特征工程优化的 Spark 发行版</a>。请参考相关<a class="reference external" href="https://openmldb.ai/docs/zh/main/deploy/compile.html">编译</a>（参考章节：“针对OpenMLDB优化的Spark发行版”）和<a class="reference external" href="https://openmldb.ai/docs/zh/main/deploy/install_deploy.html">安装部署文档</a>（参考章节：“部署TaskManager” - “2 修改配置文件conf/taskmanager.properties”）。</p>
+<section id="id1">
+<h2>1.  环境准备和预备知识<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<section id="oneflow">
+<h3>1.1 OneFlow工具包安装<a class="headerlink" href="#oneflow" title="Permalink to this headline">#</a></h3>
+<p>OneFlow工具依赖GPU的强大算力，所以请确保部署机器具备Nvidia GPU，并且保证驱动版本 &gt;=460.X.X  <a class="reference external" href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html#cuda-major-component-versions">驱动版本需支持CUDA 11.0</a>。
+使用一下指令安装OneFlow：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate oneflow
+python3 -m pip install --pre oneflow -f https://staging.oneflow.info/branch/support_oneembedding_serving/cu102
+</pre></div>
+</div>
+<p>还需要安装以下Python工具包：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install psutil petastorm pandas sklearn
+</pre></div>
+</div>
+</section>
+<section id="openmldb-docker">
+<h3>1.2 拉取和启动 OpenMLDB Docker 镜像<a class="headerlink" href="#openmldb-docker" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>注意，请确保 Docker Engine 版本号 &gt;= 18.03</p></li>
+<li><p>拉取 OpenMLDB docker 镜像，并且运行相应容器</p></li>
+<li><p>下载demo文件包，并映射demo文件夹至<code class="docutils literal notranslate"><span class="pre">/root/project</span></code>，这里我们使用的路径为<code class="docutils literal notranslate"><span class="pre">demodir=/home/gtest/demo</span></code></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">demodir</span><span class="o">=</span>/home/gtest/demo
+docker run -dit --name<span class="o">=</span>demo --network<span class="o">=</span>host -v <span class="nv">$demodir</span>:/root/project 4pdosc/openmldb:0.5.2 bash
+docker <span class="nb">exec</span> -it demo bash
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>上述镜像预装了OpenMLDB的工具等，我们需要进一步安装OneFlow推理所需依赖。</p></li>
+</ul>
+<p>因为我们将在OpenMLDB的容器中嵌入OneFlow模型推理的预处理及调用，需要安装以下的依赖。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install tritonclient xxhash geventhttpclient
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意，本教程以下的OpenMLDB部分的演示命令默认均在该已经启动的 docker 容器内运行。OneFlow命令默认在 1.1 安装的OneFlow环境下运行。</p>
+</div>
+</section>
+<section id="id2">
+<h3>1.3 初始化环境<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./init.sh
+</pre></div>
+</div>
+<p>我们在镜像内提供了init.sh脚本帮助用户快速初始化环境，包括：</p>
+<ul class="simple">
+<li><p>配置 zookeeper</p></li>
+<li><p>启动集群版 OpenMLDB</p></li>
+</ul>
+</section>
+<section id="openmldb-cli">
+<h3>1.4 启动 OpenMLDB CLI 客户端<a class="headerlink" href="#openmldb-cli" title="Permalink to this headline">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/work/openmldb/bin/openmldb --zk_cluster<span class="o">=</span><span class="m">127</span>.0.0.1:2181 --zk_root_path<span class="o">=</span>/openmldb --role<span class="o">=</span>sql_client
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意，本教程大部分命令在 OpenMLDB CLI 下执行，为了跟普通 shell 环境做区分，在 OpenMLDB CLI 下执行的命令均使用特殊的提示符  <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>  。</p>
+</div>
+</section>
+<section id="id3">
+<h3>1.5 预备知识：集群版的非阻塞任务<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>集群版的部分命令是非阻塞任务，包括在线模式的  <code class="docutils literal notranslate"><span class="pre">LOAD</span>&#160; <span class="pre">DATA</span></code>，以及离线模式的  <code class="docutils literal notranslate"><span class="pre">LOAD</span>&#160; <span class="pre">DATA</span></code>  ，<code class="docutils literal notranslate"><span class="pre">SELECT</span></code>，<code class="docutils literal notranslate"><span class="pre">SELECT</span>&#160; <span class="pre">INTO</span></code>  命令。提交任务以后可以使用相关的命令如  <code class="docutils literal notranslate"><span class="pre">SHOW</span>&#160; <span class="pre">JOBS</span></code>,  <code class="docutils literal notranslate"><span class="pre">SHOW</span>&#160; <span class="pre">JOB</span></code>  来查看任务进度，详情参见离线任务管理文档。</p>
+</section>
+</section>
+<section id="id4">
+<h2>2. 机器学习训练流程<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<section id="id5">
+<h3>2.1 流程概览<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p>使用OpenMLDB+OneFlow进行机器学习训练可总结为以下大致步骤。
+接下来会介绍每一个步骤的具体操作细节。</p>
+</section>
+<section id="openmldb">
+<h3>2.2 使用OpenMLDB进行离线特征抽取<a class="headerlink" href="#openmldb" title="Permalink to this headline">#</a></h3>
+<section id="id6">
+<h4>2.2.1 创建数据库和数据表<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h4>
+<p>以下命令均在 OpenMLDB CLI 环境下执行。</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">JD_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">JD_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">action</span><span class="p">(</span><span class="n">reqId</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">eventTime</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">ingestionTime</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">actionValue</span><span class="w"> </span><span class="nb">int</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">flattenRequest</span><span class="p">(</span><span class="n">reqId</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">eventTime</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">main_id</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">pair_id</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">sku_id</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"> </span><span class="n">split_id</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">time1</span><span class="w"> </span><span class="n">string</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">bo_user</span><span class="p">(</span><span class="n">ingestionTime</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">user_lv_cd</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">user_reg_tm</span><span class="w"> </span><span class="nb">bigint</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">bo_action</span><span class="p">(</span><span class="n">ingestionTime</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">pair_id</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="k">time</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"> </span><span class="n">model_id</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">cate</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">br</span><span class="w"> </span><span class="n">string</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">bo_product</span><span class="p">(</span><span class="n">ingestionTime</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">sku_id</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">a3</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">cate</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">br</span><span class="w"> </span><span class="n">string</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">bo_comment</span><span class="p">(</span><span class="n">ingestionTime</span><span class="w"> </span><span class="k">timestamp</span><span class="p">,</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span><span class="w"> </span><span class="n">sku_id</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">comment_num</span><span class="w"> </span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">has_bad_comment</span><span class="w"> </span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">bad_comment_rate</span><span class="w"> </span><span class="nb">float</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>也可使用sql脚本(<code class="docutils literal notranslate"><span class="pre">/root/project/create_tables.sql</span></code>)运行：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">openmldb</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">2181</span> <span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">sql_client</span> <span class="o">&lt;</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">create_tables</span><span class="o">.</span><span class="n">sql</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h4>2.2.2 离线数据准备<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h4>
+<p>首先，切换到离线执行模式。接着，导入数据作为离线数据，用于离线特征计算。</p>
+<p>以下命令均在 OpenMLDB CLI 下执行。</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">JD_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;offline&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/root/project/data/JD_data/action/*.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;overwrite&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/root/project/data/JD_data/flattenRequest_clean/*.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">flattenRequest</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;overwrite&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/root/project/data/JD_data/bo_user/*.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">bo_user</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;overwrite&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/root/project/data/JD_data/bo_action/*.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">bo_action</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;overwrite&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/root/project/data/JD_data/bo_product/*.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">bo_product</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;overwrite&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/root/project/data/JD_data/bo_comment/*.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">bo_comment</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;overwrite&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>或使用脚本执行，并通过以下命令快速查询jobs状态：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">openmldb</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">2181</span> <span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">sql_client</span> <span class="o">&lt;</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">load_data</span><span class="o">.</span><span class="n">sql</span>
+
+<span class="n">echo</span> <span class="s2">&quot;show jobs;&quot;</span> <span class="o">|</span> <span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">openmldb</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">2181</span> <span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">sql_client</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意，集群版 <code class="docutils literal notranslate"><span class="pre">LOAD</span>&#160; <span class="pre">DATA</span></code> 为非阻塞任务，可以使用命令 <code class="docutils literal notranslate"><span class="pre">SHOW</span>&#160; <span class="pre">JOBS</span></code> 查看任务运行状态，请等待任务运行成功（ <code class="docutils literal notranslate"><span class="pre">state</span></code> 转至 <code class="docutils literal notranslate"><span class="pre">FINISHED</span></code> 状态），再进行下一步操作 。</p>
+</div>
+</section>
+<section id="id8">
+<h4>2.2.3 特征设计<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h4>
+<p>通常在设计特征前，用户需要根据机器学习的目标对数据进行分析，然后根据分析设计和调研特征。机器学习的数据分析和特征研究不是本文讨论的范畴，我们将不作展开。本文假定用户具备机器学习的基本理论知识，有解决机器学习问题的能力，能够理解SQL语法，并能够使用SQL语法构建特征。针对本案例，用户经过分析和调研设计了若干特征。</p>
+<p>请注意，在实际的机器学习特征调研过程中，科学家对特征进行反复试验，寻求模型效果最好的特征集。所以会不断的重复多次特征设计-&gt;离线特征抽取-&gt;模型训练过程，并不断调整特征以达到预期效果。</p>
+</section>
+<section id="id9">
+<h4>2.2.4 离线特征抽取<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h4>
+<p>用户在离线模式下，进行特征抽取，并将特征结果输出到<code class="docutils literal notranslate"><span class="pre">'/root/project/out/1'</span></code>目录下保存（对应映射为<code class="docutils literal notranslate"><span class="pre">$demodir/out/1</span></code>），以供后续的模型训练。 <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> 命令对应了基于上述特征设计所产生的 SQL 特征计算脚本。以下命令均在 OpenMLDB CLI 下执行。</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">JD_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="k">select</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId_1</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_eventTime_original_0</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_reqId_original_1</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_pair_id_original_24</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_sku_id_original_25</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_user_id_original_26</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0_10_</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_pair_id_window_unique_count_27</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_top1_ratio</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0_10_</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_pair_id_window_top1_ratio_28</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_top1_ratio</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0s_14d_200</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_pair_id_window_top1_ratio_29</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0s_14d_200</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_pair_id_window_unique_count_32</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="o">!</span><span class="k">isnull</span><span class="p">(</span><span class="k">at</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0_10_</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">count_where</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">at</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0_10_</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_pair_id_window_count_35</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">dayofweek</span><span class="p">(</span><span class="k">timestamp</span><span class="p">(</span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_eventTime_dayofweek_41</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">dayofweek</span><span class="p">(</span><span class="k">timestamp</span><span class="p">(</span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="p">))</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">dayofweek</span><span class="p">(</span><span class="k">timestamp</span><span class="p">(</span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_eventTime_isweekday_43</span><span class="w"></span>
+<span class="k">from</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="w"></span>
+<span class="w">    </span><span class="n">window</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0_10_</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">preceding</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">flattenRequest_user_id_eventTime_0s_14d_200</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="w"> </span><span class="n">rows_range</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">14</span><span class="n">d</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="n">s</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="n">MAXSIZE</span><span class="w"> </span><span class="mi">200</span><span class="p">))</span><span class="w"></span>
+<span class="k">as</span><span class="w"> </span><span class="n">out0</span><span class="w"></span>
+<span class="k">last</span><span class="w"> </span><span class="k">join</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="k">select</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId_3</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">action_reqId</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">actionValue</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">action_actionValue_multi_direct_2</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">a1</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_product_a1_multi_direct_3</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">a2</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_product_a2_multi_direct_4</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">a3</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_product_a3_multi_direct_5</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">br</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_product_br_multi_direct_6</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">cate</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_product_cate_multi_direct_7</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_product_ingestionTime_multi_direct_8</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_user_user_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">age</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_user_age_multi_direct_9</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_user_user_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_user_ingestionTime_multi_direct_10</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_user_user_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">sex</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_user_sex_multi_direct_11</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_user_user_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">user_lv_cd</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_user_user_lv_cd_multi_direct_12</span><span class="w"></span>
+<span class="k">from</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="w"></span>
+<span class="w">    </span><span class="k">last</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="o">`</span><span class="n">action</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">action_reqId</span><span class="o">`</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">`</span><span class="n">action_reqId</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"></span>
+<span class="w">    </span><span class="k">last</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="o">`</span><span class="n">bo_product</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="w"></span>
+<span class="w">    </span><span class="k">last</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="o">`</span><span class="n">bo_user</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">bo_user_user_id</span><span class="o">`</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">`</span><span class="n">bo_user_user_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="p">)</span><span class="w"></span>
+<span class="k">as</span><span class="w"> </span><span class="n">out1</span><span class="w"></span>
+<span class="k">on</span><span class="w"> </span><span class="n">out0</span><span class="p">.</span><span class="n">reqId_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out1</span><span class="p">.</span><span class="n">reqId_3</span><span class="w"></span>
+<span class="k">last</span><span class="w"> </span><span class="k">join</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="k">select</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId_14</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">max</span><span class="p">(</span><span class="o">`</span><span class="n">bad_comment_rate</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_bad_comment_rate_multi_max_13</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">min</span><span class="p">(</span><span class="o">`</span><span class="n">bad_comment_rate</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0_10_</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_bad_comment_rate_multi_min_14</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">min</span><span class="p">(</span><span class="o">`</span><span class="n">bad_comment_rate</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_bad_comment_rate_multi_min_15</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="n">comment_num</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_comment_num_multi_unique_count_22</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="n">has_bad_comment</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_has_bad_comment_multi_unique_count_23</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="n">has_bad_comment</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_has_bad_comment_multi_top3frequency_30</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="n">comment_num</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_comment_num_multi_top3frequency_33</span><span class="w"></span>
+<span class="k">from</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">dt</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">comment_num</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">has_bad_comment</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">bad_comment_rate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">window</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="k">UNION</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">dt</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">comment_num</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">has_bad_comment</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">bad_comment_rate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">bo_comment</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="n">rows_range</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">64</span><span class="n">d</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="n">s</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="n">MAXSIZE</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="n">INSTANCE_NOT_IN_WINDOW</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">bo_comment_sku_id_ingestionTime_0_10_</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="k">UNION</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">dt</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">comment_num</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">has_bad_comment</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">bad_comment_rate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">bo_comment</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="n">INSTANCE_NOT_IN_WINDOW</span><span class="p">))</span><span class="w"></span>
+<span class="k">as</span><span class="w"> </span><span class="n">out2</span><span class="w"></span>
+<span class="k">on</span><span class="w"> </span><span class="n">out0</span><span class="p">.</span><span class="n">reqId_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out2</span><span class="p">.</span><span class="n">reqId_14</span><span class="w"></span>
+<span class="k">last</span><span class="w"> </span><span class="k">join</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="k">select</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId_17</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="n">br</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_10h_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_br_multi_top3frequency_16</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="n">cate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_10h_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_cate_multi_top3frequency_17</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_7d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_model_id_multi_top3frequency_18</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_14d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_model_id_multi_unique_count_19</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_7d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_model_id_multi_unique_count_20</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_14d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_type_multi_unique_count_21</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_7d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_type_multi_top3frequency_40</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_14d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_type_multi_top3frequency_42</span><span class="w"></span>
+<span class="k">from</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="k">time</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">cate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">br</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">window</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_10h_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="k">UNION</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="k">time</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">cate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">br</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">bo_action</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="n">rows_range</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">10</span><span class="n">h</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="n">s</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="n">MAXSIZE</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="n">INSTANCE_NOT_IN_WINDOW</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">bo_action_pair_id_ingestionTime_0s_7d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="k">UNION</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="k">time</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">cate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">br</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">bo_action</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="n">rows_range</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">7</span><span class="n">d</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="n">s</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="n">MAXSIZE</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="n">INSTANCE_NOT_IN_WINDOW</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">bo_action_pair_id_ingestionTime_0s_14d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="k">UNION</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="k">time</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">cate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">br</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">bo_action</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="n">rows_range</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">14</span><span class="n">d</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="n">s</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="n">MAXSIZE</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="n">INSTANCE_NOT_IN_WINDOW</span><span class="p">))</span><span class="w"></span>
+<span class="k">as</span><span class="w"> </span><span class="n">out3</span><span class="w"></span>
+<span class="k">on</span><span class="w"> </span><span class="n">out0</span><span class="p">.</span><span class="n">reqId_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out3</span><span class="p">.</span><span class="n">reqId_17</span><span class="w"></span>
+<span class="k">INTO</span><span class="w"> </span><span class="n">OUTFILE</span><span class="w"> </span><span class="s1">&#39;/root/project/out/1&#39;</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>此处仅一个命令，可以使用阻塞式<code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code>，直接运行sql脚本<code class="docutils literal notranslate"><span class="pre">sync_select_out.sql</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">openmldb</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">2181</span> <span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">sql_client</span> <span class="o">&lt;</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">sync_select_out</span><span class="o">.</span><span class="n">sql</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意，集群版 <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">INTO</span></code> 为非阻塞任务，可以使用命令 <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code> 查看任务运行状态，请等待任务运行成功（ <code class="docutils literal notranslate"><span class="pre">state</span></code> 转至 <code class="docutils literal notranslate"><span class="pre">FINISHED</span></code> 状态），再进行下一步操作 。</p>
+</div>
+</section>
+</section>
+<section id="deepfm">
+<h3>2.3 预处理数据集以配合DeepFM模型要求<a class="headerlink" href="#deepfm" title="Permalink to this headline">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意，以下命令在docker外执行，使用安装了1.1所描述的OneFlow运行环境</p>
+</div>
+<p>根据 <a class="reference external" href="https://arxiv.org/abs/1703.04247">DeepFM 论文</a>, 类别特征和连续特征都被当作稀疏特征对待。</p>
+<blockquote>
+<div><p>χ may include categorical fields (e.g., gender, location) and continuous fields (e.g., age). Each categorical field is represented as a vector of one-hot encoding, and each continuous field is represented as the value itself, or a vector of one-hot encoding after discretization.</p>
+</div></blockquote>
+<p>进入demo文件夹，运行以下指令进行数据处理</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$demodir</span>/openmldb_process/
+sh process_JD_out_full.sh <span class="nv">$demodir</span>/out/1
+</pre></div>
+</div>
+<p>对应生成parquet数据集将生成在 <code class="docutils literal notranslate"><span class="pre">$demodir/openmldb_process/out</span></code>。数据信息将被打印如下，该信息将被输入为训练的配置文件。</p>
+<blockquote>
+<div><p>train samples = 4007924
+val samples = 504398
+test samples = 530059
+table size array:
+11,42,1105,200,11,1295,1,1,5,3,23,23,7,5042381,3127923,5042381,3649642,28350,105180,7,2,5042381,5,4,4,41,2,2,8,3456,4,5,5042381,10,60,5042381,843,17,1276,101,100</p>
+</div></blockquote>
+</section>
+<section id="id10">
+<h3>2.4 启动OneFlow进行模型训练<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意，以下命令在安装1.1所描述的OneFlow运行环境中运行</p>
+</div>
+<section id="train-deepfm-sh">
+<h4>2.4.1 修改对应<code class="docutils literal notranslate"><span class="pre">train_deepfm.sh</span></code>配置文件<a class="headerlink" href="#train-deepfm-sh" title="Permalink to this headline">#</a></h4>
+<p>注意根据上一节所打印出的数据信息更新配置文件。具体包括<code class="docutils literal notranslate"><span class="pre">num_train_samples</span></code>,<code class="docutils literal notranslate"><span class="pre">num_val_samples</span></code>,<code class="docutils literal notranslate"><span class="pre">num_test_samples</span></code>和<code class="docutils literal notranslate"><span class="pre">table_size_array</span></code>等。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$demodir</span>/oneflow_process/
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="nv">DEVICE_NUM_PER_NODE</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">demodir</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="nv">DATA_DIR</span><span class="o">=</span><span class="nv">$demodir</span>/openmldb_process/out
+<span class="nv">PERSISTENT_PATH</span><span class="o">=</span>/<span class="nv">$demodir</span>/oneflow_process/persistent
+<span class="nv">MODEL_SAVE_DIR</span><span class="o">=</span><span class="nv">$demodir</span>/oneflow_process/model_out
+<span class="nv">MODEL_SERVING_PATH</span><span class="o">=</span><span class="nv">$demodir</span>/oneflow_process/model/embedding/1/model
+
+python3 -m oneflow.distributed.launch <span class="se">\</span>
+--nproc_per_node <span class="nv">$DEVICE_NUM_PER_NODE</span> <span class="se">\</span>
+--nnodes <span class="m">1</span> <span class="se">\</span>
+--node_rank <span class="m">0</span> <span class="se">\</span>
+--master_addr <span class="m">127</span>.0.0.1 <span class="se">\</span>
+deepfm_train_eval_JD.py <span class="se">\</span>
+--disable_fusedmlp <span class="se">\</span>
+--data_dir <span class="nv">$DATA_DIR</span> <span class="se">\</span>
+--persistent_path <span class="nv">$PERSISTENT_PATH</span> <span class="se">\</span>
+--table_size_array <span class="s2">&quot;4,26,16,4,11,809,1,1,5,3,17,16,7,13916,13890,13916,10000,3674,9119,7,2,13916,5,4,4,33,2,2,7,2580,3,5,13916,10,47,13916,365,17,132,32,37&quot;</span> <span class="se">\</span>
+--store_type <span class="s1">&#39;cached_host_mem&#39;</span> <span class="se">\</span>
+--cache_memory_budget_mb <span class="m">1024</span> <span class="se">\</span>
+--batch_size <span class="m">1000</span> <span class="se">\</span>
+--train_batches <span class="m">75000</span> <span class="se">\</span>
+--loss_print_interval <span class="m">100</span> <span class="se">\</span>
+--dnn <span class="s2">&quot;1000,1000,1000,1000,1000&quot;</span> <span class="se">\</span>
+--net_dropout <span class="m">0</span>.2 <span class="se">\</span>
+--learning_rate <span class="m">0</span>.001 <span class="se">\</span>
+--embedding_vec_size <span class="m">16</span> <span class="se">\</span>
+--num_train_samples <span class="m">11073</span> <span class="se">\</span>
+--num_val_samples <span class="m">1351</span> <span class="se">\</span>
+--num_test_samples <span class="m">1492</span> <span class="se">\</span>
+--model_save_dir <span class="nv">$MODEL_SAVE_DIR</span> <span class="se">\</span>
+--save_best_model <span class="se">\</span>
+--save_graph_for_serving <span class="se">\</span>
+--model_serving_path <span class="nv">$MODEL_SERVING_PATH</span> <span class="se">\</span>
+--save_model_after_each_eval
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h4>2.4.2 开始模型训练<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash train_deepfm.sh <span class="nv">$demodir</span>
+</pre></div>
+</div>
+<p>生成模型将存放在<code class="docutils literal notranslate"><span class="pre">$demodir/oneflow_process/model_out</span></code>，用来serving的模型存放在<code class="docutils literal notranslate"><span class="pre">$demodir/oneflow_process/model/embedding/1/model</span></code></p>
+</section>
+</section>
+</section>
+<section id="id12">
+<h2>3. 模型上线流程<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h2>
+<section id="id13">
+<h3>3.1 流程概览<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h3>
+<p>使用OpenMLDB+OneFlow进行模型serving可总结为以下大致步骤。
+接下来会介绍每一个步骤的具体操作细节。</p>
+</section>
+<section id="id14">
+<h3>3.2 配置OpenMLDB进行在线特征抽取<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h3>
+<section id="sql">
+<h4>3.2.1 特征抽取SQL脚本上线<a class="headerlink" href="#sql" title="Permalink to this headline">#</a></h4>
+<p>假定2.2.3节中所设计的特征在上一步的模型训练中产出的模型符合预期，那么下一步就是将该特征抽取SQL脚本部署到线上去，以提供在线的特征抽取。</p>
+<ol class="arabic">
+<li><p>重新启动 OpenMLDB CLI，以进行 SQL 上线部署。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it demo bash
+/work/openmldb/bin/openmldb --zk_cluster<span class="o">=</span><span class="m">127</span>.0.0.1:2181 --zk_root_path<span class="o">=</span>/openmldb --role<span class="o">=</span>sql_client
+</pre></div>
+</div>
+</li>
+<li><p>执行上线部署，以下命令在 OpenMLDB CLI 内执行。</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">JD_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">deploy</span><span class="w"> </span><span class="n">demo</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="k">select</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId_1</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_eventTime_original_0</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_reqId_original_1</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_pair_id_original_24</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_sku_id_original_25</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_user_id_original_26</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0_10_</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_pair_id_window_unique_count_27</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_top1_ratio</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0_10_</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_pair_id_window_top1_ratio_28</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_top1_ratio</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0s_14d_200</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_pair_id_window_top1_ratio_29</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0s_14d_200</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_pair_id_window_unique_count_32</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="o">!</span><span class="k">isnull</span><span class="p">(</span><span class="k">at</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0_10_</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="n">count_where</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">at</span><span class="p">(</span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0_10_</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_pair_id_window_count_35</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">dayofweek</span><span class="p">(</span><span class="k">timestamp</span><span class="p">(</span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_eventTime_dayofweek_41</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">dayofweek</span><span class="p">(</span><span class="k">timestamp</span><span class="p">(</span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="p">))</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">dayofweek</span><span class="p">(</span><span class="k">timestamp</span><span class="p">(</span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="p">))</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">flattenRequest_eventTime_isweekday_43</span><span class="w"></span>
+<span class="k">from</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="w"></span>
+<span class="w">    </span><span class="n">window</span><span class="w"> </span><span class="n">flattenRequest_user_id_eventTime_0_10_</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">preceding</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">flattenRequest_user_id_eventTime_0s_14d_200</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="w"> </span><span class="n">rows_range</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">14</span><span class="n">d</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="n">s</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="n">MAXSIZE</span><span class="w"> </span><span class="mi">200</span><span class="p">))</span><span class="w"></span>
+<span class="k">as</span><span class="w"> </span><span class="n">out0</span><span class="w"></span>
+<span class="k">last</span><span class="w"> </span><span class="k">join</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="k">select</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId_3</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">action_reqId</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">actionValue</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">action_actionValue_multi_direct_2</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">a1</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_product_a1_multi_direct_3</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">a2</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_product_a2_multi_direct_4</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">a3</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_product_a3_multi_direct_5</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">br</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_product_br_multi_direct_6</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">cate</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_product_cate_multi_direct_7</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_product_ingestionTime_multi_direct_8</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_user_user_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">age</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_user_age_multi_direct_9</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_user_user_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_user_ingestionTime_multi_direct_10</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_user_user_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">sex</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_user_sex_multi_direct_11</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">bo_user_user_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">user_lv_cd</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_user_user_lv_cd_multi_direct_12</span><span class="w"></span>
+<span class="k">from</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="w"></span>
+<span class="w">    </span><span class="k">last</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="o">`</span><span class="n">action</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">action_reqId</span><span class="o">`</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">`</span><span class="n">action_reqId</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"></span>
+<span class="w">    </span><span class="k">last</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="o">`</span><span class="n">bo_product</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">`</span><span class="n">bo_product_sku_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="w"></span>
+<span class="w">    </span><span class="k">last</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="o">`</span><span class="n">bo_user</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">bo_user_user_id</span><span class="o">`</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">`</span><span class="n">bo_user_user_id</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="p">)</span><span class="w"></span>
+<span class="k">as</span><span class="w"> </span><span class="n">out1</span><span class="w"></span>
+<span class="k">on</span><span class="w"> </span><span class="n">out0</span><span class="p">.</span><span class="n">reqId_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out1</span><span class="p">.</span><span class="n">reqId_3</span><span class="w"></span>
+<span class="k">last</span><span class="w"> </span><span class="k">join</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="k">select</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId_14</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">max</span><span class="p">(</span><span class="o">`</span><span class="n">bad_comment_rate</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_bad_comment_rate_multi_max_13</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">min</span><span class="p">(</span><span class="o">`</span><span class="n">bad_comment_rate</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0_10_</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_bad_comment_rate_multi_min_14</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">min</span><span class="p">(</span><span class="o">`</span><span class="n">bad_comment_rate</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_bad_comment_rate_multi_min_15</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="n">comment_num</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_comment_num_multi_unique_count_22</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="n">has_bad_comment</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_has_bad_comment_multi_unique_count_23</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="n">has_bad_comment</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_has_bad_comment_multi_top3frequency_30</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="n">comment_num</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_comment_comment_num_multi_top3frequency_33</span><span class="w"></span>
+<span class="k">from</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">dt</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">comment_num</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">has_bad_comment</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">bad_comment_rate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">window</span><span class="w"> </span><span class="n">bo_comment_sku_id_ingestionTime_0s_64d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="k">UNION</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">dt</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">comment_num</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">has_bad_comment</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">bad_comment_rate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">bo_comment</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="n">rows_range</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">64</span><span class="n">d</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="n">s</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="n">MAXSIZE</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="n">INSTANCE_NOT_IN_WINDOW</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">bo_comment_sku_id_ingestionTime_0_10_</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="k">UNION</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">dt</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">comment_num</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">has_bad_comment</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">bad_comment_rate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">bo_comment</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">sku_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="n">INSTANCE_NOT_IN_WINDOW</span><span class="p">))</span><span class="w"></span>
+<span class="k">as</span><span class="w"> </span><span class="n">out2</span><span class="w"></span>
+<span class="k">on</span><span class="w"> </span><span class="n">out0</span><span class="p">.</span><span class="n">reqId_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out2</span><span class="p">.</span><span class="n">reqId_14</span><span class="w"></span>
+<span class="k">last</span><span class="w"> </span><span class="k">join</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="k">select</span><span class="w"></span>
+<span class="w">    </span><span class="o">`</span><span class="n">reqId</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId_17</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="n">br</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_10h_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_br_multi_top3frequency_16</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="n">cate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_10h_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_cate_multi_top3frequency_17</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_7d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_model_id_multi_top3frequency_18</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_14d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_model_id_multi_unique_count_19</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_7d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_model_id_multi_unique_count_20</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">distinct_count</span><span class="p">(</span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_14d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_type_multi_unique_count_21</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_7d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_type_multi_top3frequency_40</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">fz_topn_frequency</span><span class="p">(</span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_14d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">bo_action_type_multi_top3frequency_42</span><span class="w"></span>
+<span class="k">from</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">eventTime</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="nb">bigint</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="k">time</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">cate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">`</span><span class="n">br</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">flattenRequest</span><span class="o">`</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">window</span><span class="w"> </span><span class="n">bo_action_pair_id_ingestionTime_0s_10h_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="k">UNION</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="k">time</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">cate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">br</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">bo_action</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="n">rows_range</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">10</span><span class="n">h</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="n">s</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="n">MAXSIZE</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="n">INSTANCE_NOT_IN_WINDOW</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">bo_action_pair_id_ingestionTime_0s_7d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="k">UNION</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="k">time</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">cate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">br</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">bo_action</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="n">rows_range</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">7</span><span class="n">d</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="n">s</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="n">MAXSIZE</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="n">INSTANCE_NOT_IN_WINDOW</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">bo_action_pair_id_ingestionTime_0s_14d_100</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="k">UNION</span><span class="w"> </span><span class="p">(</span><span class="k">select</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="k">time</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">model_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="k">type</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">cate</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">br</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reqId</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="n">bo_action</span><span class="o">`</span><span class="p">)</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">pair_id</span><span class="o">`</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="o">`</span><span class="n">ingestionTime</span><span class="o">`</span><span class="w"> </span><span class="n">rows_range</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">14</span><span class="n">d</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">0</span><span class="n">s</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="n">MAXSIZE</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="n">INSTANCE_NOT_IN_WINDOW</span><span class="p">))</span><span class="w"></span>
+<span class="k">as</span><span class="w"> </span><span class="n">out3</span><span class="w"></span>
+<span class="k">on</span><span class="w"> </span><span class="n">out0</span><span class="p">.</span><span class="n">reqId_1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out3</span><span class="p">.</span><span class="n">reqId_17</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">openmldb</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">2181</span> <span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">sql_client</span> <span class="o">&lt;</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">deploy</span><span class="o">.</span><span class="n">sql</span>
+</pre></div>
+</div>
+<p>可使用如下命令确认deploy信息:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">show</span><span class="w"> </span><span class="n">deployment</span><span class="w"> </span><span class="n">demo</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id15">
+<h4>3.2.2 在线数据准备<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h4>
+<p>首先，请切换到<strong>在线</strong>执行模式。接着在在线模式下，导入数据作为在线数据，用于在线特征计算。以下命令均在 OpenMLDB CLI 下执行。</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="n">USE</span><span class="w"> </span><span class="n">JD_db</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">execute_mode</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/root/project/data/JD_data/action/*.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/root/project/data/JD_data/flattenRequest_clean/*.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">flattenRequest</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/root/project/data/JD_data/bo_user/*.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">bo_user</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/root/project/data/JD_data/bo_action/*.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">bo_action</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/root/project/data/JD_data/bo_product/*.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">bo_product</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">&gt;</span><span class="w"> </span><span class="k">LOAD</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="n">INFILE</span><span class="w"> </span><span class="s1">&#39;/root/project/data/JD_data/bo_comment/*.parquet&#39;</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">bo_comment</span><span class="w"> </span><span class="k">options</span><span class="p">(</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;parquet&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="o">=</span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">mode</span><span class="o">=</span><span class="s1">&#39;append&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">work</span><span class="o">/</span><span class="n">openmldb</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">zk_cluster</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">2181</span> <span class="o">--</span><span class="n">zk_root_path</span><span class="o">=/</span><span class="n">openmldb</span> <span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">sql_client</span> <span class="o">&lt;</span> <span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">load_online_data</span><span class="o">.</span><span class="n">sql</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意，集群版 <code class="docutils literal notranslate"><span class="pre">LOAD</span>&#160; <span class="pre">DATA</span></code> 为非阻塞任务，可以使用命令 <code class="docutils literal notranslate"><span class="pre">SHOW</span>&#160; <span class="pre">JOBS</span></code> 查看任务运行状态，请等待任务运行成功（ <code class="docutils literal notranslate"><span class="pre">state</span></code> 转至 <code class="docutils literal notranslate"><span class="pre">FINISHED</span></code> 状态），再进行下一步操作 。</p>
+</div>
+</section>
+</section>
+<section id="id16">
+<h3>3.3 配置OneFlow推理服务<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h3>
+<p>OneFlow的推理服务需要<a class="reference external" href="https://docs.oneflow.org/master/cookies/one_embedding.html">OneEmbedding</a>的支持。该支持目前还没有合入主框架中。若需要重新编译，可参考附录A进行编译测试。接下来步骤默认相关支持已编译完成，并且存放在<code class="docutils literal notranslate"><span class="pre">/home/gtest/work/oneflow_serving/</span></code>路径中。</p>
+<section id="demodir-oneflow-process-model">
+<h4>3.3.1 检查模型路径（<code class="docutils literal notranslate"><span class="pre">$demodir/oneflow_process/model</span></code>）中模型文件及组织方式是否正确<a class="headerlink" href="#demodir-oneflow-process-model" title="Permalink to this headline">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tree  -L 3 model/
+model/
+└── embedding
+    ├── 1
+    │   └── model
+    └── config.pbtxt
+</pre></div>
+</div>
+</section>
+<section id="config-pbtxt">
+<h4>3.3.2 确认<code class="docutils literal notranslate"><span class="pre">config.pbtxt</span></code>中的配置正确。<a class="headerlink" href="#config-pbtxt" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="persistent-demodir-oneflow-process-persistent">
+<h4>3.3.3 确认persistent路径（<code class="docutils literal notranslate"><span class="pre">$demodir/oneflow_process/persistent</span></code>）正确<a class="headerlink" href="#persistent-demodir-oneflow-process-persistent" title="Permalink to this headline">#</a></h4>
+</section>
+</section>
+<section id="id17">
+<h3>3.4 启动推理服务<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h3>
+<section id="id18">
+<h4>3.4.1 启动OpenMLDB推理服务<a class="headerlink" href="#id18" title="Permalink to this headline">#</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意，以下命令在demo docker中运行。</p>
+</div>
+<ol class="arabic simple">
+<li><p>如果尚未退出 OpenMLDB CLI，请使用  <code class="docutils literal notranslate"><span class="pre">quit</span></code>  命令退出 OpenMLDB CLI。</p></li>
+<li><p>在普通命令行下启动预估服务：</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /root/project/serving/openmldb_serving
+./start_predict_server.sh <span class="m">0</span>.0.0.0:9080
+</pre></div>
+</div>
+</section>
+<section id="id19">
+<h4>3.4.2 启动OneFlow推理服务<a class="headerlink" href="#id19" title="Permalink to this headline">#</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意，以下命令在安装1.1所描述的OneFlow运行环境中运行</p>
+</div>
+<p>使用一下命令启动OneFlow推理服务：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --runtime<span class="o">=</span>nvidia --rm --network<span class="o">=</span>host <span class="se">\</span>
+  -v <span class="nv">$demodir</span>/oneflow_process/model:/models <span class="se">\</span>
+  -v /home/gtest/work/oneflow_serving/serving/build/libtriton_oneflow.so:/backends/oneflow/libtriton_oneflow.so <span class="se">\</span>
+  -v /home/gtest/work/oneflow_serving/oneflow/build/liboneflow_cpp/lib/:/mylib <span class="se">\</span>
+  -v <span class="nv">$demodir</span>/oneflow_process/persistent:/root/demo/persistent <span class="se">\</span>
+  registry.cn-beijing.aliyuncs.com/oneflow/triton-devel <span class="se">\</span>
+  bash -c <span class="s1">&#39;LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/mylib /opt/tritonserver/bin/tritonserver \</span>
+<span class="s1">  --model-repository=/models --backend-directory=/backends&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id20">
+<h3>3.5 发送预估请求<a class="headerlink" href="#id20" title="Permalink to this headline">#</a></h3>
+<p>预估请求可在OpenMLDB的容器外执行。容器外部访问的具体信息可参见<a class="reference external" href="https://openmldb.ai/docs/zh/main/reference/ip_tips.html">IP 配置</a>。
+在普通命令行下执行内置的 <code class="docutils literal notranslate"><span class="pre">predict.py</span></code> 脚本。该脚本发送一行请求数据到预估服务，接收返回的预估结果，并打印出来。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python <span class="nv">$demodir</span>/serving/predict.py
+</pre></div>
+</div>
+<p>范例输出：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">----------------</span><span class="n">ins</span><span class="o">---------------</span>
+<span class="p">[</span><span class="s1">&#39;200001_80005_2016-03-31 18:11:20&#39;</span> <span class="mi">1459419080000</span>
+ <span class="s1">&#39;200001_80005_2016-03-31 18:11:20&#39;</span> <span class="s1">&#39;200001_80005&#39;</span> <span class="s1">&#39;80005&#39;</span> <span class="s1">&#39;200001&#39;</span> <span class="mi">1</span> <span class="mf">1.0</span>
+ <span class="mf">1.0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">5</span> <span class="mi">1</span> <span class="s1">&#39;200001_80005_2016-03-31 18:11:20&#39;</span> <span class="kc">None</span> <span class="kc">None</span> <span class="kc">None</span> <span class="kc">None</span> <span class="kc">None</span>
+ <span class="kc">None</span> <span class="kc">None</span> <span class="kc">None</span> <span class="kc">None</span> <span class="kc">None</span> <span class="kc">None</span> <span class="s1">&#39;200001_80005_2016-03-31 18:11:20&#39;</span>
+ <span class="mf">0.019200000911951065</span> <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mi">2</span> <span class="mi">2</span> <span class="s1">&#39;1,,NULL&#39;</span> <span class="s1">&#39;4,0,NULL&#39;</span>
+ <span class="s1">&#39;200001_80005_2016-03-31 18:11:20&#39;</span> <span class="s1">&#39;,NULL,NULL&#39;</span> <span class="s1">&#39;,NULL,NULL&#39;</span> <span class="s1">&#39;,NULL,NULL&#39;</span>
+ <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="s1">&#39;,NULL,NULL&#39;</span> <span class="s1">&#39;,NULL,NULL&#39;</span><span class="p">]</span>
+<span class="o">---------------</span><span class="n">predict</span> <span class="n">change</span> <span class="n">of</span> <span class="n">purchase</span> <span class="o">-------------</span>
+<span class="p">[[</span><span class="sa">b</span><span class="s1">&#39;0.006222:0&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="a-oneflow">
+<h2>附录A – OneFlow定制代码编译<a class="headerlink" href="#a-oneflow" title="Permalink to this headline">#</a></h2>
+<p>此章节介绍为OneEmbedding推理服务所定制的代码修改的编译过程。该代码会尽快合入OneFlow中，届时以下步骤可省略。</p>
+<section id="a-1">
+<h3>A.1 容器环境准备<a class="headerlink" href="#a-1" title="Permalink to this headline">#</a></h3>
+<p>使用以下容器环境进行编译。该容器已经安装编译所需的依赖等。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">registry</span><span class="o">.</span><span class="n">cn</span><span class="o">-</span><span class="n">beijing</span><span class="o">.</span><span class="n">aliyuncs</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">oneflow</span><span class="o">/</span><span class="n">triton</span><span class="o">-</span><span class="n">devel</span><span class="p">:</span><span class="n">latest</span>
+</pre></div>
+</div>
+<p>启动容器并映射相关路径(此处可映射<code class="docutils literal notranslate"><span class="pre">/home/work/gtest</span></code>至<code class="docutils literal notranslate"><span class="pre">/root/project</span></code>)。接下来的操作均在容器内进行。</p>
+</section>
+<section id="a-2-oneflow">
+<h3>A.2 编译OneFlow<a class="headerlink" href="#a-2-oneflow" title="Permalink to this headline">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /root/project
+mkdir oneflow_serving <span class="o">&amp;&amp;</span> <span class="nb">cd</span> oneflow_serving
+git clone -b support_oneembedding_serving --single-branch https://github.com/Oneflow-Inc/oneflow --depth<span class="o">=</span><span class="m">1</span> 
+<span class="nb">cd</span> oneflow
+mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+cmake -C ../cmake/caches/cn/cuda.cmake <span class="se">\</span>
+-DBUILD_CPP_API<span class="o">=</span>ON <span class="se">\</span>
+-DWITH_MLIR<span class="o">=</span>ON <span class="se">\</span>
+-G Ninja <span class="se">\</span>
+-DBUILD_SHARED_LIBS<span class="o">=</span>ON <span class="se">\</span>
+-DBUILD_HWLOC<span class="o">=</span>OFF <span class="se">\</span>
+-DCMAKE_INTERPROCEDURAL_OPTIMIZATION<span class="o">=</span>OFF <span class="se">\</span>
+-DCMAKE_EXE_LINKER_FLAGS_INIT<span class="o">=</span><span class="s2">&quot;-fuse-ld=lld&quot;</span> <span class="se">\</span>
+-DCMAKE_MODULE_LINKER_FLAGS_INIT<span class="o">=</span><span class="s2">&quot;-fuse-ld=lld&quot;</span> <span class="se">\</span>
+-DCMAKE_SHARED_LINKER_FLAGS_INIT<span class="o">=</span><span class="s2">&quot;-fuse-ld=lld&quot;</span> ..
+ninja
+</pre></div>
+</div>
+</section>
+<section id="a-3-serving">
+<h3>A.3 编译Serving<a class="headerlink" href="#a-3-serving" title="Permalink to this headline">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone -b support_one_embedding --single-branchhttps://github.com/Oneflow-Inc/serving.git
+<span class="nb">cd</span> serving
+mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+cmake -DCMAKE_PREFIX_PATH<span class="o">=</span>/path/to/liboneflow_cpp/share -DTRITON_RELATED_REPO_TAG<span class="o">=</span>r21.10 <span class="se">\</span>
+  -DTRITON_ENABLE_GPU<span class="o">=</span>ON -G Ninja -DTHIRD_PARTY_MIRROR<span class="o">=</span>aliyun ..
+ninja
+</pre></div>
+</div>
+<p>上述命令中的<code class="docutils literal notranslate"><span class="pre">/path/to/liboneflow_cpp/share</span></code>要替换成上边编译的oneflow的里面的路径，在<code class="docutils literal notranslate"><span class="pre">{oneflow路径}/build/liboneflow_cpp/share</span></code></p>
+</section>
+<section id="a-4-tritonserver">
+<h3>A.4 测试TritonServer<a class="headerlink" href="#a-4-tritonserver" title="Permalink to this headline">#</a></h3>
+<p>复制backend库文件：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir /root/project/oneflow_sering/backends <span class="o">&amp;&amp;</span> <span class="nb">cd</span> /root/project/oneflow_sering/backends
+mkdir oneflow
+cp /roor/prject/oneflow_serving/serving/build/libtriton_oneflow.so oneflow/.
+</pre></div>
+</div>
+<p>在命令行启动 TritonServer测试：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span>:/root/project/oneflow_serving/oneflow/build/liboneflow_cpp/lib <span class="se">\</span>
+/opt/tritonserver/bin/tritonserver <span class="se">\</span>
+--model-repository<span class="o">=</span>/root/project/oneflow_process/model <span class="se">\</span>
+--backend-directory<span class="o">=</span>/root/project/oneflow_serving/backends
+</pre></div>
+</div>
+<p>在另一个命令行运行如下指令，若成功，输出示例如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>python $demodir/serving/client.py 
+&gt;&gt;&gt;
+0.045439958572387695
+(1, 1)
+[[b&#39;0.025343:0&#39;]]
+</pre></div>
+</div>
+<p>注意：</p>
+<ul class="simple">
+<li><p>如果出现<code class="docutils literal notranslate"><span class="pre">libunwind.so.8</span></code>未找到需要用<code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">/lib/x86_64-linux-gnu:/unwind_path</span></code> 映射一下<code class="docutils literal notranslate"><span class="pre">libunwind.so.8</span></code>所在目录，然后添加到<code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>里面: <code class="docutils literal notranslate"><span class="pre">...</span> <span class="pre">bash</span> <span class="pre">-c</span> <span class="pre">'LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/mylib:/unwind_path</span> <span class="pre">...</span></code></p></li>
+<li><p>如果出现<code class="docutils literal notranslate"><span class="pre">libcupti.so</span></code>未找到需要用<code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">/usr/local/cuda-11.7/extras/CUPTI/lib64:/cupti_path</span></code> 映射一下<code class="docutils literal notranslate"><span class="pre">libcupti.so</span></code>所在目录，然后添加到<code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>里面: <code class="docutils literal notranslate"><span class="pre">...</span> <span class="pre">bash</span> <span class="pre">-c</span> <span class="pre">'LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/mylib:/cupti_path</span> <span class="pre">...</span></code>, 其中具体的cuda的路径按实际安装的位置，可以用<code class="docutils literal notranslate"><span class="pre">ldd</span> <span class="pre">{oneflow路径}/build/liboneflow.so</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">cupti</span></code>来找到</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="airflow_provider_demo.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Airflow OpenMLDB Provider 使用案例</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../deploy/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">安装部署</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:55:21 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,1177 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Configuration File &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Maintenance" href="../maintain/index.html" />
+    <link rel="prev" title="Install and Deploy" href="install_deploy.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     Milestones
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     The Workflow of Cluster Version and Execution Mode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     SQL for Feature Extraction (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     SQL for Feature Extraction (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   Use Cases
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/lightgbm_demo.html">
+     OpenMLDB + LightGBM: Taxi Trip Duration Prediction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/pulsar_connector_demo.html">
+     Importing Real-Time Data Streams from Pulsar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/kafka_connector_demo.html">
+     Importing Real-Time Data Streams from Kafka
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/dolphinscheduler_task_demo.html">
+     Building End-to-End MLOps Workflows (OpenMLDB + DolphinScheduler)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Deployment
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   Maintenance
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     Upgrade
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     Backup and Restore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     Monitoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     Operations in CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/faq.html">
+     Operation and Maintenance FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     Scale-Out and Scale-In
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/diagnose.html">
+     Diagnostic Tool
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   References
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     Architecture
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       Online Module Architecture
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       Language Structure
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         Keywords
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL Object Name
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         Literal Value
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         Case Sensitive
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         Notes
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       Data Type
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         Numeric Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         String Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         Date and Time Type
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       Expressions, Functions, and Operations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         Operator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       Data Query Statement （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT Overview
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         No-table SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       Data Manipulation Statement（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       Data Definition Statement (DDL)
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         DEPLOY
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         Delete DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         View DEPLOYMENTS List
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         View DEPLOYMENT Details
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL On-Line Specifications and Requirements
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       Task Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/ip_tips.html">
+     IP Configuration
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/client_config/index.html">
+     Client Configuration
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/client_config/client_spark_config.html">
+       Spark Client Configuration
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: v0.6</br>
+Versions：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="conf.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/deploy/conf.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-configuration-file-for-nameserver-conf-nameserver-flags">
+   The Configuration File for Nameserver: conf/nameserver.flags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-configuration-file-for-conf-tablet-flags">
+   The Configuration File for conf/tablet.flags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-configuration-file-for-apiserver-conf-tablet-flags">
+   The Configuration file for APIServer: conf/tablet.flags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#he-configuration-file-for-taskmanager-conf-taskmanager-properties">
+   he Configuration file for TaskManager: conf/taskmanager.properties
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Configuration File</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-configuration-file-for-nameserver-conf-nameserver-flags">
+   The Configuration File for Nameserver: conf/nameserver.flags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-configuration-file-for-conf-tablet-flags">
+   The Configuration File for conf/tablet.flags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-configuration-file-for-apiserver-conf-tablet-flags">
+   The Configuration file for APIServer: conf/tablet.flags
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#he-configuration-file-for-taskmanager-conf-taskmanager-properties">
+   he Configuration file for TaskManager: conf/taskmanager.properties
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="configuration-file">
+<h1>Configuration File<a class="headerlink" href="#configuration-file" title="Permalink to this headline">#</a></h1>
+<section id="the-configuration-file-for-nameserver-conf-nameserver-flags">
+<h2>The Configuration File for Nameserver: conf/nameserver.flags<a class="headerlink" href="#the-configuration-file-for-nameserver-conf-nameserver-flags" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># nameserver.conf</span>
+<span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">6527</span>
+<span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">nameserver</span>
+<span class="c1"># If you are deploying the standalone version, you do not need to configure zk_cluster and zk_root_path, just comment these two configurations. Deploying the cluster version needs to configure these two items, and the two configurations of all nodes in a cluster must be consistent</span>
+<span class="c1">#--zk_cluster=127.0.0.1:7181</span>
+<span class="c1">#--zk_root_path=/openmldb_cluster</span>
+<span class="c1"># The address of the tablet needs to be specified in the standalone version, and this configuration can be ignored in the cluster version</span>
+<span class="o">--</span><span class="n">tablet</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">9921</span>
+<span class="c1"># Configure log directory</span>
+<span class="o">--</span><span class="n">openmldb_log_dir</span><span class="o">=./</span><span class="n">logs</span>
+<span class="c1"># Configure whether to enable automatic recovery. If it is enabled, the node will automatically perform the leader switch if it hangs, and the data will be automatically restored after the node process starts.</span>
+<span class="o">--</span><span class="n">auto_failover</span><span class="o">=</span><span class="n">true</span>
+
+<span class="c1"># Configure the thread pool size, no need to modify</span>
+<span class="c1">#--thread_pool_size=16</span>
+<span class="c1"># Configure the number of retry attempts, the default is 3</span>
+<span class="c1">#--request_max_retry=3</span>
+<span class="c1"># Configure the request timeout, the default is 12 seconds</span>
+<span class="c1">#--request_timeout_ms=12000</span>
+<span class="c1"># Configure the retry interval when the request is unreachable, generally do not need to be modified</span>
+<span class="c1">#--request_sleep_time=1000</span>
+<span class="c1"># Configure the zookeeper session timeout in milliseconds</span>
+<span class="o">--</span><span class="n">zk_session_timeout</span><span class="o">=</span><span class="mi">10000</span>
+<span class="c1"># Configure the zookeeper health check interval, the unit is milliseconds, generally do not need to be modified</span>
+<span class="c1">#--zk_keep_alive_check_interval=15000</span>
+<span class="c1"># Configure the timeout period for tablet heartbeat detection, the default is 1 minute. If the tablet is still unreachable after this time, the nameserver considers that the tablet is unavailable and will perform the operation of offline the node</span>
+<span class="o">--</span><span class="n">tablet_heartbeat_timeout</span><span class="o">=</span><span class="mi">60000</span>
+<span class="c1"># Configure the tablet health check interval, in milliseconds</span>
+<span class="c1">#--tablet_offline_check_interval=1000</span>
+
+<span class="c1"># The number of queues to perform high-availability tasks</span>
+<span class="c1">#--name_server_task_pool_size=8</span>
+<span class="c1"># The number of concurrent execution of high-availability tasks</span>
+<span class="c1">#--name_server_task_concurrency=2</span>
+<span class="c1"># The maximum number of concurrent execution of high-availability tasks</span>
+<span class="c1">#--name_server_task_max_concurrency=8</span>
+<span class="c1"># Check the waiting time of the task when executing the task</span>
+<span class="c1">#--name_server_task_wait_time=1000</span>
+<span class="c1"># The maximum time to execute the task, if it exceeds, it will log</span>
+<span class="c1">#--name_server_op_execute_timeout=7200000</span>
+<span class="c1"># The time interval of receiving the status of the next task</span>
+<span class="c1">#--get_task_status_interval=2000</span>
+<span class="c1"># The time interval of receiving the status of the next table</span>
+<span class="c1">#--get_table_status_interval=2000</span>
+<span class="c1"># Check the minimum difference of binlog synchronization progress, if the master-slave offset is less than this value, the task has been successfully synchronized</span>
+<span class="c1">#--check_binlog_sync_progress_delta=100000</span>
+<span class="c1"># The maximum number of tasks to save, if this value is exceeded, completed and failed ops will be deleted</span>
+<span class="c1">#--max_op_num=10000</span>
+
+<span class="c1"># Create the default number of replicas for the table</span>
+<span class="c1">#--replica_num=3</span>
+<span class="c1"># Create the default number of shards for a table</span>
+<span class="c1">#--partition_num=8</span>
+<span class="c1"># The default number of replicas for system tables</span>
+<span class="o">--</span><span class="n">system_table_replica_num</span><span class="o">=</span><span class="mi">2</span>
+</pre></div>
+</div>
+</section>
+<section id="the-configuration-file-for-conf-tablet-flags">
+<h2>The Configuration File for conf/tablet.flags<a class="headerlink" href="#the-configuration-file-for-conf-tablet-flags" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># tablet.conf</span>
+<span class="c1"># Whether to use aliases</span>
+<span class="c1">#--use_name=false</span>
+<span class="c1"># The port number to start, if the endpoint is specified, it is not necessary to specify the port</span>
+<span class="c1">#--port=9527</span>
+<span class="c1"># Startup ip/domain name and port number</span>
+<span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">9921</span>
+<span class="c1"># The role to start, cannot be modified</span>
+<span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">tablet</span>
+
+<span class="c1"># If you start the cluster version, you need to specify the address of zk and the node path of the cluster in zk</span>
+<span class="c1">#--zk_cluster=127.0.0.1:7181</span>
+<span class="c1">#--zk_root_path=/openmldb_cluster</span>
+
+<span class="c1"># Configure the thread pool size, it is recommended to be consistent with the number of CPU cores</span>
+<span class="o">--</span><span class="n">thread_pool_size</span><span class="o">=</span><span class="mi">24</span>
+<span class="c1"># zk session timeout, in milliseconds</span>
+<span class="o">--</span><span class="n">zk_session_timeout</span><span class="o">=</span><span class="mi">10000</span>
+<span class="c1"># Interval for checking zk status, in milliseconds</span>
+<span class="c1">#--zk_keep_alive_check_interval=15000</span>
+
+<span class="c1"># log file path</span>
+<span class="o">--</span><span class="n">openmldb_log_dir</span><span class="o">=./</span><span class="n">logs</span>
+
+<span class="c1"># binlog conf</span>
+<span class="c1"># Binlog wait time when no new data is added</span>
+<span class="c1">#--binlog_coffee_time=1000</span>
+<span class="c1"># Master-slave matching offset waiting time</span>
+<span class="c1">#--binlog_match_logoffset_interval=1000</span>
+<span class="c1"># Whether to notify the follower to synchronize immediately when data is written</span>
+<span class="o">--</span><span class="n">binlog_notify_on_put</span><span class="o">=</span><span class="n">true</span>
+<span class="c1"># The maximum size of the binlog file, in MB</span>
+<span class="o">--</span><span class="n">binlog_single_file_max_size</span><span class="o">=</span><span class="mi">2048</span>
+<span class="c1"># Master-slave synchronization batch size</span>
+<span class="c1">#--binlog_sync_batch_size=32</span>
+<span class="c1"># The interval between binlog sync and disk, in milliseconds</span>
+<span class="o">--</span><span class="n">binlog_sync_to_disk_interval</span><span class="o">=</span><span class="mi">5000</span>
+<span class="c1"># The wait time when there is no new data synchronization, in milliseconds</span>
+<span class="c1">#--binlog_sync_wait_time=100</span>
+<span class="c1"># binlog filename length</span>
+<span class="c1">#--binlog_name_length=8</span>
+<span class="c1"># The interval for deleting binlog files, in milliseconds</span>
+<span class="c1">#--binlog_delete_interval=60000</span>
+<span class="c1"># Whether binlog enables crc verification</span>
+<span class="c1">#--binlog_enable_crc=false</span>
+
+<span class="c1"># Thread pool size for performing io-related operations</span>
+<span class="c1">#--io_pool_size=2</span>
+<span class="c1"># The thread pool size for tasks such as deleting tables, sending snapshots, load snapshots, etc.</span>
+<span class="c1">#--task_pool_size=8</span>
+<span class="c1"># Configure the data directory, multiple disks are separated by commas</span>
+<span class="o">--</span><span class="n">db_root_path</span><span class="o">=./</span><span class="n">db</span>
+<span class="c1"># Configure the data recycle bin directory, the data of the drop table will be placed here</span>
+<span class="o">--</span><span class="n">recycle_bin_root_path</span><span class="o">=./</span><span class="n">recycle</span>
+
+<span class="c1"># snapshot conf</span>
+<span class="c1"># Configure the time to do snapshots, the time of day. For example, 23 means taking a snapshot at 23 o&#39;clock every day.</span>
+<span class="o">--</span><span class="n">make_snapshot_time</span><span class="o">=</span><span class="mi">23</span>
+<span class="c1"># Check interval for snapshots</span>
+<span class="c1">#--make_snapshot_check_interval=600000</span>
+<span class="c1"># Set the offset threshold of the snapshot, if the offset difference from the last snapshot is less than this value, no new snapshot will be generated</span>
+<span class="c1">#--make_snapshot_threshold_offset=100000</span>
+<span class="c1"># snapshot thread pool size</span>
+<span class="c1">#--snapshot_pool_size=1</span>
+<span class="c1"># Whether snapshot compression is enabled. Which can be set to off, zlib, snappy</span>
+<span class="c1">#--snapshot_compression=off</span>
+
+<span class="c1"># garbage collection conf</span>
+<span class="c1"># The time interval for performing expired deletion, in minutes</span>
+<span class="o">--</span><span class="n">gc_interval</span><span class="o">=</span><span class="mi">60</span>
+<span class="c1"># Thread pool size to perform expired deletion</span>
+<span class="o">--</span><span class="n">gc_pool_size</span><span class="o">=</span><span class="mi">2</span>
+
+<span class="c1"># send file conf</span>
+<span class="c1"># The Maximum number of retry attempts to send a file</span>
+<span class="c1">#--send_file_max_try=3</span>
+<span class="c1"># block size when sending files</span>
+<span class="c1">#--stream_block_size=1048576</span>
+<span class="c1"># Bandwidth limit when sending files, the default is 20M/s</span>
+<span class="o">--</span><span class="n">stream_bandwidth_limit</span><span class="o">=</span><span class="mi">20971520</span>
+<span class="c1"># The maximum number of retry attempts for rpc requests</span>
+<span class="c1">#--request_max_retry=3</span>
+<span class="c1"># rpc timeout, in milliseconds</span>
+<span class="c1">#--request_timeout_ms=5000</span>
+<span class="c1"># If an exception occurs, the retry wait time, in milliseconds</span>
+<span class="c1">#--request_sleep_time=1000</span>
+<span class="c1"># Retry wait time for file sending failure, in milliseconds</span>
+<span class="c1">#--retry_send_file_wait_time_ms=3000</span>
+<span class="c1">#</span>
+<span class="c1"># table conf</span>
+<span class="c1"># The maximum height of the first level skip list</span>
+<span class="c1">#--skiplist_max_height=12</span>
+<span class="c1"># The maximum height of the second level skip list</span>
+<span class="c1">#--key_entry_max_height=8</span>
+
+<span class="c1"># loadtable</span>
+<span class="c1"># The number of data bars to submit a task to the thread pool when loading</span>
+<span class="c1">#--load_table_batch=30</span>
+<span class="c1"># Number of threads to load snapshot files</span>
+<span class="c1">#--load_table_thread_num=3</span>
+<span class="c1"># The maximum queue length of the load thread pool</span>
+<span class="c1">#--load_table_queue_size=1000</span>
+</pre></div>
+</div>
+</section>
+<section id="the-configuration-file-for-apiserver-conf-tablet-flags">
+<h2>The Configuration file for APIServer: conf/tablet.flags<a class="headerlink" href="#the-configuration-file-for-apiserver-conf-tablet-flags" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># apiserver.conf</span>
+<span class="c1"># Configure the ip/domain name and port number to start the apiserver</span>
+<span class="o">--</span><span class="n">endpoint</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8080</span>
+<span class="c1"># role cannot be changed</span>
+<span class="o">--</span><span class="n">role</span><span class="o">=</span><span class="n">apiserver</span>
+<span class="c1"># If the deployed openmldb is a standalone version, you need to specify the address of the nameserver</span>
+<span class="o">--</span><span class="n">nameserver</span><span class="o">=</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">6527</span>
+<span class="c1"># If the deployed openmldb is a cluster version, you need to specify the zk address and the cluster zk node directory</span>
+<span class="c1">#--zk_cluster=127.0.0.1:7181</span>
+<span class="c1">#--zk_root_path=/openmldb_cluster</span>
+
+<span class="c1"># configure log path</span>
+<span class="o">--</span><span class="n">openmldb_log_dir</span><span class="o">=./</span><span class="n">logs</span>
+
+<span class="c1"># Configure thread pool size</span>
+<span class="c1">#--thread_pool_size=16</span>
+</pre></div>
+</div>
+</section>
+<section id="he-configuration-file-for-taskmanager-conf-taskmanager-properties">
+<h2>he Configuration file for TaskManager: conf/taskmanager.properties<a class="headerlink" href="#he-configuration-file-for-taskmanager-conf-taskmanager-properties" title="Permalink to this headline">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Server Config</span>
+<span class="n">server</span><span class="o">.</span><span class="n">host</span><span class="o">=</span><span class="mf">0.0.0.0</span>
+<span class="n">server</span><span class="o">.</span><span class="n">port</span><span class="o">=</span><span class="mi">9902</span>
+<span class="n">server</span><span class="o">.</span><span class="n">worker_threads</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">server</span><span class="o">.</span><span class="n">io_threads</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">server</span><span class="o">.</span><span class="n">channel_keep_alive_time</span><span class="o">=</span><span class="mi">1800</span>
+<span class="n">prefetch</span><span class="o">.</span><span class="n">jobid</span><span class="o">.</span><span class="n">num</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">job</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">path</span><span class="o">=./</span><span class="n">logs</span><span class="o">/</span>
+<span class="n">external</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">dir</span><span class="o">=./</span><span class="n">udf</span><span class="o">/</span>
+<span class="n">track</span><span class="o">.</span><span class="n">unfinished</span><span class="o">.</span><span class="n">jobs</span><span class="o">=</span><span class="n">true</span>
+<span class="n">job</span><span class="o">.</span><span class="n">tracker</span><span class="o">.</span><span class="n">interval</span><span class="o">=</span><span class="mi">30</span>
+
+<span class="c1"># OpenMLDB Config</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">cluster</span><span class="o">=</span><span class="mf">0.0.0.0</span><span class="p">:</span><span class="mi">2181</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">root_path</span><span class="o">=/</span><span class="n">openmldb</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">session_timeout</span><span class="o">=</span><span class="mi">5000</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">connection_timeout</span><span class="o">=</span><span class="mi">5000</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">max_retries</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">base_sleep_time</span><span class="o">=</span><span class="mi">1000</span>
+<span class="n">zookeeper</span><span class="o">.</span><span class="n">max_connect_waitTime</span><span class="o">=</span><span class="mi">30000</span>
+
+<span class="c1"># Spark Config</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">home</span><span class="o">=</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">master</span><span class="o">=</span><span class="n">local</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">yarn</span><span class="o">.</span><span class="n">jars</span><span class="o">=</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">conf</span><span class="o">=</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">eventLog</span><span class="o">.</span><span class="n">dir</span><span class="o">=</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">yarn</span><span class="o">.</span><span class="n">maxAppAttempts</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">batchjob</span><span class="o">.</span><span class="n">jar</span><span class="o">.</span><span class="n">path</span><span class="o">=</span>
+<span class="n">namenode</span><span class="o">.</span><span class="n">uri</span><span class="o">=</span>
+<span class="n">offline</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">prefix</span><span class="o">=</span><span class="n">file</span><span class="p">:</span><span class="o">///</span><span class="n">tmp</span><span class="o">/</span><span class="n">openmldb_offline_storage</span><span class="o">/</span>
+<span class="n">hadoop</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">dir</span><span class="o">=</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If configuration of <code class="docutils literal notranslate"><span class="pre">spark.home</span></code> is not set，please set the environment variable of <code class="docutils literal notranslate"><span class="pre">SPARK_HOME</span></code> in TaskManager server.</p></li>
+<li><p>The default value of configruation <code class="docutils literal notranslate"><span class="pre">spark.master</span></code> is <code class="docutils literal notranslate"><span class="pre">local</span></code>. We can set <code class="docutils literal notranslate"><span class="pre">local[*]</span></code>, <code class="docutils literal notranslate"><span class="pre">yarn</span></code>, <code class="docutils literal notranslate"><span class="pre">yarn-cluster</span></code> or <code class="docutils literal notranslate"><span class="pre">yarn-client</span></code> as well. If we are using Yarn mode, please set configuration <code class="docutils literal notranslate"><span class="pre">offline.data.prefix</span></code> as the HDFS path to avoid saving offline data in local filesystem of Yarn containers. Meanwhile we need to set environment variable of <code class="docutils literal notranslate"><span class="pre">HADOOP_CONF_DIR</span></code> as the directory of Hadoop configuration files.</p></li>
+</ul>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="install_deploy.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Install and Deploy</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../maintain/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Maintenance</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:54 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,1069 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>集群版使用流程及执行模式详解 &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="使用案例" href="../use_case/index.html" />
+    <link rel="prev" title="深入浅出特征工程 – 基于 OpenMLDB 的实践指南（下）" href="tutorial_sql_2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   关于 OpenMLDB
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     OpenMLDB 简介
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     OpenMLDB 发展历程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     v0.4.x Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   快速上手
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK 快速上手
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK 快速上手
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   教程
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="standalone_vs_cluster.html">
+     OpenMLDB 集群版和单机版区别
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="data_import.html">
+     在线数据导入工具使用
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="openmldbspark_distribution.html">
+     面向特征工程优化的OpenMLDB Spark发行版
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorial_sql_1.html">
+     深入浅出特征工程 – 基于 OpenMLDB 的实践指南（上）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tutorial_sql_2.html">
+     深入浅出特征工程 – 基于 OpenMLDB 的实践指南（下）
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     集群版使用流程及执行模式详解
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   使用案例
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/taxi_tour_duration_prediction.html">
+     案例1：出租车行车时间预测
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   安装部署
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     编译
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     安装部署
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     配置文件说明
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   运维
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     版本升级
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     备份与恢复
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     扩缩容
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     监控
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   开发者文档
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/contributing.html">
+     Contributing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/code_structure.html">
+     代码结构
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     内置函数开发指南
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   参考
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/cli.html">
+     OpenMLDB运维CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     架构
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       在线模块架构
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       语言结构
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         关键字
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL对象名
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         字面值
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         大小写敏感(Case sensitivity)
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         注释
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       数据类型
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         数值类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         字符串类型
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         日期与时间类型
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       表达式，函数和运算
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         运算符
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       数据查询语句 （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT语句概况
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         无表 SELECT 语句
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO语句
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       数据操作语句（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         插入语句
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE 语句
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       数据定义语句（DDL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT 管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         创建 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         删除 DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         查看 DEPLOYMENTS 列表
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         查看 DEPLOYMENT 详情
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         OpenMLDB SQL上线规范和要求
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       任务管理
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+当前版本: v0.4</br>
+版本列表：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="modes.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/tutorial/modes.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#openmldb">
+   1. OpenMLDB 使用流程概览
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     1.1 特征工程开发上线全流程
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.2 集群版执行模式概览
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     1.3 单机版执行模式说明
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   2. 离线模式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   3. 在线模式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   4. 请求模式
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>集群版使用流程及执行模式详解</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#openmldb">
+   1. OpenMLDB 使用流程概览
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     1.1 特征工程开发上线全流程
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.2 集群版执行模式概览
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     1.3 单机版执行模式说明
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   2. 离线模式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   3. 在线模式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   4. 请求模式
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>集群版使用流程及执行模式详解<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>OpenMLDB 针对线上线下的特征工程全流程，在不同阶段提供了不同的执行模式。尤其在生产环境下所使用的集群版，针对不同阶段做了较为复杂的执行模式的划分。本文集中说明在集群版 OpenMLDB 中，从特征开发到上线的全流程，及其相应的执行模式。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>本文所述内容均以 OpenMLDB 最新发布的版本 v0.4.4 版本为准，部分功能的支持在持续迭代开发中，欢迎关注。</p>
+</div>
+<section id="openmldb">
+<h2>1. OpenMLDB 使用流程概览<a class="headerlink" href="#openmldb" title="Permalink to this headline">#</a></h2>
+<section id="id2">
+<h3>1.1 特征工程开发上线全流程<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>我们首先对基于 OpenMLDB 的特征工程的开发和上线全流程做总结概述，以下为使用的典型流程：</p>
+<ol class="arabic simple">
+<li><p>离线数据导入：导入离线数据用于离线特征工程开发和调试。</p></li>
+<li><p>离线开发：开发特征工程脚本，调试到效果满意为止。注意在这个步骤里会牵涉到机器学习模型的联合调试（比如 XGBoost, LightGBM 等），本篇文章内容主要集中于 OpenMLDB 相关部分的特征工程开发。</p></li>
+<li><p>特征方案部署：得到满意的特征脚本以后，部署上线。</p></li>
+<li><p>冷启动在线数据导入：在正式上线之前需要导入在线存储引擎的必需的窗口内数据。比如特征方案是对于过去三个月内的数据做特征聚合计算，那么冷启动就需要导入之前三个月的数据。</p></li>
+<li><p>实时数据接入：系统上线以后，随着时间推移，需要汇入最新数据来维持窗口计算逻辑，因此需要进行实时数据接入。</p></li>
+<li><p>在线数据预览（可选）：可以通过支持的 SQL 命令进行线上数据的预览检查。</p></li>
+<li><p>实时请求服务：方案部署，并且数据正确接入以后，即得到一个可以相应在线请求的实时特征计算服务。</p></li>
+</ol>
+</section>
+<section id="id3">
+<h3>1.2 集群版执行模式概览<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>由于离线和线上场景的操作数据对象不同，其底层的存储和计算节点亦不同。因此，OpenMLDB 设置了几种不同的执行模式来支持完成以上步骤。以下表格总结了各个步骤所使用的执行模式，稍后将会详细介绍关于执行模式的重要概念。</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>步骤</p></th>
+<th class="head"><p>执行模式</p></th>
+<th class="head"><p>开发工具</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1. 离线数据导入</p></td>
+<td><p>离线模式</p></td>
+<td><p>CLI</p></td>
+<td><p>- <code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> 命令<br /></p></td>
+</tr>
+<tr class="row-odd"><td><p>2. 离线特征开发</p></td>
+<td><p>离线模式</p></td>
+<td><p>CLI</p></td>
+<td><p>- 支持 OpenMLDB 所有的 SQL 语法<br />- 部分 SQL （如 <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>）非阻塞式异步运行方式</p></td>
+</tr>
+<tr class="row-even"><td><p>3. 特征方案部署</p></td>
+<td><p>离线模式</p></td>
+<td><p>CLI</p></td>
+<td><p>- <code class="docutils literal notranslate"><span class="pre">DEPLOY</span></code> 命令</p></td>
+</tr>
+<tr class="row-odd"><td><p>4. 冷启动在线数据导入</p></td>
+<td><p>在线模式</p></td>
+<td><p>CLI，导入工具</p></td>
+<td><p>- CLI 使用 <code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code> 命令<br />- 也可使用独立导入工具 <code class="docutils literal notranslate"><span class="pre">openmldb-import</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>5. 实时数据接入</p></td>
+<td><p>在线模式</p></td>
+<td><p>REST APIs, Java/Python SDK</p></td>
+<td><p>- 第三方数据源调用 OpenMLDB 的相关数据插入 API，引入实时数据</p></td>
+</tr>
+<tr class="row-odd"><td><p>6. 在线数据预览（可选）</p></td>
+<td><p>在线模式</p></td>
+<td><p>CLI, Java/Python SDK</p></td>
+<td><p>- 目前仅支持 <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> 列、表达式、以及单行处理函数用于数据预览<br />- 不支持 <code class="docutils literal notranslate"><span class="pre">LAST</span> <span class="pre">JOIN</span></code>, <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, <code class="docutils literal notranslate"><span class="pre">HAVING</span></code>, <code class="docutils literal notranslate"><span class="pre">WINDOW</span></code> 等复杂计算<br /></p></td>
+</tr>
+<tr class="row-even"><td><p>7. 实时特征计算</p></td>
+<td><p>请求模式</p></td>
+<td><p>REST APIs, Java/Python SDK</p></td>
+<td><p>- 支持 OpenMLDB 所有的 SQL 语法<br />- REST APIs 以及 Java SDK 支持单行或者批请求<br />- Python SDK 仅支持单行请求</p></td>
+</tr>
+</tbody>
+</table>
+<p>从以上的总结表格上可以看到，执行模式分为 <code class="docutils literal notranslate"><span class="pre">离线模式</span></code>，<code class="docutils literal notranslate"><span class="pre">在线模式</span></code>，以及<code class="docutils literal notranslate"><span class="pre">请求模式</span></code>。在后面的章节中，我们将对这几种模式展开详细介绍。下图总结示意了全流程开发和对应的执行模式。</p>
+<p><img alt="image-20220310170024349" src="../_images/modes-flow.png" /></p>
+</section>
+<section id="id4">
+<h3>1.3 单机版执行模式说明<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>虽然本文集中讲解集群版，但是有必要也简单介绍单机版的执行模式。单机版的执行模式相对简单，主要其离线数据和在线数据的存储和计算节点统一，因此单机版并不区分离线模式和在线模式。即我们可以直观的理解为，在 CLI 下，单机版并没有执行模式的概念，任何可以支持的 SQL 语法均可以在 CLI 下直接运行。因此，单机版特别适合用来快速试用或者实验学习 SQL 使用。在实时特征计算阶段，单机版和集群版一样，依然运行于在线请求模式下。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果你只是在非生产环境想试用 OpenMLDB，或者学习实验相关 SQL，强烈建议使用单机版，可以更加快捷方便的部署体验。</p>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2>2. 离线模式<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<p>按照之前总结，集群版的离线数据导入、离线特征开发、特征方案部署上线均在离线模式下执行。离线模式是针对离线数据进行管理和计算，所涉及到的计算节点是由<a class="reference external" href="http://docs-cn.openmldb.ai/2620858">针对特征工程优化的 OpenMLDB Spark 发行版</a>所支持，存储节点支持 HDFS 等常见存储系统。</p>
+<p>离线模式有以下主要特点：</p>
+<ul class="simple">
+<li><p>离线模式支持所有 OpenMLDB 提供的 SQL 语法，包括扩展优化的 <code class="docutils literal notranslate"><span class="pre">LAST</span> <span class="pre">JOIN</span></code>, <code class="docutils literal notranslate"><span class="pre">WINDOW</span> <span class="pre">UNION</span></code> 等复杂 SQL 语法。</p></li>
+<li><p>离线模式的部分 SQL 运行是基于非阻塞式的异步执行，包括 <code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code>, <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, 以及<code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">INTO</span></code> 命令。</p></li>
+<li><p>非阻塞式执行的 SQL 执行是由内部的 TaskManager 进行管理，可以通过 <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code>, <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOB</span></code>, <code class="docutils literal notranslate"><span class="pre">STOP</span> <span class="pre">JOB</span></code> 命令进行查看和管理。</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>和很多关系型数据库系统不同，<code class="docutils literal notranslate"><span class="pre">SELECT</span></code> 在离线模式下为异步执行。因此在离线特征开发阶段，强烈建议使用 <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">INTO</span></code> 语句进行开发调试，可以将结果导出到文件，方便进行查看。</p>
+</div>
+<p>特征方案部署的命令（<code class="docutils literal notranslate"><span class="pre">DEPLOY</span></code>）亦在离线模式下执行。其部署规范对于 SQL 还有一定的限制，详细可以参阅 <a class="reference external" href="http://docs-cn.openmldb.ai/2620917">OpenMLDB SQL上线规范和要求</a>。</p>
+<p>离线模式可以通过以下形式设置：</p>
+<ul class="simple">
+<li><p>CLI： <code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">&#64;&#64;execute_mode='offline'</span></code>；CLI 启动以后的默认模式也为离线模式。</p></li>
+<li><p>REST APIs, Java/Python SDK：不支持离线模式</p></li>
+</ul>
+</section>
+<section id="id6">
+<h2>3. 在线模式<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
+<p>冷启动在线数据导入、实时数据接入、以及在线数据预览在在线模式下执行。在线模式主要是针对线上数据进行管理和预览，线上数据的存储和计算是由 tablet server 支持。</p>
+<p>在线模式有以下主要特点：</p>
+<ul class="simple">
+<li><p>在线数据导入（<code class="docutils literal notranslate"><span class="pre">LOAD</span> <span class="pre">DATA</span></code>）和离线模式下一样，属于非阻塞式的异步执行 SQL，其余均为同步执行。</p></li>
+<li><p>在线模式目前仅支持简单的 <code class="docutils literal notranslate"><span class="pre">SELECT</span> </code> 列相关操作来查看相关数据，并不支持复杂的 SQL 查询。因此在线模式并不支持 SQL 特征的开发调试，相关开发工作应该在离线模式或者单机版进行。</p></li>
+</ul>
+<p>在线模式通过以下形式进行设置：</p>
+<ul class="simple">
+<li><p>CLI： <code class="docutils literal notranslate"><span class="pre">SET</span> <span class="pre">&#64;&#64;execute_mode='online'</span></code></p></li>
+<li><p>REST APIs, Java/Python SDK：默认只支持在线模式下执行，无需进行设置。</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>4. 请求模式<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
+<p>在特征脚本被部署以及接入线上数据以后，实时特征计算服务就已经准备就绪，可以通过请求模式来进行实时特征抽取。请求模式在 REST APIs 以及 SDK 下支持。请求模式是 OpenMLDB 特有的支撑线上实时计算的模式，和常见数据库的 SQL 查询非常不同。</p>
+<p>请求模式需要三个输入：</p>
+<ul class="simple">
+<li><p>SQL 特征脚本，即为特征部署上线过程中所使用的 SQL 脚本，其规定了做特征抽取的计算逻辑。</p></li>
+<li><p>在线数据，即为冷启动导入或者实时接入的线上数据，一般其为配合 SQL 的窗口计算的最新数据。比如 SQL 脚本的聚合函数会定义一个最近三个月的时间窗口，那么在线存储就需要保留相应的最新三个月数据。</p></li>
+<li><p>实时请求行（a request row），包含了当前正在发生的实时行为，用于实时特征抽取，比如反欺诈场景下的刷卡信息，或者是推荐场景下的搜索关键字等。</p></li>
+</ul>
+<p>基于这三个输入，对于每一个实时请求行，请求模式都会返回一条特征抽取的结果。其计算逻辑为：请求行会依据 SQL 脚本的逻辑（如 <code class="docutils literal notranslate"><span class="pre">PARTITION</span> <span class="pre">BY</span></code>, <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> 等），被虚拟的插入在线数据表格的正确位置中，然后只针对该行进行特征聚合计算，返回唯一对应的抽取结果。下图直观的解释了在线请求模式的运算过程。</p>
+<p><img alt="modes-request" src="../_images/modes-request.png" /></p>
+<p>请求模式通过以下形式支持：</p>
+<ul class="simple">
+<li><p>CLI：不支持</p></li>
+<li><p>REST APIs：支持单行或者多行 request rows 的请求，详见：<a class="reference external" href="http://docs-cn.openmldb.ai/2620875">REST APIs</a></p></li>
+<li><p>Java SDK：支持单行或者多行 request rows 的请求，详见：<a class="reference external" href="http://docs-cn.openmldb.ai/2620853">Java SDK 快速上手</a></p></li>
+<li><p>Python SDK：仅支持单行的 request row 请求，详见：<a class="reference external" href="http://docs-cn.openmldb.ai/2620854">Python SDK 快速上手</a></p></li>
+</ul>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="tutorial_sql_2.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">深入浅出特征工程 – 基于 OpenMLDB 的实践指南（下）</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../use_case/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">使用案例</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:55:56 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

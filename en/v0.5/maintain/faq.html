@@ -1,0 +1,712 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Operation and Maintenance FAQ &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developers" href="../developer/index.html" />
+    <link rel="prev" title="Operations in CLI" href="cli.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     Milestones
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     SQL for Feature Extraction (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     SQL for Feature Extraction (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   Use Cases
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/pulsar_connector_demo.html">
+     Integration with Pulsar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/kafka_connector_demo.html">
+     OpenMLDB Kafka Connector：Connecting Real-Time Data Streams
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   Deployment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Maintenance
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="upgrade.html">
+     Upgrade
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="backup.html">
+     Backup and Restore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="monitoring.html">
+     Monitoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cli.html">
+     Operations in CLI
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Operation and Maintenance FAQ
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: v0.5</br>
+Versions：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="faq.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/maintain/faq.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploy-and-startup-faq">
+   Deploy and Startup FAQ
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-confirm-that-the-cluster-is-running-normally">
+     1. How to confirm that the cluster is running normally？
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#server-faq">
+   Server FAQ
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-is-there-a-warning-of-fail-to-write-into-socket-in-the-log">
+     1. Why is there a warning of “Fail to write into Socket” in the log?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-initial-ttl-setting-of-table-data-is-not-suitable-how-to-adjust-it">
+     2. The initial ttl setting of table data is not suitable, how to adjust it?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#if-a-warning-log-appears-last-join-right-table-is-empty-what-does-it-mean">
+     3. If a warning log appears: Last Join right table is empty, what does it mean?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#client-faq">
+   Client FAQ
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-am-i-getting-a-warning-log-for-reached-timeout">
+     1. Why am I getting a warning log for Reached timeout?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#synchronized-offline-job">
+       Synchronized offline job
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#normal-request">
+       normal request
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-am-i-getting-the-warning-log-of-got-eof-of-socket">
+     2. Why am I getting the warning log of Got EOF of Socket?
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Operation and Maintenance FAQ</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploy-and-startup-faq">
+   Deploy and Startup FAQ
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-confirm-that-the-cluster-is-running-normally">
+     1. How to confirm that the cluster is running normally？
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#server-faq">
+   Server FAQ
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-is-there-a-warning-of-fail-to-write-into-socket-in-the-log">
+     1. Why is there a warning of “Fail to write into Socket” in the log?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-initial-ttl-setting-of-table-data-is-not-suitable-how-to-adjust-it">
+     2. The initial ttl setting of table data is not suitable, how to adjust it?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#if-a-warning-log-appears-last-join-right-table-is-empty-what-does-it-mean">
+     3. If a warning log appears: Last Join right table is empty, what does it mean?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#client-faq">
+   Client FAQ
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-am-i-getting-a-warning-log-for-reached-timeout">
+     1. Why am I getting a warning log for Reached timeout?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#synchronized-offline-job">
+       Synchronized offline job
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#normal-request">
+       normal request
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-am-i-getting-the-warning-log-of-got-eof-of-socket">
+     2. Why am I getting the warning log of Got EOF of Socket?
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="operation-and-maintenance-faq">
+<h1>Operation and Maintenance FAQ<a class="headerlink" href="#operation-and-maintenance-faq" title="Permalink to this headline">#</a></h1>
+<section id="deploy-and-startup-faq">
+<h2>Deploy and Startup FAQ<a class="headerlink" href="#deploy-and-startup-faq" title="Permalink to this headline">#</a></h2>
+<section id="how-to-confirm-that-the-cluster-is-running-normally">
+<h3>1. How to confirm that the cluster is running normally？<a class="headerlink" href="#how-to-confirm-that-the-cluster-is-running-normally" title="Permalink to this headline">#</a></h3>
+<p>Although there is one-click to start the script, due to the numerous configurations, problems such as “the port is occupied” and “the directory does not have read and write permissions” may occur. These problems can only be identified when the server process is running, and there is no timely feedback after exiting. (If monitoring is configured, it can be checked directly by monitoring.）
+Therefore, please make sure that all server processes in the cluster are running normally.</p>
+<p>It can be queried by <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">axu</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">openmldb</span></code>. (Note that <code class="docutils literal notranslate"><span class="pre">mon</span></code> is used as the daemon process in the official run script, but the running of the <code class="docutils literal notranslate"><span class="pre">mon</span></code> process does not mean that the OpenMLDB server process is running.)</p>
+<p>If the processes are all running and the cluster still behaves abnormally, you need to query the server log. You can give priority to ‘WARN’ and ‘ERROR’ level logs, which are most likely the root cause.</p>
+</section>
+</section>
+<section id="server-faq">
+<h2>Server FAQ<a class="headerlink" href="#server-faq" title="Permalink to this headline">#</a></h2>
+<section id="why-is-there-a-warning-of-fail-to-write-into-socket-in-the-log">
+<h3>1. Why is there a warning of “Fail to write into Socket” in the log?<a class="headerlink" href="#why-is-there-a-warning-of-fail-to-write-into-socket-in-the-log" title="Permalink to this headline">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http_rpc_protocol</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">911</span><span class="p">]</span> <span class="n">Fail</span> <span class="n">to</span> <span class="n">write</span> <span class="n">into</span> <span class="n">Socket</span><span class="p">{</span><span class="nb">id</span><span class="o">=</span><span class="n">xx</span> <span class="n">fd</span><span class="o">=</span><span class="n">xx</span> <span class="n">addr</span><span class="o">=</span><span class="n">xxx</span><span class="p">}</span> <span class="p">(</span><span class="mh">0x7a7ca00</span><span class="p">):</span> <span class="n">Unknown</span> <span class="n">error</span> <span class="mi">1014</span> <span class="p">[</span><span class="mi">1014</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This is the log that the server side will print. Generally, the client side uses the connection pool or short connection mode. After the RPC times out, the connection will be closed. When the server writes back the response, it finds that the connection has been closed and reports this error. Got EOF means that EOF has been received before (the peer has closed the connection normally). The client side uses the single connection mode and the server side generally does not report this.</p>
+</section>
+<section id="the-initial-ttl-setting-of-table-data-is-not-suitable-how-to-adjust-it">
+<h3>2. The initial ttl setting of table data is not suitable, how to adjust it?<a class="headerlink" href="#the-initial-ttl-setting-of-table-data-is-not-suitable-how-to-adjust-it" title="Permalink to this headline">#</a></h3>
+<p>This needs to be modified using nsclient, which cannot be done by ordinary clients. For nsclient startup method and command, see <span class="xref myst">ns client</span>。</p>
+<p>Use the command <code class="docutils literal notranslate"><span class="pre">setttl</span></code> in nsclient to change the ttl of a table, similar to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setttl</span> <span class="n">table_name</span> <span class="n">ttl_type</span> <span class="n">ttl</span> <span class="p">[</span><span class="n">ttl</span><span class="p">]</span> <span class="p">[</span><span class="n">index_name</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>As you can see, if you configure the name of the index at the end of the command, you can only modify the ttl of a single index.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Changes to <code class="docutils literal notranslate"><span class="pre">setttl</span></code> will not take effect in time and will be affected by the <code class="docutils literal notranslate"><span class="pre">gc_interval</span></code> configuration of the tablet server. (The configuration of each tablet server is independent and does not affect each other.)</p>
+<p>For example, if the <code class="docutils literal notranslate"><span class="pre">gc_interval</span></code> of a tablet server is 1h, then the ttl configuration reload will be performed at the last moment of the next gc (in the worst case, it will be reloaded after 1h). This time the gc that reloads the ttl will not eliminate the data according to the latest ttl. The latest ttl will be used for data elimination during the next gc.</p>
+<p>Therefore, after <strong>ttl is changed, it takes two gc intervals to take effect</strong>. please wait patiently.</p>
+<p>Of course, you can adjust the <code class="docutils literal notranslate"><span class="pre">gc_interval</span></code> of the tablet server, but this configuration cannot be changed dynamically, it can only take effect after restarting. Therefore, if the memory pressure is high, you can try to expand the capacity and migrate the data shards to reduce the memory pressure. Adjusting <code class="docutils literal notranslate"><span class="pre">gc_interval</span></code> lightly is not recommended.</p>
+</div>
+</section>
+<section id="if-a-warning-log-appears-last-join-right-table-is-empty-what-does-it-mean">
+<h3>3. If a warning log appears: Last Join right table is empty, what does it mean?<a class="headerlink" href="#if-a-warning-log-appears-last-join-right-table-is-empty-what-does-it-mean" title="Permalink to this headline">#</a></h3>
+<p>Generally speaking, this is a normal phenomenon and does not represent an anomaly in the cluster. It’s just that the right table of the join in the runner is empty, while is a possible phenomenon, and is instead likely to be a data problem.</p>
+</section>
+</section>
+<section id="client-faq">
+<h2>Client FAQ<a class="headerlink" href="#client-faq" title="Permalink to this headline">#</a></h2>
+<section id="why-am-i-getting-a-warning-log-for-reached-timeout">
+<h3>1. Why am I getting a warning log for Reached timeout?<a class="headerlink" href="#why-am-i-getting-a-warning-log-for-reached-timeout" title="Permalink to this headline">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rpc_client</span><span class="o">.</span><span class="n">h</span><span class="p">:</span><span class="n">xxx</span><span class="p">]</span> <span class="n">request</span> <span class="n">error</span><span class="o">.</span> <span class="p">[</span><span class="n">E1008</span><span class="p">]</span> <span class="n">Reached</span> <span class="n">timeout</span><span class="o">=</span><span class="n">xxxms</span>
+</pre></div>
+</div>
+<p>This is because the timeout setting of the rpc request sent by the client itself is small, and the client itself disconnects itself. Note that this is a timeout for rpc.</p>
+<p>It is divided into the following situations:</p>
+<section id="synchronized-offline-job">
+<h4>Synchronized offline job<a class="headerlink" href="#synchronized-offline-job" title="Permalink to this headline">#</a></h4>
+<p>This happens easily when using synchronized offline commands. you can use</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">@@</span><span class="n">job_timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;600000&quot;</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To adjust the timeout time of rpc, use ‘ms’ units.</p>
+</section>
+<section id="normal-request">
+<h4>normal request<a class="headerlink" href="#normal-request" title="Permalink to this headline">#</a></h4>
+<p>If it is a simple query or insert, there will be a timeout, and the general <code class="docutils literal notranslate"><span class="pre">request_timeout</span></code> configuration needs to be changed.</p>
+<ol class="arabic simple">
+<li><p>CLI: cannot be changed at this time</p></li>
+<li><p>JAVA: SDK direct connection, adjust <code class="docutils literal notranslate"><span class="pre">SdkOption.requestTimeout</span></code>; JDBC, adjust the parameter <code class="docutils literal notranslate"><span class="pre">requestTimeout</span></code> in url</p></li>
+<li><p>Python: cannot be changed at this time</p></li>
+</ol>
+</section>
+</section>
+<section id="why-am-i-getting-the-warning-log-of-got-eof-of-socket">
+<h3>2. Why am I getting the warning log of Got EOF of Socket?<a class="headerlink" href="#why-am-i-getting-the-warning-log-of-got-eof-of-socket" title="Permalink to this headline">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rpc_client</span><span class="o">.</span><span class="n">h</span><span class="p">:</span><span class="n">xxx</span><span class="p">]</span> <span class="n">request</span> <span class="n">error</span><span class="o">.</span> <span class="p">[</span><span class="n">E1014</span><span class="p">]</span><span class="n">Got</span> <span class="n">EOF</span> <span class="n">of</span> <span class="n">Socket</span><span class="p">{</span><span class="nb">id</span><span class="o">=</span><span class="n">x</span> <span class="n">fd</span><span class="o">=</span><span class="n">x</span> <span class="n">addr</span><span class="o">=</span><span class="n">xxx</span><span class="p">}</span> <span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is because the <code class="docutils literal notranslate"><span class="pre">addr</span></code> side actively disconnected, and the address of <code class="docutils literal notranslate"><span class="pre">addr</span></code> is most likely taskmanager. This does not mean that the taskmanager is abnormal, but that the taskmanager side thinks that the connection is inactive and has exceeded the keepAliveTime, and actively disconnects the communication channel.
+In version 0.5.0 and later, the taskmanager’s <code class="docutils literal notranslate"><span class="pre">server.channel_keep_alive_time</span></code> can be increased to increase the tolerance of inactive channels. The default value is 1800s (0.5h), especially when using synchronous offline commands, this value may need to be adjusted appropriately.
+In versions before 0.5.0, this configuration cannot be changed, please upgrade the taskmanager version.</p>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="cli.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Operations in CLI</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../developer/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Developers</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:43 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

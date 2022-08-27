@@ -1,0 +1,1228 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Backup and Restore &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Monitoring" href="monitoring.html" />
+    <link rel="prev" title="Upgrade" href="upgrade.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     Milestones
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     The Workflow of Cluster Version and Execution Mode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     SQL for Feature Extraction (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     SQL for Feature Extraction (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/openmldbspark_distribution.html">
+     OpenMLDB Spark Distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   Use Cases
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/lightgbm_demo.html">
+     OpenMLDB + LightGBM: Taxi Trip Duration Prediction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/pulsar_connector_demo.html">
+     Importing Real-Time Data Streams from Pulsar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/kafka_connector_demo.html">
+     Importing Real-Time Data Streams from Kafka
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/dolphinscheduler_task_demo.html">
+     Building End-to-End MLOps Workflows (OpenMLDB + DolphinScheduler)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/JD_recommendation_en.html">
+     OpenMLDB + OneFlow: Prediction of Purchase Intention for High Potential Customers
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   Deployment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Maintenance
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="upgrade.html">
+     Upgrade
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Backup and Restore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="monitoring.html">
+     Monitoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cli.html">
+     Operations in CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="faq.html">
+     Operation and Maintenance FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="scale.html">
+     Scale-Out and Scale-In
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="diagnose.html">
+     Diagnostic Tool
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   References
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     Architecture
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       Online Module Architecture
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       Language Structure
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         Keywords
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL Object Name
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         Literal Value
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         Case Sensitive
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         Notes
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       Data Type
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         Numeric Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         String Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         Date and Time Type
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       Expressions, Functions, and Operations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         Operator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       Data Query Statement （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT Overview
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         No-table SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       Data Manipulation Statement（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       Data Definition Statement (DDL)
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         DEPLOY
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         Delete DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         View DEPLOYMENTS List
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         View DEPLOYMENT Details
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL On-Line Specifications and Requirements
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       Task Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/ip_tips.html">
+     IP Configuration
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/client_config/index.html">
+     Client Configuration
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/client_config/client_spark_config.html">
+       Spark Client Configuration
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: main</br>
+Versions：
+<ul>
+  <li><a href="backup.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="../../v0.6/index.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/maintain/backup.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#high-availability-description">
+   High Availability Description
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#downtime-and-recovery">
+   Downtime and Recovery
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-click-recovery">
+     One-click recovery
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#steps">
+       Steps:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manual-data-recovery">
+     Manual data recovery
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#start-the-process-of-each-node">
+       1 Start the process of each node
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turn-off-autofailover">
+       2 Turn off autofailover
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recover-data">
+     3 Recover data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#restore-autofailover">
+       4 Restore autofailover
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Backup and Restore</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#high-availability-description">
+   High Availability Description
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#downtime-and-recovery">
+   Downtime and Recovery
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-click-recovery">
+     One-click recovery
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#steps">
+       Steps:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manual-data-recovery">
+     Manual data recovery
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#start-the-process-of-each-node">
+       1 Start the process of each node
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#turn-off-autofailover">
+       2 Turn off autofailover
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recover-data">
+     3 Recover data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#restore-autofailover">
+       4 Restore autofailover
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="backup-and-restore">
+<h1>Backup and Restore<a class="headerlink" href="#backup-and-restore" title="Permalink to this headline">#</a></h1>
+<section id="high-availability-description">
+<h2>High Availability Description<a class="headerlink" href="#high-availability-description" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>The nameserver nodes cannot all fail. Failover and recovery cannot be done if all fail.</p></li>
+<li><p>High availability is not guaranteed in the case of no secondary replica</p></li>
+<li><p>In the case of two replicas and two nodes, only one node of tablet can fail.</p></li>
+<li><p>In the case of two replicas and multiple nodes, the two tablet nodes where the same partition is located cannot fail at the same time.</p></li>
+<li><p>In the case of three replicas and three nodes, a tablet failure node can automatically perform failover and data recovery. Failure of two tablet nodes does not guarantee automatic failover and data recovery, but reads and writes can return to normal within minutes.</p></li>
+<li><p>In the case of three replicas and multiple nodes, if the two tablets where the same partition is located hangs, the automatic failover and data recovery of the partition are not guaranteed, but the read and write can return to normal within minutes.</p></li>
+<li><p>If there is a leader partition in the failed node and there is always write traffic, a small amount of data may be lost.</p></li>
+</ul>
+</section>
+<section id="downtime-and-recovery">
+<h2>Downtime and Recovery<a class="headerlink" href="#downtime-and-recovery" title="Permalink to this headline">#</a></h2>
+<p>OpenMLDB high availability can be configured in automatic mode and manual mode. In automatic mode, if the node fails and recovers, the system will automatically perform failover and data recovery, otherwise manual processing is required</p>
+<p>The mode can be switched by modifying the auto_failover configuration. The default is to open the automatic mode. You can get the configuration status and modify the configuration in the following ways</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --zk_cluster<span class="o">=</span><span class="m">172</span>.27.128.31:8090,172.27.128.32:8090,172.27.128.33:8090 --zk_root_path<span class="o">=</span>/openmldb_cluster --role<span class="o">=</span>ns_client
+&gt; confget
+  key                 value
+-----------------------------
+  auto_failover       <span class="nb">true</span>
+&gt; confset auto_failover <span class="nb">false</span>
+<span class="nb">set</span> auto_failover ok
+&gt;confget
+  key                 value
+-----------------------------
+  auto_failover       <span class="nb">false</span>
+</pre></div>
+</div>
+<p>**When auto_failover is enabled, if a node goes offline, the is_alive status of the showtable command will change to no. If the node contains a leader of a partition, the partition will re-select the leader. **</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --zk_cluster=172.27.128.31:8090,172.27.128.32:8090,172.27.128.33:8090 --zk_root_path=/openmldb_cluster --role=ns_client
+&gt; showtable
+  name    tid  pid  endpoint            role      ttl       is_alive  compress_type  offset   record_cnt  memused
+----------------------------------------------------------------------------------------------------------------------
+  flow    4   0    172.27.128.32:8541  leader    0min       no        kNoCompress    0        0           0.000
+  flow    4   0    172.27.128.33:8541  follower  0min       yes       kNoCompress    0        0           0.000
+  flow    4   0    172.27.128.31:8541  leader    0min       yes       kNoCompress    0        0           0.000
+  flow    4   1    172.27.128.33:8541  leader    0min       yes       kNoCompress    0        0           0.000
+  flow    4   1    172.27.128.31:8541  follower  0min       yes       kNoCompress    0        0           0.000
+  flow    4   1    172.27.128.32:8541  follower  0min       no        kNoCompress    0        0           0.000
+</pre></div>
+</div>
+<p>When auto_failover is turned off, manual operations are required for node offline and recovery. There are two commands offlineendpoint and recoverendpoint</p>
+<p>If the node fails, you need to execute offlineendpoint to offline the node</p>
+<p>Command format: offlineendpoint endpoint</p>
+<p>endpoint is the endpoint of the failed node. This command will offline the node and perform the following operations on all partitions under the node:</p>
+<ul class="simple">
+<li><p>If it is the leader, execute the re-election of the leader</p></li>
+<li><p>If it is a follower, find the leader and delete the current endpoint replica from the leader</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --zk_cluster<span class="o">=</span><span class="m">172</span>.27.128.31:8090,172.27.128.32:8090,172.27.128.33:8090 --zk_root_path<span class="o">=</span>/openmldb_cluster --role<span class="o">=</span>ns_client
+&gt; showtablet
+  endpoint            state           age
+-------------------------------------------
+  <span class="m">172</span>.27.128.31:8541  kTabletHealthy  3h
+  <span class="m">172</span>.27.128.32:8541  kTabletOffline  7m
+  <span class="m">172</span>.27.128.33:8541  kTabletHealthy  3h
+&gt; offlineendpoint <span class="m">172</span>.27.128.32:8541
+offline endpoint ok
+&gt;showtable
+  name    tid  pid  endpoint            role      ttl       is_alive  compress_type  offset   record_cnt  memused
+----------------------------------------------------------------------------------------------------------------------
+  flow    <span class="m">4</span>   <span class="m">0</span>    <span class="m">172</span>.27.128.32:8541  leader    0min       no        kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">0</span>    <span class="m">172</span>.27.128.33:8541  follower  0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">0</span>    <span class="m">172</span>.27.128.31:8541  leader    0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">1</span>    <span class="m">172</span>.27.128.33:8541  leader    0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">1</span>    <span class="m">172</span>.27.128.31:8541  follower  0min       yes       kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+  flow    <span class="m">4</span>   <span class="m">1</span>    <span class="m">172</span>.27.128.32:8541  follower  0min       no        kNoCompress    <span class="m">0</span>        <span class="m">0</span>           <span class="m">0</span>.000
+</pre></div>
+</div>
+<p>After executing offlineendpoint, each partition will be assigned a new leader. If a partition fails to execute, you can execute changeleader on this partition alone. The command format is: changeleader table_name pid</p>
+<p>If the node has recovered, you can execute recoverendpoint to recover the data</p>
+<p>Command format: recoverendpoint endpoint</p>
+<p>endpoint is the endpoint of the node whose status has changed to healthy</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --zk_cluster=172.27.128.31:8090,172.27.128.32:8090,172.27.128.33:8090 --zk_root_path=/openmldb_cluster --role=ns_client
+&gt; showtablet
+  endpoint            state           age
+-------------------------------------------
+  172.27.128.31:8541  kTabletHealthy  3h
+  172.27.128.32:8541  kTabletHealthy  7m
+  172.27.128.33:8541  kTabletHealthy  3h
+&gt; recoverendpoint 172.27.128.32:8541
+recover endpoint ok
+&gt; showopstatus
+  op_id  op_type              name  pid  status  start_time      execute_time  end_time        cur_task
+-----------------------------------------------------------------------------------------------------------
+  54     kUpdateTableAliveOP  flow  0    kDone   20180824195838  2s            20180824195840  -
+  55     kChangeLeaderOP      flow  0    kDone   20180824200135  0s            20180824200135  -
+  56     kOfflineReplicaOP    flow  1    kDone   20180824200135  1s            20180824200136  -
+  57     kUpdateTableAliveOP  flow  0    kDone   20180824200212  0s            20180824200212  -
+  58     kRecoverTableOP      flow  0    kDone   20180824200623  1s            20180824200624  -
+  59     kRecoverTableOP      flow  1    kDone   20180824200623  1s            20180824200624  -
+  60     kReAddReplicaOP      flow  0    kDoing  20180824200624  4s            -               kLoadTable
+  61     kReAddReplicaOP      flow  1    kDoing  20180824200624  4s            -               kLoadTable
+</pre></div>
+</div>
+<p>Execute showopstatus to view the running progress of the task. If the status is in the doing state, the task has not been completed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./bin/openmldb --zk_cluster=172.27.128.31:8090,172.27.128.32:8090,172.27.128.33:8090 --zk_root_path=/openmldb_cluster --role=ns_client
+&gt; showopstatus
+  op_id  op_type              name  pid  status  start_time      execute_time  end_time        cur_task
+---------------------------------------------------------------------------------------------------------
+  54     kUpdateTableAliveOP  flow  0    kDone   20180824195838  2s            20180824195840  -
+  55     kChangeLeaderOP      flow  0    kDone   20180824200135  0s            20180824200135  -
+  56     kOfflineReplicaOP    flow  1    kDone   20180824200135  1s            20180824200136  -
+  57     kUpdateTableAliveOP  flow  0    kDone   20180824200212  0s            20180824200212  -
+  58     kRecoverTableOP      flow  0    kDone   20180824200623  1s            20180824200624  -
+  59     kRecoverTableOP      flow  1    kDone   20180824200623  1s            20180824200624  -
+  60     kReAddReplicaOP      flow  0    kDone   20180824200624  9s            20180824200633  -
+  61     kReAddReplicaOP      flow  1    kDone   20180824200624  9s            20180824200633  -
+&gt; showtable
+&gt;showtable
+  name    tid  pid  endpoint            role      ttl       is_alive  compress_type  offset   record_cnt  memused
+----------------------------------------------------------------------------------------------------------------------
+  flow    4   0    172.27.128.32:8541  follower  0min       yes       kNoCompress    0        0           0.000
+  flow    4   0    172.27.128.33:8541  follower  0min       yes       kNoCompress    0        0           0.000
+  flow    4   0    172.27.128.31:8541  leader    0min       yes       kNoCompress    0        0           0.000
+  flow    4   1    172.27.128.33:8541  leader    0min       yes       kNoCompress    0        0           0.000
+  flow    4   1    172.27.128.31:8541  follower  0min       yes       kNoCompress    0        0           0.000
+  flow    4   1    172.27.128.32:8541  follower  0min       yes       kNoCompress    0        0           0.000
+</pre></div>
+</div>
+<p>If showtable turns to yes, it means that the recovery has been successful. If some partitions fail to recover, you can execute recovertable separately. The command format is: recovertable table_name pid endpoint</p>
+<p><strong>Note: offlineendpoint must be executed once before recoverendpoint is executed</strong></p>
+<section id="one-click-recovery">
+<h3>One-click recovery<a class="headerlink" href="#one-click-recovery" title="Permalink to this headline">#</a></h3>
+<p>If the cluster is restarted after being offline at the same time, autofailover cannot automatically restore data, and a one-click recovery script needs to be executed.</p>
+<section id="steps">
+<h4>Steps:<a class="headerlink" href="#steps" title="Permalink to this headline">#</a></h4>
+<ol class="arabic simple">
+<li><p>Modify <a class="reference external" href="http://env.sh">env.sh</a> in the tools directory of the openmldb package. There are 3 parameters in the configuration file</p></li>
+</ol>
+<ul class="simple">
+<li><p>openmldb_bin_path specifies the openmldb bin path</p></li>
+<li><p>zk_cluster specifies the address of the zk cluster</p></li>
+<li><p>zk_root_path specifies the address of the zk root path</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Execute ./recoverdata.sh</p></li>
+<li><p>Log in to ns_client, and showopstatus to check the execution progress of related ops.</p></li>
+</ol>
+</section>
+</section>
+<section id="manual-data-recovery">
+<h3>Manual data recovery<a class="headerlink" href="#manual-data-recovery" title="Permalink to this headline">#</a></h3>
+<p>Applicable scenario: The nodes where all replicas of a partition are located are down.</p>
+<section id="start-the-process-of-each-node">
+<h4>1 Start the process of each node<a class="headerlink" href="#start-the-process-of-each-node" title="Permalink to this headline">#</a></h4>
+</section>
+<section id="turn-off-autofailover">
+<h4>2 Turn off autofailover<a class="headerlink" href="#turn-off-autofailover" title="Permalink to this headline">#</a></h4>
+<p>Execute the confset command on the ns client</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">confset</span> <span class="n">auto_failover</span> <span class="n">false</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="recover-data">
+<h3>3 Recover data<a class="headerlink" href="#recover-data" title="Permalink to this headline">#</a></h3>
+<p>When restoring data manually, it is necessary to restore the data partition by partition. The recovery steps are as follows:</p>
+<ol class="arabic">
+<li><p>Execute showtable table name with ns client</p></li>
+<li><p>Modify the table partition alive status to no, execute it with nsclient. updatetablealive table_name pid endppoint is_alive</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">updatetablealive</span> <span class="n">t1</span> <span class="o">*</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9991</span> <span class="n">no</span>
+</pre></div>
+</div>
+</li>
+<li><p>Perform the following steps for each partition in the table:</p>
+<ul>
+<li><p>Restore the leader. If there are multiple leaders, choose the one with the larger offset</p>
+<ul>
+<li><p>Use the tablet client to connect to the node where the leader is located, and execute the loadtable command. loadtable tablename tid pid ttl seg_cnt, seg_cnt is 8</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">loadtable</span> <span class="n">test</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">144000</span> <span class="mi">8</span>
+</pre></div>
+</div>
+</li>
+<li><p>To check the load progress, execute gettablestatus to check the load progress. gettablestatus tid pid. Wait for stat to change from TableLoading state to TableNormal state</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gettablestatus</span> <span class="mi">1</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</li>
+<li><p>Modify the leader alive status to yes. Execute with nsclient</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">updatetablealive</span> <span class="n">table_name</span> <span class="n">pid</span> <span class="mf">172.27.2.52</span><span class="p">:</span><span class="mi">9991</span> <span class="n">yes</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Use recovertable other replicas, execute recovertable table_name pid endpoint with nsclient</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">recovertable</span> <span class="n">table1</span> <span class="mi">1</span> <span class="mf">172.27.128.31</span><span class="p">:</span><span class="mi">9527</span> 
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<section id="restore-autofailover">
+<h4>4 Restore autofailover<a class="headerlink" href="#restore-autofailover" title="Permalink to this headline">#</a></h4>
+<p>Execute the confset command on the ns client</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">confset</span> <span class="n">auto_failover</span> <span class="n">true</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="upgrade.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Upgrade</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="monitoring.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Monitoring</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:29 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,2198 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Built-In Function Development &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="References" href="../reference/index.html" />
+    <link rel="prev" title="Developers" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../about/index.html">
+   About
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/milestones.html">
+     Milestones
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../about/release_notes.html">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     The Workflow of Cluster Version and Execution Mode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     SQL for Feature Extraction (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     SQL for Feature Extraction (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   Use Cases
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/lightgbm_demo.html">
+     OpenMLDB + LightGBM: Taxi Trip Duration Prediction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/pulsar_connector_demo.html">
+     Importing Real-Time Data Streams from Pulsar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/kafka_connector_demo.html">
+     Importing Real-Time Data Streams from Kafka
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/dolphinscheduler_task_demo.html">
+     Building End-to-End MLOps Workflows (OpenMLDB + DolphinScheduler)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   Deployment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   Maintenance
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     Upgrade
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     Backup and Restore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     Monitoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     Operations in CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/faq.html">
+     Operation and Maintenance FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     Scale-Out and Scale-In
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/diagnose.html">
+     Diagnostic Tool
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Developers
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   References
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     Architecture
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       Online Module Architecture
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       Language Structure
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         Keywords
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL Object Name
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         Literal Value
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         Case Sensitive
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         Notes
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       Data Type
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         Numeric Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         String Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         Date and Time Type
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       Expressions, Functions, and Operations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         Operator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       Data Query Statement （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT Overview
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         No-table SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       Data Manipulation Statement（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       Data Definition Statement (DDL)
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         DEPLOY
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         Delete DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         View DEPLOYMENTS List
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         View DEPLOYMENT Details
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL On-Line Specifications and Requirements
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       Task Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/ip_tips.html">
+     IP Configuration
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/client_config/index.html">
+     Client Configuration
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/client_config/client_spark_config.html">
+       Spark Client Configuration
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: v0.6</br>
+Versions：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="built_in_function_develop_guide.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/developer/built_in_function_develop_guide.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   1. Background
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#develop-a-built-in-sql-function">
+   2. Develop a Built-In SQL Function
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#develop-a-built-in-c-function">
+     2.1 Develop a Built-In C++ Function
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-location">
+       2.1.1 Code Location
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#c-function-naming-rules">
+       2.1.2 C++ Function Naming Rules
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#c-and-sql-data-type">
+       2.1.3 C++ and SQL Data Type
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#parameters-and-result">
+       2.1.4 Parameters and Result
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#memory-management">
+       2.1.5 Memory Management
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#register-and-configure-built-in-function">
+     2.2 Register And Configure Built-in Function
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#defaultudflibrary">
+       2.2.1 DefaultUdfLibrary
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#register-name">
+       2.2.2 Register Name
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#register-and-configure-function">
+       2.2.3 Register and Configure Function
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#documenting-function">
+       2.2.4 Documenting Function
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#registeralias">
+       2.2.5 RegisterAlias
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#function-unit-test">
+   2.3 Function Unit Test
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-unit-tests">
+     2.3.1 Add Unit Tests
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compile-and-test">
+     2.3.2 Compile and Test
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#built-in-function-development-template">
+   3. Built-in Function Development Template
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-return-bool-or-numeric-types">
+     3.1 SQL Functions Return
+     <strong>
+      BOOL
+     </strong>
+     or Numeric Types
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-return-string-timestamp-or-date">
+     3.2 SQL Functions Return
+     <strong>
+      STRING
+     </strong>
+     ,
+     <strong>
+      TIMESTAMP
+     </strong>
+     or
+     <strong>
+      DATE
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-return-nullable-type">
+     3.3 SQL Functions Return
+     <em>
+      <strong>
+       Nullable
+      </strong>
+     </em>
+     type
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-handle-nullable-argument">
+     3.4 SQL Functions Handle Nullable Argument
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sql-functions-development-examples">
+   4. SQL Functions Development Examples
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-return-bool-or-numeric-types-int-month-timestamp-function">
+     4.1 SQL Functions Return
+     <strong>
+      BOOL
+     </strong>
+     or Numeric Types:
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       INT
+      </span>
+      <span class="pre">
+       Month(TIMESTAMP)
+      </span>
+     </code>
+     Function
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-1-declare-and-implement-c-functions">
+       Step 1: Declare and Implement C++ Functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-2-register-c-function-to-default-library">
+       Step 2: Register C++ Function to Default Library
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step3-function-unit-test">
+       Step3: Function Unit Test
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-return-string-timestamp-or-date-string-string-bool">
+     4.2 SQL Functions Return
+     <strong>
+      STRING
+     </strong>
+     ,
+     <strong>
+      TIMESTAMP
+     </strong>
+     or
+     <strong>
+      DATE
+     </strong>
+     -
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       STRING
+      </span>
+      <span class="pre">
+       String(BOOL)
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Step 1: Declare and Implement C++ Functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-2-register-c-function-into-default-library">
+       Step 2: Register C++ Function into Default Library
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Step3: Function Unit Test
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-return-nullable-type-date-date-timestamp">
+     4.3 SQL Functions Return
+     <em>
+      <strong>
+       Nullable
+      </strong>
+     </em>
+     Type -
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DATE
+      </span>
+      <span class="pre">
+       Date(TIMESTAMP)
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-1-declare-and-implement-built-in-functions">
+       Step 1: Declare and Implement Built-In Functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-2-register-built-in-function-into-default-library">
+       Step 2: Register Built-In Function into Default Library
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Step3: Function Unit Test
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Built-In Function Development</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   1. Background
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#develop-a-built-in-sql-function">
+   2. Develop a Built-In SQL Function
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#develop-a-built-in-c-function">
+     2.1 Develop a Built-In C++ Function
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#code-location">
+       2.1.1 Code Location
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#c-function-naming-rules">
+       2.1.2 C++ Function Naming Rules
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#c-and-sql-data-type">
+       2.1.3 C++ and SQL Data Type
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#parameters-and-result">
+       2.1.4 Parameters and Result
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#memory-management">
+       2.1.5 Memory Management
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#register-and-configure-built-in-function">
+     2.2 Register And Configure Built-in Function
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#defaultudflibrary">
+       2.2.1 DefaultUdfLibrary
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#register-name">
+       2.2.2 Register Name
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#register-and-configure-function">
+       2.2.3 Register and Configure Function
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#documenting-function">
+       2.2.4 Documenting Function
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#registeralias">
+       2.2.5 RegisterAlias
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#function-unit-test">
+   2.3 Function Unit Test
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#add-unit-tests">
+     2.3.1 Add Unit Tests
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compile-and-test">
+     2.3.2 Compile and Test
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#built-in-function-development-template">
+   3. Built-in Function Development Template
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-return-bool-or-numeric-types">
+     3.1 SQL Functions Return
+     <strong>
+      BOOL
+     </strong>
+     or Numeric Types
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-return-string-timestamp-or-date">
+     3.2 SQL Functions Return
+     <strong>
+      STRING
+     </strong>
+     ,
+     <strong>
+      TIMESTAMP
+     </strong>
+     or
+     <strong>
+      DATE
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-return-nullable-type">
+     3.3 SQL Functions Return
+     <em>
+      <strong>
+       Nullable
+      </strong>
+     </em>
+     type
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-handle-nullable-argument">
+     3.4 SQL Functions Handle Nullable Argument
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sql-functions-development-examples">
+   4. SQL Functions Development Examples
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-return-bool-or-numeric-types-int-month-timestamp-function">
+     4.1 SQL Functions Return
+     <strong>
+      BOOL
+     </strong>
+     or Numeric Types:
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       INT
+      </span>
+      <span class="pre">
+       Month(TIMESTAMP)
+      </span>
+     </code>
+     Function
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-1-declare-and-implement-c-functions">
+       Step 1: Declare and Implement C++ Functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-2-register-c-function-to-default-library">
+       Step 2: Register C++ Function to Default Library
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step3-function-unit-test">
+       Step3: Function Unit Test
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-return-string-timestamp-or-date-string-string-bool">
+     4.2 SQL Functions Return
+     <strong>
+      STRING
+     </strong>
+     ,
+     <strong>
+      TIMESTAMP
+     </strong>
+     or
+     <strong>
+      DATE
+     </strong>
+     -
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       STRING
+      </span>
+      <span class="pre">
+       String(BOOL)
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Step 1: Declare and Implement C++ Functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-2-register-c-function-into-default-library">
+       Step 2: Register C++ Function into Default Library
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Step3: Function Unit Test
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sql-functions-return-nullable-type-date-date-timestamp">
+     4.3 SQL Functions Return
+     <em>
+      <strong>
+       Nullable
+      </strong>
+     </em>
+     Type -
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DATE
+      </span>
+      <span class="pre">
+       Date(TIMESTAMP)
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-1-declare-and-implement-built-in-functions">
+       Step 1: Declare and Implement Built-In Functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-2-register-built-in-function-into-default-library">
+       Step 2: Register Built-In Function into Default Library
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Step3: Function Unit Test
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="built-in-function-development">
+<h1>Built-In Function Development<a class="headerlink" href="#built-in-function-development" title="Permalink to this headline">#</a></h1>
+<section id="background">
+<h2>1. Background<a class="headerlink" href="#background" title="Permalink to this headline">#</a></h2>
+<p>OpenMLDB contains hundreds of built-in functions that help data scientists extract features and analyze data. For instance, we now have aggregation functions like <code class="docutils literal notranslate"><span class="pre">SUM</span></code>, <code class="docutils literal notranslate"><span class="pre">AVG</span></code>, <code class="docutils literal notranslate"><span class="pre">MAX</span></code>, <code class="docutils literal notranslate"><span class="pre">MIN</span></code>, <code class="docutils literal notranslate"><span class="pre">COUNT</span></code>, etc, to aggregate data over a table or a specific window. In addition to that, we also have scalar functions like <code class="docutils literal notranslate"><span class="pre">ABS</span></code>, <code class="docutils literal notranslate"><span class="pre">SIN</span></code>, <code class="docutils literal notranslate"><span class="pre">COS</span></code>, <code class="docutils literal notranslate"><span class="pre">DATE</span></code>, <code class="docutils literal notranslate"><span class="pre">YEAR</span></code>, etc, to extract features based on one-row data.</p>
+<p>OpenMLDB classifies functions as aggregate or scalar depending on the input data values and result values.</p>
+<ul class="simple">
+<li><p>An <em>aggregate function</em> receives <strong>a set of</strong> values for each argument (such as the values of a column) and returns a single-value result for the set of input values.</p></li>
+<li><p>A <em>scalar function</em> receives <strong>a single value</strong> for each argument and returns a single value result. A scalar function can be classified into several groups:</p></li>
+<li><ul>
+<li><p>Mathematical function</p></li>
+<li><p>Logical function</p></li>
+<li><p>Date &amp; Time function</p></li>
+<li><p>String function</p></li>
+<li><p>Conversion function</p></li>
+</ul>
+</li>
+</ul>
+<p>This article is a hands-on guide for built-in scalar function development in OpenMLDB. We will not dive into aggregate function development in detail. We truly welcome developers who want to join our community and help extend our functions.</p>
+</section>
+<section id="develop-a-built-in-sql-function">
+<h2>2. Develop a Built-In SQL Function<a class="headerlink" href="#develop-a-built-in-sql-function" title="Permalink to this headline">#</a></h2>
+<p>In this section, we are going to introduce the basic steps to implement and register an SQL built-in function. Built-in SQL function development involves the following steps:</p>
+<ul class="simple">
+<li><p>Develop a built-in C++ function</p></li>
+<li><p>Register and configure the function</p></li>
+<li><p>Create function unit tests</p></li>
+</ul>
+<section id="develop-a-built-in-c-function">
+<h3>2.1 Develop a Built-In C++ Function<a class="headerlink" href="#develop-a-built-in-c-function" title="Permalink to this headline">#</a></h3>
+<p>Generally, developers should implement a C++ function for each SQL function. Thus, users will invoke the C++ function when they call the corresponding function from SQL.</p>
+<p>Developers need to <strong>take care of the following</strong> rules when developing a function:</p>
+<section id="code-location">
+<h4>2.1.1 Code Location<a class="headerlink" href="#code-location" title="Permalink to this headline">#</a></h4>
+<p>Developers can declare function in <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.h">hybridse/src/udf/udf.h</a> and implement it in  <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.cc">hybridse/src/udf/udf.cc</a> within namespace <code class="docutils literal notranslate"><span class="pre">hybridse::udf::v1</span></code>.</p>
+</section>
+<section id="c-function-naming-rules">
+<h4>2.1.2 C++ Function Naming Rules<a class="headerlink" href="#c-function-naming-rules" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Function names are all lowercase, with underscores between words. Check <a class="reference external" href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a> for more details.</p></li>
+<li><p>Function names should be clear and readable. Use names that describe the purpose or intent of the function.</p></li>
+</ul>
+</section>
+<section id="c-and-sql-data-type">
+<h4>2.1.3 C++ and SQL Data Type<a class="headerlink" href="#c-and-sql-data-type" title="Permalink to this headline">#</a></h4>
+<p>C++ built-in functions can use limited data types, including BOOL, Numeric, String, Timestamp and Date. The correspondence between the SQL data type and the C++ data type is shown as follows:</p>
+<ul>
+<li><table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-left head"><p>SQL Type</p></th>
+<th class="text-left head"><p>C++ Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>BOOL</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>SMALLINT</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">int16_t</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>INT</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">int32_t</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>BIGINT</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">int64_t</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>FLOAT</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>DOUBLE</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>STRING</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">codec::StringRef</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>TIMESTAMP</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">codec::Timestamp</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>DATE</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">codec::Date</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</section>
+<section id="parameters-and-result">
+<h4>2.1.4 Parameters and Result<a class="headerlink" href="#parameters-and-result" title="Permalink to this headline">#</a></h4>
+<ul>
+<li><p>SQL function parameters and C++ function parameters have the same position order.</p></li>
+<li><p>C++ function parameter types should match the SQL types. Check [2.1.3 C++ and SQL Data Type](#2.1.3-C++ and SQL Data Type) for more details.</p></li>
+<li><p>SQL function return type:</p>
+<ul>
+<li><p>If SQL function return BOOL or Numeric type (e.g., <strong>BOOL</strong>, <strong>SMALLINT</strong>, <strong>INT</strong>, <strong>BIGINT</strong>, <strong>FLOAT</strong>, <strong>DOUBLE</strong>), the C++ function should be designed to return corresponding C++  type（<code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">int16_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int64_t</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>).</p>
+<ul>
+<li><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// SQL: DOUBLE FUNC_DOUBLE(INT)</span>
+<span class="kt">double</span><span class="w"> </span><span class="nf">func_return_double</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span><span class="w"> </span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>If SQL function return <strong>STRING</strong>, <strong>TIMESTAMP</strong> or <strong>DATE</strong>, the C++ function result should be returned in parameter with the corresponding C++ pointer type (<code class="docutils literal notranslate"><span class="pre">codec::StringRef*</span></code>, <code class="docutils literal notranslate"><span class="pre">codec::Timestamp*</span></code>, <code class="docutils literal notranslate"><span class="pre">codec::Date*</span></code>).</p>
+<ul>
+<li><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// SQL: STRING FUNC_STR(INT)</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">func_output_str</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="o">*</span><span class="p">);</span><span class="w"> </span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>If SQL function return type is <em><strong>Nullable</strong></em>, we need one more <code class="docutils literal notranslate"><span class="pre">bool*</span></code>parameter to return a <code class="docutils literal notranslate"><span class="pre">is_null</span></code> flag.</p>
+<ul>
+<li><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// SQL: Nullable&lt;DATE&gt; FUNC_NULLABLE_DATE(BIGINT)</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">func_output_nullable_date</span><span class="p">(</span><span class="kt">int64_t</span><span class="p">,</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">Date</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">*</span><span class="p">);</span><span class="w"> </span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Notice that return types have greater impact on built-in function developing behaviours. We will cover the details in a later section [3. Built-in Function Development Template](#3.-Built-in Function Development Template).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="memory-management">
+<h4>2.1.5 Memory Management<a class="headerlink" href="#memory-management" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Operator <code class="docutils literal notranslate"><span class="pre">new</span></code> operator or method <code class="docutils literal notranslate"><span class="pre">malloc</span></code> are forbidden in C++ built-in function implementation.</p></li>
+<li><p>Developers can call <code class="docutils literal notranslate"><span class="pre">hybridse::udf::v1::AllocManagedStringBuf(size)</span></code> to allocate space. OpenMLDB <code class="docutils literal notranslate"><span class="pre">ByteMemoryPool</span></code> will assign continous space to the function and will release it when safe.</p></li>
+<li><p>If allocated size &lt; 0, allocation will fail. <code class="docutils literal notranslate"><span class="pre">AllocManagedStringBuf</span></code> return null pointer.</p></li>
+<li><p>If allocated size exceed the MAX_ALLOC_SIZE which is 2048, the allocation will fail. <code class="docutils literal notranslate"><span class="pre">AllocManagedStringBuf</span></code> return null pointer.</p></li>
+</ul>
+<p><strong>Example</strong>:</p>
+<p>In this example, we are going to implement <code class="docutils literal notranslate"><span class="pre">bool_to_string()</span></code> which is responsible to casting a bool value to a string (e.g, “true”, “false”). So we use <code class="docutils literal notranslate"><span class="pre">AllocManagedStringBuf</span></code> to allocate spaces for the string.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="nf">bool_to_string</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">hybridse</span><span class="o">::</span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AllocManagedStringBuf</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+<span class="w">              </span><span class="n">memcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">data_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AllocManagedStringBuf</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">              </span><span class="n">memcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;false&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="p">);</span><span class="w"></span>
+<span class="w">              </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">data_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="register-and-configure-built-in-function">
+<h3>2.2 Register And Configure Built-in Function<a class="headerlink" href="#register-and-configure-built-in-function" title="Permalink to this headline">#</a></h3>
+<section id="defaultudflibrary">
+<h4>2.2.1 DefaultUdfLibrary<a class="headerlink" href="#defaultudflibrary" title="Permalink to this headline">#</a></h4>
+<p>OpenMLDB  <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary</span></code> stores and manages the global built-in SQL functions. Developers need to register a C++ function to the <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary</span></code> such that users can access the function from an SQL query. <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary</span></code> has been declared at <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.h">hybridse/src/udf/default_udf_library.h</a> and implemented at <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>. Developers can register functions in the corresponding <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary::InitXXXXUdf()</span></code> methods. For instance:</p>
+<ul class="simple">
+<li><p><strong>Mathematical function</strong> can be registered in <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">DefaultUdfLibrary::InitMathUdf()</span></code></p></li>
+<li><p><strong>Logical function</strong> can be registered in <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">DefaultUdfLibrary::InitLogicalUdf()</span></code></p></li>
+<li><p><strong>Date &amp; Time function</strong> can be registered in <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">DefaultUdfLibrary::InitTimeAndDateUdf()</span></code></p></li>
+<li><p><strong>String function</strong> can be registered in void <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary::InitStringUdf()</span></code></p></li>
+<li><p><strong>Conversion function</strong> can be registered in <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">DefaultUdfLibrary::InitTypeUdf()</span></code></p></li>
+</ul>
+</section>
+<section id="register-name">
+<h4>2.2.2 Register Name<a class="headerlink" href="#register-name" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Users access an SQL function by its register name</p></li>
+<li><p>Register names are all lowercase, with underscores between words. Check <a class="reference external" href="https://en.wikipedia.org/wiki/Snake_case">snake_case</a> for more details.</p></li>
+<li><p>The SQL function name does not have to be the same as the C++ function name, since the SQL function name will be linked to the C++ function via the registry.</p></li>
+<li><p>SQL function names are case-insensitive. For instance, given register name “aaa_bb”, the users can access it by calling <code class="docutils literal notranslate"><span class="pre">AAA_BB()</span></code>, <code class="docutils literal notranslate"><span class="pre">Aaa_Bb()</span></code>, <code class="docutils literal notranslate"><span class="pre">aAa_bb()</span></code> in SQL.</p></li>
+</ul>
+</section>
+<section id="register-and-configure-function">
+<h4>2.2.3 Register and Configure Function<a class="headerlink" href="#register-and-configure-function" title="Permalink to this headline">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary::RegisterExternal</span></code> create an instance of <code class="docutils literal notranslate"><span class="pre">ExternalFuncRegistryHelper</span></code> with a name. The name will be the function’s registered name.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ExternalFuncRegistryHelper</span><span class="w"> </span><span class="n">helper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;register_func_name&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// ... ignore function configuration details</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ExternalFuncRegistryHelper</span></code>  provides a set of APIs to help developers to configure the functions and register it into the <em>default library</em>.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;register_func_name&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">arg_type</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="n">built_in_fn_pointer</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">return_by_arg</span><span class="p">(</span><span class="n">bool_value</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">returns</span><span class="o">&lt;</span><span class="n">return_type</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="n">documentation</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">args&lt;arg_type,...&gt;</span></code>: Configure argument types.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">built_in_fn_pointer</span></code>: Built-in function pointer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">returns&lt;return_type&gt;</span></code>: Configure return type. Notice that when function result is Nullable, we should configure <em><strong>return type</strong></em> as <em><strong>returns&lt;Nullable&lt;return_type&gt;&gt;</strong></em> explicitly.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">return_by_arg()</span></code>  : Configure whether return value will be store in parameters or not.</p>
+<ul>
+<li><p>When <strong>return_by_arg(false)</strong> , result will be return directly. OpenMLDB configure  <code class="docutils literal notranslate"><span class="pre">return_by_arg(false)</span> </code> by default.</p></li>
+<li><p>When <strong>return_by_arg(true)</strong>, the result will be stored and returned by parameters.</p>
+<ul>
+<li><p>if the return type is <em><strong>non-nullable</strong></em>, the result will be stored and returned via the last parameter.</p></li>
+<li><p>if the return type is <strong>nullable</strong>, the <em><strong>result value</strong></em> will be stored in the second-to-last parameter and the <em><strong>null flag</strong></em> will be stored in the last parameter. if <em><strong>null flag</strong></em> is true, function result is <strong>null</strong>, otherwise, function result is obtained from second-to-last parameter.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="documenting-function">
+<h4>2.2.4 Documenting Function<a class="headerlink" href="#documenting-function" title="Permalink to this headline">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">ExternalFuncRegistryHelper</span></code> provides API <code class="docutils literal notranslate"><span class="pre">doc(doc_string)</span></code>  to document a function. Documenting function is describing its use and functionality to the users. While it may be helpful in the development process, the main intended audience is the users.  So we expect the docstring to be <strong>clear</strong> and <strong>legible</strong>.</p>
+<p>Function docstrings should contain the following information:</p>
+<ul class="simple">
+<li><p><strong>&#64;brief</strong> command to add a summary of the function’s purpose and behaviour.</p></li>
+<li><p><strong>&#64;param</strong> command to document the parameters.</p></li>
+<li><p><strong>Examples</strong> of the function’s usage from SQL queries. Demo SQL should be placed in a <code class="docutils literal notranslate"><span class="pre">&#64;code/&#64;endcode</span></code> block.</p></li>
+<li><p><strong>&#64;since</strong> command to specify the production version when the function was added to OpenMLDB. The version can be obtained from the project’s <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/CMakeLists.txt">CMakeList.txt</a>: <code class="docutils literal notranslate"> <span class="pre">${OPENMLDB_VERSION_MAJOR}.${OPENMLDB_VERSION_MINOR}.${OPENMLDB_VERSION_BUG}</span></code></p></li>
+</ul>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;register_func_name&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="c1">//...</span>
+<span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">      		@brief a brief summary of the my_function&#39;s purpose and behavior</span>
+
+<span class="s"> 					@param param1 a brief description of param1</span>
+
+<span class="s">          Example:</span>
+
+<span class="s">          @code{.sql}</span>
+<span class="s">             select my_function(1);</span>
+<span class="s">              -- output xxx</span>
+<span class="s">          @endcode</span>
+<span class="s">          @since 0.4.0</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="registeralias">
+<h4>2.2.5 RegisterAlias<a class="headerlink" href="#registeralias" title="Permalink to this headline">#</a></h4>
+<p>Sometimes, we don’t have to implement and register a function when it is an alias to another function that already exists in the default library. We can simply use api <code class="docutils literal notranslate"><span class="pre">RegisterAlias(&quot;alias_func&quot;,</span> <span class="pre">&quot;original_func&quot;)</span></code> to link the current register function name with an existing registered name.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;substring&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">StringRef</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                 </span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">udf</span><span class="o">::</span><span class="n">v1</span><span class="o">::</span><span class="n">sub_string</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">return_by_arg</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">            @brief Return a substring `len` characters long from string str, starting at position `pos`.</span>
+<span class="s">            Alias function: `substr`</span>
+
+<span class="s">            Example:</span>
+
+<span class="s">            @code{.sql}</span>
+
+<span class="s">                select substr(&quot;hello world&quot;, 3, 6);</span>
+<span class="s">                -- output &quot;llo wo&quot;</span>
+
+<span class="s">            @endcode</span>
+
+<span class="s">            @param str</span>
+<span class="s">            @param pos: define the begining of the substring.</span>
+
+<span class="s">             - If `pos` is positive, the begining of the substring is `pos` charactors from the start of string.</span>
+<span class="s">             - If `pos` is negative, the beginning of the substring is `pos` characters from the end of the string, rather than the beginning.</span>
+
+<span class="s">            @param len length of substring. If len is less than 1, the result is the empty string.</span>
+
+<span class="s">            @since 0.1.0</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// substring() is registered into default library already </span>
+<span class="n">RegisterAlias</span><span class="p">(</span><span class="s">&quot;substr&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;substring&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="function-unit-test">
+<h2>2.3 Function Unit Test<a class="headerlink" href="#function-unit-test" title="Permalink to this headline">#</a></h2>
+<p>Once a function is registered/developed, the developer should add some related unit tests to make sure everything is going well.</p>
+<section id="add-unit-tests">
+<h3>2.3.1 Add Unit Tests<a class="headerlink" href="#add-unit-tests" title="Permalink to this headline">#</a></h3>
+<p>Generally, developers can add <code class="docutils literal notranslate"><span class="pre">TEST_F</span></code> cases to <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/codegen/udf_ir_builder_test.cc">src/codegen/udf_ir_builder_test.cc</a>.</p>
+<p>OpenMLDB provides <code class="docutils literal notranslate"><span class="pre">CheckUdf</span></code> in  <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/codegen/udf_ir_builder_test.cc">src/codegen/udf_ir_builder_test.cc</a> so that the developer can perform function checking easily.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">return_type</span><span class="p">,</span><span class="w"> </span><span class="n">arg_type</span><span class="p">,...</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;function_name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">expect_result</span><span class="p">,</span><span class="w"> </span><span class="n">arg_value</span><span class="p">,...);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For each function signature, we at least have to:</p>
+<ul class="simple">
+<li><p>Add a unit test with a normal result</p></li>
+<li><p>Add a unit test with a null result if the result is <strong>nullable</strong></p></li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// month(timestamp) normal check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">month_timestamp_udf_test</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Timestamp</span><span class="w"> </span><span class="nf">time</span><span class="p">(</span><span class="mf">1589958000000L</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="n">Timestamp</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;month&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="c1">// date(timestamp) normal check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">timestamp_to_date_test_0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Date</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Timestamp</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">Date</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="w"> </span><span class="mo">05</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="p">(</span><span class="mf">1589958000000L</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="c1">// date(timestamp) null check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">timestamp_to_date_test_null_0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Date</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Timestamp</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="compile-and-test">
+<h3>2.3.2 Compile and Test<a class="headerlink" href="#compile-and-test" title="Permalink to this headline">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ./hybridse
+mkdir -p build
+<span class="nb">cd</span> build
+cmake .. -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DTESTING_ENABLE<span class="o">=</span>ON
+make udf_ir_builder_test -j4
+<span class="nv">SQL_CASE_BASE_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">OPENMLDB_DIR</span><span class="si">}</span> ./src/codegen/udf_ir_builder_test
+</pre></div>
+</div>
+</section>
+</section>
+<section id="built-in-function-development-template">
+<h2>3. Built-in Function Development Template<a class="headerlink" href="#built-in-function-development-template" title="Permalink to this headline">#</a></h2>
+<p>We classified built-in function into 3 types based on its return type:</p>
+<ul>
+<li><p>SQL functions return <strong>BOOL</strong> or Numeric types, e.g., <strong>SMALLINT</strong>, <strong>INT</strong>, <strong>BIGINT</strong>, <strong>FLOAT</strong>, <strong>DOUBLE</strong></p></li>
+<li><p>SQL functions return <strong>STRING</strong>, <strong>TIMESTAMP</strong> or <strong>DATE</strong></p>
+<ul>
+<li><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// SQL: STRING FUNC_STR(INT)</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">func_output_str</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="o">*</span><span class="p">);</span><span class="w"> </span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>SQL functions return <em><strong>Nullable</strong></em> type</p></li>
+</ul>
+<p>Return types have a greater impact on the built-in function’s behaviour. We will cover the details of the three types of SQL functions in the following sections.</p>
+<section id="sql-functions-return-bool-or-numeric-types">
+<h3>3.1 SQL Functions Return <strong>BOOL</strong> or Numeric Types<a class="headerlink" href="#sql-functions-return-bool-or-numeric-types" title="Permalink to this headline">#</a></h3>
+<p>If an SQL function returns a BOOL or Numeric type (e.g., <strong>BOOL</strong>, <strong>SMALLINT</strong>, <strong>INT</strong>, <strong>BIGINT</strong>, <strong>FLOAT</strong>, <strong>DOUBLE</strong>), then the C++ function should be designed to return the corresponding C++ type（<code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">int16_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int64_t</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>).</p>
+<p>The C++ function can be declared and implemented as follows:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">Ret</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">Ret</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span><span class="w"> </span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Configure and register function into <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibary</span></code> in<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/default_udf_library.cc</span>
+<span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;my_func&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">R</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v1</span><span class="o">::</span><span class="n">func</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">            documenting my_func</span>
+<span class="s">        </span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="sql-functions-return-string-timestamp-or-date">
+<h3>3.2 SQL Functions Return <strong>STRING</strong>, <strong>TIMESTAMP</strong> or <strong>DATE</strong><a class="headerlink" href="#sql-functions-return-string-timestamp-or-date" title="Permalink to this headline">#</a></h3>
+<p>If an SQL function returns <strong>STRING</strong>, <strong>TIMESTAMP</strong> or <strong>DATE</strong>, then the C++ function result should be returned in the parameter with the corresponding C++ pointer type (<code class="docutils literal notranslate"><span class="pre">codec::StringRef*</span></code>, <code class="docutils literal notranslate"><span class="pre">codec::Timestamp*</span></code>, <code class="docutils literal notranslate"><span class="pre">codec::Date*</span></code>).</p>
+<p>Thus the C++ function can be declared and implemented as follows:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Ret</span><span class="o">*</span><span class="w"> </span><span class="n">result</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Ret</span><span class="o">*</span><span class="w"> </span><span class="n">ret</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// ...</span>
+<span class="w">      </span><span class="c1">// *ret = result value</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+</pre></div>
+</div>
+<p>Configure and register the function into <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibary</span></code> in<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/default_udf_library.cc</span>
+<span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;my_func&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">R</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Ret</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v1</span><span class="o">::</span><span class="n">func</span><span class="p">))</span><span class="w"></span>
+<span class="w">  			</span><span class="p">.</span><span class="n">return_by_arg</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">            documenting my_func</span>
+<span class="s">        </span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="sql-functions-return-nullable-type">
+<h3>3.3 SQL Functions Return <em><strong>Nullable</strong></em> type<a class="headerlink" href="#sql-functions-return-nullable-type" title="Permalink to this headline">#</a></h3>
+<p>If an SQL function return type is <em><strong>Nullable</strong></em>, then we need one more <code class="docutils literal notranslate"><span class="pre">bool*</span></code> parameter to return a <code class="docutils literal notranslate"><span class="pre">is_null</span></code> flag.</p>
+<p>Thus the C++ function can be declared and implemented as follows:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Ret</span><span class="o">*</span><span class="w"> </span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">*</span><span class="w"> </span><span class="n">null_flag</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">Ret</span><span class="o">*</span><span class="w"> </span><span class="n">ret</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">*</span><span class="w"> </span><span class="n">null_flag</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="c1">// if result value is null</span>
+<span class="w">        </span><span class="c1">// 	*null_flag = true</span>
+<span class="w">        </span><span class="c1">// else </span>
+<span class="w">        </span><span class="c1">// 	*ret = result value</span>
+<span class="w">        </span><span class="c1">// *null_flag = false</span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span>
+<span class="p">}</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>Configure and register the function into <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibary</span></code> in<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/default_udf_library.cc</span>
+<span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;my_func&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">R</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v1</span><span class="o">::</span><span class="n">func</span><span class="p">))</span><span class="w"></span>
+<span class="w">  			</span><span class="p">.</span><span class="n">return_by_arg</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"></span>
+<span class="w">  			</span><span class="p">.</span><span class="n">returns</span><span class="o">&lt;</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Ret</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">            documenting my_func</span>
+<span class="s">        </span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="sql-functions-handle-nullable-argument">
+<h3>3.4 SQL Functions Handle Nullable Argument<a class="headerlink" href="#sql-functions-handle-nullable-argument" title="Permalink to this headline">#</a></h3>
+<p>Generally, OpenMLDB will return a <em><strong>NULL</strong></em> for a function when any one of its argurements  is <em><strong>NULL</strong></em>.</p>
+<p>If we wants to handler the null argurement with specific strategy, we have to configure this argurment as an <em><strong>Nullable</strong></em> argurement and pass another <strong>bool</strong> flag to specify if this argurement is null or not.</p>
+<p>The C++ function can be declared and implemented as follows:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// we are going to handle null arg2 in the function</span>
+<span class="w">      </span><span class="n">Ret</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_arg2_null</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">Ret</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">Arg1</span><span class="w"> </span><span class="n">arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="w"> </span><span class="n">arg2</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_arg2_null</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="c1">// if is_arg1_null</span>
+<span class="w">        </span><span class="c1">// 	return Ret(0)</span>
+<span class="w">        </span><span class="c1">// else </span>
+<span class="w">        </span><span class="c1">// 	compute and return result</span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span>
+<span class="p">}</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>Configure and register the function into <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibary</span></code> in<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/default_udf_library.cc</span>
+<span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;my_func&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Nulable</span><span class="o">&lt;</span><span class="n">Arg2</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">R</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">Arg1</span><span class="p">,</span><span class="w"> </span><span class="n">Arg2</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v1</span><span class="o">::</span><span class="n">func</span><span class="p">))()</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">            documenting my_func</span>
+<span class="s">        </span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sql-functions-development-examples">
+<h2>4. SQL Functions Development Examples<a class="headerlink" href="#sql-functions-development-examples" title="Permalink to this headline">#</a></h2>
+<section id="sql-functions-return-bool-or-numeric-types-int-month-timestamp-function">
+<h3>4.1 SQL Functions Return <strong>BOOL</strong> or Numeric Types: <code class="docutils literal notranslate"><span class="pre">INT</span> <span class="pre">Month(TIMESTAMP)</span></code> Function<a class="headerlink" href="#sql-functions-return-bool-or-numeric-types-int-month-timestamp-function" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">INT</span> <span class="pre">Month(TIMESTAMP)</span></code> function returns the month for a given <code class="docutils literal notranslate"><span class="pre">timestamp</span></code>. Check [3.1 SQL functions return <strong>BOOL</strong> or Numeric types](#3.1-SQL functions return <strong>BOOL</strong> or Numeric types) for more details.</p>
+<section id="step-1-declare-and-implement-c-functions">
+<h4>Step 1: Declare and Implement C++ Functions<a class="headerlink" href="#step-1-declare-and-implement-c-functions" title="Permalink to this headline">#</a></h4>
+<p>Declare <code class="docutils literal notranslate"><span class="pre">month()</span></code> function in <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.h">hybridse/src/udf/udf.h</a>：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="kt">int64_t</span><span class="w"> </span><span class="n">ts</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="w"> </span><span class="o">*</span><span class="n">ts</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namepsace hybridse</span>
+</pre></div>
+</div>
+<p>Implement <code class="docutils literal notranslate"><span class="pre">month()</span></code> function in <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.cc">hybridse/src/udf/udf.cc</a>：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="kt">int64_t</span><span class="w"> </span><span class="n">ts</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="kt">time_t</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ts</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TZ_OFFSET</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="k">struct</span><span class="w"> </span><span class="nc">tm</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="n">gmtime_r</span><span class="p">(</span><span class="o">&amp;</span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">t</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">tm_mon</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">month</span><span class="p">(</span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="w"> </span><span class="o">*</span><span class="n">ts</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">month</span><span class="p">(</span><span class="n">ts</span><span class="o">-&gt;</span><span class="n">ts_</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namepsace hybridse</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-register-c-function-to-default-library">
+<h4>Step 2: Register C++ Function to Default Library<a class="headerlink" href="#step-2-register-c-function-to-default-library" title="Permalink to this headline">#</a></h4>
+<p>Configure and register <code class="docutils literal notranslate"><span class="pre">month()</span></code> into <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibary</span></code> in<a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">DefaultUdfLibrary::InitTimeAndDateUdf</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;month&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">Timestamp</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">Timestamp</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v1</span><span class="o">::</span><span class="n">month</span><span class="p">))</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">              @brief Return the month part of a timestamp</span>
+
+<span class="s">              Example:</span>
+<span class="s">              @code{.sql}</span>
+<span class="s">                  select month(timestamp(1590115420000));</span>
+<span class="s">                  -- output 5</span>
+<span class="s">              @endcode</span>
+<span class="s">              @since 0.1.0</span>
+<span class="s">          </span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namepsace hybridse</span>
+</pre></div>
+</div>
+</section>
+<section id="step3-function-unit-test">
+<h4>Step3: Function Unit Test<a class="headerlink" href="#step3-function-unit-test" title="Permalink to this headline">#</a></h4>
+<p>[Add unit tests](Add Unit Tests) in <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/codegen/udf_ir_builder_test.cc">src/codegen/udf_ir_builder_test.cc</a>. Then [compile and test it](2.3.2 Compile and test).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// month(timestamp) normal check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">month_timestamp_udf_test</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Timestamp</span><span class="w"> </span><span class="nf">time</span><span class="p">(</span><span class="mf">1589958000000L</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="kt">int32_t</span><span class="p">,</span><span class="w"> </span><span class="n">Timestamp</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;month&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Now, the <code class="docutils literal notranslate"><span class="pre">udf::v1:month</span></code> has been registered into the default library with the name <code class="docutils literal notranslate"><span class="pre">month</span></code>. As a result, we can call <code class="docutils literal notranslate"><span class="pre">month</span></code> in an SQL query while ignoring upper and lower cases.</p>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="k">MONTH</span><span class="p">(</span><span class="k">TIMESTAMP</span><span class="p">(</span><span class="mi">1590115420000</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">m1</span><span class="p">,</span><span class="w"> </span><span class="k">month</span><span class="p">(</span><span class="k">timestamp</span><span class="p">(</span><span class="mi">1590115420000</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">m2</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">---- ---- </span>
+<span class="w">  </span><span class="n">m1</span><span class="w">   </span><span class="n">m2</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">---- ---- </span>
+<span class="w">  </span><span class="mi">5</span><span class="w">    </span><span class="mi">5</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">---- ---- </span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sql-functions-return-string-timestamp-or-date-string-string-bool">
+<h3>4.2 SQL Functions Return <strong>STRING</strong>, <strong>TIMESTAMP</strong> or <strong>DATE</strong> -  <code class="docutils literal notranslate"><span class="pre">STRING</span> <span class="pre">String(BOOL)</span></code><a class="headerlink" href="#sql-functions-return-string-timestamp-or-date-string-string-bool" title="Permalink to this headline">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">STRING</span> <span class="pre">String(BOOL)</span></code> function accepts a BOOL type input and converts it to an output of type STRING. Check [3.2 SQL functions return <strong>STRING</strong>, <strong>TIMESTAMP</strong> or <strong>DATE</strong>](#3.2-SQL functions return <strong>STRING</strong>, <strong>TIMESTAMP</strong> or <strong>DATE</strong>) for more details.</p>
+<section id="id1">
+<h4>Step 1: Declare and Implement C++ Functions<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<p>Since the SQL function returns <strong>STRING</strong>, the C++ function result should be returned by parameter <code class="docutils literal notranslate"><span class="pre">codec::StringRef</span> <span class="pre">*</span> <span class="pre">output</span></code>.</p>
+<p>Declare <code class="docutils literal notranslate"><span class="pre">bool_to_string()</span></code> function in <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.h">hybridse/src/udf/udf.h</a>：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="nf">bool_to_string</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">hybridse</span><span class="o">::</span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namepsace hybridse</span>
+</pre></div>
+</div>
+<p>Implement the <code class="docutils literal notranslate"><span class="pre">bool_to_string()</span></code> function in <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.cc">hybridse/src/udf/udf.cc</a>：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">bool_to_string</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">hybridse</span><span class="o">::</span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AllocManagedStringBuf</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">memcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">data_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AllocManagedStringBuf</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">memcpy</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;false&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">size_</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">output</span><span class="o">-&gt;</span><span class="n">data_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// namepsace hybridse</span>
+</pre></div>
+</div>
+<p>Notice that we used <code class="docutils literal notranslate"><span class="pre">AllocManagedStringBuf</span></code> to allocate memory from OpenMLDB Memory pool instead of using the <code class="docutils literal notranslate"><span class="pre">new</span></code> operator or the <code class="docutils literal notranslate"><span class="pre">malloc</span></code> api.</p>
+</section>
+<section id="step-2-register-c-function-into-default-library">
+<h4>Step 2: Register C++ Function into Default Library<a class="headerlink" href="#step-2-register-c-function-into-default-library" title="Permalink to this headline">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">STRING</span> <span class="pre">String(BOOL)</span></code> is a type conversion function, which the developer should configure and register within <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary::InitTypeUdf()</span></code> in <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">	</span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">DefaultUdfLibrary::InitTypeUdf</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// ...    </span>
+<span class="w">        </span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">StringRef</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">                          </span><span class="n">udf</span><span class="o">::</span><span class="n">v1</span><span class="o">::</span><span class="n">bool_to_string</span><span class="p">))</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">return_by_arg</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">              @brief Return string converted from bool expression</span>
+
+<span class="s">              Example:</span>
+
+<span class="s">              @code{.sql}</span>
+<span class="s">                  select string(true);</span>
+<span class="s">                  -- output &quot;true&quot;</span>
+
+<span class="s">                  select string(false);</span>
+<span class="s">                  -- output &quot;false&quot;</span>
+<span class="s">              @endcode</span>
+<span class="s">              @since 0.1.0</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namepsace hybridse</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h4>Step3: Function Unit Test<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<p>[Add unit tests](Add Unit Tests) in <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/codegen/udf_ir_builder_test.cc">src/codegen/udf_ir_builder_test.cc</a>. Then [compile and test it](2.3.2 Compile and test).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// string(bool) normal check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">bool_to_string_test</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Timestamp</span><span class="w"> </span><span class="nf">time</span><span class="p">(</span><span class="mf">1589958000000L</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">StringRef</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">  	</span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">StringRef</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;false&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Now, the <code class="docutils literal notranslate"><span class="pre">udf::v1:bool_to_string()</span></code> function has been registered into the default library with the name <code class="docutils literal notranslate"><span class="pre">string</span></code>. As a result, we can call <code class="docutils literal notranslate"><span class="pre">string</span></code> in an SQL query while ignoring upper and lower cases.</p>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="n">STRING</span><span class="p">(</span><span class="k">true</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">str_true</span><span class="p">,</span><span class="w"> </span><span class="n">string</span><span class="p">(</span><span class="k">false</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">str_false</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----------  ---------- </span>
+<span class="w">  </span><span class="n">str_true</span><span class="w">   </span><span class="n">str_false</span><span class="w">  </span>
+<span class="w"> </span><span class="c1">----------  ---------- </span>
+<span class="w">   </span><span class="k">true</span><span class="w">        </span><span class="k">true</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----------  ---------- </span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sql-functions-return-nullable-type-date-date-timestamp">
+<h3>4.3 SQL Functions Return <em><strong>Nullable</strong></em> Type - <code class="docutils literal notranslate"><span class="pre">DATE</span> <span class="pre">Date(TIMESTAMP)</span></code><a class="headerlink" href="#sql-functions-return-nullable-type-date-date-timestamp" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">DATE</span> <span class="pre">Date(TIMESTAMP)()</span></code> function converts <strong>TIMESTAMP</strong> type to <strong>DATE</strong> type. Check [3.3 SQL functions return <em><strong>Nullable</strong></em> type](#3.3-SQL functions return <em><strong>Nullable</strong></em> type) and  [3.2 SQL functions return <strong>STRING</strong>, <strong>TIMESTAMP</strong> or <strong>DATE</strong>](#3.2-SQL functions return <strong>STRING</strong>, <strong>TIMESTAMP</strong> or <strong>DATE</strong>) for more details.</p>
+<section id="step-1-declare-and-implement-built-in-functions">
+<h4>Step 1: Declare and Implement Built-In Functions<a class="headerlink" href="#step-1-declare-and-implement-built-in-functions" title="Permalink to this headline">#</a></h4>
+<p>We implement a function <code class="docutils literal notranslate"><span class="pre">timestamp_to_date</span></code>to convert <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> to the date type. The input is <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> and the output is nullable <code class="docutils literal notranslate"><span class="pre">date</span></code> which is returned by arguments <code class="docutils literal notranslate"><span class="pre">codec::Date</span> <span class="pre">*output</span></code> and <code class="docutils literal notranslate"><span class="pre">bool</span> <span class="pre">*is_null</span></code>.</p>
+<p>Declare the <code class="docutils literal notranslate"><span class="pre">timestamp_to_date()</span></code> function in <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.h">hybridse/src/udf/udf.h</a>：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.h</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">void</span><span class="w"> </span><span class="nf">timestamp_to_date</span><span class="p">(</span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="w"> </span><span class="o">*</span><span class="n">timestamp</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="n">codec</span><span class="o">::</span><span class="n">Date</span><span class="w"> </span><span class="o">*</span><span class="n">ret</span><span class="w"> </span><span class="cm">/*result output*/</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">*</span><span class="n">is_null</span><span class="w"> </span><span class="cm">/*null flag*/</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace hybridse</span>
+</pre></div>
+</div>
+<p>Implement the <code class="docutils literal notranslate"><span class="pre">timestamp_to_date()</span></code> function in <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/udf.cc">hybridse/src/udf/udf.cc</a>：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp"># hybridse/src/udf/udf.cc</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">namespace</span><span class="w"> </span><span class="nn">v1</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">void</span><span class="w"> </span><span class="nf">timestamp_to_date</span><span class="p">(</span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="w"> </span><span class="o">*</span><span class="n">timestamp</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="n">codec</span><span class="o">::</span><span class="n">Date</span><span class="w"> </span><span class="o">*</span><span class="n">ret</span><span class="w"> </span><span class="cm">/*result output*/</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">*</span><span class="n">is_null</span><span class="w"> </span><span class="cm">/*null flag*/</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="kt">time_t</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">timestamp</span><span class="o">-&gt;</span><span class="n">ts_</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TZ_OFFSET</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="k">struct</span><span class="w"> </span><span class="nc">tm</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">nullptr</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">gmtime_r</span><span class="p">(</span><span class="o">&amp;</span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">t</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="o">*</span><span class="n">is_null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">              </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="o">*</span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">Date</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">tm_year</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1900</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">tm_mon</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">tm_mday</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="o">*</span><span class="n">is_null</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace v1</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace hybridse</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-register-built-in-function-into-default-library">
+<h4>Step 2: Register Built-In Function into Default Library<a class="headerlink" href="#step-2-register-built-in-function-into-default-library" title="Permalink to this headline">#</a></h4>
+<p>The following example registers the built-in function <code class="docutils literal notranslate"> <span class="pre">v1::timestamp_to_date</span></code> into the default library with the name <code class="docutils literal notranslate"><span class="pre">&quot;date&quot;</span></code>.</p>
+<p>Given the result is a nullable date type, we configure  <strong>return_by_arg</strong> as <em><strong>true</strong></em> and return type as <code class="docutils literal notranslate"><span class="pre">Nullable&lt;Date&gt;</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">DATE</span> <span class="pre">Date(TIMESTAMP)</span></code> is Date&amp;Time function, developer should configure and register within <code class="docutils literal notranslate"><span class="pre">DefaultUdfLibrary::InitTimeAndDateUdf()</span></code> in <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/udf/default_udf_library.cc">hybridse/src/udf/default_udf_library.cc</a>.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">namespace</span><span class="w"> </span><span class="nn">hybridse</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">namespace</span><span class="w"> </span><span class="nn">udf</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">DefaultUdfLibrary::InitTimeAndDateUdf</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// ...    </span>
+<span class="w">        </span><span class="n">RegisterExternal</span><span class="p">(</span><span class="s">&quot;date&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">args</span><span class="o">&lt;</span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">              </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="n">Timestamp</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">Date</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v1</span><span class="o">::</span><span class="n">timestamp_to_date</span><span class="p">))</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">return_by_arg</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">returns</span><span class="o">&lt;</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Date</span><span class="o">&gt;&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">          </span><span class="p">.</span><span class="n">doc</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s"></span>
+<span class="s">              @brief Cast timestamp or string expression to date</span>
+<span class="s">              Example:</span>
+
+<span class="s">              @code{.sql}</span>
+<span class="s">                  select date(timestamp(1590115420000));</span>
+<span class="s">                  -- output 2020-05-22</span>
+<span class="s">              @endcode</span>
+<span class="s">              @since 0.1.0</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="c1">// namespace udf</span>
+<span class="p">}</span><span class="w"> </span><span class="c1">// namespace hybridse</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h4>Step3: Function Unit Test<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<p>[Add unit tests](Add Unit Tests) in <a class="reference external" href="https://github.com/4paradigm/OpenMLDB/blob/main/hybridse/src/codegen/udf_ir_builder_test.cc">src/codegen/udf_ir_builder_test.cc</a>. Then [compile and test it](2.3.2 Compile and test).</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// date(timestamp) normal check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">timestamp_to_date_test_0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Date</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Timestamp</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">Date</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="w"> </span><span class="mo">05</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">),</span><span class="w"> </span><span class="n">codec</span><span class="o">::</span><span class="n">Timestamp</span><span class="p">(</span><span class="mf">1589958000000L</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="c1">// date(timestamp) null check</span>
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">UdfIRBuilderTest</span><span class="p">,</span><span class="w"> </span><span class="n">timestamp_to_date_test_null_0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">CheckUdf</span><span class="o">&lt;</span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Date</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Nullable</span><span class="o">&lt;</span><span class="n">Timestamp</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;date&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Now, the <code class="docutils literal notranslate"><span class="pre">udf::v1:timestamp_to_date</span></code> has been registered into the default library with the name <code class="docutils literal notranslate"><span class="pre">date</span></code>. As a result, we can call <code class="docutils literal notranslate"><span class="pre">date()</span></code> in an SQL query.</p>
+<div class="highlight-SQL notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="nb">date</span><span class="p">(</span><span class="k">timestamp</span><span class="p">(</span><span class="mi">1590115420000</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="c1">----------</span>
+<span class="w">     </span><span class="n">dt</span><span class="w"></span>
+<span class="w"> </span><span class="c1">------------</span>
+<span class="w">  </span><span class="mi">2020</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">22</span><span class="w"> </span>
+<span class="w"> </span><span class="c1">------------</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Developers</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../reference/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">References</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:54 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

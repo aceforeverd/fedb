@@ -1,0 +1,1633 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Release Notes &#8212; OpenMLDB  documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quickstart" href="../quickstart/index.html" />
+    <link rel="prev" title="Milestones" href="milestones.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/openmldb_logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   About
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro.html">
+     Introduction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="milestones.html">
+     Milestones
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Release Notes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/index.html">
+   Quickstart
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/openmldb_quickstart.html">
+     OpenMLDB Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/java_sdk.html">
+     Java SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/python_sdk.html">
+     Python SDK Quickstart
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/rest_api.html">
+     REST APIs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../tutorial/index.html">
+   Tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/standalone_vs_cluster.html">
+     Cluster vs. Standalone Versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/modes.html">
+     The Workflow of Cluster Version and Execution Mode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_1.html">
+     SQL for Feature Extraction (Part 1)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/tutorial_sql_2.html">
+     SQL for Feature Extraction (Part 2)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../tutorial/data_import.html">
+     Data Import
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../use_case/index.html">
+   Use Cases
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/lightgbm_demo.html">
+     OpenMLDB + LightGBM: Taxi Trip Duration Prediction
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/pulsar_connector_demo.html">
+     Importing Real-Time Data Streams from Pulsar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/kafka_connector_demo.html">
+     Importing Real-Time Data Streams from Kafka
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../use_case/dolphinscheduler_task_demo.html">
+     Building End-to-End MLOps Workflows (OpenMLDB + DolphinScheduler)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../deploy/index.html">
+   Deployment
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/compile.html">
+     Build
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/install_deploy.html">
+     Install and Deploy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deploy/conf.html">
+     Configuration File
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../maintain/index.html">
+   Maintenance
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/upgrade.html">
+     Upgrade
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/backup.html">
+     Backup and Restore
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/monitoring.html">
+     Monitoring
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/cli.html">
+     Operations in CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/faq.html">
+     Operation and Maintenance FAQ
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/scale.html">
+     Scale-Out and Scale-In
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../maintain/diagnose.html">
+     Diagnostic Tool
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developer/index.html">
+   Developers
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developer/built_in_function_develop_guide.html">
+     Built-In Function Development
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   References
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/arch/index.html">
+     Architecture
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/arch/online_arch.html">
+       Online Module Architecture
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/sql/index.html">
+     SQL
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/language_structure/index.html">
+       Language Structure
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+      <label for="toctree-checkbox-11">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/keywords.html">
+         Keywords
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/object_names_identifiers.html">
+         SQL Object Name
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/literals_value.html">
+         Literal Value
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/case_sensitive.html">
+         Case Sensitive
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/language_structure/comment.html">
+         Notes
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/data_types/index.html">
+       Data Type
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/>
+      <label for="toctree-checkbox-12">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/numeric_types.html">
+         Numeric Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/string_types.html">
+         String Type
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/data_types/date_and_time_types.html">
+         Date and Time Type
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/functions_and_operators/index.html">
+       Expressions, Functions, and Operations
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/>
+      <label for="toctree-checkbox-13">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/operators.html">
+         Operator
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/functions_and_operators/Files/udfs_8h.html">
+         Built-in Functions
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dql/index.html">
+       Data Query Statement （DQL）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/>
+      <label for="toctree-checkbox-14">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_STATEMENT.html">
+         SELECT Overview
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/JOIN_CLAUSE.html">
+         JOIN Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WHERE_CLAUSE.html">
+         WHERE Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/GROUP_BY_CLAUSE.html">
+         GROUP BY Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/HAVING_CLAUSE.html">
+         Having Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/WINDOW_CLAUSE.html">
+         WINDOW Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/LIMIT_CLAUSE.html">
+         Limit Clause
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/NO_TABLE_SELECT_CLAUSE.html">
+         No-table SELECT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dql/SELECT_INTO_STATEMENT.html">
+         SELECT INTO
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/dml/index.html">
+       Data Manipulation Statement（DML）
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/>
+      <label for="toctree-checkbox-15">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/INSERT_STATEMENT.html">
+         INSERT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/LOAD_DATA_STATEMENT.html">
+         LOAD DATA INFILE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/dml/DELETE_STATEMENT.html">
+         DELETE
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/ddl/index.html">
+       Data Definition Statement (DDL)
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/>
+      <label for="toctree-checkbox-16">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_DATABASE_STATEMENT.html">
+         CREATE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_DATABASES_STATEMENT.html">
+         SHOW DATABASES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/USE_DATABASE_STATEMENT.html">
+         USE DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_DATABASE_STATEMENT.html">
+         DROP DATABASE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DESC_STATEMENT.html">
+         DESC
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_TABLE_STATEMENT.html">
+         CREATE TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_TABLE_STATEMENT.html">
+         DROP TABLE
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_TABLES_STATEMENT.html">
+         SHOW TABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SHOW_VARIABLES_STATEMENT.html">
+         SHOW VARIABLES
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/SET_STATEMENT.html">
+         SET STATEMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/CREATE_INDEX_STATEMENT.html">
+         CREATE INDEX
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/ddl/DROP_INDEX_STATEMENT.html">
+         DROP INDEX
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/deployment_manage/index.html">
+       DEPLOYMENT Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/>
+      <label for="toctree-checkbox-17">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DEPLOY_STATEMENT.html">
+         DEPLOY
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/DROP_DEPLOYMENT_STATEMENT.html">
+         Delete DEPLOYMENT
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENTS.html">
+         View DEPLOYMENTS List
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/SHOW_DEPLOYMENT.html">
+         View DEPLOYMENT Details
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/deployment_manage/ONLINE_SERVING_REQUIREMENTS.html">
+         SQL On-Line Specifications and Requirements
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../reference/sql/task_manage/index.html">
+       Task Management
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/>
+      <label for="toctree-checkbox-18">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOBS.html">
+         SHOW JOBS
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SHOW_JOB.html">
+         SHOW JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/STOP_JOB.html">
+         STOP JOB
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../reference/sql/task_manage/SUBMIT_JOB.html">
+         SUBMIT JOB
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../reference/ip_tips.html">
+     IP Configuration
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../reference/client_config/index.html">
+     Client Configuration
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/>
+    <label for="toctree-checkbox-19">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../reference/client_config/client_spark_config.html">
+       Spark Client Configuration
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav>
+</br>
+Current Version: v0.6</br>
+Versions：
+<ul>
+  <li><a href="../../main/index.html">main</a></li>
+  <li><a href="../../v0.5/index.html">v0.5</a></li>
+  <li><a href="../../v0.4/index.html">v0.4</a></li>
+  <li><a href="release_notes.html">v0.6</a></li>
+</ul>
+</br>
+</div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/about/release_notes.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-6-0-release-notes">
+   v0.6.0 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#highlights">
+     Highlights
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-features">
+     Other Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bug-fixes">
+     Bug Fixes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-refactoring">
+     Code Refactoring
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-5-3-release-notes">
+   v0.5.3 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Bug Fixes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-5-2-release-notes">
+   v0.5.2 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#features">
+     Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Bug Fixes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Code Refactoring
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-5-1-release-notes">
+   v0.5.1 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Bug Fixes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Code Refactoring
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-5-0-release-notes">
+   v0.5.0 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Highlights
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Other Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     Bug Fixes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     Code Refactoring
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-4-4-release-notes">
+   v0.4.4 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     Bug Fixes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     Code Refactoring
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#acknowledgement">
+     Acknowledgement
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-4-3-release-notes">
+   v0.4.3 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     Bug Fixes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-4-2-release-notes">
+   v0.4.2 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     Bug Fixes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-4-1-release-notes">
+   v0.4.1 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     Bug Fixes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-4-0-release-notes">
+   v0.4.0 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     Highlights
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     Other Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id22">
+     Bug Fixes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Release Notes</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-6-0-release-notes">
+   v0.6.0 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#highlights">
+     Highlights
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-features">
+     Other Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bug-fixes">
+     Bug Fixes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#code-refactoring">
+     Code Refactoring
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-5-3-release-notes">
+   v0.5.3 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Bug Fixes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-5-2-release-notes">
+   v0.5.2 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#features">
+     Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Bug Fixes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Code Refactoring
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-5-1-release-notes">
+   v0.5.1 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Bug Fixes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     Code Refactoring
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-5-0-release-notes">
+   v0.5.0 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Highlights
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     Other Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     Bug Fixes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     Code Refactoring
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-4-4-release-notes">
+   v0.4.4 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     Bug Fixes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     Code Refactoring
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#acknowledgement">
+     Acknowledgement
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-4-3-release-notes">
+   v0.4.3 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     Bug Fixes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-4-2-release-notes">
+   v0.4.2 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     Bug Fixes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-4-1-release-notes">
+   v0.4.1 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     Bug Fixes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#v0-4-0-release-notes">
+   v0.4.0 Release Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     Highlights
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     Other Features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id22">
+     Bug Fixes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="release-notes">
+<h1>Release Notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">#</a></h1>
+<section id="v0-6-0-release-notes">
+<h2>v0.6.0 Release Notes<a class="headerlink" href="#v0-6-0-release-notes" title="Permalink to this headline">#</a></h2>
+<section id="highlights">
+<h3>Highlights<a class="headerlink" href="#highlights" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Add a new toolkit of managing OpenMLDB, currently including a diagnostic tool and a log collector (#2299 #2326 &#64;dl239 &#64;vagetablechicken)</p></li>
+<li><p>Support aggregate functions with suffix <code class="docutils literal notranslate"><span class="pre">_where</span></code> using pre-aggregation (#1821 #1841 #2321 #2255 #2321 &#64;aceforeverd &#64;nautaa &#64;zhanghaohit)</p></li>
+<li><p>Support a new SQL syntax of <code class="docutils literal notranslate"><span class="pre">EXCLUDE</span> <span class="pre">CURRENT_ROW</span></code> (#2053 #2165 #2278 &#64;aceforeverd)</p></li>
+<li><p>Add new OpenMLDB ecosystem plugins for DolphinScheduler (#1921 #1955 &#64;vagetablechicken) and Airflow (#2215 &#64;vagetablechicken)</p></li>
+</ul>
+</section>
+<section id="other-features">
+<h3>Other Features<a class="headerlink" href="#other-features" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Support SQL syntax of <code class="docutils literal notranslate"><span class="pre">DELETE</span></code> in SQL and Kafka Connector (#2183 #2257 &#64;dl239)</p></li>
+<li><p>Support customized order in the <code class="docutils literal notranslate"><span class="pre">insert</span></code> statement (#2075 &#64;vagetablechicken)</p></li>
+<li><p>Add a new use case of TalkingData AdTracking Fraud Detection (#2008 &#64;vagetablechicken)</p></li>
+<li><p>Improve the startup script to remove <code class="docutils literal notranslate"><span class="pre">mon</span></code> (#2050 &#64;dl239)</p></li>
+<li><p>Improve the performance of offline batch SQL engine (#1882 #1943 #1973 #2142 #2273 #1773 &#64;tobegit3hub)</p></li>
+<li><p>Support returning version numbers from TaskManager (#2102 &#64;tobegit3hub)</p></li>
+<li><p>Improve the CICD workflow and release procedure (#1873 #2025 #2028 &#64;mangoGoForward)</p></li>
+<li><p>Support GitHub Codespaces (#1922 &#64;nautaa)</p></li>
+<li><p>Support new built-in functions <code class="docutils literal notranslate"><span class="pre">char(int)</span></code>, <code class="docutils literal notranslate"><span class="pre">char_length</span></code>, <code class="docutils literal notranslate"><span class="pre">character_length</span></code>, <code class="docutils literal notranslate"><span class="pre">radians</span></code>, <code class="docutils literal notranslate"><span class="pre">hex</span></code>, <code class="docutils literal notranslate"><span class="pre">median</span></code> (#1896 #1895 #1897 #2159 #2030 &#64;wuxiaobai24 &#64;HGZ-20 &#64;Ivyee17)</p></li>
+<li><p>Support returning result set for a new query API (#2189 &#64;qsliu2017)</p></li>
+<li><p>Improve the documents (#1796 #1817 #1818 #2254 #1948 #2227 #2254  #1824 #1829 #1832 #1840 #1842 #1844 #1845 #1848 #1849 #1851 #1858 #1875  #1923 #1925 #1939 #1942 #1945 #1957 #2031 #2054 #2140 #2195 #2304 #2264 #2260 #2257 #2254 #2247 #2240 #2227 #2115 #2126 #2116 #2154 #2152 #2178 #2147 #2146 #2184 #2138 #2145 #2160 #2197 #2198 #2133 #2224 #2223 #2222 #2209 #2248 #2244 #2242 #2241 #2226 #2225 #2221 #2219 #2201 #2291 # 2231 #2196 #2297 #2206 #2238 #2270 #2296 #2317 #2065 #2048 #2088 #2331 #1831 #1945 #2118 &#64;ZtXavier &#64;pearfl &#64;PrajwalBorkar &#64;tobegit3hub &#64;ZtXavier &#64;zhouxh19 &#64;dl239 &#64;vagetablechicken &#64;tobegit3hub &#64;aceforeverd &#64;jmoldyvan &#64;lumianph &#64;bxiiiiii &#64;michelle-qinqin &#64;yclchuxue &#64;redundan3y)</p></li>
+</ul>
+</section>
+<section id="bug-fixes">
+<h3>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The SQL engine may produce incorrect results under certain circumstances. (#1950 #1997 #2024 &#64;aceforeverd)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">genDDL</span></code> function generates incorrect DDL if the SQL is partitioned by multiple columns. (#1956 &#64;dl239)</p></li>
+<li><p>The snapshot recovery may fail for disk tables. (#2174 &#64;zhanghaohit)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable_trace</span></code> does not work for some SQL queries. (#2292 &#64;aceforeverd)</p></li>
+<li><p>Tablets cannot save <code class="docutils literal notranslate"><span class="pre">ttl</span></code> when updating the <code class="docutils literal notranslate"><span class="pre">ttl</span></code> of index. (#1935 &#64;dl239)</p></li>
+<li><p>MakeResultSet uses a wrong schema in projection. (#2049 &#64;dl239)</p></li>
+<li><p>A table does not exist when deploying SQL by the APIServer (#2205 &#64;vagetablechicken)</p></li>
+<li><p>The cleanup for ZooKeep does not work properly. (#2191 &#64;mangoGoForward)</p></li>
+</ul>
+<p>Other minor bug fixes (#2052 #1959 #2253 #2273 #2288 #1964 #2175 #1938 #1963 #1956 #2171 #2036 #2170 #2236 #1867 #1869 #1900 #2162 #2161 #2173 #2190 #2084 #2085 #2034 #1972 #1408 #1863 #1862 #1919 #2093 #2167 #2073 #1803 #1998 #2000 #2012 #2055 #2174 #2036 &#64;Xeonacid &#64;CuriousCorrelation &#64;Shigm1026 &#64;jiang1997 &#64;Harshvardhantomar &#64;nautaa &#64;Ivyee17 &#64;frazie &#64;PrajwalBorkar &#64;dl239 &#64;aceforeverd &#64;tobegit3hub &#64;dl239 &#64;vagetablechicken &#64;zhanghaohit &#64;mangoGoForward &#64;SaumyaBhushan &#64;BrokenArrow1404 &#64;harshlancer)</p>
+</section>
+<section id="code-refactoring">
+<h3>Code Refactoring<a class="headerlink" href="#code-refactoring" title="Permalink to this headline">#</a></h3>
+<p>#1884 #1917 #1953 #1965 #2017 #2033 #2044 &#64;mangoGoForward; #2131 #2130 #2112 #2113 #2104 #2107 #2094 #2068 #2071 #2070 #1982 #1878 &#64;PrajwalBorkar; #2158  #2051 #2037 #2015 #1886 #1857 &#64;frazie; #2100 #2096 &#64;KikiDotPy; #2089 &#64;ayushclashroyale; #1994 &#64;fpetrakov; #2079 kayverly; #2062 &#64;WUBBBB; #1843 &#64;1korenn; #2092 &#64;HeZean; #1984 &#64;0sirusD3m0n; #1976 &#64;Jaguar16; #2086 &#64;marc-marcos; #1999 &#64;Albert-Debbarma;</p>
+</section>
+</section>
+<section id="v0-5-3-release-notes">
+<h2>v0.5.3 Release Notes<a class="headerlink" href="#v0-5-3-release-notes" title="Permalink to this headline">#</a></h2>
+<section id="id1">
+<h3>Bug Fixes<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The SQL file cannot be successfully loaded in the Yarn-Client mode. (#2151 &#64;tobegit3hub)</p></li>
+<li><p>The SQL file cannot be successfully loaded in the Yarn-Cluster mode. (#1993 &#64;tobegit3hub)</p></li>
+</ul>
+</section>
+</section>
+<section id="v0-5-2-release-notes">
+<h2>v0.5.2 Release Notes<a class="headerlink" href="#v0-5-2-release-notes" title="Permalink to this headline">#</a></h2>
+<section id="features">
+<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Add new built-in functions, including <code class="docutils literal notranslate"><span class="pre">char_length</span></code>, <code class="docutils literal notranslate"><span class="pre">char</span></code>, <code class="docutils literal notranslate"><span class="pre">radians</span></code>, and <code class="docutils literal notranslate"><span class="pre">replace</span></code> (#1895 #1896 #1897 &#64;Ivyee17, #1924 &#64;aceforeverd)</p></li>
+<li><p>Add the demo of DolphinScheduler task (#1921 &#64;vagetablechicken)</p></li>
+<li><p>Support inserting values with a specified database name (#1929 &#64;dl239)</p></li>
+<li><p>Improve window computation with <code class="docutils literal notranslate"><span class="pre">UnsafeRowOpt</span></code> by removing the zipped dataframe (#1882 &#64;tobegit3hub)</p></li>
+<li><p>Improve the documents (#1831 &#64;yclchuxue, #1925 &#64;lumianph, #1902 #1923 &#64;vagetablechicken)</p></li>
+<li><p>Support GitHub Codespaces (#1922 &#64;nautaa)</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Bug Fixes<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DistributeWindowIterator::GetKey()</span></code> may result in core dump (#1892 aceforeverd)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Tablet</span></code> does not make <code class="docutils literal notranslate"><span class="pre">ttl</span></code> persistent when updating the ttl of index (#1935 &#64;dl239)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TaskManager</span></code> startup fails if <code class="docutils literal notranslate"><span class="pre">LANG=zh_CN.UTF-8</span></code> is set (#1912 &#64;vagetablechicken)</p></li>
+<li><p>There are duplicate records in <code class="docutils literal notranslate"><span class="pre">PRE_AGG_META_INFO</span></code> (#1919 &#64;nautaa)</p></li>
+<li><p>The OpenMLDB Spark fails to fallback to SparkSQL for unsupported functions (#1908 &#64;tobegit3hub)</p></li>
+<li><p>Fixing other minor bugs (#1914 aceforeverd, #1900 &#64;mangoGoForward, #1934 &#64;vagetablechicken)</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Code Refactoring<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>#1899 &#64;auula, #1913 &#64;dl239, #1917 &#64;mangoGoForward, #1803 &#64;SaumyaBhushan, #1870 &#64;Ivyee17, #1886 &#64;frazie</p>
+</section>
+</section>
+<section id="v0-5-1-release-notes">
+<h2>v0.5.1 Release Notes<a class="headerlink" href="#v0-5-1-release-notes" title="Permalink to this headline">#</a></h2>
+<section id="id4">
+<h3>Features<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Support the new OpenMLDB Kafka connector (#1771 &#64;vagetablechicken)</p></li>
+<li><p>Support very long SQLs in TaskManager (#1833 &#64;tobegit3hub)</p></li>
+<li><p>Support <code class="docutils literal notranslate"><span class="pre">window</span> <span class="pre">union</span></code> correctly in the cluster mode (#1855 #1856 &#64;aceforeverd &#64;dl239)</p></li>
+<li><p>Support <code class="docutils literal notranslate"><span class="pre">count_where(*,</span> <span class="pre">condition)</span></code> in the storage engine (#1841 &#64;nautaa)</p></li>
+<li><p>Add a new micro-benchmark tool for performance evaluation (#1800 &#64;dl239)</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>Bug Fixes<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Auto creating table throws error when a new ttl is greater than the current ttl. (#1737 &#64;keyu813)</p></li>
+<li><p>Offline tasks crash when enabling <code class="docutils literal notranslate"><span class="pre">UnsafeRowOpt</span></code> for continuous windows. (#1773 &#64;tobegit3hub)</p></li>
+<li><p>The aggregator is not reset if the table is empty. (#1784 &#64;zhanghaohit)</p></li>
+<li><p>The order for window union rows and original rows with the same order key is undefined. (#1802 &#64;aceforeverd)</p></li>
+<li><p>Queries with pre-aggregate enabled may crash under certain tests. (#1838 zhanghaohit)</p></li>
+<li><p>Ending space in CLI may cause program crash. (#1820 &#64;aceforeverd)</p></li>
+<li><p>When creating an engine with empty databases, it cannot execute the command of <code class="docutils literal notranslate"><span class="pre">USE</span></code> database in the Python SDK. (#1854 &#64;vagetablechicken)</p></li>
+<li><p>When using the soft copy for csv files, it cannot read offline path with options. (#1872 &#64;vagetablechicken)</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>Code Refactoring<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<p>#1766 &#64;hiyoyolumi; #1777 &#64;jmoldyvan; #1779 &#64;SohamRatnaparkhi; #1768 &#64;SaumyaBhushan; #1795 &#64;vighnesh-kadam; #1806 &#64;Mount-Blanc; #1978 &#64;wangxinyu666666; #1781 &#64;SaumyaBhushan; #1786 &#64;xuduling; #1810 &#64;IZUMI-Zu; #1824 &#64;bxiiiiii; #1843 &#64;1korenn; #1851 &#64;zhouxh19; #1862 &#64;Ivyee17; #1867, #1869, #1873, #1884 &#64;mangoGoForward; #1863 &#64;Ivyee17; #1815 &#64;jmoldyvan; #1857 &#64;frazie; #1878 &#64;PrajwalBorkar</p>
+</section>
+</section>
+<section id="v0-5-0-release-notes">
+<h2>v0.5.0 Release Notes<a class="headerlink" href="#v0-5-0-release-notes" title="Permalink to this headline">#</a></h2>
+<section id="id7">
+<h3>Highlights<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>We have introduced an important performance optimization technique of pre-aggregation, which can significantly improve the performance for a query with time windows containing massive amount of rows, e.g., a few millions. (#1532 #1573 #1583 #1622 #1627 #1672 # 1712 &#64;zhanghaohit &#64;nautaa)</p></li>
+<li><p>We have added a new storage engine that supports persistent storage (such as HDD and SSD) for the online SQL engine. Such a storage engine is helpful when a user wants to reduce the cost with acceptable performance degradation. (#1483 &#64;Leowner)</p></li>
+<li><p>We have supported C/C++ based User-Defined Functions (UDFs) with dynamic registration to enhance the development experience. (#1509 #1733 #1700 &#64;dl239 &#64;tobegit3hub)</p></li>
+</ul>
+</section>
+<section id="id8">
+<h3>Other Features<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Enhance the OpenMLDB Prometheus exporter ( #1584, #1645, #1754 &#64;aceforeverd )</p></li>
+<li><p>Support collecting statistics of query response time for online queries ( #1497, #1521 &#64;aceforeverd )</p></li>
+<li><p>Support new SQL commands: <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">COMPONENTS</span></code>, <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">TABLE</span> <span class="pre">STATUS</span></code> (#1380 #1431 #1704 &#64;aceforeverd)</p></li>
+<li><p>Support setting global variables (#1310 #1359 #1364 &#64;keyu813 &#64;aceforeverd)</p></li>
+<li><p>Support reading Spark configuration files from the CLI (#1600 &#64;tobegit3hub)</p></li>
+<li><p>Support using multiple threads for the Spark local mode (#1675 &#64;tobegit3hub)</p></li>
+<li><p>Enhance the performance of join by using the Spark’s native expression (#1502 &#64;tobegit3hub)</p></li>
+<li><p>Support the validation for TaskManager configuration (#1262 &#64;tobegit3hub)</p></li>
+<li><p>Support tracking unfinished jobs in the TaskManager (#1474 &#64;tobegit3hub)</p></li>
+<li><p>Other minor features (#1601 &#64;dl239; #1574 &#64;vagetablechicken; #1546 &#64;keyu813; #1729 &#64;vagetablechicken; #1460 &#64;tobegit3hub)</p></li>
+</ul>
+</section>
+<section id="id9">
+<h3>Bug Fixes<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Incorrect results when the order of conditions specified in <code class="docutils literal notranslate"><span class="pre">where</span></code> is different from that of the index (#1709 &#64;aceforeverd)</p></li>
+<li><p>Incorrect results of <code class="docutils literal notranslate"><span class="pre">lag</span></code>/<code class="docutils literal notranslate"><span class="pre">at</span></code>/<code class="docutils literal notranslate"><span class="pre">lead</span></code> under certain circumstances (#1605 #1739 &#64;aceforeverd)</p></li>
+<li><p>Memory leakage in <code class="docutils literal notranslate"><span class="pre">zk_client</span></code> (#1660 &#64;wuxiaobai24)</p></li>
+<li><p>No catalog update if the role of a tablet is changed (#1655 &#64;dl239)</p></li>
+<li><p>Related bugs about <code class="docutils literal notranslate"><span class="pre">UnsafeRow</span></code> for the offline engine (#1298, #1312, #1326, #1362, #1637, #1381, #1731 &#64;tobegit3hub)</p></li>
+<li><p>Incorrect results after adding a new index in the standalone mode (#1721 &#64;keyu813)</p></li>
+<li><p>Incorrect results of <code class="docutils literal notranslate"><span class="pre">SHOW</span> <span class="pre">JOBS</span></code> under certain circumstances (#1453 &#64;tobegit3hub)</p></li>
+<li><p>Incorrect results of the date columns with <code class="docutils literal notranslate"><span class="pre">UnsafeRowOpt</span></code>(#1469 &#64;tobegit3hub)</p></li>
+<li><p>Other minor bug fixes (#1698 &#64;kfiring; #1651 &#64;kutlayacar; #1621 &#64;KaidoWang; #1150, #1243 &#64;tobegit3hub; )</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>Code Refactoring<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<p>#1616 &#64;dl239; #1743 &#64;zjx1319</p>
+</section>
+</section>
+<section id="v0-4-4-release-notes">
+<h2>v0.4.4 Release Notes<a class="headerlink" href="#v0-4-4-release-notes" title="Permalink to this headline">#</a></h2>
+<section id="id11">
+<h3>Features<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Support the standalone version by Java and Python SDKs (#1302 #1325 #1485 &#64;tobegit3hub &#64;HuilinWu2 &#64;keyu813)</p></li>
+<li><p>Support the blocking execution for offline queries (#1486 &#64;vagetablechicken )</p></li>
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">getStatement</span></code> API in Java SDK (#1231 &#64;dl239 )</p></li>
+<li><p>Support multiple rows insertion in the Python SDK (#1402 &#64;hezhaozhao-git )</p></li>
+<li><p>Support the JDBC connection (#1511 &#64;vagetablechicken )</p></li>
+</ul>
+</section>
+<section id="id12">
+<h3>Bug Fixes<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The error message is empty when executing <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">deployment</span></code> in CLI fails. (#1415 &#64;dl239 )</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">job</span></code> and <code class="docutils literal notranslate"><span class="pre">show</span> <span class="pre">jobs</span></code> cannot display correct information. (#1440 &#64;vagetablechicken )</p></li>
+<li><p>The built-in function execution on a string filed with the length of greater than 2048 characters causes OpenMLDB crash. (#1540 &#64;dl239 )</p></li>
+<li><p>The simple expression inference fails in some cases (#1443 &#64;jingchen2222 )</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">PreparedStatement</span></code> in Java SDK does not perform as expected.  (#1511 &#64;vagetablechicken )</p></li>
+</ul>
+</section>
+<section id="id13">
+<h3>Code Refactoring<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h3>
+<p>#1467 &#64;aimanfatima ; #1513 &#64;L-Y-L ; #1503 &#64;Stevinson ;</p>
+</section>
+<section id="acknowledgement">
+<h3>Acknowledgement<a class="headerlink" href="#acknowledgement" title="Permalink to this headline">#</a></h3>
+<p>We appreciate the contribution to this release from all of our contributors, especially those from the community who are not from 4Paradigm’s core OpenMLDB team, including &#64;hezhaozhao-git &#64;HuilinWu2 &#64;keyu813 &#64;aimanfatima &#64;L-Y-L &#64;Stevinson . We are looking forward to your contribution!</p>
+</section>
+</section>
+<section id="v0-4-3-release-notes">
+<h2>v0.4.3 Release Notes<a class="headerlink" href="#v0-4-3-release-notes" title="Permalink to this headline">#</a></h2>
+<section id="id14">
+<h3>Features<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Add the output of the number of rows imported after successfully importing data (#1401 &#64;Manny-op)</p></li>
+<li><p>Code Refactoring (#1366 &#64;Cupid0320; #1378 &#64;wuteek; #1418 &#64;prashantpaidi; #1420 &#64;shiyoubun; #1422 &#64;vagetablechicken)</p></li>
+</ul>
+</section>
+<section id="id15">
+<h3>Bug Fixes<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Loading online data with “not null” columns in Spark fails. (#1341 &#64;vagetablechicken)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_where</span></code> and <code class="docutils literal notranslate"><span class="pre">min_where</span></code> results are incorrect if there is no rows matched. (#1403 &#64;aceforeverd)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">insert</span></code> and <code class="docutils literal notranslate"><span class="pre">select</span></code> execution of the standalone version fails. (#1426 &#64;dl239)</p></li>
+<li><p>Other minor bug fixes (#1379 &#64;wuteek; #1384 jasleon)</p></li>
+</ul>
+</section>
+</section>
+<section id="v0-4-2-release-notes">
+<h2>v0.4.2 Release Notes<a class="headerlink" href="#v0-4-2-release-notes" title="Permalink to this headline">#</a></h2>
+<section id="id16">
+<h3>Features<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Support timestamps in <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">int</span></code> when importing a csv file (#1237 &#64;vagetablechicken)</p></li>
+<li><p>Change the default execution mode in CLI from <code class="docutils literal notranslate"><span class="pre">online</span></code> to <code class="docutils literal notranslate"><span class="pre">offline</span></code> (#1332 &#64;dl239)</p></li>
+<li><p>Enhancements for the Python SDK:</p>
+<ul>
+<li><p>Support <code class="docutils literal notranslate"><span class="pre">fetchmany</span></code> and <code class="docutils literal notranslate"><span class="pre">fetchall</span></code> in Python SDK (#1215 &#64;HuilinWu2)</p></li>
+<li><p>Support fetching logs of TaskManager jobs in Python SDK and APIs (#1214 &#64;tobegit3hub)</p></li>
+<li><p>Support fetching the schema of result sets in Python SDK (#1194 &#64;tobegit3hub)</p></li>
+<li><p>Support the SQL magic function in Jupyter Notebook when using the Python SDK. (#1164 &#64;HuilinWu2)</p></li>
+</ul>
+</li>
+<li><p>Enhancements for the TaskManager:</p>
+<ul>
+<li><p>Taskmanager can find the local batchjob jar if the path is not configured. (#1250 &#64;tobegit3hub)</p></li>
+<li><p>Support the Yarn-client mode in TaskManager (#1265 &#64;tobegit3hub)</p></li>
+<li><p>Support correctness checking for TaskManager’s configuration (#1262 &#64;tobegit3hub)</p></li>
+<li><p>Support reordering for the task list (#1256 &#64;tobegit3hub)</p></li>
+</ul>
+</li>
+<li><p>Add new UDF functions of <code class="docutils literal notranslate"><span class="pre">lower</span></code> and <code class="docutils literal notranslate"><span class="pre">lcase</span></code> (#1192 &#64;Liu-2001)</p></li>
+<li><p>Offline queries that do not execute on tables will run successfully even when the connection fails. (#1264 &#64;tobegit3hub)</p></li>
+</ul>
+</section>
+<section id="id17">
+<h3>Bug Fixes<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Offline data import fails when the timestamp value is <code class="docutils literal notranslate"><span class="pre">null</span></code>. (#1274 &#64;tobegit3hub)</p></li>
+<li><p>Start time of TaskManager jobs in CLI is null. (#1272 &#64;tobegit3hub)</p></li>
+<li><p>LAST JOIN may fail in the cluster version under certain circumstances. (#1226 &#64;dl239)</p></li>
+<li><p>Invalid SQL may run successfully. (#1208 &#64;aceforeverd)</p></li>
+</ul>
+</section>
+</section>
+<section id="v0-4-1-release-notes">
+<h2>v0.4.1 Release Notes<a class="headerlink" href="#v0-4-1-release-notes" title="Permalink to this headline">#</a></h2>
+<section id="id18">
+<h3>Features<a class="headerlink" href="#id18" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Improve CLI error messages and support the ‘enable_trace’ system variable (#1129 &#64;jingchen2222)</p></li>
+</ul>
+</section>
+<section id="id19">
+<h3>Bug Fixes<a class="headerlink" href="#id19" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>CLI coredumps when it fails to connect to a nameserver. (#1166 &#64;keyu813)</p></li>
+<li><p>Java SDK has the issue of memory leaks. (#1148 &#64;dl239)</p></li>
+<li><p>The startup fails if a pid file exists. (#1108 &#64;dl239)</p></li>
+<li><p>There are incorrect values for the column with the date type when loading data into an online table. (#1103 &#64;yabg-shuai666)</p></li>
+<li><p>Offline data import for the CSV format may cause incorrect results. (#1100 &#64;yabg-shuai666)</p></li>
+<li><p>‘Offline path’ cannot be displayed after importing offline data. (#1172 &#64;vagetablechicken)</p></li>
+</ul>
+</section>
+</section>
+<section id="v0-4-0-release-notes">
+<h2>v0.4.0 Release Notes<a class="headerlink" href="#v0-4-0-release-notes" title="Permalink to this headline">#</a></h2>
+<section id="id20">
+<h3>Highlights<a class="headerlink" href="#id20" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The SQL-centric feature is enhanced for both standalone and cluster versions. Now you can enjoy the SQL-centric development and deployment experience seamlessly. (#991,#1034,#1071,#1064,#1061,#1049,#1045,#1038,#1034,#1029,#997,#996,#968,#946,#840,#830,#814,#776,#774,#764,#747,#740,#466,#481,#1033,#1027,#966,#951,#950,#932,#853,#835,#804,#800,#596,#595,#568,#873,#1025,#1021,#1019,#994,#991,#987,#912,#896,#894,#893,#873,#778,#777,#745,#737,#701,#570,#559,#558,#553 &#64;tobegit3hub; #1030,#965,#933,#920,#829,#783,#754,#1005,#998 &#64;vagetablechicken)</p></li>
+<li><p>The Chinese documentations are thoroughly polished and accessible at <a class="reference external" href="https://docs.openmldb.ai/">https://docs.openmldb.ai/</a> . This documentation repository is available at <a class="reference external" href="https://github.com/4paradigm/openmldb-docs-zh">https://github.com/4paradigm/openmldb-docs-zh</a> , and you are welcome to make contributions.</p></li>
+<li><p>Experimental feature: We have introduced a monitoring module based on Prometheus + Grafana for online feature processing. (#1048 &#64;aceforeverd)</p></li>
+</ul>
+</section>
+<section id="id21">
+<h3>Other Features<a class="headerlink" href="#id21" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Support SQL syntax: LIKE, HAVING (#841 &#64;aceforeverd; #927,#698 &#64;jingchen2222)</p></li>
+<li><p>Support new built-in functions: reverse (#1004 &#64;nautaa), dayofyear (#856 &#64;Nicholas-SR)</p></li>
+<li><p>Improve the compilation and install process, and support building from sources (#999,#871,#594,#752,#793,#805,#875,#871,#999 &#64;aceforeverd; #992 &#64;vagetablechicken)</p></li>
+<li><p>Improve the GitHub CI/CD workflow (#842,#884,#875,#919,#1056,#874 &#64;aceforeverd)</p></li>
+<li><p>Support system databases and tables (#773 &#64;dl239)</p></li>
+<li><p>Improve the function <code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">index</span></code> (#828 &#64;dl239)</p></li>
+<li><p>Improve the demo image (#1023,#690,#734,#751 &#64;zhanghaohit)</p></li>
+<li><p>Improve the Python SDK (#913,#906 &#64;tobegit3hub;#949,#909 &#64;HuilinWu2; #838 &#64;dl239)</p></li>
+<li><p>Simplify the concepts of execution modes (#877,#985,#892 &#64;jingchen2222)</p></li>
+<li><p>Add data import and export for the cluster version (#1078 &#64;tobegit3hub)</p></li>
+<li><p>Add new deployment command for the cluster version (#921 &#64;dl239)</p></li>
+<li><p>Support default values when creating a table (#563 &#64;zoyopei)</p></li>
+<li><p>Support string delimiters and quotes (#668 &#64;ZackeryWang)</p></li>
+<li><p>Add a new <code class="docutils literal notranslate"><span class="pre">lru_cache</span></code> to support upsert (#795 &#64;vagetablechicken)</p></li>
+<li><p>Support adding index with any <code class="docutils literal notranslate"><span class="pre">ts_col</span></code> (#828 &#64;dl239)</p></li>
+<li><p>Improve the <code class="docutils literal notranslate"><span class="pre">ts</span></code> packing in <code class="docutils literal notranslate"><span class="pre">sql_insert_now</span></code> (#944 ,#974 &#64;keyu813)</p></li>
+<li><p>Improve documentations (#952 #885 &#64;mahengyang; #834 &#64;Nicholas-SR; #792,#1058,#1002,#872,#836,#792 &#64;lumianph; #844,#782 &#64;jingchen2222; #1022,#805 &#64;aceforeverd)</p></li>
+<li><p>Other minor updates (#1073 &#64;dl239)</p></li>
+</ul>
+</section>
+<section id="id22">
+<h3>Bug Fixes<a class="headerlink" href="#id22" title="Permalink to this headline">#</a></h3>
+<p>#847, #831, #647, #934, #953, #1015, #982, #927, #994, #1008, #1028, #1019, #779, #855, #350, #631, #1074, #1073, #1081</p>
+<p>&#64;nautaa, &#64;Nicholas-SR, &#64;aceforeverd, &#64;dl239, &#64;jingchen2222, &#64;tobegit3hub, &#64;keyu813</p>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="milestones.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Milestones</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../quickstart/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Quickstart</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OpenMLDB<br/>
+  
+      &copy; Copyright 2022, OpenMLDB.<br/>
+    Last updated on Aug 27, 2022, 3:54:54 PM.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
