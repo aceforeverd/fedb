@@ -6,7 +6,6 @@ on:
   push:
     branches:
       - main
-      - test-docs-workflow
     tags:
       - v*
   pull_request:
