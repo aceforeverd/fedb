@@ -1,4 +1,147 @@
-## Built-in Functions
+---
+title: udfs/udfs.h
+
+---
+# udfs/udfs.h
+
+## Functions
+
+| Name          | Description    |
+| -------------- | -------------- |
+| **[abs](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-abs)**()| <br>Return the absolute value of expr. |
+| **[acos](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-acos)**()| <br>Return the arc cosine of expr. |
+| **[add](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-add)**()| <br>Compute sum of two arguments. |
+| **[asin](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-asin)**()| <br>Return the arc sine of expr. |
+| **[at](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-at)**()| <br>Returns value evaluated at the row that is offset rows before the current row within the partition. Offset is evaluated with respect to the current row. |
+| **[atan](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-atan)**()| <br>Return the arc tangent of expr If called with one parameter, this function returns the arc tangent of expr. If called with two parameters X and Y, this function returns the arc tangent of Y / X. |
+| **[atan2](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-atan2)**()| <br>Return the arc tangent of Y / X.. |
+| **[avg](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-avg)**()| <br>Compute average of values. |
+| **[avg_cate](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-avg-cate)**()| <br>Compute average of values grouped by category key and output string. Each group is represented as 'K:V' and separated by comma in outputs and are sorted by key in ascend order. |
+| **[avg_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-avg-cate-where)**()| <br>Compute average of values matching specified condition grouped by category key and output string. Each group is represented as 'K:V' and separated by comma in outputs and are sorted by key in ascend order. |
+| **[avg_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-avg-where)**()| <br>Compute average of values match specified condition. |
+| **[bool](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-bool)**()| <br>Cast string expression to bool. |
+| **[ceil](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-ceil)**()| <br>Return the smallest integer value not less than the expr. |
+| **[ceiling](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-ceiling)**()| <br>Return the smallest integer value not less than the expr. |
+| **[char](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-char)**()| <br>Returns the ASCII character having the binary equivalent to expr. If n >= 256 the result is equivalent to char(n % 256). |
+| **[char_length](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-char-length)**()| <br>Returns the length of the string. It is measured in characters and multibyte character string is not supported. |
+| **[character_length](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-character-length)**()| <br>Returns the length of the string. It is measured in characters and multibyte character string is not supported. |
+| **[concat](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-concat)**()| <br>This function returns a string resulting from the joining of two or more string values in an end-to-end manner. (To add a separating value during joining, see concat_ws.) |
+| **[concat_ws](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-concat-ws)**()| <br>Returns a string resulting from the joining of two or more string value in an end-to-end manner. It separates those concatenated string values with the delimiter specified in the first function argument. |
+| **[cos](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-cos)**()| <br>Return the cosine of expr. |
+| **[cot](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-cot)**()| <br>Return the cotangent of expr. |
+| **[count](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-count)**()| <br>Compute number of values. |
+| **[count_cate](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-count-cate)**()| <br>Compute count of values grouped by category key and output string. Each group is represented as 'K:V' and separated by comma in outputs and are sorted by key in ascend order. |
+| **[count_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-count-cate-where)**()| <br>Compute count of values matching specified condition grouped by category key and output string. Each group is represented as 'K:V' and separated by comma in outputs and are sorted by key in ascend order. |
+| **[count_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-count-where)**()| <br>Compute number of values match specified condition. |
+| **[date](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-date)**()| <br>Cast timestamp or string expression to date. |
+| **[date_format](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-date-format)**()| <br>Formats the date value according to the format string. |
+| **[day](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-day)**()| <br>Return the day of the month for a timestamp or date. |
+| **[dayofmonth](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-dayofmonth)**()| <br>Return the day of the month for a timestamp or date. |
+| **[dayofweek](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-dayofweek)**()| <br>Return the day of week for a timestamp or date. |
+| **[dayofyear](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-dayofyear)**()| <br>Return the day of year for a timestamp or date. Returns 0 given an invalid date. |
+| **[degrees](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-degrees)**()| <br>Convert radians to degrees. |
+| **[distinct_count](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-distinct-count)**()| <br>Compute number of distinct values. |
+| **[double](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-double)**()| <br>Cast string expression to double. |
+| **[exp](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-exp)**()| <br>Return the value of e (the base of natural logarithms) raised to the power of expr. |
+| **[first_value](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-first-value)**()| <br>Returns the value of expr from the first row of the window frame. |
+| **[float](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-float)**()| <br>Cast string expression to float. |
+| **[floor](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-floor)**()| <br>Return the largest integer value not less than the expr. |
+| **[fz_join](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-fz-join)**()| <br>For each string value from specified column of window, join by delimeter. Null values are skipped. |
+| **[fz_split](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-fz-split)**()| <br>Split string to list by delimeter. Null values are skipped. |
+| **[fz_split_by_key](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-fz-split-by-key)**()| <br>Split string by delimeter and then split each segment as kv pair, then add each key to output list. Null and illegal segments are skipped. |
+| **[fz_split_by_value](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-fz-split-by-value)**()| <br>Split string by delimeter and then split each segment as kv pair, then add each value to output list. Null and illegal segments are skipped. |
+| **[fz_top1_ratio](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-fz-top1-ratio)**()| <br>Compute the top1 key's ratio. |
+| **[fz_topn_frequency](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-fz-topn-frequency)**()| <br>Return the topN keys sorted by their frequency. |
+| **[fz_window_split](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-fz-window-split)**()| <br>For each string value from specified column of window, split by delimeter and add segment to output list. Null values are skipped. |
+| **[fz_window_split_by_key](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-fz-window-split-by-key)**()| <br>For each string value from specified column of window, split by delimeter and then split each segment as kv pair, then add each key to output list. Null and illegal segments are skipped. |
+| **[fz_window_split_by_value](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-fz-window-split-by-value)**()| <br>For each string value from specified column of window, split by delimeter and then split each segment as kv pair, then add each value to output list. Null and illegal segments are skipped. |
+| **[hex](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-hex)**()| <br>Convert integer to hexadecimal. |
+| **[hour](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-hour)**()| <br>Return the hour for a timestamp. |
+| **[identity](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-identity)**()| <br>Return value. |
+| **[if_null](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-if-null)**()| <br>If input is not null, return input value; else return default value. |
+| **[ifnull](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-ifnull)**()| <br>If input is not null, return input value; else return default value. |
+| **[ilike_match](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-ilike-match)**()| <br>pattern match same as ILIKE predicate |
+| **[inc](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-inc)**()| <br>Return expression + 1. |
+| **[int16](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-int16)**()| <br>Cast string expression to int16. |
+| **[int32](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-int32)**()| <br>Cast string expression to int32. |
+| **[int64](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-int64)**()| <br>Cast string expression to int64. |
+| **[is_null](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-is-null)**()| <br>Check if input value is null, return bool. |
+| **[isnull](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-isnull)**()| <br>Check if input value is null, return bool. |
+| **[join](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-join)**()| <br>For each string value from specified column of window, join by delimeter. Null values are skipped. |
+| **[lag](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-lag)**()| <br>Returns value evaluated at the row that is offset rows before the current row within the partition. Offset is evaluated with respect to the current row. |
+| **[last_day](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-last-day)**()| <br>Return the last day of the month to which the date belongs to. |
+| **[lcase](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-lcase)**()| <br>Convert all the characters to lowercase. Note that characters with values > 127 are simply returned. |
+| **[like_match](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-like-match)**()| <br>pattern match same as LIKE predicate |
+| **[ln](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-ln)**()| <br>Return the natural logarithm of expr. |
+| **[log](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-log)**()| <br>log(base, expr) If called with one parameter, this function returns the natural logarithm of expr. If called with two parameters, this function returns the logarithm of expr to the base. |
+| **[log10](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-log10)**()| <br>Return the base-10 logarithm of expr. |
+| **[log2](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-log2)**()| <br>Return the base-2 logarithm of expr. |
+| **[lower](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-lower)**()| <br>Convert all the characters to lowercase. Note that characters with values > 127 are simply returned. |
+| **[make_tuple](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-make-tuple)**()| |
+| **[max](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-max)**()| <br>Compute maximum of values. |
+| **[max_cate](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-max-cate)**()| <br>Compute maximum of values grouped by category key and output string. Each group is represented as 'K:V' and separated by comma in outputs and are sorted by key in ascend order. |
+| **[max_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-max-cate-where)**()| <br>Compute maximum of values matching specified condition grouped by category key and output string. Each group is represented as 'K:V' and separated by comma in outputs and are sorted by key in ascend order. |
+| **[max_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-max-where)**()| <br>Compute maximum of values match specified condition. |
+| **[maximum](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-maximum)**()| <br>Compute maximum of two arguments. |
+| **[median](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-median)**()| <br>Compute the median of values. |
+| **[min](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-min)**()| <br>Compute minimum of values. |
+| **[min_cate](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-min-cate)**()| <br>Compute minimum of values grouped by category key and output string. Each group is represented as 'K:V' and separated by comma in outputs and are sorted by key in ascend order. |
+| **[min_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-min-cate-where)**()| <br>Compute minimum of values matching specified condition grouped by category key and output string. Each group is represented as 'K:V' and separated by comma in outputs and are sorted by key in ascend order. |
+| **[min_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-min-where)**()| <br>Compute minimum of values match specified condition. |
+| **[minimum](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-minimum)**()| <br>Compute minimum of two arguments. |
+| **[minute](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-minute)**()| <br>Return the minute for a timestamp. |
+| **[month](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-month)**()| <br>Return the month part of a timestamp or date. |
+| **[nvl](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-nvl)**()| <br>If input is not null, return input value; else return default value. |
+| **[nvl2](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-nvl2)**()| <br>nvl2(expr1, expr2, expr3) - Returns expr2 if expr1 is not null, or expr3 otherwise. |
+| **[pow](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-pow)**()| <br>Return the value of expr1 to the power of expr2. |
+| **[power](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-power)**()| <br>Return the value of expr1 to the power of expr2. |
+| **[radians](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-radians)**()| <br>Returns the argument X, converted from degrees to radians. (Note that π radians equals 180 degrees.) |
+| **[regexp_like](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-regexp-like)**()| <br>pattern match same as RLIKE predicate (based on RE2) |
+| **[replace](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-replace)**()| <br>replace(str, search[, replace]) - Replaces all occurrences of `search` with `replace`|
+| **[reverse](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-reverse)**()| <br>Returns the reversed given string. |
+| **[round](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-round)**()| <br>Return the nearest integer value to expr (in floating-point format), rounding halfway cases away from zero, regardless of the current rounding mode. |
+| **[second](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-second)**()| <br>Return the second for a timestamp. |
+| **[sin](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-sin)**()| <br>Return the sine of expr. |
+| **[split](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-split)**()| <br>Split string to list by delimeter. Null values are skipped. |
+| **[split_by_key](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-split-by-key)**()| <br>Split string by delimeter and then split each segment as kv pair, then add each key to output list. Null and illegal segments are skipped. |
+| **[split_by_value](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-split-by-value)**()| <br>Split string by delimeter and then split each segment as kv pair, then add each value to output list. Null and illegal segments are skipped. |
+| **[sqrt](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-sqrt)**()| <br>Return square root of expr. |
+| **[strcmp](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-strcmp)**()| <br>Returns 0 if the strings are the same, -1 if the first argument is smaller than the second according to the current sort order, and 1 otherwise. |
+| **[string](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-string)**()| <br>Return string converted from timestamp expression. |
+| **[substr](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-substr)**()| <br>Return a substring `len` characters long from string str, starting at position `pos`. Alias function: `substr`|
+| **[substring](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-substring)**()| <br>Return a substring `len` characters long from string str, starting at position `pos`. Alias function: `substr`|
+| **[sum](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-sum)**()| <br>Compute sum of values. |
+| **[sum_cate](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-sum-cate)**()| <br>Compute sum of values grouped by category key and output string. Each group is represented as 'K:V' and separated by comma in outputs and are sorted by key in ascend order. |
+| **[sum_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-sum-cate-where)**()| <br>Compute sum of values matching specified condition grouped by category key and output string. Each group is represented as 'K:V' and separated by comma in outputs and are sorted by key in ascend order. |
+| **[sum_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-sum-where)**()| <br>Compute sum of values match specified condition. |
+| **[tan](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-tan)**()| <br>Return the tangent of expr. |
+| **[timestamp](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-timestamp)**()| <br>Cast int64, date or string expression to timestamp. |
+| **[top](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-top)**()| <br>Compute top k of values and output string separated by comma. The outputs are sorted in desc order. |
+| **[top1_ratio](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-top1-ratio)**()| <br>Compute the top1 key's ratio. |
+| **[top_n_key_avg_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-top-n-key-avg-cate-where)**()| <br>Compute average of values matching specified condition grouped by category key. Output string for top N category keys in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. |
+| **[top_n_key_count_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-top-n-key-count-cate-where)**()| <br>Compute count of values matching specified condition grouped by category key. Output string for top N category keys in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. |
+| **[top_n_key_max_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-top-n-key-max-cate-where)**()| <br>Compute maximum of values matching specified condition grouped by category key. Output string for top N category keys in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. |
+| **[top_n_key_min_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-top-n-key-min-cate-where)**()| <br>Compute minimum of values matching specified condition grouped by category key. Output string for top N category keys in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. |
+| **[top_n_key_sum_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-top-n-key-sum-cate-where)**()| <br>Compute sum of values matching specified condition grouped by category key. Output string for top N category keys in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. |
+| **[top_n_value_avg_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-top-n-value-avg-cate-where)**()| <br>Compute average of values matching specified condition grouped by category key. Output string for top N aggregate values in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. |
+| **[top_n_value_count_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-top-n-value-count-cate-where)**()| <br>Compute count of values matching specified condition grouped by category key. Output string for top N aggregate values in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. |
+| **[top_n_value_max_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-top-n-value-max-cate-where)**()| <br>Compute maximum of values matching specified condition grouped by category key. Output string for top N aggregate values in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. |
+| **[top_n_value_min_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-top-n-value-min-cate-where)**()| <br>Compute minimum of values matching specified condition grouped by category key. Output string for top N aggregate values in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. |
+| **[top_n_value_sum_cate_where](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-top-n-value-sum-cate-where)**()| <br>Compute sum of values matching specified condition grouped by category key. Output string for top N aggregate values in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. |
+| **[topn_frequency](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-topn-frequency)**()| <br>Return the topN keys sorted by their frequency. |
+| **[truncate](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-truncate)**()| <br>Return the nearest integer that is not greater in magnitude than the expr. |
+| **[ucase](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-ucase)**()| <br>Convert all the characters to uppercase. Note that characters values > 127 are simply returned. |
+| **[unhex](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-unhex)**()| <br>Convert hexadecimal to binary string. |
+| **[upper](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-upper)**()| <br>Convert all the characters to uppercase. Note that characters values > 127 are simply returned. |
+| **[week](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-week)**()| <br>Return the week of year for a timestamp or date. |
+| **[weekofyear](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-weekofyear)**()| <br>Return the week of year for a timestamp or date. |
+| **[window_split](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-window-split)**()| <br>For each string value from specified column of window, split by delimeter and add segment to output list. Null values are skipped. |
+| **[window_split_by_key](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-window-split-by-key)**()| <br>For each string value from specified column of window, split by delimeter and then split each segment as kv pair, then add each key to output list. Null and illegal segments are skipped. |
+| **[window_split_by_value](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-window-split-by-value)**()| <br>For each string value from specified column of window, split by delimeter and then split each segment as kv pair, then add each value to output list. Null and illegal segments are skipped. |
+| **[year](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-year)**()| <br>Return the year part of a timestamp or date. |
+
+
+## Functions Documentation
 
 ### function abs
 
@@ -159,13 +302,13 @@ The offset in window is `nth_value()`, not `[lag()](/reference/sql/functions_and
 Example:
 
 
-| c1    | c2     |
+| c1  | c2   |
 |  -------- | -------- |
-| 0    | 1     |
-| 1    | 1     |
-| 2    | 2     |
-| 3    | 2     |
-| 4    | 2    |
+| 0  | 1   |
+| 1  | 1   |
+| 2  | 2   |
+| 3  | 2   |
+| 4  | 2   |
 
 
 ```sql
@@ -297,13 +440,13 @@ Compute average of values.
 Example:
 
 
-| value     |
+| value   |
 |  -------- |
-| 0     |
-| 1     |
-| 2     |
-| 3     |
-| 4    |
+| 0   |
+| 1   |
+| 2   |
+| 3   |
+| 4   |
 
 
 ```sql
@@ -337,13 +480,13 @@ Compute average of values grouped by category key and output string. Each group 
 Example:
 
 
-| value    | catagory     |
+| value  | catagory   |
 |  -------- | -------- |
-| 0    | x     |
-| 1    | y     |
-| 2    | x     |
-| 3    | y     |
-| 4    | x    |
+| 0  | x   |
+| 1  | y   |
+| 2  | x   |
+| 3  | y   |
+| 4  | x   |
 
 
 ```sql
@@ -382,13 +525,13 @@ Compute average of values matching specified condition grouped by category key a
 Example:
 
 
-| value    | condition    | catagory     |
+| value  | condition  | catagory   |
 |  -------- | -------- | -------- |
-| 0    | true    | x     |
-| 1    | false    | y     |
-| 2    | false    | x     |
-| 3    | true    | y     |
-| 4    | true    | x    |
+| 0  | true  | x   |
+| 1  | false  | y   |
+| 2  | false  | x   |
+| 3  | true  | y   |
+| 4  | true  | x   |
 
 
 ```sql
@@ -430,13 +573,13 @@ Compute average of values match specified condition.
 Example:
 
 
-| value     |
+| value   |
 |  -------- |
-| 0     |
-| 1     |
-| 2     |
-| 3     |
-| 4    |
+| 0   |
+| 1   |
+| 2   |
+| 3   |
+| 4   |
 
 
 ```sql
@@ -713,6 +856,7 @@ SELECT COS(0);
 
 * The value returned by [cos()](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-cos) is always in the range: -1 to 1.
 
+
 **Supported Types**:
 
 * [`number`] 
@@ -772,13 +916,13 @@ Compute number of values.
 Example:
 
 
-| value     |
+| value   |
 |  -------- |
-| 0     |
-| 1     |
-| 2     |
-| 3     |
-| 4    |
+| 0   |
+| 1   |
+| 2   |
+| 3   |
+| 4   |
 
 
 ```sql
@@ -817,13 +961,13 @@ Compute count of values grouped by category key and output string. Each group is
 Example:
 
 
-| value    | catagory     |
+| value  | catagory   |
 |  -------- | -------- |
-| 0    | x     |
-| 1    | y     |
-| 2    | x     |
-| 3    | y     |
-| 4    | x    |
+| 0  | x   |
+| 1  | y   |
+| 2  | x   |
+| 3  | y   |
+| 4  | x   |
 
 
 ```sql
@@ -862,13 +1006,13 @@ Compute count of values matching specified condition grouped by category key and
 Example:
 
 
-| value    | condition    | catagory     |
+| value  | condition  | catagory   |
 |  -------- | -------- | -------- |
-| 0    | true    | x     |
-| 1    | false    | y     |
-| 2    | false    | x     |
-| 3    | true    | y     |
-| 4    | true    | x    |
+| 0  | true  | x   |
+| 1  | false  | y   |
+| 2  | false  | x   |
+| 3  | true  | y   |
+| 4  | true  | x   |
 
 
 ```sql
@@ -910,13 +1054,13 @@ Compute number of values match specified condition.
 Example:
 
 
-| value     |
+| value   |
 |  -------- |
-| 0     |
-| 1     |
-| 2     |
-| 3     |
-| 4    |
+| 0   |
+| 1   |
+| 2   |
+| 3   |
+| 4   |
 
 
 ```sql
@@ -928,6 +1072,7 @@ SELECT count_where(value, value > 2) OVER w;
 
 **Supported Types**:
 
+* [`list<bool>`, `list<bool>`]
 * [`list<date>`, `list<bool>`]
 * [`list<number>`, `list<bool>`]
 * [`list<row>`, `list<bool>`]
@@ -972,14 +1117,14 @@ date_format()
 
 **Description**:
 
-Formats the datetime value according to the format string. 
+Formats the date value according to the format string. 
 
 Example:
 
 ```sql
 
-select date_format(timestamp(1590115420000),"%Y-%m-%d %H:%M:%S");
---output "2020-05-22 10:43:40"
+select date_format(date(1590115420000),"%Y-%m-%d");
+--output "2020-05-22"
 ```
 
 **Supported Types**:
@@ -1179,13 +1324,13 @@ Compute number of distinct values.
 Example:
 
 
-| value     |
+| value   |
 |  -------- |
-| 0     |
-| 0     |
-| 2     |
-| 2     |
-| 4    |
+| 0   |
+| 0   |
+| 2   |
+| 2   |
+| 4   |
 
 
 ```sql
@@ -1276,7 +1421,7 @@ Returns the value of expr from the first row of the window frame.
     @since 0.1.0
 ```
 
- **Supported Types**: 
+**Supported Types**: 
 
 ### function float
 
@@ -1346,7 +1491,7 @@ fz_join()
 
 **Description**:
 
-Used by feature zero, for each string value from specified column of window, join by delimeter. Null values are skipped. 
+For each string value from specified column of window, join by delimeter. Null values are skipped. 
 
 **Since**:
 0.1.0
@@ -1373,7 +1518,7 @@ fz_split()
 
 **Description**:
 
-Used by feature zero, split string to list by delimeter. Null values are skipped. 
+Split string to list by delimeter. Null values are skipped. 
 
 **Since**:
 0.1.0
@@ -1392,7 +1537,7 @@ fz_split_by_key()
 
 **Description**:
 
-Used by feature zero, split string by delimeter and then split each segment as kv pair, then add each key to output list. Null and illegal segments are skipped. 
+Split string by delimeter and then split each segment as kv pair, then add each key to output list. Null and illegal segments are skipped. 
 
 **Since**:
 0.1.0
@@ -1411,7 +1556,7 @@ fz_split_by_value()
 
 **Description**:
 
-Used by feature zero, split string by delimeter and then split each segment as kv pair, then add each value to output list. Null and illegal segments are skipped. 
+Split string by delimeter and then split each segment as kv pair, then add each value to output list. Null and illegal segments are skipped. 
 
 **Since**:
 0.1.0
@@ -1438,7 +1583,7 @@ Compute the top1 key's ratio.
     @since 0.1.0
 ```
 
- **Supported Types**:
+**Supported Types**:
 
 * [`list<date>`]
 * [`list<number>`]
@@ -1461,7 +1606,7 @@ Return the topN keys sorted by their frequency.
     @since 0.1.0
 ```
 
- **Supported Types**:
+**Supported Types**:
 
 * [`list<date>`, `list<int32>`]
 * [`list<number>`, `list<int32>`]
@@ -1476,7 +1621,7 @@ fz_window_split()
 
 **Description**:
 
-Used by feature zero, for each string value from specified column of window, split by delimeter and add segment to output list. Null values are skipped. 
+For each string value from specified column of window, split by delimeter and add segment to output list. Null values are skipped. 
 
 **Since**:
 0.1.0
@@ -1495,7 +1640,7 @@ fz_window_split_by_key()
 
 **Description**:
 
-Used by feature zero, for each string value from specified column of window, split by delimeter and then split each segment as kv pair, then add each key to output list. Null and illegal segments are skipped. 
+For each string value from specified column of window, split by delimeter and then split each segment as kv pair, then add each key to output list. Null and illegal segments are skipped. 
 
 **Since**:
 0.1.0
@@ -1514,7 +1659,7 @@ fz_window_split_by_value()
 
 **Description**:
 
-Used by feature zero, for each string value from specified column of window, split by delimeter and then split each segment as kv pair, then add each value to output list. Null and illegal segments are skipped. 
+For each string value from specified column of window, split by delimeter and then split each segment as kv pair, then add each value to output list. Null and illegal segments are skipped. 
 
 **Since**:
 0.1.0
@@ -1533,7 +1678,7 @@ hex()
 
 **Description**:
 
-Convert number to hexadecimal. If double, convert to hexadecimal after rounding. 
+Convert integer to hexadecimal. 
 
 **Since**:
 0.6.0
@@ -1543,12 +1688,8 @@ Example:
 
 ```sql
 
-select hex(17);
---output "11"
-select hex(17.4);
---output "11"
-select hex(17.5);
---output "12"
+select hex("Spark SQL");
+--output "537061726B2053514C"
 ```
 
 
@@ -1712,7 +1853,6 @@ pattern match same as ILIKE predicate
 
   * **target** string to match
   * **pattern** the glob match pattern
-  * **escape** escape character
 
 
 **Since**:
@@ -1724,31 +1864,20 @@ Rules:
 1. Special characters:
     * underscore(_): exact one character
     * precent(%): zero or more characters.
-2. Escape character:
-    * backslash() is the default escape character
-    * length of <escape character> must <= 1
-    * if <escape character> is empty, escape feautre is disabled
+2. Escape character: backslash() is the default escape character
 3. case insensitive
 4. backslash: sql string literal use backslash() for escape sequences, write '\' as backslash itself
-5. if one or more of target, pattern and escape are null values, then the result is null
+5. Return NULL if target or pattern is NULL
+
 Example:
 
 ```sql
 
-select ilike_match('Mike', 'mi_e', '\\')
+select ilike_match('Mike', 'Mi_k')
 -- output: true
 
-select ilike_match('Mike', 'mi\\_e', '\\')
--- output: false
-
-select ilike_match('Mi_e', 'mi\\_e', '\\')
+select ilike_match('Mike', 'mi_k')
 -- output: true
-
-select ilike_match('Mi\\ke', 'mi\\_e', '')
--- output: true
-
-select ilike_match('Mi\\ke', 'mi\\_e', string(null))
--- output: null
 ```
 
 
@@ -1921,6 +2050,33 @@ Check if input value is null, return bool.
 * [`string`]
 * [`timestamp`] 
 
+### function join
+
+```cpp
+join()
+```
+
+**Description**:
+
+For each string value from specified column of window, join by delimeter. Null values are skipped. 
+
+**Since**:
+0.1.0
+
+
+Example:
+
+```sql
+
+select fz_join(fz_split("k1:v1,k2:v2", ","), " ");
+--  "k1:v1 k2:v2"
+```
+
+
+**Supported Types**:
+
+* [`list<string>`, `string`] 
+
 ### function lag
 
 ```cpp
@@ -1944,13 +2100,13 @@ The offset in window is `nth_value()`, not `[lag()](/reference/sql/functions_and
 Example:
 
 
-| c1    | c2     |
+| c1  | c2   |
 |  -------- | -------- |
-| 0    | 1     |
-| 1    | 1     |
-| 2    | 2     |
-| 3    | 2     |
-| 4    | 2    |
+| 0  | 1   |
+| 1  | 1   |
+| 2  | 2   |
+| 3  | 2   |
+| 4  | 2   |
 
 
 ```sql
@@ -2057,7 +2213,6 @@ pattern match same as LIKE predicate
 
   * **target** string to match
   * **pattern** the glob match pattern
-  * **escape** escape character
 
 
 **Since**:
@@ -2069,31 +2224,19 @@ Rules:
 1. Special characters:
     * underscore(_): exact one character
     * precent(%): zero or more characters.
-2. Escape character:
-    * backslash() is the default escape character
-    * length of <escape character> must <= 1
-    * if <escape character> is empty, escape feature is disabled
+2. Escape character is backslash() by default
 3. case sensitive
 4. backslash: sql string literal use backslash() for escape sequences, write '\' as backslash itself
-5. if one or more of target, pattern and escape are null values, then the result is null
+5. if one or more of target, pattern then the result is null
+
 Example:
 
 ```sql
 
-select like_match('Mike', 'Mi_e', '\\')
+select like_match('Mike', 'Mi_k')
 -- output: true
-
-select like_match('Mike', 'Mi\\_e', '\\')
+select like_match('Mike', 'mi_k')
 -- output: false
-
-select like_match('Mi_e', 'Mi\\_e', '\\')
--- output: true
-
-select like_match('Mi\\ke', 'Mi\\_e', '')
--- output: true
-
-select like_match('Mi\\ke', 'Mi\\_e', string(null))
--- output: null
 ```
 
 
@@ -2311,13 +2454,13 @@ Compute maximum of values.
 Example:
 
 
-| value     |
+| value   |
 |  -------- |
-| 0     |
-| 1     |
-| 2     |
-| 3     |
-| 4    |
+| 0   |
+| 1   |
+| 2   |
+| 3   |
+| 4   |
 
 
 ```sql
@@ -2354,13 +2497,13 @@ Compute maximum of values grouped by category key and output string. Each group 
 Example:
 
 
-| value    | catagory     |
+| value  | catagory   |
 |  -------- | -------- |
-| 0    | x     |
-| 1    | y     |
-| 2    | x     |
-| 3    | y     |
-| 4    | x    |
+| 0  | x   |
+| 1  | y   |
+| 2  | x   |
+| 3  | y   |
+| 4  | x   |
 
 
 ```sql
@@ -2399,13 +2542,13 @@ Compute maximum of values matching specified condition grouped by category key a
 Example:
 
 
-| value    | condition    | catagory     |
+| value  | condition  | catagory   |
 |  -------- | -------- | -------- |
-| 0    | true    | x     |
-| 1    | false    | y     |
-| 2    | false    | x     |
-| 3    | true    | y     |
-| 4    | true    | x    |
+| 0  | true  | x   |
+| 1  | false  | y   |
+| 2  | false  | x   |
+| 3  | true  | y   |
+| 4  | true  | x   |
 
 
 ```sql
@@ -2447,13 +2590,13 @@ Compute maximum of values match specified condition.
 Example:
 
 
-| value     |
+| value   |
 |  -------- |
-| 0     |
-| 1     |
-| 2     |
-| 3     |
-| 4    |
+| 0   |
+| 1   |
+| 2   |
+| 3   |
+| 4   |
 
 
 ```sql
@@ -2517,12 +2660,12 @@ Compute the median of values.
 Example:
 
 
-| value     |
+| value   |
 |  -------- |
-| 1     |
-| 2     |
-| 3     |
-| 4    |
+| 1   |
+| 2   |
+| 3   |
+| 4   |
 
 
 ```sql
@@ -2559,13 +2702,13 @@ Compute minimum of values.
 Example:
 
 
-| value     |
+| value   |
 |  -------- |
-| 0     |
-| 1     |
-| 2     |
-| 3     |
-| 4    |
+| 0   |
+| 1   |
+| 2   |
+| 3   |
+| 4   |
 
 
 ```sql
@@ -2602,13 +2745,13 @@ Compute minimum of values grouped by category key and output string. Each group 
 Example:
 
 
-| value    | catagory     |
+| value  | catagory   |
 |  -------- | -------- |
-| 0    | x     |
-| 1    | y     |
-| 2    | x     |
-| 3    | y     |
-| 4    | x    |
+| 0  | x   |
+| 1  | y   |
+| 2  | x   |
+| 3  | y   |
+| 4  | x   |
 
 
 ```sql
@@ -2647,14 +2790,14 @@ Compute minimum of values matching specified condition grouped by category key a
 Example:
 
 
-| value    | condition    | catagory     |
+| value  | condition  | catagory   |
 |  -------- | -------- | -------- |
-| 0    | true    | x     |
-| 1    | false    | y     |
-| 2    | false    | x     |
-| 1    | true    | y     |
-| 4    | true    | x     |
-| 3    | true    | y    |
+| 0  | true  | x   |
+| 1  | false  | y   |
+| 2  | false  | x   |
+| 1  | true  | y   |
+| 4  | true  | x   |
+| 3  | true  | y   |
 
 
 ```sql
@@ -2696,13 +2839,13 @@ Compute minimum of values match specified condition.
 Example:
 
 
-| value     |
+| value   |
 |  -------- |
-| 0     |
-| 1     |
-| 2     |
-| 3     |
-| 4    |
+| 0   |
+| 1   |
+| 2   |
+| 3   |
+| 4   |
 
 
 ```sql
@@ -3032,7 +3175,6 @@ pattern match same as RLIKE predicate (based on RE2)
 
   * **target** string to match
   * **pattern** the regular expression match pattern
-  * **flags** specifies the matching behavior of the regular expression function. 'c': case-sensitive matching(default); 'i': case-insensitive matching; 'm': multi-line mode; 'e': Extracts sub-matches(ignored here); 's': Enables the POSIX wildcard character . to match new line.
 
 
 **Since**:
@@ -3052,20 +3194,15 @@ Rules:
     * caret (^) : the caret has two different meanings in a regular expression, depending on where it appears: As the first character in a character class, a caret negates the characters in that character class. As the first character in a regular expression, a caret identifies the beginning of a term. In this context, the caret is often referred to as an anchor character.
     * dollar sign ($) : as the last character in a regular expression, a dollar sign identifies the end of a term. In this context, the dollar sign is often referred to as an anchor character.
     * backslash () : used to invoke the actual character value for a metacharacter in a regular expression.
-2. Default flags parameter: 'c'
+2. case sensitive
 3. backslash: sql string literal use backslash() for escape sequences, write '\' as backslash itself
-4. if one or more of target, pattern and flags are null values, then the result is null
+4. Return NULL if target or pattern is NULL
+
 Example:
 
 ```sql
 
 select regexp_like('Mike', 'Mi.k')
--- output: true
-
-select regexp_like('Mi\nke', 'mi.k')
--- output: false
-
-select regexp_like('Mi\nke', 'mi.k', 'si')
 -- output: true
 
 select regexp_like('append', 'ap*end')
@@ -3098,8 +3235,8 @@ Example:
 
 ```sql
 
-select replace("ABCabc", "abc", "ABC")
--- output "ABCABC"
+select replace("ABCabc", "abc")
+-- output "ABC"
 ```
 
 
@@ -3227,9 +3364,67 @@ SELECT SIN(0);
 
 * The value returned by [sin()](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-sin) is always in the range: -1 to 1.
 
+
 **Supported Types**:
 
 * [`number`] 
+
+### function split
+
+```cpp
+split()
+```
+
+**Description**:
+
+Split string to list by delimeter. Null values are skipped. 
+
+**Since**:
+0.1.0
+
+
+
+**Supported Types**:
+
+* [`string`, `string`] 
+
+### function split_by_key
+
+```cpp
+split_by_key()
+```
+
+**Description**:
+
+Split string by delimeter and then split each segment as kv pair, then add each key to output list. Null and illegal segments are skipped. 
+
+**Since**:
+0.1.0
+
+
+
+**Supported Types**:
+
+* [`string`, `string`, `string`] 
+
+### function split_by_value
+
+```cpp
+split_by_value()
+```
+
+**Description**:
+
+Split string by delimeter and then split each segment as kv pair, then add each value to output list. Null and illegal segments are skipped. 
+
+**Since**:
+0.1.0
+
+
+
+**Supported Types**:
+
+* [`string`, `string`, `string`] 
 
 ### function sqrt
 
@@ -3302,7 +3497,7 @@ string()
 
 **Description**:
 
-Return string converted from numeric expression. 
+Return string converted from timestamp expression. 
 
 **Since**:
 0.1.0
@@ -3312,11 +3507,8 @@ Example:
 
 ```sql
 
-select string(123);
--- output "123"
-
-select string(1.23);
--- output "1.23"
+select string(timestamp(1590115420000));
+-- output "2020-05-22 10:43:40"
 ```
 
 
@@ -3335,35 +3527,32 @@ substr()
 
 **Description**:
 
-Return a substring from string `str` starting at position `pos`. 
+Return a substring `len` characters long from string str, starting at position `pos`. Alias function: `substr`
 
 **Parameters**: 
 
   * **str** 
   * **pos** define the begining of the substring.
+  * **len** length of substring. If len is less than 1, the result is the empty string.
 
 
 **Since**:
 0.1.0
 
 
-Note: This function equals the `[substr()](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-substr)` function.
-
 Example:
 
 ```sql
 
-select substr("hello world", 2);
--- output "llo world"
-
-select substring("hello world", 2);
--- output "llo world"
+select substr("hello world", 3, 6);
+-- output "llo wo"
 ```
 
 
 
 * If `pos` is positive, the begining of the substring is `pos` charactors from the start of string.
 * If `pos` is negative, the beginning of the substring is `pos` characters from the end of the string, rather than the beginning.
+
 
 **Supported Types**:
 
@@ -3378,35 +3567,32 @@ substring()
 
 **Description**:
 
-Return a substring from string `str` starting at position `pos`. 
+Return a substring `len` characters long from string str, starting at position `pos`. Alias function: `substr`
 
 **Parameters**: 
 
   * **str** 
   * **pos** define the begining of the substring.
+  * **len** length of substring. If len is less than 1, the result is the empty string.
 
 
 **Since**:
 0.1.0
 
 
-Note: This function equals the `[substr()](/reference/sql/functions_and_operators/Files/udfs_8h.md#function-substr)` function.
-
 Example:
 
 ```sql
 
-select substr("hello world", 2);
--- output "llo world"
-
-select substring("hello world", 2);
--- output "llo world"
+select substr("hello world", 3, 6);
+-- output "llo wo"
 ```
 
 
 
 * If `pos` is positive, the begining of the substring is `pos` charactors from the start of string.
 * If `pos` is negative, the beginning of the substring is `pos` characters from the end of the string, rather than the beginning.
+
 
 **Supported Types**:
 
@@ -3432,13 +3618,13 @@ Compute sum of values.
 Example:
 
 
-| value     |
+| value   |
 |  -------- |
-| 0     |
-| 1     |
-| 2     |
-| 3     |
-| 4    |
+| 0   |
+| 1   |
+| 2   |
+| 3   |
+| 4   |
 
 
 ```sql
@@ -3472,13 +3658,13 @@ Compute sum of values grouped by category key and output string. Each group is r
 Example:
 
 
-| value    | catagory     |
+| value  | catagory   |
 |  -------- | -------- |
-| 0    | x     |
-| 1    | y     |
-| 2    | x     |
-| 3    | y     |
-| 4    | x    |
+| 0  | x   |
+| 1  | y   |
+| 2  | x   |
+| 3  | y   |
+| 4  | x   |
 
 
 ```sql
@@ -3517,13 +3703,13 @@ Compute sum of values matching specified condition grouped by category key and o
 Example:
 
 
-| value    | condition    | catagory     |
+| value  | condition  | catagory   |
 |  -------- | -------- | -------- |
-| 0    | true    | x     |
-| 1    | false    | y     |
-| 2    | false    | x     |
-| 3    | true    | y     |
-| 4    | true    | x    |
+| 0  | true  | x   |
+| 1  | false  | y   |
+| 2  | false  | x   |
+| 3  | true  | y   |
+| 4  | true  | x   |
 
 
 ```sql
@@ -3565,13 +3751,13 @@ Compute sum of values match specified condition.
 Example:
 
 
-| value     |
+| value   |
 |  -------- |
-| 0     |
-| 1     |
-| 2     |
-| 3     |
-| 4    |
+| 0   |
+| 1   |
+| 2   |
+| 3   |
+| 4   |
 
 
 ```sql
@@ -3636,6 +3822,7 @@ Supported string style:
 * yyyy-mm-dd
 * yyyymmdd
 * yyyy-mm-dd hh:mm:ss
+
 Example:
 
 ```sql
@@ -3680,19 +3867,19 @@ Compute top k of values and output string separated by comma. The outputs are so
 Example:
 
 
-| value     |
+| value   |
 |  -------- |
-| 0     |
-| 1     |
-| 2     |
-| 3     |
-| 4    |
+| 1   |
+| 2   |
+| 3   |
+| 4   |
+| 4   |
 
 
 ```sql
 
 SELECT top(value, 3) OVER w;
--- output "2,3,4"
+-- output "4,4,3"
 ```
 
 
@@ -3707,6 +3894,29 @@ SELECT top(value, 3) OVER w;
 * [`list<timestamp>`, `list<int32>`]
 * [`list<timestamp>`, `list<int64>`] 
 
+### function top1_ratio
+
+```cpp
+top1_ratio()
+```
+
+**Description**:
+
+Compute the top1 key's ratio. 
+
+
+
+```
+    @since 0.1.0
+```
+
+**Supported Types**:
+
+* [`list<date>`]
+* [`list<number>`]
+* [`list<string>`]
+* [`list<timestamp>`] 
+
 ### function top_n_key_avg_cate_where
 
 ```cpp
@@ -3715,13 +3925,13 @@ top_n_key_avg_cate_where()
 
 **Description**:
 
-Compute average of values matching specified condition grouped by category key. Output string for top N keys in descend order. Each group is represented as 'K:V' and separated by comma. 
+Compute average of values matching specified condition grouped by category key. Output string for top N category keys in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. 
 
 **Parameters**: 
 
-  * **catagory** Specify catagory column to group by. 
   * **value** Specify value column to aggregate on. 
   * **condition** Specify condition column. 
+  * **catagory** Specify catagory column to group by. 
   * **n** Fetch top n keys.
 
 
@@ -3729,15 +3939,15 @@ Compute average of values matching specified condition grouped by category key. 
 Example:
 
 
-| value    | condition    | catagory     |
+| value  | condition  | catagory   |
 |  -------- | -------- | -------- |
-| 0    | true    | x     |
-| 1    | false    | y     |
-| 2    | false    | x     |
-| 3    | true    | y     |
-| 4    | true    | x     |
-| 5    | true    | z     |
-| 6    | false    | z    |
+| 0  | true  | x   |
+| 1  | false  | y   |
+| 2  | false  | x   |
+| 3  | true  | y   |
+| 4  | true  | x   |
+| 5  | true  | z   |
+| 6  | false  | z   |
 
 
 ```sql
@@ -3770,13 +3980,13 @@ top_n_key_count_cate_where()
 
 **Description**:
 
-Compute count of values matching specified condition grouped by category key. Output string for top N keys in descend order. Each group is represented as 'K:V' and separated by comma. 
+Compute count of values matching specified condition grouped by category key. Output string for top N category keys in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. 
 
 **Parameters**: 
 
-  * **catagory** Specify catagory column to group by. 
   * **value** Specify value column to aggregate on. 
   * **condition** Specify condition column. 
+  * **catagory** Specify catagory column to group by. 
   * **n** Fetch top n keys.
 
 
@@ -3784,15 +3994,15 @@ Compute count of values matching specified condition grouped by category key. Ou
 Example:
 
 
-| value    | condition    | catagory     |
+| value  | condition  | catagory   |
 |  -------- | -------- | -------- |
-| 0    | true    | x     |
-| 1    | true    | y     |
-| 2    | false    | x     |
-| 3    | true    | y     |
-| 4    | false    | x     |
-| 5    | true    | z     |
-| 6    | true    | z    |
+| 0  | true  | x   |
+| 1  | true  | y   |
+| 2  | false  | x   |
+| 3  | true  | y   |
+| 4  | false  | x   |
+| 5  | true  | z   |
+| 6  | true  | z   |
 
 
 ```sql
@@ -3804,6 +4014,30 @@ OVER w;
 
 **Supported Types**:
 
+* [`list<bool>`, `list<bool>`, `list<date>`, `list<int32>`]
+* [`list<bool>`, `list<bool>`, `list<date>`, `list<int64>`]
+* [`list<bool>`, `list<bool>`, `list<int16>`, `list<int32>`]
+* [`list<bool>`, `list<bool>`, `list<int16>`, `list<int64>`]
+* [`list<bool>`, `list<bool>`, `list<int32>`, `list<int32>`]
+* [`list<bool>`, `list<bool>`, `list<int32>`, `list<int64>`]
+* [`list<bool>`, `list<bool>`, `list<int64>`, `list<int32>`]
+* [`list<bool>`, `list<bool>`, `list<int64>`, `list<int64>`]
+* [`list<bool>`, `list<bool>`, `list<string>`, `list<int32>`]
+* [`list<bool>`, `list<bool>`, `list<string>`, `list<int64>`]
+* [`list<bool>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
+* [`list<bool>`, `list<bool>`, `list<timestamp>`, `list<int64>`]
+* [`list<date>`, `list<bool>`, `list<date>`, `list<int32>`]
+* [`list<date>`, `list<bool>`, `list<date>`, `list<int64>`]
+* [`list<date>`, `list<bool>`, `list<int16>`, `list<int32>`]
+* [`list<date>`, `list<bool>`, `list<int16>`, `list<int64>`]
+* [`list<date>`, `list<bool>`, `list<int32>`, `list<int32>`]
+* [`list<date>`, `list<bool>`, `list<int32>`, `list<int64>`]
+* [`list<date>`, `list<bool>`, `list<int64>`, `list<int32>`]
+* [`list<date>`, `list<bool>`, `list<int64>`, `list<int64>`]
+* [`list<date>`, `list<bool>`, `list<string>`, `list<int32>`]
+* [`list<date>`, `list<bool>`, `list<string>`, `list<int64>`]
+* [`list<date>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
+* [`list<date>`, `list<bool>`, `list<timestamp>`, `list<int64>`]
 * [`list<number>`, `list<bool>`, `list<date>`, `list<int32>`]
 * [`list<number>`, `list<bool>`, `list<date>`, `list<int64>`]
 * [`list<number>`, `list<bool>`, `list<int16>`, `list<int32>`]
@@ -3815,7 +4049,31 @@ OVER w;
 * [`list<number>`, `list<bool>`, `list<string>`, `list<int32>`]
 * [`list<number>`, `list<bool>`, `list<string>`, `list<int64>`]
 * [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
-* [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int64>`] 
+* [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int64>`]
+* [`list<string>`, `list<bool>`, `list<date>`, `list<int32>`]
+* [`list<string>`, `list<bool>`, `list<date>`, `list<int64>`]
+* [`list<string>`, `list<bool>`, `list<int16>`, `list<int32>`]
+* [`list<string>`, `list<bool>`, `list<int16>`, `list<int64>`]
+* [`list<string>`, `list<bool>`, `list<int32>`, `list<int32>`]
+* [`list<string>`, `list<bool>`, `list<int32>`, `list<int64>`]
+* [`list<string>`, `list<bool>`, `list<int64>`, `list<int32>`]
+* [`list<string>`, `list<bool>`, `list<int64>`, `list<int64>`]
+* [`list<string>`, `list<bool>`, `list<string>`, `list<int32>`]
+* [`list<string>`, `list<bool>`, `list<string>`, `list<int64>`]
+* [`list<string>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
+* [`list<string>`, `list<bool>`, `list<timestamp>`, `list<int64>`]
+* [`list<timestamp>`, `list<bool>`, `list<date>`, `list<int32>`]
+* [`list<timestamp>`, `list<bool>`, `list<date>`, `list<int64>`]
+* [`list<timestamp>`, `list<bool>`, `list<int16>`, `list<int32>`]
+* [`list<timestamp>`, `list<bool>`, `list<int16>`, `list<int64>`]
+* [`list<timestamp>`, `list<bool>`, `list<int32>`, `list<int32>`]
+* [`list<timestamp>`, `list<bool>`, `list<int32>`, `list<int64>`]
+* [`list<timestamp>`, `list<bool>`, `list<int64>`, `list<int32>`]
+* [`list<timestamp>`, `list<bool>`, `list<int64>`, `list<int64>`]
+* [`list<timestamp>`, `list<bool>`, `list<string>`, `list<int32>`]
+* [`list<timestamp>`, `list<bool>`, `list<string>`, `list<int64>`]
+* [`list<timestamp>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
+* [`list<timestamp>`, `list<bool>`, `list<timestamp>`, `list<int64>`] 
 
 ### function top_n_key_max_cate_where
 
@@ -3825,7 +4083,7 @@ top_n_key_max_cate_where()
 
 **Description**:
 
-Compute maximum of values matching specified condition grouped by category key. Output string for top N keys in descend order. Each group is represented as 'K:V' and separated by comma. 
+Compute maximum of values matching specified condition grouped by category key. Output string for top N category keys in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. 
 
 **Parameters**: 
 
@@ -3839,15 +4097,15 @@ Compute maximum of values matching specified condition grouped by category key. 
 Example:
 
 
-| value    | condition    | catagory     |
+| value  | condition  | catagory   |
 |  -------- | -------- | -------- |
-| 0    | true    | x     |
-| 1    | false    | y     |
-| 2    | false    | x     |
-| 3    | true    | y     |
-| 4    | true    | x     |
-| 5    | true    | z     |
-| 6    | false    | z    |
+| 0  | true  | x   |
+| 1  | false  | y   |
+| 2  | false  | x   |
+| 3  | true  | y   |
+| 4  | true  | x   |
+| 5  | true  | z   |
+| 6  | false  | z   |
 
 
 ```sql
@@ -3880,13 +4138,13 @@ top_n_key_min_cate_where()
 
 **Description**:
 
-Compute minimum of values matching specified condition grouped by category key. Output string for top N keys in descend order. Each group is represented as 'K:V' and separated by comma. 
+Compute minimum of values matching specified condition grouped by category key. Output string for top N category keys in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. 
 
 **Parameters**: 
 
-  * **catagory** Specify catagory column to group by. 
   * **value** Specify value column to aggregate on. 
   * **condition** Specify condition column. 
+  * **catagory** Specify catagory column to group by. 
   * **n** Fetch top n keys.
 
 
@@ -3894,15 +4152,15 @@ Compute minimum of values matching specified condition grouped by category key. 
 Example:
 
 
-| value    | condition    | catagory     |
+| value  | condition  | catagory   |
 |  -------- | -------- | -------- |
-| 0    | true    | x     |
-| 1    | true    | y     |
-| 2    | false    | x     |
-| 3    | true    | y     |
-| 4    | false    | x     |
-| 5    | true    | z     |
-| 6    | true    | z    |
+| 0  | true  | x   |
+| 1  | true  | y   |
+| 2  | false  | x   |
+| 3  | true  | y   |
+| 4  | false  | x   |
+| 5  | true  | z   |
+| 6  | true  | z   |
 
 
 ```sql
@@ -3935,13 +4193,13 @@ top_n_key_sum_cate_where()
 
 **Description**:
 
-Compute sum of values matching specified condition grouped by category key. Output string for top N keys in descend order. Each group is represented as 'K:V' and separated by comma. 
+Compute sum of values matching specified condition grouped by category key. Output string for top N category keys in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. 
 
 **Parameters**: 
 
-  * **catagory** Specify catagory column to group by. 
   * **value** Specify value column to aggregate on. 
   * **condition** Specify condition column. 
+  * **catagory** Specify catagory column to group by. 
   * **n** Fetch top n keys.
 
 
@@ -3949,15 +4207,15 @@ Compute sum of values matching specified condition grouped by category key. Outp
 Example:
 
 
-| value    | condition    | catagory     |
+| value  | condition  | catagory   |
 |  -------- | -------- | -------- |
-| 0    | true    | x     |
-| 1    | true    | y     |
-| 2    | false    | x     |
-| 3    | true    | y     |
-| 4    | false    | x     |
-| 5    | true    | z     |
-| 6    | true    | z    |
+| 0  | true  | x   |
+| 1  | true  | y   |
+| 2  | false  | x   |
+| 3  | true  | y   |
+| 4  | false  | x   |
+| 5  | true  | z   |
+| 6  | true  | z   |
 
 
 ```sql
@@ -3981,6 +4239,352 @@ OVER w;
 * [`list<number>`, `list<bool>`, `list<string>`, `list<int64>`]
 * [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
 * [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int64>`] 
+
+### function top_n_value_avg_cate_where
+
+```cpp
+top_n_value_avg_cate_where()
+```
+
+**Description**:
+
+Compute average of values matching specified condition grouped by category key. Output string for top N aggregate values in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. 
+
+**Parameters**: 
+
+  * **value** Specify value column to aggregate on. 
+  * **condition** Specify condition column. 
+  * **catagory** Specify catagory column to group by. 
+  * **n** Fetch top n keys.
+
+
+
+Example:
+
+
+| value  | condition  | catagory   |
+|  -------- | -------- | -------- |
+| 0  | true  | x   |
+| 1  | false  | y   |
+| 2  | false  | x   |
+| 3  | false  | y   |
+| 4  | true  | x   |
+| 5  | true  | z   |
+| 6  | false  | z   |
+
+
+```sql
+
+    SELECT top_n_value_avg_cate_where(value, condition, catagory, 2)
+OVER w;
+    -- output "z:5,x:4"
+```
+
+**Supported Types**:
+
+* [`list<number>`, `list<bool>`, `list<date>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<date>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int16>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int16>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int32>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int32>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int64>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int64>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<string>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<string>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int64>`] 
+
+### function top_n_value_count_cate_where
+
+```cpp
+top_n_value_count_cate_where()
+```
+
+**Description**:
+
+Compute count of values matching specified condition grouped by category key. Output string for top N aggregate values in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. 
+
+**Parameters**: 
+
+  * **value** Specify value column to aggregate on. 
+  * **condition** Specify condition column. 
+  * **catagory** Specify catagory column to group by. 
+  * **n** Top N.
+
+
+
+Example:
+
+
+| value  | condition  | catagory   |
+|  -------- | -------- | -------- |
+| 0  | true  | x   |
+| 1  | true  | y   |
+| 2  | true  | x   |
+| 3  | false  | y   |
+| 4  | true  | x   |
+| 5  | true  | z   |
+| 6  | true  | z   |
+
+
+```sql
+
+    SELECT top_n_value_count_cate_where(value, condition, catagory, 2)
+OVER w;
+    -- output "x:3,y:2"
+```
+
+**Supported Types**:
+
+* [`list<bool>`, `list<bool>`, `list<date>`, `list<int32>`]
+* [`list<bool>`, `list<bool>`, `list<date>`, `list<int64>`]
+* [`list<bool>`, `list<bool>`, `list<int16>`, `list<int32>`]
+* [`list<bool>`, `list<bool>`, `list<int16>`, `list<int64>`]
+* [`list<bool>`, `list<bool>`, `list<int32>`, `list<int32>`]
+* [`list<bool>`, `list<bool>`, `list<int32>`, `list<int64>`]
+* [`list<bool>`, `list<bool>`, `list<int64>`, `list<int32>`]
+* [`list<bool>`, `list<bool>`, `list<int64>`, `list<int64>`]
+* [`list<bool>`, `list<bool>`, `list<string>`, `list<int32>`]
+* [`list<bool>`, `list<bool>`, `list<string>`, `list<int64>`]
+* [`list<bool>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
+* [`list<bool>`, `list<bool>`, `list<timestamp>`, `list<int64>`]
+* [`list<date>`, `list<bool>`, `list<date>`, `list<int32>`]
+* [`list<date>`, `list<bool>`, `list<date>`, `list<int64>`]
+* [`list<date>`, `list<bool>`, `list<int16>`, `list<int32>`]
+* [`list<date>`, `list<bool>`, `list<int16>`, `list<int64>`]
+* [`list<date>`, `list<bool>`, `list<int32>`, `list<int32>`]
+* [`list<date>`, `list<bool>`, `list<int32>`, `list<int64>`]
+* [`list<date>`, `list<bool>`, `list<int64>`, `list<int32>`]
+* [`list<date>`, `list<bool>`, `list<int64>`, `list<int64>`]
+* [`list<date>`, `list<bool>`, `list<string>`, `list<int32>`]
+* [`list<date>`, `list<bool>`, `list<string>`, `list<int64>`]
+* [`list<date>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
+* [`list<date>`, `list<bool>`, `list<timestamp>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<date>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<date>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int16>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int16>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int32>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int32>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int64>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int64>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<string>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<string>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int64>`]
+* [`list<string>`, `list<bool>`, `list<date>`, `list<int32>`]
+* [`list<string>`, `list<bool>`, `list<date>`, `list<int64>`]
+* [`list<string>`, `list<bool>`, `list<int16>`, `list<int32>`]
+* [`list<string>`, `list<bool>`, `list<int16>`, `list<int64>`]
+* [`list<string>`, `list<bool>`, `list<int32>`, `list<int32>`]
+* [`list<string>`, `list<bool>`, `list<int32>`, `list<int64>`]
+* [`list<string>`, `list<bool>`, `list<int64>`, `list<int32>`]
+* [`list<string>`, `list<bool>`, `list<int64>`, `list<int64>`]
+* [`list<string>`, `list<bool>`, `list<string>`, `list<int32>`]
+* [`list<string>`, `list<bool>`, `list<string>`, `list<int64>`]
+* [`list<string>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
+* [`list<string>`, `list<bool>`, `list<timestamp>`, `list<int64>`]
+* [`list<timestamp>`, `list<bool>`, `list<date>`, `list<int32>`]
+* [`list<timestamp>`, `list<bool>`, `list<date>`, `list<int64>`]
+* [`list<timestamp>`, `list<bool>`, `list<int16>`, `list<int32>`]
+* [`list<timestamp>`, `list<bool>`, `list<int16>`, `list<int64>`]
+* [`list<timestamp>`, `list<bool>`, `list<int32>`, `list<int32>`]
+* [`list<timestamp>`, `list<bool>`, `list<int32>`, `list<int64>`]
+* [`list<timestamp>`, `list<bool>`, `list<int64>`, `list<int32>`]
+* [`list<timestamp>`, `list<bool>`, `list<int64>`, `list<int64>`]
+* [`list<timestamp>`, `list<bool>`, `list<string>`, `list<int32>`]
+* [`list<timestamp>`, `list<bool>`, `list<string>`, `list<int64>`]
+* [`list<timestamp>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
+* [`list<timestamp>`, `list<bool>`, `list<timestamp>`, `list<int64>`] 
+
+### function top_n_value_max_cate_where
+
+```cpp
+top_n_value_max_cate_where()
+```
+
+**Description**:
+
+Compute maximum of values matching specified condition grouped by category key. Output string for top N aggregate values in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. 
+
+**Parameters**: 
+
+  * **value** Specify value column to aggregate on. 
+  * **condition** Specify condition column. 
+  * **catagory** Specify catagory column to group by. 
+  * **n** Fetch Top n.
+
+
+
+Example:
+
+
+| value  | condition  | catagory   |
+|  -------- | -------- | -------- |
+| 0  | true  | x   |
+| 1  | false  | y   |
+| 2  | false  | x   |
+| 3  | true  | y   |
+| 4  | true  | x   |
+| 5  | true  | z   |
+| 6  | false  | z   |
+
+
+```sql
+
+    SELECT top_n_value_max_cate_where(value, condition, catagory, 2)
+OVER w;
+    -- output "z:5,x:4"
+```
+
+**Supported Types**:
+
+* [`list<number>`, `list<bool>`, `list<date>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<date>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int16>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int16>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int32>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int32>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int64>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int64>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<string>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<string>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int64>`] 
+
+### function top_n_value_min_cate_where
+
+```cpp
+top_n_value_min_cate_where()
+```
+
+**Description**:
+
+Compute minimum of values matching specified condition grouped by category key. Output string for top N aggregate values in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. 
+
+**Parameters**: 
+
+  * **value** Specify value column to aggregate on. 
+  * **condition** Specify condition column. 
+  * **catagory** Specify catagory column to group by. 
+  * **n** Fetch top n keys.
+
+
+
+Example:
+
+
+| value  | condition  | catagory   |
+|  -------- | -------- | -------- |
+| 0  | true  | x   |
+| 1  | true  | y   |
+| 2  | true  | x   |
+| 3  | true  | y   |
+| 4  | false  | x   |
+| 5  | true  | z   |
+| 6  | true  | z   |
+
+
+```sql
+
+    SELECT top_n_value_min_cate_where(value, condition, catagory, 2)
+OVER w;
+    -- output "z:5,x:2"
+```
+
+**Supported Types**:
+
+* [`list<number>`, `list<bool>`, `list<date>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<date>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int16>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int16>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int32>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int32>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int64>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int64>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<string>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<string>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int64>`] 
+
+### function top_n_value_sum_cate_where
+
+```cpp
+top_n_value_sum_cate_where()
+```
+
+**Description**:
+
+Compute sum of values matching specified condition grouped by category key. Output string for top N aggregate values in descend order. Each group is represented as 'K:V' and separated by comma(,). Empty string returned if no rows selected. 
+
+**Parameters**: 
+
+  * **value** Specify value column to aggregate on. 
+  * **condition** Specify condition column. 
+  * **catagory** Specify catagory column to group by. 
+  * **n** Top N.
+
+
+
+Example:
+
+
+| value  | condition  | catagory   |
+|  -------- | -------- | -------- |
+| 0  | true  | x   |
+| 1  | true  | y   |
+| 2  | false  | x   |
+| 3  | false  | y   |
+| 4  | true  | x   |
+| 5  | true  | z   |
+| 6  | true  | z   |
+
+
+```sql
+
+    SELECT top_n_value_sum_cate_where(value, condition, catagory, 2)
+OVER w;
+    -- output "z:11,x:4"
+```
+
+**Supported Types**:
+
+* [`list<number>`, `list<bool>`, `list<date>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<date>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int16>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int16>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int32>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int32>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<int64>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<int64>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<string>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<string>`, `list<int64>`]
+* [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int32>`]
+* [`list<number>`, `list<bool>`, `list<timestamp>`, `list<int64>`] 
+
+### function topn_frequency
+
+```cpp
+topn_frequency()
+```
+
+**Description**:
+
+Return the topN keys sorted by their frequency. 
+
+
+
+```
+    @since 0.1.0
+```
+
+**Supported Types**:
+
+* [`list<date>`, `list<int32>`]
+* [`list<number>`, `list<int32>`]
+* [`list<string>`, `list<int32>`]
+* [`list<timestamp>`, `list<int32>`] 
 
 ### function truncate
 
@@ -4035,6 +4639,39 @@ Example:
 
 SELECT UCASE('Sql') as str1;
 --output "SQL"
+```
+
+
+**Supported Types**:
+
+* [`string`] 
+
+### function unhex
+
+```cpp
+unhex()
+```
+
+**Description**:
+
+Convert hexadecimal to binary string. 
+
+**Since**:
+0.7.0
+
+
+Example:
+
+```sql
+
+select unhex("537061726B2053514C");
+--output "Spark SQL"
+
+select unhex("7B");
+--output "{"
+
+select unhex("zfk");
+--output NULL
 ```
 
 
@@ -4130,6 +4767,63 @@ select week(timestamp(1590115420000));
 * [`date`]
 * [`int64`]
 * [`timestamp`] 
+
+### function window_split
+
+```cpp
+window_split()
+```
+
+**Description**:
+
+For each string value from specified column of window, split by delimeter and add segment to output list. Null values are skipped. 
+
+**Since**:
+0.1.0
+
+
+
+**Supported Types**:
+
+* [`list<string>`, `list<string>`] 
+
+### function window_split_by_key
+
+```cpp
+window_split_by_key()
+```
+
+**Description**:
+
+For each string value from specified column of window, split by delimeter and then split each segment as kv pair, then add each key to output list. Null and illegal segments are skipped. 
+
+**Since**:
+0.1.0
+
+
+
+**Supported Types**:
+
+* [`list<string>`, `list<string>`, `list<string>`] 
+
+### function window_split_by_value
+
+```cpp
+window_split_by_value()
+```
+
+**Description**:
+
+For each string value from specified column of window, split by delimeter and then split each segment as kv pair, then add each value to output list. Null and illegal segments are skipped. 
+
+**Since**:
+0.1.0
+
+
+
+**Supported Types**:
+
+* [`list<string>`, `list<string>`, `list<string>`] 
 
 ### function year
 
