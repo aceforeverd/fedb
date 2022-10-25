@@ -4163,10 +4163,7 @@ std::shared_ptr<DataHandler> RunnerContext::GetCache(int64_t id) const {
     }
 }
 
-void RunnerContext::SetCache(int64_t id,
-                             const std::shared_ptr<DataHandler> data) {
-    cache_[id] = data;
-}
+void RunnerContext::SetCache(int64_t id, const std::shared_ptr<DataHandler> data) { cache_[id] = data; }
 
 void RunnerContext::SetRequest(const hybridse::codec::Row& request) {
     request_ = request;
