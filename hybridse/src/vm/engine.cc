@@ -455,6 +455,9 @@ int32_t RequestRunSession::Run(const uint32_t task_id, const Row& in_row, Row* o
     RunnerContext ctx(&std::dynamic_pointer_cast<SqlCompileInfo>(compile_info_)->get_sql_context().cluster_job, in_row,
                       sp_name_, is_debug_);
     auto output = task->RunWithCache(ctx);
+    if (IsDebug()) {
+        LogTraceInfos(task);
+    }
     if (!output) {
         LOG(WARNING) << "Run request plan output is null";
         return -1;
@@ -498,7 +501,11 @@ int32_t BatchRunSession::Run(std::vector<Row>& rows, uint64_t limit) {
 int32_t BatchRunSession::Run(const Row& parameter_row, std::vector<Row>& rows, uint64_t limit) {
     auto& sql_ctx = std::dynamic_pointer_cast<SqlCompileInfo>(compile_info_)->get_sql_context();
     RunnerContext ctx(&sql_ctx.cluster_job, parameter_row, is_debug_);
-    auto output = sql_ctx.cluster_job.GetTask(0).GetRoot()->RunWithCache(ctx);
+    auto task = sql_ctx.cluster_job.GetTask(0).GetRoot();;
+    auto output = task->RunWithCache(ctx);
+    if (IsDebug()) {
+        LogTraceInfos(task);
+    }
     if (!output) {
         DLOG(INFO) << "Run batch plan output is empty";
         return 0;
@@ -601,6 +608,26 @@ std::shared_ptr<TableHandler> LocalTablet::SubQuery(uint32_t task_id, const std:
         }
     }
     return std::make_shared<LocalTabletTableHandler>(task_id, session, in_rows, request_is_common);
+}
+
+static void PrintsTraceInfo(std::ostream& out, const Runner* root) {
+    for (auto producer : root->GetProducers()) {
+        PrintsTraceInfo(out, producer);
+    }
+    out << "RUNNER TYPE: " << RunnerTypeName(root->type_) << ", ID: " << root->id_ << ", time cost " << root->dur_
+        << "\n";
+}
+
+void RunSession::LogTraceInfos(const Runner* root) {
+    auto info = std::dynamic_pointer_cast<SqlCompileInfo>(compile_info_);
+    std::ostringstream oss;
+
+    oss << "[Query Trace] summary of SQL: " << info->GetSql() << "\n";
+    oss << "Runner plan:\n";
+    info->DumpClusterJob(oss, "  ");
+
+    PrintsTraceInfo(oss, root);
+    LOG(INFO) << oss.str();
 }
 }  // namespace vm
 }  // namespace hybridse

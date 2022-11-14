@@ -24,6 +24,7 @@
 #include "absl/status/status.h"
 #include "absl/strings/str_cat.h"
 #include "absl/strings/substitute.h"
+#include "absl/time/time.h"
 #include "base/texttable.h"
 #include "udf/udf.h"
 #include "vm/catalog_wrapper.h"
@@ -1160,10 +1161,14 @@ std::shared_ptr<DataHandler> Runner::RunWithCache(RunnerContext& ctx) {
         inputs[idx - 1] = producers_[idx - 1]->RunWithCache(ctx);
     }
 
+    // collect execute time for this runner
+    absl::Time start = absl::Now();
     auto res = Run(ctx, inputs);
+    dur_ = absl::Now() - start;
+
     if (ctx.is_debug()) {
         std::ostringstream oss;
-        oss << "RUNNER TYPE: " << RunnerTypeName(type_) << ", ID: " << id_ << "\n";
+        oss << "RUNNER TYPE: " << RunnerTypeName(type_) << ", ID: " << id_ << ", time cost " << dur_ << "\n";
         Runner::PrintData(oss, output_schemas_, res);
         LOG(INFO) << oss.str();
     }

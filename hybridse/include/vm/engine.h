@@ -44,6 +44,7 @@ using ::hybridse::codec::Row;
 inline constexpr const char* LONG_WINDOWS = "long_windows";
 
 class Engine;
+class Runner;
 /// \brief An options class for controlling engine behaviour.
 class EngineOptions {
  public:
@@ -184,6 +185,13 @@ class RunSession {
     }
 
  protected:
+    // helper method
+    // prints execute time of each Runner node inside
+    //
+    // Note the print order may vary with the actual execute order,
+    // for actual order, refer to the executing log from each runner node.
+    void LogTraceInfos(const Runner* root);
+
     std::shared_ptr<hybridse::vm::CompileInfo> compile_info_;
     hybridse::vm::EngineMode engine_mode_;
     bool is_debug_;

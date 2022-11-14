@@ -39,7 +39,11 @@ namespace sdk {
 
 struct BasicRouterOptions {
     virtual ~BasicRouterOptions() = default;
-    bool enable_debug = false;
+
+    /// Enable printing debug information while running a query.
+    /// Require at least 'INFO' glog level
+    bool enable_debug = true;
+
     uint32_t max_sql_cache_size = 50;
     // == gflag `request_timeout` default value(no gflags here cuz swig)
     uint32_t request_timeout = 60000;

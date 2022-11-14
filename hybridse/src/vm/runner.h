@@ -489,7 +489,9 @@ class Runner : public node::NodeBase<Runner> {
 
     const int32_t id_;
     const RunnerType type_;
+    absl::Duration dur_ = absl::Seconds(0);
     const std::optional<int32_t> limit_cnt_;
+
     virtual std::shared_ptr<DataHandler> Run(
         RunnerContext& ctx,  // NOLINT
         const std::vector<std::shared_ptr<DataHandler>>& inputs) = 0;
