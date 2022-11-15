@@ -42,7 +42,7 @@ struct BasicRouterOptions {
 
     /// Enable printing debug information while running a query.
     /// Require at least 'INFO' glog level
-    bool enable_debug = true;
+    bool enable_debug = false;
 
     uint32_t max_sql_cache_size = 50;
     // == gflag `request_timeout` default value(no gflags here cuz swig)
