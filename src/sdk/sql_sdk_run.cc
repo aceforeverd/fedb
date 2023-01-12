@@ -40,6 +40,7 @@ DEFINE_bool(keep_data, false,
 DEFINE_uint32(repeat, 1, "repeat times for single case");
 DEFINE_uint32(repeat_interval, 0, "set random interval between repeating runs, 0 means no wait, unit: milliseconds");
 DEFINE_bool(skip_prepare, false, "skip database & table create, take your own risk");
+DEFINE_bool(query_only, false, "if true, request row won't inserted into table after deployment/procedure query");
 
 namespace openmldb {
 namespace sdk {
@@ -61,6 +62,7 @@ int Run(std::shared_ptr<SQLRouter> router, absl::string_view yaml_path, bool cle
 
         DeploymentEnv env(router, &sql_case);
         env.SetCleanup(cleanup);
+        env.SetPureDeploy(FLAGS_query_only);
         if (!FLAGS_skip_prepare) {
             env.SetUp();
         }
