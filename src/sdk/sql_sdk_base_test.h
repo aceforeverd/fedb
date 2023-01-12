@@ -128,6 +128,7 @@ struct DeploymentEnv {
     void CallDeployProcedure();
 
     void SetCleanup(bool flag) { cleanup_ = flag; }
+    void SetPureDeploy(bool flag) { pure_deploy_ = flag; }
 
  private:
     virtual void TearDown();
@@ -137,6 +138,10 @@ struct DeploymentEnv {
     std::string dp_name_;
     std::string sql_str_;
     bool cleanup_ = true;
+
+    // when setted true, request row won't inserted into main table after deployment query
+    // be careful turning on, for sql case where main table has multiple row, result might as your expected
+    bool pure_deploy_ = false;
 };
 }  // namespace sdk
 }  // namespace openmldb

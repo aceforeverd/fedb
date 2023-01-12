@@ -806,9 +806,11 @@ void DeploymentEnv::CallDeployProcedure() {
         }
         results.push_back(rs);
 
-        LOG(INFO) << "insert request: \n" << inserts[i];
-        bool ok = sr_->ExecuteInsert(insert_table.catalog(), inserts[i], &s);
-        ASSERT_TRUE(ok);
+        if (!pure_deploy_) {
+            LOG(INFO) << "insert request: \n" << inserts[i];
+            bool ok = sr_->ExecuteInsert(insert_table.catalog(), inserts[i], &s);
+            ASSERT_TRUE(ok);
+        }
     }
     ASSERT_FALSE(results.empty());
     std::vector<hybridse::codec::Row> rows;
