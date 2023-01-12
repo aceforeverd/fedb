@@ -39,6 +39,7 @@ DEFINE_bool(keep_data, false,
 
 DEFINE_uint32(repeat, 1, "repeat times for single case");
 DEFINE_bool(repeat_interval, false, "set random interval between repeating runs");
+DEFINE_bool(skip_prepare, false, "skip database & table create, take your own risk");
 
 namespace openmldb {
 namespace sdk {
@@ -60,7 +61,9 @@ int Run(std::shared_ptr<SQLRouter> router, absl::string_view yaml_path, bool cle
 
         DeploymentEnv env(router, &sql_case);
         env.SetCleanup(cleanup);
-        env.SetUp();
+        if (!FLAGS_skip_prepare) {
+            env.SetUp();
+        }
         for (decltype(FLAGS_repeat) i = 0; i < FLAGS_repeat; ++i) {
             if (FLAGS_repeat_interval) {
                 absl::Duration random_interval = absl::Milliseconds(absl::Uniform(gen, 1, 1000));
@@ -90,5 +93,5 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    return ::openmldb::sdk::Run(router, FLAGS_yaml_path, FLAGS_keep_data);
+    return ::openmldb::sdk::Run(router, FLAGS_yaml_path, !FLAGS_keep_data);
 }
