@@ -67,6 +67,7 @@ int Run(std::shared_ptr<SQLRouter> router, absl::string_view yaml_path, bool cle
         for (decltype(FLAGS_repeat) i = 0; i < FLAGS_repeat; ++i) {
             if (FLAGS_repeat_interval) {
                 absl::Duration random_interval = absl::Milliseconds(absl::Uniform(gen, 1, 1000));
+                LOG(INFO) << "sleep for " << random_interval;
                 absl::SleepFor(random_interval);
             }
             env.CallDeployProcedure();
