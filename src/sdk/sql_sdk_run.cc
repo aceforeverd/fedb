@@ -66,14 +66,22 @@ int Run(std::shared_ptr<SQLRouter> router, absl::string_view yaml_path, bool cle
         if (!FLAGS_skip_prepare) {
             env.SetUp();
         }
+        absl::Duration dur = absl::Milliseconds(0);
         for (decltype(FLAGS_repeat) i = 0; i < FLAGS_repeat; ++i) {
             if (FLAGS_repeat_interval > 0) {
                 absl::Duration random_interval = absl::Milliseconds(absl::Uniform(gen, 1u, FLAGS_repeat_interval));
                 LOG(INFO) << "sleep for " << random_interval;
                 absl::SleepFor(random_interval);
             }
+            absl::Time start = absl::Now();
+
             env.CallDeployProcedure();
+
+            dur += absl::Now() - start;
         }
+
+        LOG(INFO) << "Case " << sql_case.id_ << " " << sql_case.desc_ << " costs " << dur << " for " << FLAGS_repeat
+                  << " runs. Avg " << dur / FLAGS_repeat;
     }
 
     return 0;
