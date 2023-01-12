@@ -752,7 +752,7 @@ DeploymentEnv::DeploymentEnv(std::shared_ptr<sdk::SQLRouter> sr, hybridse::sqlca
 void DeploymentEnv::SetUp() {
     hybridse::sdk::Status status;
     SQLSDKTest::CreateDB(*sql_case_, sr_);
-    SQLSDKTest::CreateTables(*sql_case_, sr_);
+    SQLSDKTest::CreateTables(*sql_case_, sr_, 0);
     SQLSDKTest::InsertTables(*sql_case_, sr_, kNotInsertFirstInput);
 
     if (sql_case_->inputs()[0].name_.empty()) {
