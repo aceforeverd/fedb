@@ -19,6 +19,10 @@
 // The cases by default run once, with expect result assertion.
 // Or run repeated times as a tiny benchmark.
 
+#include "absl/random/distributions.h"
+#include "absl/random/random.h"
+#include "absl/time/clock.h"
+#include "absl/time/time.h"
 #include "gflags/gflags.h"
 #include "sdk/sql_router.h"
 #include "sdk/sql_sdk_base_test.h"
@@ -33,8 +37,13 @@ DEFINE_bool(keep_data, false,
             R"s(keep the data during case preparation, e.g tables, procedures, deployments after test ends.
             Be careful turning this on when running the same case multiple times)s");
 
+DEFINE_uint32(repeat, 1, "repeat times for single case");
+DEFINE_bool(repeat_interval, false, "set random interval between repeating runs");
+
 namespace openmldb {
 namespace sdk {
+
+static absl::BitGen gen;
 
 int Run(std::shared_ptr<SQLRouter> router, absl::string_view yaml_path, bool cleanup) {
     std::vector<::hybridse::sqlcase::SqlCase> cases;
@@ -52,7 +61,13 @@ int Run(std::shared_ptr<SQLRouter> router, absl::string_view yaml_path, bool cle
         DeploymentEnv env(router, &sql_case);
         env.SetCleanup(cleanup);
         env.SetUp();
-        env.CallDeployProcedure();
+        for (decltype(FLAGS_repeat) i = 0; i < FLAGS_repeat; ++i) {
+            if (FLAGS_repeat_interval) {
+                absl::Duration random_interval = absl::Milliseconds(absl::Uniform(gen, 1, 1000));
+                absl::SleepFor(random_interval);
+            }
+            env.CallDeployProcedure();
+        }
     }
 
     return 0;
