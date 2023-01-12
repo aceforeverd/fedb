@@ -746,7 +746,11 @@ void SQLSDKClusterOnlineBatchQueryTest::DistributeRunBatchModeSDK(hybridse::sqlc
 
 DeploymentEnv::DeploymentEnv(std::shared_ptr<sdk::SQLRouter> sr, hybridse::sqlcase::SqlCase* sqlcase)
     : sr_(sr), sql_case_(sqlcase) {
-    dp_name_ = absl::StrCat("dp_", ::openmldb::test::GenRand());
+    if (sqlcase->deployment_.name_.empty()) {
+        dp_name_ = absl::StrCat("dp_", ::openmldb::test::GenRand());
+    } else {
+        dp_name_ = sqlcase->deployment_.name_;
+    }
 }
 
 void DeploymentEnv::SetUp() {

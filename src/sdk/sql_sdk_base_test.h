@@ -27,6 +27,7 @@
 
 #include "sdk/sql_router.h"
 #include "test/base_test.h"
+#include "absl/base/attributes.h"
 
 namespace openmldb {
 namespace sdk {
@@ -117,7 +118,8 @@ class SQLSDKClusterOnlineBatchQueryTest : public SQLSDKTest {
 };
 
 struct DeploymentEnv {
-    explicit DeploymentEnv(std::shared_ptr<sdk::SQLRouter> sr, hybridse::sqlcase::SqlCase* sqlcase);
+    explicit DeploymentEnv(std::shared_ptr<sdk::SQLRouter> sr, hybridse::sqlcase::SqlCase* sqlcase)
+        ABSL_ATTRIBUTE_NONNULL();
 
     virtual ~DeploymentEnv() { TearDown(); }
 

@@ -1214,6 +1214,12 @@ static bool ParseSqlCaseNode(const YAML::Node& sql_case_node,
     if (sql_case_node["deployable"]) {
         sql_case.deployable_ = sql_case_node["deployable"].as<bool>();
     }
+    if (sql_case_node["deployment"]) {
+        auto& dep = sql_case_node["deployment"];
+        if (dep["name"]) {
+            sql_case.deployment_.name_ = dep["name"].as<std::string>();
+        }
+    }
     if (sql_case_node["tags"]) {
         if (!SqlCase::CreateStringListFromYamlNode(sql_case_node["tags"],
                                                    sql_case.tags_)) {
