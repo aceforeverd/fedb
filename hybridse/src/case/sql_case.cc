@@ -391,6 +391,8 @@ bool SqlCase::BuildCreateSqlFromSchema(const type::TableDef& table,
         } else {
             sql.append(") options(partitionnum=1, replicanum=1);");
         }
+    } else {
+        sql.append(");");
     }
     *create_sql = sql;
     return true;
