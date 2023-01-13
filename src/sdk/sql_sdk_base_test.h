@@ -125,7 +125,7 @@ struct DeploymentEnv {
 
     void SetUp();
 
-    void CallDeployProcedure();
+    void CallDeployProcedure() const;
 
     void SetCleanup(bool flag) { cleanup_ = flag; }
     void SetPureDeploy(bool flag) { pure_deploy_ = flag; }

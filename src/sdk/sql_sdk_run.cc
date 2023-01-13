@@ -21,6 +21,7 @@
 
 #include "absl/random/distributions.h"
 #include "absl/random/random.h"
+#include "absl/synchronization/mutex.h"
 #include "absl/time/clock.h"
 #include "absl/time/time.h"
 #include "gflags/gflags.h"
@@ -41,6 +42,7 @@ DEFINE_uint32(repeat, 1, "repeat times for single case");
 DEFINE_uint32(repeat_interval, 0, "set random interval between repeating runs, 0 means no wait, unit: milliseconds");
 DEFINE_bool(skip_prepare, false, "skip database & table create, take your own risk");
 DEFINE_bool(query_only, false, "if true, request row won't inserted into table after deployment/procedure query");
+DEFINE_uint32(threads, 1, "thread number for deployment query");
 
 namespace openmldb {
 namespace sdk {
@@ -66,8 +68,10 @@ int Run(std::shared_ptr<SQLRouter> router, absl::string_view yaml_path, bool cle
         if (!FLAGS_skip_prepare) {
             env.SetUp();
         }
+
         absl::Duration dur = absl::Milliseconds(0);
-        for (decltype(FLAGS_repeat) i = 0; i < FLAGS_repeat; ++i) {
+        absl::Mutex mutex;
+        auto call_once = [&dur, &env](absl::Mutex* mu) {
             if (FLAGS_repeat_interval > 0) {
                 absl::Duration random_interval = absl::Milliseconds(absl::Uniform(gen, 1u, FLAGS_repeat_interval));
                 LOG(INFO) << "sleep for " << random_interval;
@@ -77,7 +81,33 @@ int Run(std::shared_ptr<SQLRouter> router, absl::string_view yaml_path, bool cle
 
             env.CallDeployProcedure();
 
+            absl::MutexLock local(mu);
             dur += absl::Now() - start;
+        };
+
+        if (FLAGS_threads > 1) {
+            std::vector<std::thread> threads;
+            threads.reserve(FLAGS_threads);
+            for (decltype(FLAGS_threads) i = 0; i < FLAGS_threads; ++i) {
+                threads.emplace_back(call_once, &mutex);
+            }
+            for (auto& t : threads) {
+                t.join();
+            }
+        } else {
+            // seq call
+            for (decltype(FLAGS_repeat) i = 0; i < FLAGS_repeat; ++i) {
+                if (FLAGS_repeat_interval > 0) {
+                    absl::Duration random_interval = absl::Milliseconds(absl::Uniform(gen, 1u, FLAGS_repeat_interval));
+                    LOG(INFO) << "sleep for " << random_interval;
+                    absl::SleepFor(random_interval);
+                }
+                absl::Time start = absl::Now();
+
+                env.CallDeployProcedure();
+
+                dur += absl::Now() - start;
+            }
         }
 
         LOG(INFO) << "Case " << sql_case.id_ << " " << sql_case.desc_ << " costs " << dur << " for " << FLAGS_repeat

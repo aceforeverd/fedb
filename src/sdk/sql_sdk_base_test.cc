@@ -778,7 +778,7 @@ void DeploymentEnv::SetUp() {
         sr_.get(), {absl::StrCat("use ", sql_case_->db_), absl::StrCat("deploy ", dp_name_, " ", sql_str_)});
 }
 
-void DeploymentEnv::CallDeployProcedure() {
+void DeploymentEnv::CallDeployProcedure() const {
     hybridse::sdk::Status s;
     auto request_row = sr_->GetRequestRowByProcedure(sql_case_->db_, dp_name_, &s);
     ASSERT_TRUE(s.IsOK());
