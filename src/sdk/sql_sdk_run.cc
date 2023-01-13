@@ -71,18 +71,25 @@ int Run(std::shared_ptr<SQLRouter> router, absl::string_view yaml_path, bool cle
 
         absl::Duration dur = absl::Milliseconds(0);
         absl::Mutex mutex;
-        auto call_once = [&dur, &env](absl::Mutex* mu) {
-            if (FLAGS_repeat_interval > 0) {
-                absl::Duration random_interval = absl::Milliseconds(absl::Uniform(gen, 1u, FLAGS_repeat_interval));
-                LOG(INFO) << "sleep for " << random_interval;
-                absl::SleepFor(random_interval);
+        uint64_t runs_cnt = 0;
+        auto call_once = [&dur, &env, &runs_cnt](absl::Mutex* mu) {
+            while (true) {
+                if (FLAGS_repeat_interval > 0) {
+                    absl::Duration random_interval = absl::Milliseconds(absl::Uniform(gen, 1u, FLAGS_repeat_interval));
+                    LOG(INFO) << "sleep for " << random_interval;
+                    absl::SleepFor(random_interval);
+                }
+                absl::Time start = absl::Now();
+
+                env.CallDeployProcedure();
+
+                absl::MutexLock local(mu);
+                dur += absl::Now() - start;
+                runs_cnt++;
+                if (runs_cnt >= FLAGS_repeat) {
+                    return;
+                }
             }
-            absl::Time start = absl::Now();
-
-            env.CallDeployProcedure();
-
-            absl::MutexLock local(mu);
-            dur += absl::Now() - start;
         };
 
         if (FLAGS_threads > 1) {
