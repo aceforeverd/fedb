@@ -126,6 +126,8 @@ struct DeploymentEnv {
     void SetUp();
 
     void CallDeployProcedure() const;
+    // calls deployment, without logs, without result check, simply
+    void CallDeployProcedureTiny() const;
 
     void SetCleanup(bool flag) { cleanup_ = flag; }
     void SetPureDeploy(bool flag) { pure_deploy_ = flag; }

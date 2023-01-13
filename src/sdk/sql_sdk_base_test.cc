@@ -830,6 +830,28 @@ void DeploymentEnv::CallDeployProcedure() const {
     }
 }
 
+void DeploymentEnv::CallDeployProcedureTiny() const {
+    hybridse::sdk::Status s;
+    auto request_row = sr_->GetRequestRowByProcedure(sql_case_->db_, dp_name_, &s);
+    ASSERT_TRUE(s.IsOK());
+
+    hybridse::type::TableDef insert_table;
+    std::vector<hybridse::codec::Row> insert_rows;
+    ASSERT_TRUE(sql_case_->ExtractInputTableDef(insert_table, 0));
+    ASSERT_TRUE(sql_case_->ExtractInputData(insert_rows, 0));
+
+    hybridse::codec::RowView row_view(insert_table.columns());
+    for (size_t i = 0; i < insert_rows.size(); i++) {
+        row_view.Reset(insert_rows[i].buf());
+        SQLSDKTest::CovertHybridSERowToRequestRow(&row_view, request_row);
+        std::shared_ptr<hybridse::sdk::ResultSet> rs;
+        rs = sr_->CallProcedure(sql_case_->db_, dp_name_, request_row, &s);
+        if (!rs || s.code != 0) {
+            FAIL() << "sql case expect success == true" << s.msg;
+        }
+    }
+}
+
 void DeploymentEnv::TearDown() {
     if (cleanup_) {
         ::openmldb::test::ProcessSQLs(sr_.get(), {

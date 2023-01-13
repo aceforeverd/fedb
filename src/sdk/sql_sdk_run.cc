@@ -43,6 +43,7 @@ DEFINE_uint32(repeat_interval, 0, "set random interval between repeating runs, 0
 DEFINE_bool(skip_prepare, false, "skip database & table create, take your own risk");
 DEFINE_bool(query_only, false, "if true, request row won't inserted into table after deployment/procedure query");
 DEFINE_uint32(threads, 1, "thread number for deployment query");
+DEFINE_bool(extreme, false, "calls deploy only, no result check, no inserts, no logs, simply request & return");
 
 namespace openmldb {
 namespace sdk {
@@ -80,7 +81,11 @@ int Run(std::shared_ptr<SQLRouter> router, absl::string_view yaml_path, bool cle
                 }
                 absl::Time start = absl::Now();
 
-                env.CallDeployProcedure();
+                if (FLAGS_extreme) {
+                    env.CallDeployProcedureTiny();
+                } else {
+                    env.CallDeployProcedure();
+                }
 
                 absl::Time end = absl::Now();
 
@@ -113,7 +118,11 @@ int Run(std::shared_ptr<SQLRouter> router, absl::string_view yaml_path, bool cle
                 }
                 absl::Time start = absl::Now();
 
-                env.CallDeployProcedure();
+                if (FLAGS_extreme) {
+                    env.CallDeployProcedureTiny();
+                } else {
+                    env.CallDeployProcedure();
+                }
 
                 dur += absl::Now() - start;
             }
