@@ -21,10 +21,28 @@
 #include <unistd.h>
 
 #include "absl/cleanup/cleanup.h"
+#include "absl/strings/str_split.h"
 #include "base/glog_wrapper.h"
 
 namespace openmldb {
 namespace base {
+
+absl::StatusOr<std::string> Resolve(const std::string& name) {
+    std::vector<std::string> domain_port = absl::StrSplit(name, ':');
+    if (domain_port.size() != 2) {
+        return absl::InternalError(absl::StrCat(name, " is not a valid pattern as 'ip:port' or 'domain:port'", name));
+    }
+    auto res = ResolveToIP(domain_port[0], openmldb::base::ResolveOpt::INET);
+    if (!res.ok()) {
+        return res.status();
+    }
+    if (res.value().empty()) {
+        return absl::InternalError(absl::StrCat("fail to resolve endpoint, result list empty"));
+    }
+
+    // optimize later, here just take first entry simply work
+    return absl::StrCat(res.value()[0], ":", domain_port[1]);
+}
 
 bool GetLocalIp(std::string *ip) {
     if (ip == nullptr) {
@@ -50,7 +68,7 @@ bool GetLocalIp(std::string *ip) {
     return true;
 }
 
-absl::StatusOr<std::vector<std::string>> Resolve(const std::string& name, ResolveOpt opt) {
+absl::StatusOr<std::vector<std::string>> ResolveToIP(const std::string& name, ResolveOpt opt) {
     struct addrinfo hints, *res;
     int status;
     char ipstr[INET6_ADDRSTRLEN];

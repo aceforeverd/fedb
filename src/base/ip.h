@@ -30,8 +30,11 @@ enum class ResolveOpt {
     INET6,
 };
 
+// resolve domain:port to ip:port if necessary
+absl::StatusOr<std::string> Resolve(const std::string& name);
+
 // resolve the {name} into string represent of IP address
-absl::StatusOr<std::vector<std::string>> Resolve(const std::string& name, ResolveOpt opt);
+absl::StatusOr<std::vector<std::string>> ResolveToIP(const std::string& name, ResolveOpt opt);
 
 bool GetLocalIp(std::string *ip);
 

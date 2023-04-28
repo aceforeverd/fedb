@@ -29,6 +29,7 @@
 #include "absl/strings/strip.h"
 #include "absl/strings/substitute.h"
 #include "absl/types/span.h"
+#include "base/ip.h"
 #include "base/ddl_parser.h"
 #include "base/file_util.h"
 #include "base/glog_wrapper.h"
@@ -237,6 +238,18 @@ bool SQLClusterRouter::Init() {
         FLAGS_glog_dir = options_->glog_dir;
     }
     base::SetupGlog();
+
+    {
+        auto ops = std::dynamic_pointer_cast<SQLRouterOptions>(options_);
+        if (ops != nullptr && !ops->zk_cluster.empty()) {
+            auto s = openmldb::base::Resolve(ops->zk_cluster);
+            if (!s.ok()) {
+                LOG(ERROR) << s.status();
+                return false;
+            }
+            ops->zk_cluster = s.value();
+        }
+    }
 
     if (cluster_sdk_ == nullptr) {
         // init cluster_sdk_, require options_ or standalone_options_ is set
