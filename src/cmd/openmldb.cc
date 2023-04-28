@@ -25,6 +25,7 @@
 #include <memory>
 #include <random>
 
+#include "absl/strings/str_split.h"
 #include "base/file_util.h"
 #include "base/glog_wrapper.h"
 #include "base/hash.h"
@@ -3927,6 +3928,27 @@ void StartAPIServer() {
 int main(int argc, char* argv[]) {
     ::google::SetVersionString(OPENMLDB_VERSION);
     ::google::ParseCommandLineFlags(&argc, &argv, true);
+
+    if (!FLAGS_endpoint.empty()) {
+        // parsing domain:port to ip:port if necessary
+        std::vector<std::string> domain_port = absl::StrSplit(FLAGS_endpoint, ":");
+        if (domain_port.size() != 2) {
+            PDLOG(ERROR, "endpoint '%s' is not a valid pattern as 'ip:port' or 'domain:port'", FLAGS_endpoint);
+            exit(1);
+        }
+        auto res = openmldb::base::Resolve(domain_port[0], openmldb::base::ResolveOpt::INET);
+        if (!res.ok()) {
+            LOG(ERROR) << res.status();
+            exit(1);
+        }
+        if (res.value().empty()) {
+            PDLOG(WARNING, "fail to resolve endpoint, result list empty");
+            exit(1);
+        }
+        // TODO: handle the case if value has multiple entries
+        FLAGS_endpoint = absl::StrCat(res.value()[0], ":", domain_port[1]);
+    }
+
     if (FLAGS_role.empty()) {
         std::cout << "client start in stand-alone mode" << std::endl;
         // TODO(hw): standalonesdk refresh every 2s, too many logs in Debug mode

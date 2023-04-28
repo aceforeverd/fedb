@@ -14,32 +14,28 @@
  * limitations under the License.
  */
 
-#pragma once
-
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <unistd.h>
+#ifndef SRC_BASE_IP_H_
+#define SRC_BASE_IP_H_
 
 #include <string>
+#include <vector>
+#include "absl/status/statusor.h"
 
 namespace openmldb {
 namespace base {
 
-bool GetLocalIp(std::string* ip) {
-    if (ip == nullptr) {
-        return false;
-    }
-    char name[256];
-    gethostname(name, sizeof(name));
-    struct hostent* host = gethostbyname(name);
-    char ip_str[32];
-    const char* ret = inet_ntop(host->h_addrtype, host->h_addr_list[0], ip_str, sizeof(ip_str));
-    if (ret == NULL) {
-        return false;
-    }
-    *ip = ip_str;
-    return true;
-}
+enum class ResolveOpt {
+    UNSPEC,
+    INET,
+    INET6,
+};
+
+// resolve the {name} into string represent of IP address
+absl::StatusOr<std::vector<std::string>> Resolve(const std::string& name, ResolveOpt opt);
+
+bool GetLocalIp(std::string *ip);
 
 }  // namespace base
 }  // namespace openmldb
+
+#endif  // SRC_BASE_IP_H_
