@@ -112,17 +112,14 @@ jobs:
             reports/*.xml
 
       - name: install
-        if: ${{ github.event_name == 'push' }}
         run: |
           make install
 
       - name: package
-        if: ${{ github.event_name == 'push' }}
         run: |
           tar czf ${{ env.OPENMLDB_PREFIX }}.tar.gz ${{ env.OPENMLDB_PREFIX }}/
 
       - name: upload artifacts
-        if: ${{ github.event_name == 'push' }}
         uses: actions/upload-artifact@v2
         with:
           path: openmldb-*.tar.gz
