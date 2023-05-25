@@ -3324,10 +3324,10 @@ hybridse::sdk::Status SQLClusterRouter::HandleDeploy(const std::string& db,
     sp_info.set_sql(str_stream.str());
     sp_info.set_type(::openmldb::type::ProcedureType::kReqDeployment);
 
-    auto index_status = HandleIndex(db, table_pair, select_sql, deploy_node);
-    if (!index_status.IsOK()) {
-        return index_status;
-    }
+    /* auto index_status = HandleIndex(db, table_pair, select_sql, deploy_node); */
+    /* if (!index_status.IsOK()) { */
+    /*     return index_status; */
+    /* } */
 
     auto lw_status = HandleLongWindows(deploy_node, table_pair, select_sql);
     if (!lw_status.IsOK()) {

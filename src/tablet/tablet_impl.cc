@@ -207,7 +207,7 @@ bool TabletImpl::Init(const std::string& zk_cluster, const std::string& zk_path,
 
     ::hybridse::vm::EngineOptions options;
     if (IsClusterMode()) {
-        options.SetClusterOptimized(FLAGS_enable_distsql);
+        options.SetClusterOptimized(true);
     } else {
         options.SetClusterOptimized(false);
     }
