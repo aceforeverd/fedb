@@ -35,6 +35,8 @@
 #include "vm/physical_op.h"
 #include "vm/simple_catalog.h"
 
+DECLARE_bool(enable_distsql);
+
 namespace openmldb::base {
 
 using hybridse::vm::Catalog;
@@ -430,6 +432,7 @@ bool DDLParser::GetPlan(const std::string& sql, const hybridse::type::Database& 
     ::hybridse::vm::EngineOptions options;
     options.SetKeepIr(true);
     options.SetCompileOnly(true);
+    options.SetClusterOptimized(FLAGS_enable_distsql);
     auto engine = std::make_shared<hybridse::vm::Engine>(catalog, options);
 
     // TODO(hw): ok and status may not be consistent? why engine always use '!ok || 0 != status.code'?
