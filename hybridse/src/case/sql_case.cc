@@ -16,6 +16,7 @@
 
 #include "case/sql_case.h"
 
+#include <filesystem>
 #include <fstream>
 #include <optional>
 #include <set>
@@ -25,6 +26,7 @@
 #include "absl/cleanup/cleanup.h"
 #include "absl/strings/ascii.h"
 #include "absl/strings/substitute.h"
+#include "absl/synchronization/mutex.h"
 #include "boost/algorithm/string.hpp"
 #include "boost/filesystem/operations.hpp"
 #include "boost/lexical_cast.hpp"
@@ -37,6 +39,10 @@
 namespace hybridse {
 namespace sqlcase {
 using hybridse::codec::Row;
+
+static absl::Mutex mtx;
+// working directory, where the yaml file lives
+static std::filesystem::path working_dir;
 
 bool SqlCase::TTLParse(const std::string& org_type_str,
                        std::vector<int64_t>& ttls) {
@@ -950,7 +956,17 @@ bool SqlCase::CreateTableInfoFromYamlNode(const YAML::Node& schema_data,
         if (schema_data["data"].IsMap()) {
             // csv format only
             table->csv_data_file_ = absl::StripAsciiWhitespace(schema_data["data"]["file"].as<std::string>());
-            std::fstream f(table->csv_data_file_, std::ios::in);
+            if (table->csv_data_file_.empty()) {
+                LOG(ERROR) << "table csv data file name is empty";
+                return false;
+            }
+            std::fstream f;
+            if (table->csv_data_file_.front() == '/') {
+                f.open(table->csv_data_file_, std::ios::in);
+            } else {
+                f.open(working_dir / table->csv_data_file_, std::ios::in);
+            }
+
             if (f.is_open()) {
                 absl::Cleanup clean = [&f]() {
                     f.close();
@@ -1263,8 +1279,28 @@ static bool ParseSqlCaseNode(const YAML::Node& sql_case_node,
     }
 
     if (sql_case_node["sql"]) {
-        sql_case.sql_str_ = sql_case_node["sql"].as<std::string>();
-        boost::trim(sql_case.sql_str_);
+        auto& sql_node = sql_case_node["sql"];
+        if (sql_node.IsScalar()) {
+            sql_case.sql_str_ = sql_case_node["sql"].as<std::string>();
+            boost::trim(sql_case.sql_str_);
+        } else if (sql_node.IsMap()) {
+            if (sql_node["file"].IsScalar()) {
+                std::string file_path = sql_node["file"].as<std::string>();
+                if (file_path.empty()) {
+                    LOG(ERROR) << "file path to sql is empty";
+                    return false;
+                }
+                if (file_path.front() != '/') {
+                    file_path = working_dir / file_path;
+                }
+                std::ifstream ifs(file_path);
+                sql_case.sql_str_.assign((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
     if (sql_case_node["sqls"]) {
         sql_case.sql_strs_.clear();
@@ -1508,12 +1544,16 @@ bool SqlCase::CreateSqlCasesFromYaml(
     const std::string& cases_dir, const std::string& yaml_path,
     std::vector<SqlCase>& sql_case_ptr,
     const std::vector<std::string>& filter_modes) {
-    std::string sql_case_path;
-    if (cases_dir != "") {
+    std::string sql_case_path = yaml_path;
+    // 1. yaml_path starts from '/', respect it as absolute path
+    // 2. otherwise, prepend with cases_dir
+    if (yaml_path.front() != '/' && cases_dir != "") {
         sql_case_path = cases_dir + "/" + yaml_path;
-    } else {
-        sql_case_path = yaml_path;
     }
+    std::filesystem::path p(sql_case_path);
+    absl::MutexLock lock(&mtx);
+    working_dir = p.parent_path();
+
     if (IsDebug()) {
         DLOG(INFO) << "SQL Cases Path: " << sql_case_path;
     }
