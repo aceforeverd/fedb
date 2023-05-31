@@ -36,8 +36,7 @@ namespace plan {
 
 // whether the window function is relative to current row instead of window frame bound
 inline bool IsCurRowRelativeWinFun(absl::string_view fn_name) {
-    return absl::EqualsIgnoreCase("lag", fn_name) || absl::EqualsIgnoreCase("at", fn_name) ||
-           absl::EqualsIgnoreCase("lead", fn_name);
+    return absl::EqualsIgnoreCase("lag", fn_name) || absl::EqualsIgnoreCase("lead", fn_name);
 }
 
 Planner::Planner(node::NodeManager *manager, const bool is_batch_mode, const bool is_cluster_optimized,
@@ -177,21 +176,7 @@ base::Status Planner::CreateSelectQueryPlan(const node::SelectQueryNode *root, n
 
         // get the window for the expr
         const node::WindowDefNode *w_ptr = nullptr;
-        CHECK_TRUE(node::WindowOfExpression(windows, project_expr, &w_ptr), common::kPlanError,
-                   "fail to resolved window")
-        // expand window frame for lag funtions early
-        if (project_expr->GetExprType() == node::kExprCall) {
-            auto *call_expr = dynamic_cast<node::CallExprNode *>(project_expr);
-            if (call_expr != nullptr && call_expr->GetOver() != nullptr &&
-                IsCurRowRelativeWinFun(call_expr->GetFnDef()->GetName())) {
-                // current row window constructed only for `lag(col, 1) over w`,
-                // not for nested window aggregation from kids,
-                //   like `lag(split_by_key(count_cate_where(col, ...) over w, ",", ":"), 1)`
-                auto s = ConstructWindowForLag(w_ptr, call_expr);
-                CHECK_TRUE(s.ok(), common::kUnsupportSql, s.status().ToString());
-                w_ptr = s.value();
-            }
-        }
+        CHECK_STATUS(WindowOfExpression(windows, project_expr, &w_ptr));
 
         // deal with row project / table aggregation project
         if (w_ptr == nullptr) {
@@ -1217,6 +1202,55 @@ absl::StatusOr<node::WindowDefNode *> Planner::ConstructWindowForLag(const node:
     auto *new_win = in->ShadowCopy(node_manager_);
     new_win->SetFrame(new_frame);
     return new_win;
+}
+
+base::Status Planner::WindowOfExpression(const std::map<std::string, const node::WindowDefNode *> &windows,
+                                         node::ExprNode *node_ptr, const node::WindowDefNode **output) {
+    // try to resolved window ptr from expression like: call(args...) over window
+    if (node::kExprCall == node_ptr->GetExprType()) {
+        node::CallExprNode *func_node_ptr = dynamic_cast<node::CallExprNode *>(node_ptr);
+        if (nullptr != func_node_ptr->GetOver()) {
+            const node::WindowDefNode* w = nullptr;
+            if (func_node_ptr->GetOver()->GetName().empty()) {
+                // anonymous over
+                w = func_node_ptr->GetOver();
+            } else {
+                auto iter = windows.find(func_node_ptr->GetOver()->GetName());
+                if (iter == windows.cend()) {
+                    FAIL_STATUS(common::kPlanError,
+                                "Fail to resolved window from expression: ", func_node_ptr->GetOver()->GetName(),
+                                " undefined");
+                }
+                w = iter->second;
+            }
+
+            if (IsCurRowRelativeWinFun(func_node_ptr->GetFnDef()->GetName())) {
+                auto s = ConstructWindowForLag(w, func_node_ptr);
+                if (!s.ok()) {
+                    FAIL_STATUS(common::kPlanError, s.status().ToString());
+                }
+                w = s.value();
+            }
+            *output = w;
+        }
+    }
+
+    // try to resolved windows of children
+    // make sure there is only one window for the whole expression
+    for (auto child : node_ptr->children_) {
+        const node::WindowDefNode *w = nullptr;
+        CHECK_STATUS(WindowOfExpression(windows, child, &w));
+        // resolve window of child
+        if (nullptr != w) {
+            if (*output == nullptr) {
+                *output = w;
+            } else if (!node::SqlEquals(*output, w)) {
+                FAIL_STATUS(common::kPlanError,
+                            "Fail to resolved window from expression: ", "expression depends on more than one window");
+            }
+        }
+    }
+    return base::Status();
 }
 
 }  // namespace plan

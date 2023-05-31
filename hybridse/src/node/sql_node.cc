@@ -1291,47 +1291,6 @@ bool IsAggregationExpression(const udf::UdfLibrary *lib, const ExprNode *node_pt
     return false;
 }
 
-bool WindowOfExpression(const std::map<std::string, const WindowDefNode *> &windows, ExprNode *node_ptr,
-                        const WindowDefNode **output) {
-    // try to resolved window ptr from expression like: call(args...) over window
-    if (kExprCall == node_ptr->GetExprType()) {
-        CallExprNode *func_node_ptr = dynamic_cast<CallExprNode *>(node_ptr);
-        if (nullptr != func_node_ptr->GetOver()) {
-            if (func_node_ptr->GetOver()->GetName().empty()) {
-                // anonymous over
-                *output = func_node_ptr->GetOver();
-            } else {
-                auto iter = windows.find(func_node_ptr->GetOver()->GetName());
-                if (iter == windows.cend()) {
-                    LOG(WARNING) << "Fail to resolved window from expression: " << func_node_ptr->GetOver()->GetName()
-                                 << " undefined";
-                    return false;
-                }
-                *output = iter->second;
-            }
-        }
-    }
-
-    // try to resolved windows of children
-    // make sure there is only one window for the whole expression
-    for (auto child : node_ptr->children_) {
-        const WindowDefNode *w = nullptr;
-        if (!WindowOfExpression(windows, child, &w)) {
-            return false;
-        }
-        // resolve window of child
-        if (nullptr != w) {
-            if (*output == nullptr) {
-                *output = w;
-            } else if (!node::SqlEquals(*output, w)) {
-                LOG(WARNING) << "Fail to resolved window from expression: "
-                             << "expression depends on more than one window";
-                return false;
-            }
-        }
-    }
-    return true;
-}
 std::string ExprString(const ExprNode *expr) { return nullptr == expr ? std::string() : expr->GetExprString(); }
 const bool IsNullPrimary(const ExprNode *expr) {
     return nullptr != expr && expr->expr_type_ == hybridse::node::kExprPrimary &&

@@ -2814,12 +2814,6 @@ bool ExprEquals(const ExprNode *left, const ExprNode *right);
 bool FnDefEquals(const FnDefNode *left, const FnDefNode *right);
 bool TypeEquals(const TypeNode *left, const TypeNode *right);
 
-// retrieve the `WindowDefNode` for the `ExprNode`, which is either from
-//  `ExprNode` itself inside if it is an anonymous window e.g `fn() over (window)`
-//  or find in `windows` map by window name
-bool WindowOfExpression(const std::map<std::string, const WindowDefNode *>& windows, ExprNode *node_ptr,
-                        const WindowDefNode **output);
-
 bool IsAggregationExpression(const udf::UdfLibrary* lib, const node::ExprNode* node_ptr);
 void ColumnOfExpression(const ExprNode *node_ptr,
                         std::vector<const node::ExprNode *> *columns);  // NOLINT

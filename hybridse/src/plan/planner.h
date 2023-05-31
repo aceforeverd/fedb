@@ -120,6 +120,12 @@ class Planner {
     absl::StatusOr<node::WindowDefNode *> ConstructWindowForLag(const node::WindowDefNode *in,
                                                                 const node::CallExprNode *call) const;
 
+    // retrieve the `WindowDefNode` for the `ExprNode`, which is either from
+    //  `ExprNode` itself if it is an anonymous window e.g `fn() over (window)`,
+    //  or find by window name from window map
+    base::Status WindowOfExpression(const std::map<std::string, const node::WindowDefNode *> &windows,
+                                    node::ExprNode *node_ptr, const node::WindowDefNode **output);
+
  private:
     const std::unordered_map<std::string, std::string>* extra_options_ = nullptr;
     std::set<std::string> long_windows_;
