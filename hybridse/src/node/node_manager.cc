@@ -128,6 +128,9 @@ WindowDefNode *NodeManager::MergeWindow(const WindowDefNode *w1, const WindowDef
         LOG(WARNING) << "Fail to Merge Window: input windows are null";
         return nullptr;
     }
+    if (w1->Equals(w2)) {
+        return const_cast<WindowDefNode*>(w1);
+    }
     return dynamic_cast<WindowDefNode *>(MakeWindowDefNode(w1->union_tables(), w1->GetPartitions(), w1->GetOrders(),
                                                            MergeFrameNode(w1->GetFrame(), w2->GetFrame()),
                                                            w1->exclude_current_time(), w1->instance_not_in_window()));

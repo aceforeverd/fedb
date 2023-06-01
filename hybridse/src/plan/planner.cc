@@ -1207,13 +1207,13 @@ absl::StatusOr<node::WindowDefNode *> Planner::ConstructWindowForLag(const node:
 base::Status Planner::WindowOfExpression(const std::map<std::string, const node::WindowDefNode *> &windows,
                                          node::ExprNode *node_ptr, const node::WindowDefNode **output) {
     // try to resolved window ptr from expression like: call(args...) over window
+    const node::WindowDefNode *tmp = nullptr;
     if (node::kExprCall == node_ptr->GetExprType()) {
         node::CallExprNode *func_node_ptr = dynamic_cast<node::CallExprNode *>(node_ptr);
         if (nullptr != func_node_ptr->GetOver()) {
-            const node::WindowDefNode* w = nullptr;
             if (func_node_ptr->GetOver()->GetName().empty()) {
                 // anonymous over
-                w = func_node_ptr->GetOver();
+                tmp = func_node_ptr->GetOver();
             } else {
                 auto iter = windows.find(func_node_ptr->GetOver()->GetName());
                 if (iter == windows.cend()) {
@@ -1221,17 +1221,16 @@ base::Status Planner::WindowOfExpression(const std::map<std::string, const node:
                                 "Fail to resolved window from expression: ", func_node_ptr->GetOver()->GetName(),
                                 " undefined");
                 }
-                w = iter->second;
+                tmp = iter->second;
             }
 
             if (IsCurRowRelativeWinFun(func_node_ptr->GetFnDef()->GetName())) {
-                auto s = ConstructWindowForLag(w, func_node_ptr);
+                auto s = ConstructWindowForLag(tmp, func_node_ptr);
                 if (!s.ok()) {
                     FAIL_STATUS(common::kPlanError, s.status().ToString());
                 }
-                w = s.value();
+                tmp = s.value();
             }
-            *output = w;
         }
     }
 
@@ -1242,14 +1241,18 @@ base::Status Planner::WindowOfExpression(const std::map<std::string, const node:
         CHECK_STATUS(WindowOfExpression(windows, child, &w));
         // resolve window of child
         if (nullptr != w) {
-            if (*output == nullptr) {
-                *output = w;
-            } else if (!node::SqlEquals(*output, w)) {
+            if (tmp == nullptr) {
+                tmp = w;
+            } else if (w->CanMergeWith(tmp)) {
+                tmp = node_manager_->MergeWindow(w, tmp);
+            } else {
                 FAIL_STATUS(common::kPlanError,
-                            "Fail to resolved window from expression: ", "expression depends on more than one window");
+                            "Fail to resolved window from expression: expression depends on more than one window that "
+                            "can't merge");
             }
         }
     }
+    *output = tmp;
     return base::Status();
 }
 
