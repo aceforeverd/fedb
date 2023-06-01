@@ -36,7 +36,8 @@ namespace plan {
 
 // whether the window function is relative to current row instead of window frame bound
 inline bool IsCurRowRelativeWinFun(absl::string_view fn_name) {
-    return absl::EqualsIgnoreCase("lag", fn_name) || absl::EqualsIgnoreCase("lead", fn_name);
+    return absl::EqualsIgnoreCase("lag", fn_name) || absl::EqualsIgnoreCase("at", fn_name) ||
+           absl::EqualsIgnoreCase("lead", fn_name);
 }
 
 Planner::Planner(node::NodeManager *manager, const bool is_batch_mode, const bool is_cluster_optimized,
