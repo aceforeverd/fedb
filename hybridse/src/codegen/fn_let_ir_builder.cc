@@ -134,8 +134,9 @@ Status RowFnLetIRBuilder::Build(
                    "* should be resolved before codegen stage");
 
         // bind window frame
-        CHECK_STATUS(BindProjectFrame(&expr_ir_builder, frame, compile_func,
-                                      ctx_->GetCurrentBlock(), sv));
+        // CHECK_STATUS(BindProjectFrame(&expr_ir_builder, frame, compile_func,
+        //                               ctx_->GetCurrentBlock(), sv));
+        expr_ir_builder.set_frame(compile_func->GetArg(1), frame);
 
         CHECK_STATUS(BuildProject(&expr_ir_builder, i, expr, &outputs),
                      "Build expr failed at ", i, ":\n", expr->GetTreeString());
@@ -145,13 +146,11 @@ Status RowFnLetIRBuilder::Build(
                          ctx_->GetCurrentBlock(), output_ptr_name),
                "Gen encode into output buffer failed");
 
-    if (!window_agg_builder.empty()) {
-        for (auto iter = window_agg_builder.begin(); iter != window_agg_builder.end(); iter++) {
-            if (!iter->second.empty()) {
-                CHECK_STATUS(iter->second.BuildMulti(name, &expr_ir_builder, &variable_ir_builder,
-                                                     ctx_->GetCurrentBlock(), output_ptr_name, output_schema),
-                             "Multi column sum codegen failed");
-            }
+    for (auto iter = window_agg_builder.begin(); iter != window_agg_builder.end(); iter++) {
+        if (!iter->second.empty()) {
+            CHECK_STATUS(iter->second.BuildMulti(name, &expr_ir_builder, &variable_ir_builder, ctx_->GetCurrentBlock(),
+                                                 output_ptr_name, output_schema),
+                         "Multi column sum codegen failed");
         }
     }
 
@@ -237,7 +236,7 @@ Status RowFnLetIRBuilder::BuildProject(
     ::hybridse::type::Type ctype;
     CHECK_TRUE(DataType2SchemaType(*data_type, &ctype), kCodegenError);
 
-    outputs->insert(std::make_pair(index, expr_out_val));
+    outputs->emplace(index, expr_out_val);
     return Status::OK();
 }
 

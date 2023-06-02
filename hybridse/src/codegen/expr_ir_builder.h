@@ -52,10 +52,10 @@ class ExprIRBuilder {
                       const std::vector<NativeValue>& args,
                       NativeValue* output);
 
+    // build window value by frame_
     Status BuildWindow(NativeValue* output);
 
-    inline void set_frame(node::ExprNode* frame_arg,
-                          const node::FrameNode* frame) {
+    void set_frame(node::ExprNode* frame_arg, const node::FrameNode* frame) {
         this->frame_arg_ = frame_arg;
         this->frame_ = frame;
     }
@@ -123,7 +123,7 @@ class ExprIRBuilder {
     // window frame node
     const node::FrameNode* frame_ = nullptr;
 
-    // ExprIdNode definition of frame
+    // ExprIdNode definition of frame (with name refer to the current window)
     node::ExprNode* frame_arg_ = nullptr;
 };
 }  // namespace codegen

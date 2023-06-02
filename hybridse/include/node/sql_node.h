@@ -1375,7 +1375,7 @@ class WindowDefNode : public SqlNode {
     void set_exclude_current_time(bool exclude_current_time) { exclude_current_time_ = exclude_current_time; }
     bool exclude_current_row() const { return frame_ptr_ ? frame_ptr_->exclude_current_row_ : false; }
 
-    void Print(std::ostream &output, const std::string &org_tab) const;
+    void Print(std::ostream &output, const std::string &org_tab) const override;
     bool Equals(const SqlNode *that) const override;
     bool CanMergeWith(const WindowDefNode *that, const bool enable_window_maxsize_merged = true) const;
 
@@ -1510,8 +1510,10 @@ class CallExprNode : public ExprNode {
     CallExprNode *DeepCopy(NodeManager *) const override;
 
     const WindowDefNode *GetOver() const { return over_; }
-
     void SetOver(WindowDefNode *over) { over_ = over; }
+
+    WindowDefNode *GetResolvedWindow() const { return resolved_window_; }
+    void SetResolvedWindow(WindowDefNode *over) { resolved_window_ = over; }
 
     FnDefNode *GetFnDef() const { return fn_def_; }
     void SetFnDef(FnDefNode *fn_def) { fn_def_ = fn_def; }
@@ -1523,6 +1525,11 @@ class CallExprNode : public ExprNode {
  private:
     FnDefNode *fn_def_;
     const WindowDefNode *over_;
+
+    // resolved window points to the real window definition, which must
+    // have the info like frame_ptr_ non-null
+    // resolved_window_ should resolved during planner: constructing ProjectNode
+    WindowDefNode* resolved_window_ = nullptr;
 };
 
 class QueryExpr : public ExprNode {

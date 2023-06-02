@@ -227,11 +227,21 @@ cases:
           - ["bb",24,34,1.5,2.5,1590738994000,"2020-05-05"]
     sql: |
       SELECT c1, c3, c4,
-      (sum(c4) over w1 + sum(c3) over w2) as sum_c3_c4_w1 FROM {0}
-      WINDOW w1 AS (PARTITION BY {0}.c1 ORDER BY {0}.c7 ROWS BETWEEN 2 PRECEDING AND CURRENT ROW),
+        (sum(c4) over w1 + sum(c3) over w2) as sum_c3_c4_w1,
+        (sum(c3) over w2 + sum(c4) over w1) as sum_c3_c4_w1_x
+      FROM {0}
+      WINDOW w1 AS (PARTITION BY {0}.c1 ORDER BY {0}.c7 ROWS BETWEEN 1 PRECEDING AND CURRENT ROW),
       w2 AS (PARTITION BY {0}.c1 ORDER BY {0}.c7 ROWS BETWEEN 10 PRECEDING AND CURRENT ROW);
     expect:
-      success: false
+      order: c1
+      columns: [ "c1 string","c3 int", "c4 bigint", "sum_c3_c4_w1 bigint", "sum_c3_c4_w1_x bigint" ]
+      data: |
+        aa, 20, 30, 50,  50
+        aa, 21, 31, 102, 102
+        aa, 22, 32, 126, 126
+        bb, 23, 33, 56,  56
+        bb, 24, 34, 114, 114
+
   -
     id: 13
     desc: ROWS Window 不支持MAXSIZE

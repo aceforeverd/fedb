@@ -176,11 +176,11 @@ base::Status Planner::CreateSelectQueryPlan(const node::SelectQueryNode *root, n
         }
 
         // get the window for the expr
-        const node::WindowDefNode *w_ptr = nullptr;
-        CHECK_STATUS(WindowOfExpression(windows, project_expr, &w_ptr));
+        const node::WindowDefNode *resolved_w_for_project = nullptr;
+        CHECK_STATUS(WindowOfExpression(windows, project_expr, &resolved_w_for_project));
 
         // deal with row project / table aggregation project
-        if (w_ptr == nullptr) {
+        if (resolved_w_for_project == nullptr) {
             if (node::IsAggregationExpression(lib, project_expr)) {
                 // table aggregation project
                 table_project_list->AddProject(
@@ -193,17 +193,18 @@ base::Status Planner::CreateSelectQueryPlan(const node::SelectQueryNode *root, n
         }
 
         // deal with window project
-        auto it = window_project_list_map.find(w_ptr);
+        auto it = window_project_list_map.find(resolved_w_for_project);
         if (it == window_project_list_map.end()) {
             // save the newly found window to (window -> project list) map
             node::WindowPlanNode *w_node_ptr = node_manager_->MakeWindowPlanNode(w_id++);
-            CHECK_STATUS(FillInWindowPlanNode(w_ptr, w_node_ptr))
+            CHECK_STATUS(FillInWindowPlanNode(resolved_w_for_project, w_node_ptr))
             // and create initial project list node for that new window
-            auto res = window_project_list_map.emplace(w_ptr, node_manager_->MakeProjectListPlanNode(w_node_ptr, true));
+            auto res = window_project_list_map.emplace(resolved_w_for_project,
+                                                       node_manager_->MakeProjectListPlanNode(w_node_ptr, true));
             it = res.first;
         }
         it->second->AddProject(
-            node_manager_->MakeAggProjectNode(pos, project_name, project_expr, w_ptr->GetFrame()));
+            node_manager_->MakeAggProjectNode(pos, project_name, project_expr, resolved_w_for_project->GetFrame()));
     }
 
     // Rule 1: Can't support group clause and window clause simultaneously
@@ -245,8 +246,7 @@ base::Status Planner::CreateSelectQueryPlan(const node::SelectQueryNode *root, n
         CHECK_STATUS(MergeProjectMap(window_project_list_map, &merged_project_list_map))
     }
 
-    // add MergeNode if multi ProjectionLists exist
-    PlanNodeList project_list_vec(w_id);
+    std::vector<node::ProjectListNode*> project_list_vec(w_id);
     for (auto &v : merged_project_list_map) {
         node::ProjectListNode *project_list = v.second;
         int pos = nullptr == project_list->GetW() ? 0 : project_list->GetW()->GetId();
@@ -273,11 +273,11 @@ base::Status Planner::CreateSelectQueryPlan(const node::SelectQueryNode *root, n
         if (nullptr == v) {
             continue;
         }
-        auto project_list = dynamic_cast<node::ProjectListNode *>(v)->GetProjects();
+        auto project_list = v->GetProjects();
         int project_pos = 0;
         for (auto project : project_list) {
-            pos_mapping[dynamic_cast<node::ProjectNode *>(project)->GetPos()] =
-                std::make_pair(project_list_id, project_pos);
+            // original project idx -> (ProjectListNode idx, project idx inside ProjectListNode)
+            pos_mapping[dynamic_cast<node::ProjectNode *>(project)->GetPos()] = {project_list_id, project_pos};
             project_pos++;
         }
         project_list_without_null.push_back(v);
@@ -994,7 +994,6 @@ bool Planner::MergeWindows(const std::map<const node::WindowDefNode *, node::Pro
     return has_window_merged;
 }
 
-// win_id passed in for the purpose of creating possible new WindowPlanNode
 base::Status Planner::MergeProjectMap(const std::map<const node::WindowDefNode *, node::ProjectListNode *> &map,
                                       std::map<const node::WindowDefNode *, node::ProjectListNode *> *output) {
     if (map.empty()) {
@@ -1028,14 +1027,14 @@ base::Status Planner::MergeProjectMap(const std::map<const node::WindowDefNode *
     // add project nodes from map to merged_out, based on whether two window can merged
     for (auto map_iter = map.cbegin(); map_iter != map.cend(); map_iter++) {
         bool merge_ok = false;
-        for (auto iter = merged_out.begin(); iter != merged_out.end(); iter++) {
-            if (node::SqlEquals(map_iter->first, iter->first) ||
-                (nullptr != map_iter->first && map_iter->first->CanMergeWith(iter->first))) {
-                auto window_plan_node = iter->second->GetW();
+        for (auto merged_iter = merged_out.begin(); merged_iter != merged_out.end(); merged_iter++) {
+            if (node::SqlEquals(map_iter->first, merged_iter->first) ||
+                (nullptr != map_iter->first && map_iter->first->CanMergeWith(merged_iter->first))) {
+                auto window_plan_node = merged_iter->second->GetW();
                 node::ProjectListNode *merged_project =
                     node_manager_->MakeProjectListPlanNode(window_plan_node, window_plan_node != nullptr);
-                node::ProjectListNode::MergeProjectList(iter->second, map_iter->second, merged_project);
-                iter->second = merged_project;
+                node::ProjectListNode::MergeProjectList(merged_iter->second, map_iter->second, merged_project);
+                merged_iter->second = merged_project;
                 merge_ok = true;
                 break;
             }
@@ -1232,6 +1231,8 @@ base::Status Planner::WindowOfExpression(const std::map<std::string, const node:
                 }
                 tmp = s.value();
             }
+
+            func_node_ptr->SetResolvedWindow(const_cast<node::WindowDefNode*>(tmp));
         }
     }
 

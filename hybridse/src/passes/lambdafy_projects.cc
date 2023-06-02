@@ -25,6 +25,9 @@ using ::hybridse::common::kCodegenError;
 Status LambdafyProjects::Transform(
     const std::vector<const node::ExprNode*>& exprs,
     node::LambdaNode** out_lambda, std::vector<int>* require_agg_vec) {
+    // for one PhysicalProjectNode and its dervied
+    // there is ony one request row and big window, as arg1 and arg2 below
+
     // arg1: current input row
     auto nm = ctx_->node_manager();
     auto schemas_ctx = ctx_->schemas_context();

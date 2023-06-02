@@ -298,6 +298,34 @@ Status ExprIRBuilder::BuildConstExpr(
 
 Status ExprIRBuilder::BuildCallFn(const ::hybridse::node::CallExprNode* call,
                                   NativeValue* output) {
+    // consturct window first
+    const node::FrameNode* frame = this->frame_;
+    if (call->GetResolvedWindow() != nullptr) {
+        CHECK_TRUE(call->GetResolvedWindow()->GetFrame() != nullptr, kCodegenError,
+                   "window node for CallExpr not resolved");
+        frame = call->GetResolvedWindow()->GetFrame();
+    }
+
+    set_frame(frame_arg_, frame);
+    NativeValue window_arg_value;
+    CHECK_STATUS(BuildWindow(&window_arg_value));
+    ::llvm::IRBuilder<>* builder = ctx_->GetBuilder();
+    ::llvm::Value* frame_ptr = window_arg_value.GetValue(builder);
+    CHECK_TRUE(frame_ptr != nullptr && frame_ptr->getType()->isPointerTy(), kCodegenError);
+    ::llvm::Type* row_list_ptr_ty = nullptr;
+    CHECK_TRUE(GetLlvmType(ctx_->GetModule(), frame_arg_->GetOutputType(), &row_list_ptr_ty), kCodegenError);
+    frame_ptr = builder->CreatePointerCast(frame_ptr, row_list_ptr_ty);
+    window_arg_value = window_arg_value.Replace(frame_ptr);
+
+    auto window_key = frame_arg_->GetExprString();
+    auto sv = ctx_->GetCurrentScope()->sv();
+    if (sv->HasVar(window_key)) {
+        sv->ReplaceVar(window_key, window_arg_value);
+    } else {
+        sv->AddVar(window_key, window_arg_value);
+    }
+
+
     const node::FnDefNode* fn_def = call->GetFnDef();
     if (fn_def->GetType() == node::kExternalFnDef) {
         auto extern_fn = dynamic_cast<const node::ExternalFnDefNode*>(fn_def);
@@ -309,7 +337,7 @@ Status ExprIRBuilder::BuildCallFn(const ::hybridse::node::CallExprNode* call,
     std::vector<NativeValue> arg_values;
     std::vector<const node::TypeNode*> arg_types;
     ExprIRBuilder sub_builder(ctx_);
-    sub_builder.set_frame(this->frame_arg_, this->frame_);
+    sub_builder.set_frame(this->frame_arg_, frame);
     for (size_t i = 0; i < call->GetChildNum(); ++i) {
         node::ExprNode* arg_expr = call->GetChild(i);
         NativeValue arg_value;
@@ -318,7 +346,8 @@ Status ExprIRBuilder::BuildCallFn(const ::hybridse::node::CallExprNode* call,
         arg_values.push_back(arg_value);
         arg_types.push_back(arg_expr->GetOutputType());
     }
-    UdfIRBuilder udf_builder(ctx_, frame_arg_, frame_);
+
+    UdfIRBuilder udf_builder(ctx_, frame_arg_, frame);
     CHECK_STATUS(udf_builder.BuildCall(fn_def, arg_types, arg_values, output));
     return base::Status::OK();
 }
@@ -444,6 +473,16 @@ Status ExprIRBuilder::BuildWindow(NativeValue* output) {  // NOLINT
     }
 
     // Load Big Window, throw error if big window not exist
+    //
+    // e.g
+    // ProjectListNode
+    //   Projects
+    //     ProjectNode1(expr, window1)
+    //     ProjectNode2(expr, window2)
+    //   BigWindow
+    //
+    // A ProjectListNode may have multiple projects with difference windows, but can be merged
+    // into single big window. See `planner::MergeProjectMap`
     ok = variable_ir_builder.LoadWindow("", &window_ptr_value, status);
     CHECK_TRUE(ok && nullptr != window_ptr_value.GetValue(&builder), kCodegenError,
                "Fail to find window " + status.str());
