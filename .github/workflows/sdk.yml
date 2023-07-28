@@ -34,6 +34,7 @@ env:
   NPROC: 2 # default Parallel build number for GitHub's Linux runner
   EXAMPLES_ENABLE: OFF # turn off hybridse's example code
   HYBRIDSE_TESTING_ENABLE: OFF # turn off hybridse's test code
+  SPARK_HOME: /tmp/spark/
 
 jobs:
   java-sdk:
@@ -44,7 +45,6 @@ jobs:
       SQL_JAVASDK_ENABLE: ON
       OPENMLDB_BUILD_TARGET: "cp_native_so openmldb"
       MAVEN_OPTS: -Duser.home=/github/home
-      SPARK_HOME: /tmp/spark/
     steps:
       - uses: actions/checkout@v2
 
@@ -85,8 +85,6 @@ jobs:
     # except mvn deploy won't target all modules, just hybridse-native & openmldb-native
     # the job only run on tag push or manual workflow dispatch due to no test runs
     runs-on: macos-latest
-    needs:
-      - java-sdk
     env:
       SQL_JAVASDK_ENABLE: ON
       OPENMLDB_BUILD_TARGET: "cp_native_so openmldb"
