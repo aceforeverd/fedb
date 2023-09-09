@@ -1071,33 +1071,41 @@ TEST_F(UdfIRBuilderTest, DateDiff) {
     CheckUdf<Nullable<int32_t>, Nullable<Date>, Nullable<Date>>(func_name, nullptr, nullptr, nullptr);
 
     // string as input
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, -19, "2022-05-01", "20220520");
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, 729, "20221231", "2021-01-01");
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, 8400, "2022-12-31", "2000-01-01");
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, 44924, "2022-12-31", "1900-01-01");
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, 50, "20220620",
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, -19, "2022-05-01", "20220520");
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, 729, "20221231", "2021-01-01");
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, 8400, "2022-12-31", "2000-01-01");
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, 44924, "2022-12-31", "1900-01-01");
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, 50, "20220620",
                                                                           "2022-05-01 11:11:11");
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, 0, "2022-05-01", "20220501");
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, nullptr, "2022-02-29", "20220501");
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, nullptr, "1899-05-20",
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, 0L, "2022-05-01", "20220501");
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, nullptr, "2022-02-29", "20220501");
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, 9, "1899-05-20", "1899-05-11");
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, nullptr, "2022-05-40",
                                                                           "2020-05-20");
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, nullptr, "2022-05-40",
-                                                                          "2020-05-20");
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, nullptr, "2020-05-20",
-                                                                          "1899-05-20");
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, nullptr, nullptr, "20220501");
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, nullptr, "2022-05-01", nullptr);
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, nullptr, nullptr, nullptr);
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, -30, "1199-10-12", "1199-11-11");
+    // rfc3399 full format
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(
+        func_name, 20, "2000-01-01t00:12:00.1+08:00", "1999-12-12T12:12:12+08:00");
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(
+        func_name, 19, "2000-01-01t00:12:00.1+08:00", "1999-12-12T20:12:12Z");
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(
+        func_name, 20, "2000-01-01t06:12:00.1+08:00", "1999-12-12T12:12:12Z");
+
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, nullptr, nullptr, "20220501");
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, nullptr, "2022-05-01", nullptr);
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<StringRef>>(func_name, nullptr, nullptr, nullptr);
 
     // mix types
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<Date>>(func_name, -19, "2022-05-01", Date(2022, 5, 20));
-    CheckUdf<Nullable<int32_t>, Nullable<Date>, Nullable<StringRef>>(func_name, 19, Date(2022, 5, 20), "2022-05-01");
-    CheckUdf<Nullable<int32_t>, Nullable<Date>, Nullable<StringRef>>(func_name, nullptr, nullptr, "2022-05-01");
-    CheckUdf<Nullable<int32_t>, Nullable<Date>, Nullable<StringRef>>(func_name, nullptr, Date(2022, 5, 20), nullptr);
-    CheckUdf<Nullable<int32_t>, Nullable<Date>, Nullable<StringRef>>(func_name, nullptr, nullptr, nullptr);
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<Date>>(func_name, nullptr, nullptr, Date(2022, 5, 20));
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<Date>>(func_name, nullptr, "2022-05-01", nullptr);
-    CheckUdf<Nullable<int32_t>, Nullable<StringRef>, Nullable<Date>>(func_name, nullptr, nullptr, nullptr);
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<Date>>(func_name, -19, "2022-05-01", Date(2022, 5, 20));
+    CheckUdf<Nullable<int64_t>, Nullable<Date>, Nullable<StringRef>>(func_name, 19, Date(2022, 5, 20), "2022-05-01");
+    CheckUdf<Nullable<int64_t>, Nullable<Date>, Nullable<StringRef>>(func_name, 3, Date(1900, 1, 1), "1899-12-29");
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<Date>>(func_name, -3, "1899-12-29", Date(1900, 1, 1));
+    CheckUdf<Nullable<int64_t>, Nullable<Date>, Nullable<StringRef>>(func_name, nullptr, nullptr, "2022-05-01");
+    CheckUdf<Nullable<int64_t>, Nullable<Date>, Nullable<StringRef>>(func_name, nullptr, Date(2022, 5, 20), nullptr);
+    CheckUdf<Nullable<int64_t>, Nullable<Date>, Nullable<StringRef>>(func_name, nullptr, nullptr, nullptr);
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<Date>>(func_name, nullptr, nullptr, Date(2022, 5, 20));
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<Date>>(func_name, nullptr, "2022-05-01", nullptr);
+    CheckUdf<Nullable<int64_t>, Nullable<StringRef>, Nullable<Date>>(func_name, nullptr, nullptr, nullptr);
 }
 
 TEST_F(UdfIRBuilderTest, StringToSmallint0) {
