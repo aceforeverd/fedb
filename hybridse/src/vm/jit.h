@@ -99,8 +99,7 @@ class HybridSeLlvmJitWrapper : public HybridSeJitWrapper {
 
     bool AddExternalFunction(const std::string& name, void* addr) override;
 
-    hybridse::vm::RawPtrHandle FindFunction(
-        const std::string& funcname) override;
+    hybridse::vm::RawPtrHandle FindFunction(const std::string& funcname) override;
 
  private:
     std::unique_ptr<HybridSeJit> jit_;
