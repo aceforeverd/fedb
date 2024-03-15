@@ -20,6 +20,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdint>
 
 namespace hybridse {
 namespace base {

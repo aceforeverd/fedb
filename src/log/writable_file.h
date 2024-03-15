@@ -18,6 +18,7 @@
 #define SRC_LOG_WRITABLE_FILE_H_
 
 #include <string>
+#include <cstdint>
 
 namespace openmldb {
 
