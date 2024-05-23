@@ -258,12 +258,85 @@ class LastJoinRewriteUnparser : public zetasql::parser::Unparser {
     }
 };
 
+// SELECT:
+//   WHERE col = 0
+//   FROM (subquery):
+//     subquery is UNION ALL, or contains left-most query is UNION ALL
+//     and UNION ALL is select const ..., 0 as col UNION ALL (select .., 1 as col table)
 class RequestQueryRewriteUnparser : public zetasql::parser::Unparser {
  public:
     explicit RequestQueryRewriteUnparser(std::string* unparsed) : zetasql::parser::Unparser(unparsed) {}
     ~RequestQueryRewriteUnparser() override {}
     RequestQueryRewriteUnparser(const RequestQueryRewriteUnparser&) = delete;
     RequestQueryRewriteUnparser& operator=(const RequestQueryRewriteUnparser&) = delete;
+
+    void visitASTSelect(const zetasql::ASTSelect* node, void* data) override {
+        while (true) {
+            if (outer_most_select_ != nullptr) {
+                break;
+            }
+
+            outer_most_select_ = node;
+            if (node->where_clause() == nullptr) {
+                break;
+            }
+            absl::string_view filter_col;
+
+            // 1. filter condition is 'col = 0'
+            if (node->where_clause()->expression()->node_kind() != zetasql::AST_BINARY_EXPRESSION) {
+                break;
+            }
+            auto expr = node->where_clause()->expression()->GetAsOrNull<zetasql::ASTBinaryExpression>();
+            if (!expr || expr->op() != zetasql::ASTBinaryExpression::Op::EQ || expr->is_not()) {
+                break;
+            }
+            {
+                auto lval = expr->lhs()->GetAsOrNull<zetasql::ASTIntLiteral>();
+                auto rval = expr->rhs()->GetAsOrNull<zetasql::ASTPathExpression>();
+                if (lval && rval && lval->image() == "0") {
+                    // TODO(someone):
+                    // 1. consider lval->iamge() as '1L'
+                    // 2. consider rval as <tb_name>.<row_id>
+                    filter_col = rval->last_name()->GetAsStringView();
+                }
+            }
+            if (filter_col.empty()) {
+                auto lval = expr->rhs()->GetAsOrNull<zetasql::ASTIntLiteral>();
+                auto rval = expr->lhs()->GetAsOrNull<zetasql::ASTPathExpression>();
+                if (lval && rval && lval->image() == "0") {
+                    // TODO(someone):
+                    // 1. consider lval->iamge() as '0L'
+                    // 2. consider rval as <tb_name>.<row_id>
+                    filter_col = rval->last_name()->GetAsStringView();
+                }
+            }
+
+            if (node->from_clause() == nullptr) {
+                break;
+            }
+            auto sub = node->from_clause()->table_expression()->GetAsOrNull<zetasql::ASTTableSubquery>();
+            if (!sub) {
+                break;
+            }
+            auto subquery = sub->subquery();
+            if (subquery->with_clause() != nullptr || subquery->order_by() != nullptr ||
+                subquery->limit_offset() != nullptr) {
+                break;
+            }
+
+            break;  // fallback normal
+        }
+
+        zetasql::parser::Unparser::visitASTSelect(node, data);
+    }
+
+ private:
+    void findUnionAllForQuery(const zetasql::ASTQuery* query) {}
+
+ private:
+    const zetasql::ASTSelect* outer_most_select_ = nullptr;
+    // detected request query block, set by when visiting outer most query
+    const zetasql::ASTSetOperation* detected_request_block_ = nullptr;
 };
 
 absl::StatusOr<std::string> Rewrite(absl::string_view query) {
