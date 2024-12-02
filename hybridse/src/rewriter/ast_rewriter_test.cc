@@ -114,13 +114,13 @@ CONFIG (execute_mode = 'request', values = (6, "xxx", 10, 9000) )
 FROM
   (
     SELECT
-      *,
-      1 AS label
-    FROM
-      t1
+      6 AS id,
+      "xxx" AS val,
+      10 AS k,
+      9000 AS ts,
+      0 AS label
   ) AS t
-CONFIG (execute_mode = 'request', values = (6, "xxx", 10, 9000) )
-)s"},
+  )s"},
 
     // TPC-C case
     {R"(SELECT C_ID, C_CITY, C_STATE, C_CREDIT, C_CREDIT_LIM, C_BALANCE, C_PAYMENT_CNT, C_DELIVERY_CNT
@@ -156,15 +156,30 @@ FROM
     FROM
       (
         SELECT
-          *,
-          1 AS label
-        FROM
-          CUSTOMER
+          1 AS C_ID,
+          1 AS C_D_ID,
+          1 AS C_W_ID,
+          "John" AS C_FIRST,
+          "M" AS C_MIDDLE,
+          "Smith" AS C_LAST,
+          "123 Main St" AS C_STREET_1,
+          "Apt 101" AS C_STREET_2,
+          "Springfield" AS C_CITY,
+          "IL" AS C_STATE,
+          12345 AS C_ZIP,
+          "555-123-4567" AS C_PHONE,
+          timestamp("2024-01-01 00:00:00") AS C_SINCE,
+          "BC" AS C_CREDIT,
+          10000.0 AS C_CREDIT_LIM,
+          0.5 AS C_DISCOUNT,
+          5000.0 AS C_BALANCE,
+          0.0 AS C_YTD_PAYMENT,
+          0 AS C_PAYMENT_CNT,
+          0 AS C_DELIVERY_CNT,
+          "Additional customer data..." AS C_DATA,
+          0 AS label
       ) AS t
   ) AS t
-CONFIG (execute_mode = 'request', values = (1, 1, 1, "John", "M", "Smith", "123 Main St", "Apt 101",
-"Springfield", "IL", 12345, "555-123-4567", timestamp("2024-01-01 00:00:00"), "BC", 10000.0, 0.5, 5000.0,
-0.0, 0, 0, "Additional customer data...") )
   )s"},
 
     {R"(
@@ -201,16 +216,73 @@ FROM
     FROM
       (
         SELECT
-          *,
-          1 AS label
-        FROM
-          CUSTOMER
+          1 AS C_ID,
+          1 AS C_D_ID,
+          1 AS C_W_ID,
+          "John" AS C_FIRST,
+          "M" AS C_MIDDLE,
+          "Smith" AS C_LAST,
+          "123 Main St" AS C_STREET_1,
+          "Apt 101" AS C_STREET_2,
+          "Springfield" AS C_CITY,
+          "IL" AS C_STATE,
+          12345 AS C_ZIP,
+          "555-123-4567" AS C_PHONE,
+          timestamp("2024-01-01 00:00:00") AS C_SINCE,
+          "BC" AS C_CREDIT,
+          10000.0 AS C_CREDIT_LIM,
+          0.5 AS C_DISCOUNT,
+          9000.0 AS C_BALANCE,
+          0.0 AS C_YTD_PAYMENT,
+          0 AS C_PAYMENT_CNT,
+          0 AS C_DELIVERY_CNT,
+          "Additional customer data..." AS C_DATA,
+          0 AS label
       ) AS t
   ) AS t
-CONFIG (execute_mode = 'request', values = (1, 1, 1, "John", "M", "Smith", "123 Main St", "Apt 101",
-"Springfield", "IL", 12345, "555-123-4567", timestamp("2024-01-01 00:00:00"), "BC", 10000.0, 0.5, 9000.0,
-0.0, 0, 0, "Additional customer data...") )
 )"},
+  // another TPCH case
+  {R"(SELECT o_id, dayofweek, dayofmonth, weekofyear
+    FROM
+     (
+       SELECT o_id, dayofweek(o_entry_d) AS dayofweek, dayofmonth(o_entry_d) AS dayofmonth, weekofyear(o_entry_d) AS weekofyear, label
+       FROM
+        (SELECT 1 AS o_w_id, 1 AS o_d_id, 1 AS o_id, 930 AS o_c_id, 2 AS o_carrier_id,
+         11 AS o_ol_cnt, 1 AS o_all_local, timestamp("2024-05-24 17:00:26") AS O_ENTRY_D,
+          0 as label
+          UNION ALL SELECT *, 1 as label FROM orders
+        ) t
+      ) t
+    WHERE label = 0;)",
+   R"(
+SELECT
+  o_id,
+  dayofweek,
+  dayofmonth,
+  weekofyear
+FROM
+  (
+    SELECT
+      o_id,
+      dayofweek(o_entry_d) AS dayofweek,
+      dayofmonth(o_entry_d) AS dayofmonth,
+      weekofyear(o_entry_d) AS weekofyear,
+      label
+    FROM
+      (
+        SELECT
+          1 AS o_w_id,
+          1 AS o_d_id,
+          1 AS o_id,
+          930 AS o_c_id,
+          2 AS o_carrier_id,
+          11 AS o_ol_cnt,
+          1 AS o_all_local,
+          timestamp("2024-05-24 17:00:26") AS O_ENTRY_D,
+          0 AS label
+      ) AS t
+  ) AS t
+  )"},
 };
 
 INSTANTIATE_TEST_SUITE_P(Rules, ASTRewriterTest, ::testing::ValuesIn(strip_cases));

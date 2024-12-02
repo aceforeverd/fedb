@@ -179,7 +179,7 @@ absl::Status Engine::Get2(absl::string_view sql, absl::string_view db, RunSessio
                          options_.IsPlanOnly());
     bool ok = compiler.Compile(info->get_sql_context(), status);
     if (!ok || 0 != status.code) {
-        return absl::FailedPreconditionError("compile fail");
+        return absl::FailedPreconditionError(absl::StrCat("compile fail:", status.GetMsg()));
     }
     session_builder->SetEngineMode(info->GetEngineMode());
 
