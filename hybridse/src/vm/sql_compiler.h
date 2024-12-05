@@ -17,7 +17,9 @@
 #ifndef HYBRIDSE_SRC_VM_SQL_COMPILER_H_
 #define HYBRIDSE_SRC_VM_SQL_COMPILER_H_
 
+#include <condition_variable>
 #include <memory>
+#include <shared_mutex>
 #include <string>
 
 #include "base/fe_status.h"
@@ -74,7 +76,23 @@ class SqlCompileInfo : public CompileInfo {
     }
     static SqlCompileInfo* CastFrom(CompileInfo* node) { return dynamic_cast<SqlCompileInfo*>(node); }
 
+    template <typename Func>
+    void CompileLocked(Func&& f) {
+        std::unique_lock<std::shared_mutex> lock(mu);
+        f();
+        ready = true;
+        cv.notify_all();
+    }
+
+    void WaitForCompiled() override {
+        std::shared_lock<std::shared_mutex> lock(mu);
+        cv.wait(lock, [&]() { return ready; });
+    }
+
  private:
+    mutable std::shared_mutex mu;
+    std::condition_variable_any cv;
+    bool ready = false;  // whether the cache is ready for use
     hybridse::vm::SqlContext sql_ctx;
 };
 

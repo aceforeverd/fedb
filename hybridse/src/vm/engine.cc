@@ -145,6 +145,7 @@ bool Engine::IsCompatibleCache(RunSession& session,  // NOLINT
 }
 
 absl::Status Engine::Get2(absl::string_view sql, absl::string_view db, RunSessionBuilder* session_builder) {
+    sql = absl::StripAsciiWhitespace(sql);
     std::shared_ptr<CompileInfo> cached_info =
         GetCacheLocked(std::string(db), std::string(sql), session_builder->engine_mode());
 
@@ -175,41 +176,48 @@ absl::Status Engine::Get2(absl::string_view sql, absl::string_view db, RunSessio
         sql_context.batch_request_info.common_column_indices = session_builder->common_column_indices();
     }
 
-    SqlCompiler compiler(std::atomic_load_explicit(&cl_, std::memory_order_acquire), options_.IsKeepIr(), false,
-                         options_.IsPlanOnly());
-    bool ok = compiler.Compile(info->get_sql_context(), status);
-    if (!ok || 0 != status.code) {
-        return absl::FailedPreconditionError(absl::StrCat("compile fail:", status.GetMsg()));
-    }
-    session_builder->SetEngineMode(info->GetEngineMode());
-
-    if (!options_.IsCompileOnly()) {
-        ok = compiler.BuildClusterJob(info->get_sql_context(), status);
-        if (!ok || 0 != status.code) {
-            return absl::FailedPreconditionError(absl::StrCat("fail to build cluster job: ", status.msg));
-        }
-    }
-
-    {
-        auto s = ExtractRequestRowsInSQL(&sql_context);
-        if (!s.ok()) {
-            return s;
-        }
-    }
-
     SetCacheLocked(std::string(db), std::string(sql), origin_mode, info);
-    session_builder->SetCompileInfo(info);
-    if (session_builder->debug()) {
-        std::ostringstream plan_oss;
-        if (nullptr != sql_context.physical_plan) {
-            sql_context.physical_plan->Print(plan_oss, "");
-            LOG(INFO) << "physical plan:\n" << plan_oss.str() << std::endl;
+
+    absl::Status s;
+    auto f = [&]() -> absl::Status {
+        SqlCompiler compiler(std::atomic_load_explicit(&cl_, std::memory_order_acquire), options_.IsKeepIr(), false,
+                             options_.IsPlanOnly());
+        bool ok = compiler.Compile(info->get_sql_context(), status);
+        if (!ok || 0 != status.code) {
+            return absl::FailedPreconditionError(absl::StrCat("compile fail:", status.GetMsg()));
         }
-        std::ostringstream runner_oss;
-        sql_context.cluster_job->Print(runner_oss, "");
-        LOG(INFO) << "cluster job:\n" << runner_oss.str() << std::endl;
-    }
-    return absl::OkStatus();
+        session_builder->SetEngineMode(info->GetEngineMode());
+
+        if (!options_.IsCompileOnly()) {
+            ok = compiler.BuildClusterJob(info->get_sql_context(), status);
+            if (!ok || 0 != status.code) {
+                return absl::FailedPreconditionError(absl::StrCat("fail to build cluster job: ", status.msg));
+            }
+        }
+
+        {
+            auto s = ExtractRequestRowsInSQL(&sql_context);
+            if (!s.ok()) {
+                return s;
+            }
+        }
+
+        session_builder->SetCompileInfo(info);
+        if (session_builder->debug()) {
+            std::ostringstream plan_oss;
+            if (nullptr != sql_context.physical_plan) {
+                sql_context.physical_plan->Print(plan_oss, "");
+                LOG(INFO) << "physical plan:\n" << plan_oss.str() << std::endl;
+            }
+            std::ostringstream runner_oss;
+            sql_context.cluster_job->Print(runner_oss, "");
+            LOG(INFO) << "cluster job:\n" << runner_oss.str() << std::endl;
+        }
+        return absl::OkStatus();
+    };
+
+    info->CompileLocked([&]() { s = f(); });
+    return s;
 }
 
 bool Engine::Get(const std::string& sql, const std::string& db, RunSession& session,
@@ -268,6 +276,7 @@ bool Engine::Get(const std::string& sql, const std::string& db, RunSession& sess
         }
     }
 
+    info->CompileLocked([]() {});
     SetCacheLocked(db, sql, session.engine_mode(), info);
     session.SetCompileInfo(info);
     if (session.is_debug_) {
@@ -420,6 +429,11 @@ std::shared_ptr<CompileInfo> Engine::GetCacheLocked(const std::string& db, const
     }
     auto& lru = *db_iter->second.get();
     auto handle = lru[sql];
+
+    if (handle.value() != nullptr) {
+        // wait on cache util its ready
+        handle.value()->WaitForCompiled();
+    }
 
     return handle.value();
 }

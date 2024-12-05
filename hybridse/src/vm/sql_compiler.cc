@@ -74,6 +74,7 @@ bool SqlCompiler::Compile(SqlContext& ctx, Status& status) {  // NOLINT
         ctx.logical_plan[0]->Print(logical_plan_ss, "\t");
         ctx.logical_plan_str = logical_plan_ss.str();
     }
+    ::hybridse::vm::Engine::InitializeGlobalLLVM();
     ctx.udf_library = udf::DefaultUdfLibrary::get();
     auto jit = vm::GlobalJIT();
 

@@ -80,6 +80,7 @@ class CompileInfo {
     virtual const hybridse::vm::PhysicalOpNode* GetPhysicalPlan() const = 0;
     virtual void DumpPhysicalPlan(std::ostream& output, const std::string& tab) = 0;
     virtual void DumpClusterJob(std::ostream& output, const std::string& tab) = 0;
+    virtual void WaitForCompiled() = 0;
 };
 
 class CompileInfoCache {

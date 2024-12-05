@@ -465,7 +465,7 @@ std::shared_ptr<DataHandler> SortRunner::Run(
 std::shared_ptr<DataHandler> ConstProjectRunner::Run(
     RunnerContext& ctx,
     const std::vector<std::shared_ptr<DataHandler>>& inputs) {
-    auto output_table = std::shared_ptr<MemTableHandler>(new MemTableHandler());
+    auto output_table = std::make_shared<MemTableHandler>();
     output_table->AddRow(project_gen_.Gen(ctx.GetParameterRow()));
     return output_table;
 }

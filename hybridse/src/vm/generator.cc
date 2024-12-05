@@ -666,7 +666,10 @@ const Row ProjectGenerator::Gen(const Row& row, const Row& parameter) {
 }
 
 const Row ConstProjectGenerator::Gen(const Row& parameter) {
-    return CoreAPI::RowConstProject(fn_, parameter, false);
+    if (output_.empty()) {
+        output_ = CoreAPI::RowConstProject(fn_, parameter, false);
+    }
+    return output_;
 }
 
 const Row AggGenerator::Gen(const codec::Row& parameter_row, std::shared_ptr<TableHandler> table) {

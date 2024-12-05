@@ -19,6 +19,7 @@
 #include <set>
 
 #include "absl/strings/str_join.h"
+#include "absl/strings/ascii.h"
 #include "gflags/gflags.h"
 #include "passes/physical/physical_pass.h"
 #include "vm/physical_op.h"
@@ -236,6 +237,9 @@ Status SchemasContext::ResolveColumnIndexByName(
     if (relation_name.empty()) {
         // if relation name not specified, resolve in current context only
         auto iter = column_name_map_.find(column_name);
+        if (iter == column_name_map_.end()) {
+            iter = column_name_map_.find(absl::AsciiStrToUpper(column_name));
+        }
         CHECK_TRUE(iter != column_name_map_.end(), kColumnNotFound,
                    "Fail to find column ", column_name);
         if (iter->second.size() > 1) {

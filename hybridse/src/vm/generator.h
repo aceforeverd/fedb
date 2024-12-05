@@ -81,7 +81,10 @@ class ConstProjectGenerator : public FnGenerator {
     explicit ConstProjectGenerator(const FnInfo& info) : FnGenerator(info), fun_(info.fn_ptr()) {}
     virtual ~ConstProjectGenerator() {}
     const Row Gen(const Row& parameter);
+
+ private:
     RowProjectFun fun_;
+    codec::Row output_;
 };
 class AggGenerator : public FnGenerator, public std::enable_shared_from_this<AggGenerator> {
  public:

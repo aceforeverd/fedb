@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 #include "passes/physical/simple_project_optimized.h"
+#include <type_traits>
 #include <vector>
-
-#include "absl/base/attributes.h"
+#include "vm/physical_op.h"
 
 namespace hybridse {
 namespace passes {
@@ -26,67 +26,155 @@ static Status BuildColumnMapping(
     const std::vector<node::ExprNode*>& inner_projects,
     const vm::SchemasContext* schemas_ctx, passes::ExprReplacer* replacer);
 
-bool SimpleProjectOptimized::Transform(PhysicalOpNode* in, PhysicalOpNode** output) {
-    *output = in;
+// inline consecutive nodes impl in template
+template <typename OuterNode, typename InnerNode>
+absl::StatusOr<vm::PhysicalOpNode*> InlineNodeImpl(vm::PhysicalPlanContext* plan_ctx, OuterNode* outer,
+                                                   InnerNode* inner, const vm::SchemasContext* sc) {
+    auto nm = plan_ctx->node_manager();
 
-    if (in->GetProducerCnt() > 0 && nullptr != in->producers()[0]) {
-        if (in->GetOpType() == vm::kPhysicalOpSimpleProject) {
-            switch (in->producers()[0]->GetOpType()) {
+    auto outer_projects = outer->project();
+    std::vector<node::ExprNode*> outer_exprs;
+    for (size_t i = 0; i < outer_projects.size(); ++i) {
+        outer_exprs.push_back(outer_projects.GetExpr(i)->DeepCopy(nm));
+    }
+
+    auto inner_projects = inner->project();
+    std::vector<node::ExprNode*> inner_exprs;
+    for (size_t i = 0; i < inner_projects.size(); ++i) {
+        inner_exprs.push_back(inner_projects.GetExpr(i)->DeepCopy(nm));
+    }
+
+    Status status;
+    passes::ExprReplacer replacer;
+    for (size_t i = 0; i < outer_projects.size(); ++i) {
+        status = BuildColumnMapping(outer_exprs[i], inner_exprs, sc, &replacer);
+        if (!status.isOK()) {
+            return absl::FailedPreconditionError(absl::StrCat("Fail to merge simple projects: ", status.msg));
+        }
+    }
+
+    vm::ColumnProjects new_projects;
+    for (size_t i = 0; i < outer_projects.size(); ++i) {
+        node::ExprNode* new_expr;
+        status = replacer.Replace(outer_exprs[i], &new_expr);
+        if (!status.isOK()) {
+            return absl::FailedPreconditionError(absl::StrCat("Fail to merge simple projects: ", status.msg));
+        }
+        new_projects.Add(outer_projects.GetName(i), new_expr, outer_projects.GetFrame(i));
+    }
+
+    if constexpr (std::is_same_v<InnerNode, vm::PhysicalConstProjectNode>) {
+        vm::PhysicalConstProjectNode* new_project_op = nullptr;
+        status = plan_ctx->CreateOp<vm::PhysicalConstProjectNode>(&new_project_op, new_projects);
+        if (!status.isOK()) {
+            return absl::FailedPreconditionError(absl::StrCat("Fail to merge simple projects: ", status.msg));
+        }
+        return new_project_op;
+    } else {
+        vm::PhysicalRowProjectNode* new_project_op = nullptr;
+        status = plan_ctx->CreateOp<vm::PhysicalRowProjectNode>(&new_project_op, inner->GetProducer(0), new_projects);
+        if (!status.isOK()) {
+            return absl::FailedPreconditionError(absl::StrCat("Fail to merge simple projects: ", status.msg));
+        }
+        return new_project_op;
+    }
+}
+
+template <typename OuterNode, typename InnerNode>
+bool INLINE_NODE_WRAP(vm::PhysicalPlanContext* plan_ctx, vm::PhysicalOpNode* outer, vm::PhysicalOpNode* inner,
+                      vm::PhysicalOpNode** output) {
+    auto s =
+        InlineNodeImpl<OuterNode, InnerNode>(plan_ctx, outer->GetAsOrNull<OuterNode>(), inner->GetAsOrNull<InnerNode>(),
+                                             outer->GetProducer(0)->schemas_ctx());
+    if (!s.ok()) {
+        LOG(WARNING) << s.status().ToString();
+        return false;
+    }
+    *output = s.value();
+    return true;
+}
+
+static bool transform_impl(vm::PhysicalPlanContext* plan_ctx, PhysicalOpNode* outer, PhysicalOpNode* inner,
+                           const vm::SchemasContext* sc, PhysicalOpNode** output) {
+    *output = outer;
+
+    if (outer->GetProducerCnt() == 0) {
+        return false;
+    }
+
+    switch (outer->GetOpType()) {
+        case vm::kPhysicalOpSimpleProject: {
+            switch (inner->GetOpType()) {
                 case vm::kPhysicalOpSimpleProject: {
-                    DLOG(INFO) << "Find consecutive simple projects";
-                    auto nm = plan_ctx_->node_manager();
-                    auto outer_project_op = dynamic_cast<vm::PhysicalSimpleProjectNode*>(in);
-                    auto inner_project_op = dynamic_cast<vm::PhysicalSimpleProjectNode*>(in->GetProducer(0));
-
-                    auto outer_projects = outer_project_op->project();
-                    std::vector<node::ExprNode*> outer_exprs;
-                    for (size_t i = 0; i < outer_projects.size(); ++i) {
-                        outer_exprs.push_back(outer_projects.GetExpr(i)->DeepCopy(nm));
+                    return INLINE_NODE_WRAP<vm::PhysicalSimpleProjectNode, vm::PhysicalSimpleProjectNode>(
+                        plan_ctx, outer, inner, output);
+                    break;
+                }
+                case vm::kPhysicalOpProject: {
+                    auto pn = inner->GetAsOrNull<vm::PhysicalProjectNode>();
+                    if (pn->project_type_ == vm::kRowProject) {
+                        return INLINE_NODE_WRAP<vm::PhysicalSimpleProjectNode, vm::PhysicalRowProjectNode>(
+                            plan_ctx, outer, inner, output);
                     }
-
-                    auto inner_projects = inner_project_op->project();
-                    std::vector<node::ExprNode*> inner_exprs;
-                    for (size_t i = 0; i < inner_projects.size(); ++i) {
-                        inner_exprs.push_back(inner_projects.GetExpr(i)->DeepCopy(nm));
-                    }
-
-                    Status status;
-                    passes::ExprReplacer replacer;
-                    for (size_t i = 0; i < outer_projects.size(); ++i) {
-                        status =
-                            BuildColumnMapping(outer_exprs[i], inner_exprs, inner_project_op->schemas_ctx(), &replacer);
-                        if (!status.isOK()) {
-                            LOG(WARNING) << "Fail to merge simple projects: " << status;
-                            return false;
-                        }
-                    }
-
-                    vm::ColumnProjects new_projects;
-                    for (size_t i = 0; i < outer_projects.size(); ++i) {
-                        node::ExprNode* new_expr;
-                        status = replacer.Replace(outer_exprs[i], &new_expr);
-                        if (!status.isOK()) {
-                            LOG(WARNING) << "Fail to merge simple projects: " << status;
-                            return false;
-                        }
-                        new_projects.Add(outer_projects.GetName(i), new_expr, outer_projects.GetFrame(i));
-                    }
-                    vm::PhysicalSimpleProjectNode* new_project_op = nullptr;
-                    status = plan_ctx_->CreateOp<vm::PhysicalSimpleProjectNode>(
-                        &new_project_op, inner_project_op->GetProducer(0), new_projects);
-                    if (!status.isOK()) {
-                        LOG(WARNING) << "Fail to merge simple projects: " << status;
-                        return false;
-                    }
-                    *output = new_project_op;
-                    return true;
+                    break;
+                }
+                case vm::kPhysicalOpConstProject: {
+                    return INLINE_NODE_WRAP<vm::PhysicalSimpleProjectNode, vm::PhysicalConstProjectNode>(
+                        plan_ctx, outer, inner, output);
+                    break;
+                }
+                case vm::kPhysicalOpRename: {
+                    return transform_impl(plan_ctx, outer, inner->GetProducer(0), sc, output);
                 }
                 default:
                     break;
             }
+            break;
         }
+        case vm::kPhysicalOpProject: {
+            auto outer_pn = outer->GetAsOrNull<vm::PhysicalProjectNode>();
+            if (outer_pn->project_type_ != vm::kRowProject) {
+                return false;
+            }
+
+            switch (inner->GetOpType()) {
+                case vm::kPhysicalOpSimpleProject: {
+                    return INLINE_NODE_WRAP<vm::PhysicalRowProjectNode, vm::PhysicalSimpleProjectNode>(plan_ctx, outer,
+                                                                                                       inner, output);
+                    break;
+                }
+                case vm::kPhysicalOpProject: {
+                    auto pn = outer->GetProducer(0)->GetAsOrNull<vm::PhysicalProjectNode>();
+                    if (pn->project_type_ == vm::kRowProject) {
+                        return INLINE_NODE_WRAP<vm::PhysicalRowProjectNode, vm::PhysicalRowProjectNode>(plan_ctx, outer,
+                                                                                                        inner, output);
+                    }
+                    break;
+                }
+                case vm::kPhysicalOpConstProject: {
+                    return INLINE_NODE_WRAP<vm::PhysicalRowProjectNode, vm::PhysicalConstProjectNode>( plan_ctx, outer,
+                                     inner, output);
+                    break;
+                }
+                case vm::kPhysicalOpRename: {
+                    return transform_impl(plan_ctx, outer, inner->GetProducer(0), sc, output);
+                }
+                default:
+                    break;
+            }
+            break;
+        }
+        default:
+            break;
     }
     return false;
+}
+
+bool SimpleProjectOptimized::Transform(PhysicalOpNode* in, PhysicalOpNode** output) {
+    if (in->GetProducerCnt() == 0) {
+        return false;
+    }
+    return transform_impl(plan_ctx_, in, in->GetProducer(0), in->GetProducer(0)->schemas_ctx(), output);
 }
 
 static Status BuildColumnMapping(
@@ -103,8 +191,6 @@ static Status BuildColumnMapping(
             size_t schema_idx;
             size_t col_idx;
             schemas_ctx->ResolveColumnRefIndex(col_ref, &schema_idx, &col_idx);
-            CHECK_TRUE(schema_idx == 0, common::kPlanError,
-                       "Simple project should output single schema");
             CHECK_TRUE(col_idx < inner_projects.size(), common::kPlanError,
                        "Column index out of bound");
 

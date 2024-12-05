@@ -23,6 +23,7 @@ import com._4paradigm.openmldb.sdk.impl.SqlClusterExecutor;
 
 import java.sql.*;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 
 public class SQLDriver implements Driver {
@@ -34,6 +35,8 @@ public class SQLDriver implements Driver {
         }
     }
 
+    private final AtomicInteger counter = new AtomicInteger(0);
+
     /**
      * Connect to the given connection string.
      *
@@ -42,7 +45,7 @@ public class SQLDriver implements Driver {
      * @throws SQLException if it is not possible to connect
      */
     @Override
-    public Connection connect(String url, Properties info) throws SQLException { 
+    public Connection connect(String url, Properties info) throws SQLException {
         // Merge connectProperties (from URL) and supplied properties from user.
         // TODO(hw): only cluster mode now, support StandaloneOptions later
         if (info == null) {
@@ -55,7 +58,9 @@ public class SQLDriver implements Driver {
         try {
             SdkOption option = createOptionByProps(info);
             SqlExecutor client = new SqlClusterExecutor(option);
-            return new SQLConnection(client, info);
+            Connection new_conn = new SQLConnection(client, info);
+            // connMap.put(url, new_conn);
+            return new_conn;
         } catch (SqlException e) {
             throw new SQLException(e.getMessage());
         }
@@ -132,13 +137,35 @@ public class SQLDriver implements Driver {
         if (prop != null) {
             option.setZkCluster(prop);
         } else {
-            throw new IllegalArgumentException("must set param 'zk'");
+            // throw new IllegalArgumentException("must set param 'zk'");
+            // System.out.println("WARN: zk is not set");
         }
         prop = properties.getProperty("zkPath");
         if (prop != null) {
             option.setZkPath(prop);
         } else {
-            throw new IllegalArgumentException("must set param 'zkPath'");
+            // throw new IllegalArgumentException("must set param 'zkPath'");
+            // System.out.println("WARN: zkPath is not set");
+        }
+
+        prop = properties.getProperty("host");
+        int curr_counter = counter.getAndIncrement();
+        if (prop != null) {
+            String[] hosts = prop.split(",");
+            String host = hosts[curr_counter % hosts.length];
+            option.setHost(host);
+        } else {
+            // throw new IllegalArgumentException("must set param 'zk'");
+            // System.out.println("WARN: host is not set");
+        }
+
+        prop = properties.getProperty("port");
+        if (prop != null) {
+            String[] ports = prop.split(",");
+            int port = Integer.parseInt(ports[curr_counter % ports.length]);
+            option.setPort(port);
+        } else {
+            // throw new IllegalArgumentException("must set param 'zk'");
         }
 
         // optionals

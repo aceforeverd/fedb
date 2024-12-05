@@ -521,6 +521,7 @@ void EngineTestRunner::RunBenchmark(size_t iters) {
         double mill = (et.tv_sec - st.tv_sec) * 1000 + (et.tv_usec - st.tv_usec) / 1000.0;
         printf("Engine run take approximately %.5f ms per run\n", mill / iters);
     }
+    return_code_ = ENGINE_TEST_RET_SUCCESS;
 }
 
 GTEST_ALLOW_UNINSTANTIATED_PARAMETERIZED_TEST(EngineTest);
