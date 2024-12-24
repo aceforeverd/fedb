@@ -17,7 +17,7 @@
 #ifndef SRC_STORAGE_TICKET_H_
 #define SRC_STORAGE_TICKET_H_
 
-#include <vector>
+#include <list>
 
 #include "storage/key_entry.h"
 
@@ -37,7 +37,7 @@ class Ticket {
     void Pop();
 
  private:
-    std::vector<KeyEntry*> entries_;
+    std::list<KeyEntry*> entries_;
 };
 
 }  // namespace storage

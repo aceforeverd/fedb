@@ -283,6 +283,83 @@ FROM
       ) AS t
   ) AS t
   )"},
+  {R"(
+SELECT * FROM (
+  SELECT
+     t1.c_id, t1.c_first,
+     t2.o_id, t2.o_d_id, t2.o_w_id, t2.o_entry_d,
+     row_number() over w as row_id
+  FROM (
+    select
+      1 as c_w_id,
+      1 as c_d_id,
+      10 as c_id,
+      0 as c_discount,
+      'GC' as c_credit,
+      'BARBAREING' as c_last,
+      'KAs1jI4pcT' as c_first,
+      50000.00 as c_credit_lim,
+      -10.00 as c_balance,
+      10.00 as c_ytd_payment,
+      1 as c_payment_cnt,
+      0 as c_delivery_cnt,
+      'HZ5ZoLGVZ3ktTq5Q9UJ' as c_street_1,
+      'iEjw0ADUy21982D3l' as c_street_2,
+      'fuEI7wrQ9w' as c_city,
+      'RY' as c_state,
+      '096111111' as c_zip,
+      '8797087219385874' as c_phone,
+      1733803058080 as c_since,
+      'OE' as c_middle,
+      'FDRzKPIv4upfNuPVa11D8fYoffc54tJUWjPE5tr4QTOs3fgU5UfpWjeZ65w0LdJ8aNWzyAfYyR3m8MY7RjOxtpAlUFPuGlmchDU789RZha6MmPA3e5iHe09N73u2tUeUwEYct6v5Nu7IutFDuYp5Qrj0Fc6Glse4SzMWK2XeTZPxJx6q0pZBjvm01AmEGJXX4m028D8g8yXc2Q6gxKcKvNyhkJnj4HiN0nH2evCsh0Hv5hIZzgqdRvt2OStFvLuy1kNdEa7tCmkgEpOAgL8TB1cQIW5pgPGTdXaBo3mKGJgjCtqvPTCRJHLi9x4DZ8eyjOMMh8RtEiCH6dGPz6sg6BPYHs2Aho8tI1jgkSqsVVYJzK6lcYTRGzW32Zd4oDmXWFj2aQVp8BMKntZV25UoGtASfDGoJyh64iLiFfLVi4uMUDkUykbn8UOIAoUqZyJhewSXzRV4UOl8Pr4BoZnaPS' as c_data,
+    ) t1
+    LEFT JOIN orders t2 ON t1.c_id = t2.o_c_id
+  WINDOW w as (PARTITION BY t1.c_id ORDER BY t2.o_entry_d DESC)
+) t WHERE row_id = 1
+  )",
+  R"(
+SELECT
+  *
+FROM
+  (
+    SELECT
+      t1.c_id,
+      t1.c_first,
+      t2.o_id,
+      t2.o_d_id,
+      t2.o_w_id,
+      t2.o_entry_d
+    FROM
+      (
+        SELECT
+          1 AS c_w_id,
+          1 AS c_d_id,
+          10 AS c_id,
+          0 AS c_discount,
+          'GC' AS c_credit,
+          'BARBAREING' AS c_last,
+          'KAs1jI4pcT' AS c_first,
+          50000.00 AS c_credit_lim,
+          - 10.00 AS c_balance,
+          10.00 AS c_ytd_payment,
+          1 AS c_payment_cnt,
+          0 AS c_delivery_cnt,
+          'HZ5ZoLGVZ3ktTq5Q9UJ' AS c_street_1,
+          'iEjw0ADUy21982D3l' AS c_street_2,
+          'fuEI7wrQ9w' AS c_city,
+          'RY' AS c_state,
+          '096111111' AS c_zip,
+          '8797087219385874' AS c_phone,
+          1733803058080 AS c_since,
+          'OE' AS c_middle,
+          'FDRzKPIv4upfNuPVa11D8fYoffc54tJUWjPE5tr4QTOs3fgU5UfpWjeZ65w0LdJ8aNWzyAfYyR3m8MY7RjOxtpAlUFPuGlmchDU789RZha6MmPA3e5iHe09N73u2tUeUwEYct6v5Nu7IutFDuYp5Qrj0Fc6Glse4SzMWK2XeTZPxJx6q0pZBjvm01AmEGJXX4m028D8g8yXc2Q6gxKcKvNyhkJnj4HiN0nH2evCsh0Hv5hIZzgqdRvt2OStFvLuy1kNdEa7tCmkgEpOAgL8TB1cQIW5pgPGTdXaBo3mKGJgjCtqvPTCRJHLi9x4DZ8eyjOMMh8RtEiCH6dGPz6sg6BPYHs2Aho8tI1jgkSqsVVYJzK6lcYTRGzW32Zd4oDmXWFj2aQVp8BMKntZV25UoGtASfDGoJyh64iLiFfLVi4uMUDkUykbn8UOIAoUqZyJhewSXzRV4UOl8Pr4BoZnaPS' AS c_data
+      ) AS t1
+      LAST JOIN
+      orders AS t2
+      ORDER BY t2.o_entry_d
+      ON t1.c_id = t2.o_c_id
+  ) AS t
+  )"},
 };
 
 INSTANTIATE_TEST_SUITE_P(Rules, ASTRewriterTest, ::testing::ValuesIn(strip_cases));

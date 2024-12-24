@@ -85,8 +85,10 @@ class SqlCompileInfo : public CompileInfo {
     }
 
     void WaitForCompiled() override {
-        std::shared_lock<std::shared_mutex> lock(mu);
-        cv.wait(lock, [&]() { return ready; });
+        if (!ready) {
+            std::shared_lock<std::shared_mutex> lock(mu);
+            cv.wait(lock, [&]() { return ready; });
+        }
     }
 
  private:

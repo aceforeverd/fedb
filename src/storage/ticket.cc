@@ -22,7 +22,7 @@ namespace storage {
 Ticket::Ticket() {}
 
 Ticket::~Ticket() {
-    std::vector<KeyEntry*>::iterator it = entries_.begin();
+    auto it = entries_.begin();
     for (; it != entries_.end(); ++it) {
         (*it)->UnRef();
     }

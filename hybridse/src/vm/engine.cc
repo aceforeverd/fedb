@@ -457,7 +457,9 @@ bool Engine::SetCacheLocked(const std::string& db, const std::string& sql, Engin
     auto& lru = *db_iter->second.get();
     auto handle = lru[sql];
     if (handle.value() == nullptr) {
-        handle.value() = info;
+        BoostLRU::element_type::handle new_handle;
+        new_handle.value() = info;
+        handle = std::move(new_handle);
     }
 
     return true;
