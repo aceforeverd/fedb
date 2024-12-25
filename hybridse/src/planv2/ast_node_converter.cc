@@ -1056,7 +1056,8 @@ base::Status ConvertFrameNode(const zetasql::ASTWindowFrame* window_frame, node:
             break;
         }
         case zetasql::ASTWindowFrame::FrameUnit::RANGE: {
-            frame_type = node::kFrameRange;
+            // tmp solution, range == rows_range
+            frame_type = node::kFrameRowsRange;
             break;
         }
         case zetasql::ASTWindowFrame::FrameUnit::ROWS_RANGE: {
