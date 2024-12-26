@@ -445,7 +445,7 @@ void EngineTestRunner::RunCheck() {
     }
     auto engine_mode = session_->engine_mode();
     Status status = Compile();
-    ASSERT_EQ(sql_case_.expect().success_, status.isOK());
+    ASSERT_EQ(sql_case_.expect().success_, status.isOK()) << status;
     if (!status.isOK()) {
         return_code_ = ENGINE_TEST_RET_COMPILE_ERROR;
         return;

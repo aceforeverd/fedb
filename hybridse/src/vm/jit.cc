@@ -161,7 +161,7 @@ bool HybridSeLlvmJitWrapper::Init() {
 bool HybridSeLlvmJitWrapper::OptModule(::llvm::Module* m) {
     EnsureInitialized();
     DLOG(INFO) << "Module before opt:\n" << LlvmToString(*m);
-    // RunDefaultOptPasses(m);
+    RunDefaultOptPasses(m);
     DLOG(INFO) << "Module after opt:\n" << LlvmToString(*m);
     return true;
 }

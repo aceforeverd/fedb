@@ -24,6 +24,7 @@
 #include <vector>
 
 #include "node/plan_node.h"
+#include "node/sql_node.h"
 #include "passes/expression/expr_pass.h"
 #include "vm/catalog.h"
 #include "vm/internal/cte_context.h"
@@ -334,6 +335,12 @@ class ColumnProjects : public FnComponent {
 
     base::Status ReplaceExpr(const passes::ExprReplacer &replacer,
                              node::NodeManager *nm, ColumnProjects *out) const;
+
+    void ResolvedRelatedColumns(std::vector<const node::ExprNode *> *vec) const {
+        for (auto expr : exprs_) {
+            node::ColumnOfExpression(expr, vec);
+        }
+    }
 
  private:
     std::vector<std::string> names_;

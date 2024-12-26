@@ -38,6 +38,7 @@
 #include "passes/physical/split_aggregation_optimized.h"
 #include "passes/physical/transform_up_physical_pass.h"
 #include "passes/physical/window_column_pruning.h"
+#include "passes/physical/window_union_rewrite_optimized.h"
 #include "plan/planner.h"
 #include "proto/fe_common.pb.h"
 #include "vm/internal/node_helper.h"
@@ -224,8 +225,7 @@ Status BatchModeTransformer::InitFnInfo(PhysicalOpNode* node,
         }
         case kPhysicalOpSortBy: {
             auto sort_op = dynamic_cast<PhysicalSortNode*>(node);
-            CHECK_STATUS(
-                GenSort(&sort_op->sort_, node->producers()[0]->schemas_ctx()));
+            CHECK_STATUS(GenSort(&sort_op->sort_, node->GetProducer(0)->GetProducer(0)->schemas_ctx()));
             break;
         }
         case kPhysicalOpProject: {
@@ -1034,7 +1034,8 @@ Status BatchModeTransformer::TransformSortOp(const node::SortPlanNode* node,
         *output = left;
         return Status::OK();
     }
-    CHECK_STATUS(CheckTimeOrIntegerOrderColumn(node->order_by_, left->schemas_ctx()))
+    CHECK_TRUE(left->GetProducerCnt() == 1, common::kPlanError, "sort plan require non-leaf input");
+    CHECK_STATUS(CheckTimeOrIntegerOrderColumn(node->order_by_, left->GetProducer(0)->schemas_ctx()))
     PhysicalSortNode* sort_op = nullptr;
     CHECK_STATUS(CreateOp<PhysicalSortNode>(&sort_op, left, node->order_by_));
     *output = sort_op;
@@ -1219,6 +1220,7 @@ Status BatchModeTransformer::InstantiateLLVMFunction(const FnInfo* fn_info) {
 bool BatchModeTransformer::AddDefaultPasses() {
     AddPass(PhysicalPlanPassType::kPassSimpleProjectsOptimized);
     AddPass(PhysicalPlanPassType::kPassFilterOptimized);
+    AddPass(PhysicalPlanPassType::kPassWindowUnionOptimized);
     AddPass(PhysicalPlanPassType::kPassLeftJoinOptimized);
     AddPass(PhysicalPlanPassType::kPassGroupAndSortOptimized);
     AddPass(PhysicalPlanPassType::kPassLimitOptimized);
@@ -1560,6 +1562,11 @@ void BatchModeTransformer::ApplyPasses(PhysicalOpNode* node,
             }
             case PhysicalPlanPassType::kPassFilterOptimized: {
                 ConditionOptimized pass(&plan_ctx_);
+                transformed = pass.Apply(cur_op, &new_op);
+                break;
+            }
+            case PhysicalPlanPassType::kPassWindowUnionOptimized: {
+                passes::WindowUnionOptimized pass(&plan_ctx_);
                 transformed = pass.Apply(cur_op, &new_op);
                 break;
             }

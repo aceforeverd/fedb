@@ -665,7 +665,7 @@ class OrderByNode : public ExprNode {
     }
     ~OrderByNode() {}
 
-    void Print(std::ostream &output, const std::string &org_tab) const;
+    void Print(std::ostream &output, const std::string &org_tab) const override;
     const std::string GetExprString() const;
     virtual bool Equals(const ExprNode *that) const;
     OrderByNode *ShadowCopy(NodeManager *) const override;
@@ -686,7 +686,7 @@ class OrderByNode : public ExprNode {
         }
         return order_expression->expr();
     }
-    bool is_asc() const { return false; }
+
     ExprListNode *order_expressions_;
 };
 class TableRefNode : public SqlNode {
