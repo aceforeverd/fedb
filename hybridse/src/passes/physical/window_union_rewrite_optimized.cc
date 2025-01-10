@@ -130,7 +130,7 @@ bool WindowUnionOptimized::Transform(PhysicalOpNode* in, PhysicalOpNode** output
         if (join_right_key_list.size() != 1) {
             return false;
         }
-        join_right_key = join_left_key_list.front()->GetAsOrNull<node::ColumnRefNode>();
+        join_right_key = join_right_key_list.front()->GetAsOrNull<node::ColumnRefNode>();
         if (!join_right_key) {
             return false;
         }
@@ -185,17 +185,42 @@ bool WindowUnionOptimized::Transform(PhysicalOpNode* in, PhysicalOpNode** output
     vm::ColumnProjects right_selects;
     auto nm = plan_ctx_->node_manager();
 
+    {
+        size_t sc_idx, col_idx;
+        auto s = project_in->schemas_ctx()->ResolveColumnRefIndex(join_left_key, &sc_idx, &col_idx);
+        if (!s.isOK()) {
+            return false;
+        }
+        if (sc_idx == 0) {
+            // left key refer to request source
+            left_selects.Add(win_partition_key->GetColumnName(),
+                             nm->MakeColumnRefNode(join_left_key->GetColumnName(), join_left_key->GetRelationName()),
+                             nullptr);
+            right_selects.Add(win_partition_key->GetColumnName(),
+                             nm->MakeColumnRefNode(join_right_key->GetColumnName(), join_right_key->GetRelationName()),
+                             nullptr);
+        } else {
+            // left key refer to union source
+            left_selects.Add(win_partition_key->GetColumnName(),
+                             nm->MakeColumnRefNode(join_right_key->GetColumnName(), join_right_key->GetRelationName()),
+                             nullptr);
+            right_selects.Add(win_partition_key->GetColumnName(),
+                             nm->MakeColumnRefNode(join_left_key->GetColumnName(), join_left_key->GetRelationName()),
+                             nullptr);
+        }
+    }
+
     std::vector<const node::ExprNode*> related_cols;
-    related_cols.push_back(win_partition_key);
     related_cols.push_back(win_ordering_key);
     win_agg_node->project().ResolvedRelatedColumns(&related_cols);
 
     std::unordered_set<std::string> visited_cols;
+    visited_cols.insert(win_partition_key->GetColumnName());
     for (auto expr : related_cols) {
         auto ref = expr->GetAsOrNull<node::ColumnRefNode>();
         assert(ref);
 
-        if (visited_cols.count(ref->GetExprString()) == 1) {
+        if (visited_cols.count(ref->GetColumnName()) == 1) {
             continue;
         }
 
@@ -221,7 +246,7 @@ bool WindowUnionOptimized::Transform(PhysicalOpNode* in, PhysicalOpNode** output
                               nullptr);
         }
 
-        visited_cols.insert(ref->GetExprString());
+        visited_cols.insert(ref->GetColumnName());
     }
 
     vm::PhysicalSimpleProjectNode* new_left_node = nullptr;

@@ -732,7 +732,19 @@ void WindowAggRunner::RunWindowAggOnKey(
             break;
         }
         const Row& instance_row = instance_segment_iter->GetValue();
-        const uint64_t instance_order = instance_segment_iter->GetKey();
+        uint64_t instance_order = instance_segment_iter->GetKey();
+        if (instance_order == UINT64_MAX && unions_cnt > 0) {
+            // FIXME(xxx)
+            auto segment = union_partitions[0]->GetSegment(key);
+            auto it = segment->GetIterator();
+            if (it) {
+                it->SeekToFirst();
+                if (it->Valid()) {
+                    instance_order = it->GetKey();
+                }
+            }
+        }
+        DLOG(INFO) << "instance order: " << instance_order;
 
         // construct the window
         while (min_union_pos >= 0 &&

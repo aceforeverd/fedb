@@ -127,7 +127,7 @@ find_package(Protobuf 3.6 EXACT REQUIRED)
 message(STATUS "Found Protobuf Libraries: ${Protobuf_LIBRARIES}")
 
 add_definitions(-DTBB_PREVIEW_CONCURRENT_LRU_CACHE=1)
-add_definitions(-DTBB_USE_ASSERT=1)
+# add_definitions(-DTBB_USE_ASSERT=1)
 
 find_library(UNWIND_LIBRARY unwind)
 find_library(LEVELDB_LIBRARY leveldb)

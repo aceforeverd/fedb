@@ -435,7 +435,7 @@ std::shared_ptr<CompileInfo> Engine::GetCacheLocked(const std::string& db, const
         handle.value()->WaitForCompiled();
     }
 
-    return handle.value();
+    return std::atomic_load_explicit(&handle.value(), std::memory_order_relaxed);
 }
 
 bool Engine::SetCacheLocked(const std::string& db, const std::string& sql, EngineMode engine_mode,
@@ -457,9 +457,7 @@ bool Engine::SetCacheLocked(const std::string& db, const std::string& sql, Engin
     auto& lru = *db_iter->second.get();
     auto handle = lru[sql];
     if (handle.value() == nullptr) {
-        BoostLRU::element_type::handle new_handle;
-        new_handle.value() = info;
-        handle = std::move(new_handle);
+        std::atomic_store_explicit(&handle.value(), info, std::memory_order_relaxed);
     }
 
     return true;

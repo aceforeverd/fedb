@@ -186,13 +186,22 @@ bool GroupAndSortOptimized::Transform(PhysicalOpNode* in,
                 }
                 if (!window_unions.Empty()) {
                     for (auto& window_union : window_unions.window_unions_) {
-                        PhysicalOpNode* new_producer;
-                        if (KeyAndOrderOptimized(
-                                window_union.first->schemas_ctx(),
-                                window_union.first,
-                                &window_union.second.partition_,
-                                &window_union.second.sort_, &new_producer)) {
-                            window_union.first = new_producer;
+                        // 1. optimize it self (e.g Join(t1, t2) can optimize t2 based on join condition)
+                        {
+                            PhysicalOpNode* new_producer;
+                            if (Apply(window_union.first, &new_producer) && new_producer != nullptr) {
+                                window_union.first = new_producer;
+                            }
+                        }
+
+                        // 2. optimize based on window definition
+                        {
+                            PhysicalOpNode* new_producer;
+                            if (KeyAndOrderOptimized(window_union.first->schemas_ctx(), window_union.first,
+                                                     &window_union.second.partition_, &window_union.second.sort_,
+                                                     &new_producer)) {
+                                window_union.first = new_producer;
+                            }
                         }
                     }
                 }
